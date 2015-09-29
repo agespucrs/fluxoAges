@@ -1,8 +1,8 @@
 /***
-* Scripts para criação e insersão de dados
-* Base Exemplo AgES_E
+* Scripts para criacao e insersao de dados
+* Base Dados Fluxo AGES
 * Casssio Trindade
-* 01/07/2015
+* 09/2015
 ***/
 
 USE ages_e;
@@ -22,8 +22,11 @@ CREATE TABLE tb_usuario (
   UNIQUE KEY MATRICULA_UNIQUE (MATRICULA)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
-INSERT INTO TB_USUARIO(USUARIO, SENHA)
-	VALUES('cassio', '123456'), ('admin', 'admin');
+INSERT INTO tb_usuario
+(ID_USUARIO,USUARIO,SENHA,ADMINISTRADOR,MATRICULA,NOME,EMAIL,DATA_CADASTRO)
+VALUES
+('10', 'admin', 'admin', 'S', '00000', 'C�ssio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
+
 	
 -- Tabela de estados do Brasil	
 CREATE TABLE TB_UF (
