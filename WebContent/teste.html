@@ -1,0 +1,37 @@
+<!DOCTYPE html >
+<html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="./css/comum.css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+
+
+		<div class="modal hide" id="confirmDelete">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Atenção</h3>
+			</div>
+			<div class="modal-body">
+				<p>Você deseja realmente excluir?</p>
+				<div class="alert alert-error">Atenção: esta operação não pode ser desfeita.</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-danger">Sim, desejo excluir.</a> <a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+			</div>
+		</div>
+</body>
+<script src="https://code.jquery.com/jquery-2.1.4.js" type="text/jscript"></script>
+<script type="text/javascript">
+	$(function() {
+		$("td.deleteLink a").click(function() {
+			$('#confirmDelete').modal('show');
+			$("#confirmDelete .btn-danger").attr("href", $(this).attr("href"));
+			return false;
+		});
+	});
+</script>
+
+</html>
