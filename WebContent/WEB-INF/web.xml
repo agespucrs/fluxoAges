@@ -4,8 +4,8 @@
   <welcome-file-list>
     <welcome-file>user/login.jsp</welcome-file>
   </welcome-file-list>
-  <error-page>
+<!--   <error-page>
     <error-code>500</error-code>
     <location>/erroException.jsp</location>
-  </error-page>
+  </error-page> -->
 </web-app>

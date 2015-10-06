@@ -16,7 +16,7 @@
     <body>
         <!-- Conteúdo principal -->
         <main>
-            <img href="index.jsp" class="logo" src="img/logo-ages.png" alt="AGES">
+            <img class="logo" src="img/logo-ages.png" alt="AGES">
            
             <section class="login">
                 <h1>Bem <span>v</span>indo!</h1><!-- Título principal -->

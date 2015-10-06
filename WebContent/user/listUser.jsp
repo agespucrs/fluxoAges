@@ -7,6 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="./css/comum.css" />
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="icon" href="img/favicon.ico"><!-- Favicon é aquela imagem que vai na aba do navegador -->
+        <!-- <link rel="stylesheet" href="css/reset.css">Esse arquivo css reseta todos os padrões de todas as tags -->
+        <link rel="stylesheet" href="css/style.css"><!-- Estilo geral de todas as páginas -->
+         <link rel="stylesheet" href="css/index.css">
 <script type="text/javascript">
 	function remover(id) {
 		var resposta = confirm("Deseja remover o usuario " + id);
@@ -26,7 +30,7 @@
 		<form action="" method="post">
 			<jsp:include page="/template/msg.jsp"></jsp:include>
 			<fieldset>
-				<legend>Lists</legend>
+
 				<h1>List</h1>
 				<table width="100%" border="1" cellspacing="0" cellpadding="4">
 					<thead>
