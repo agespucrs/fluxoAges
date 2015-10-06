@@ -1,39 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/comum.css" />
-<title>AgES Login</title>
-</head>
-<body>
-	<div class="head">
-		<div class="logo">
-			<a href="index.jsp"> <img alt="Logo AgES" src="img/FACIN-AGES-poli.jpg">
-			</a>
-		</div>
-		<h1>Bem Vindo ao sistema Fluxo AGES / CePES MAterials</h1>
-	</div>
-	<form method="post" class="login_form" action="main?acao=login">
-		<jsp:include page="/template/msg.jsp"></jsp:include>
-		<fieldset class="fieldset_login">
-			<legend>Acesso ao Sistema</legend>
-			<div class="campo">
-				<label for="login">Login</label> <input type="text" id="login" name="login" maxlength="15" value="${param.login}" />
-			</div>
-
-			<div class="campo">
-				<label for="senha">Senha</label> <input type="password" id="senha" name="senha" maxlength="15" value="${param.senha}" />
-			</div>
-
-			<div class="campo">
-				<input type="submit" value="Enter" id="logar" name="logar" />
-			</div>
-
-			<div class="campo">
-				<a href="">Esqueci minha senha</a>
-			</div>
-		</fieldset>
-	</form>
-</body>
+<!DOCTYPE html><!-- Informa ao browser a versão do HTML. Nesse caso HTML5. -->
+<html lang="pt-br"><!-- lang="pt-br" informa que a página está na linguagem português(Brasil) -->
+    <head>
+        <meta charset="utf-8"><!-- Codificação de caracteres. A UTF-8 permite utilizar caaracteres especiais e acentos -->
+        
+        <title>AGES - Agência Experimental de Engenharia de Software</title><!-- Título da página -->
+        
+        <link rel="icon" href="img/favicon.ico"><!-- Favicon é aquela imagem que vai na aba do navegador -->
+        <link rel="stylesheet" href="css/reset.css"><!-- Esse arquivo css reseta todos os padrões de todas as tags -->
+        <link rel="stylesheet" href="css/style.css"><!-- Estilo geral de todas as páginas -->
+        <link rel="stylesheet" href="css/index.css"><!-- Estilo dessa página -->
+        
+        <script src="js/index.js"></script>
+    </head>
+    <body>
+        <!-- Conteúdo principal -->
+        <main>
+            <img href="index.jsp" class="logo" src="img/logo-ages.png" alt="AGES">
+           
+            <section class="login">
+                <h1>Bem <span>v</span>indo!</h1><!-- Título principal -->
+                
+                <label id="msg" name="msg"><jsp:include page="/template/msg.jsp"></jsp:include></label>
+                
+                <form method="post" action="main?acao=login">
+                    <label for="login">Usuário:</label>
+                    <input id="login" name="login" value="${param.login}" type="text" maxlength="120" required>
+                    
+                    <label for="senha">Senha:</label>
+                    <input id="senha" name="senha" value="${param.senha}" type="password" maxlength="15" required>
+                    <a class="forgot-password" href="#">Esqueci minha senha</a>
+                    
+                    <hr>
+                    
+                    <input class="submit" type="submit" value="Entrar">
+                </form>
+            </section>
+        </main>
+        
+        <!-- Rodapé -->
+        <footer>
+            <!-- Pseudo rodapé -->
+        </footer>
+    </body>
 </html>
