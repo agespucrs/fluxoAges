@@ -39,7 +39,6 @@ public class ProjetoBO {
 		boolean valido = true;
 		
 		if(project.getStatus().equals("") || project.getStatus() == null) valido = false;
-		//if(project.getCodigo().equals("") || project.getCodigo() == null) valido =  false; 	// O banco que cria o código - depois da validaçao <- discutir
 		if(project.getNome().equals("") || project.getNome() == null) valido = false;
 		
 		return valido;

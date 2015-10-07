@@ -27,6 +27,8 @@ public class MainServlet extends HttpServlet {
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		comandos.put("listUser", new ListUserCommand());
 		comandos.put("editUser", new EditUserCommand());
+		
+		comandos.put("adicionaProjeto", new AdicionaProjetoCommand());
 	}
 
 	@Override
