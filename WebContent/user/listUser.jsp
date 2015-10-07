@@ -10,7 +10,7 @@
 <link rel="icon" href="img/favicon.ico"><!-- Favicon é aquela imagem que vai na aba do navegador -->
         <!-- <link rel="stylesheet" href="css/reset.css">Esse arquivo css reseta todos os padrões de todas as tags -->
         <link rel="stylesheet" href="css/style.css"><!-- Estilo geral de todas as páginas -->
-         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/index.css">
 <script type="text/javascript">
 	function remover(id) {
 		var resposta = confirm("Deseja remover o usuario " + id);
@@ -22,17 +22,17 @@
 		}
 	}
 </script>
-<title>AgES - Pagina Inicial</title>
+<title>AGES - Pagina Inicial</title>
 </head>
 <body>
 	<%@ include file="/template/head.jsp"%>
-	<div class="main">
+	<main>
 		<form action="" method="post">
 			<jsp:include page="/template/msg.jsp"></jsp:include>
-			<fieldset>
+			<!-- <fieldset> -->
 
-				<h1>List</h1>
-				<table width="100%" border="1" cellspacing="0" cellpadding="4">
+				<h1>Lista de Usuários</h1>
+				<table border="1" cellspacing="0" cellpadding="4">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -68,9 +68,12 @@
 						%>
 					</tbody>
 				</table>
-			</fieldset>
+				
+			<!-- </fieldset> -->
 		</form>
-	</div>
+	</main>
 	<jsp:include page="/template/foot.jsp"></jsp:include>
 </body>
+
+	
 </html>
