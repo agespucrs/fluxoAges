@@ -6,8 +6,8 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.ProjetoBO;
-
 import br.ages.crud.model.Projeto;
+import br.ages.crud.util.MensagemContantes;
 
 public class AdicionaProjetoCommand implements Command {
 	
@@ -26,7 +26,24 @@ public class AdicionaProjetoCommand implements Command {
 		String workspace = request.getParameter("workspace");
 		
 		try{
-			Projeto projeto = new Projeto(nome, equipe, status, workspace);
+			Projeto projeto = new Projeto();
+			projeto.setNome(nome);
+			projeto.setEquipe(equipe);
+			projeto.setStatus(status);
+			projeto.setWorkspace(workspace);
+
+			boolean isValido = projetoBO.validaCadastroUsuarioA(projeto);
+			
+			if (!isValido) {
+				//request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
+			} else { // cadastro de projeto com sucesso
+				projetoBO.cadastraUsuario(projeto);
+				proxima = "main?acao=listProject";
+				//request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNome()));
+			}
+			
+		}catch(Exception e){
+			request.setAttribute("msgErro", e.getMessage());
 		}
 		
 		
