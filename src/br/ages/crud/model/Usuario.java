@@ -19,14 +19,26 @@ public class Usuario implements Serializable {
 		private String nome;
 		private String email;
 		private Date dataCadastro;
+		private Date dataInclusao;
 									
-		public Usuario(String usuario, String senha) {
+		public Usuario() {
+			// TODO Auto-generated constructor stub
+		}			
+		
+		public Usuario(String usuario, String senha, String administrador,
+				String matricula, String nome, String email, Date dataCadastro) {
+			super();
 			this.usuario = usuario;
 			this.senha = senha;
+			this.administrador = administrador;
+			this.matricula = matricula;
+			this.nome = nome;
+			this.email = email;
+			this.dataCadastro = dataCadastro;
+			this.dataInclusao = new Date();
 		}
 
-		public Usuario() {
-		}
+
 
 		public int getIdUsuario(){
 			 return idUsuario;
@@ -60,21 +72,21 @@ public class Usuario implements Serializable {
 			 return matricula;
 		}
 	 
-		public void  setMatricula( String value){
+		public void setMatricula( String value){
 			 matricula = value;
 		}
 		public String getNome(){
 			 return nome;
 		}
 	 
-		public void  setNome( String value){
+		public void setNome( String value){
 			 nome = value;
 		}
 		public String getEmail(){
 			 return email;
 		}
 	 
-		public void  setEmail( String value){
+		public void setEmail( String value){
 			 email = value;
 		}
 		public Date getDataCadastro(){
@@ -84,5 +96,10 @@ public class Usuario implements Serializable {
 		public void  setDataCadastro( Date value){
 			 dataCadastro = value;
 		}
+		
+		public Date getDataInclusao() {
+			return dataInclusao;
+		}
+				
 	}
 
