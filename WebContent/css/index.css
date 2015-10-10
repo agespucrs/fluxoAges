@@ -4,16 +4,6 @@
     display: block;
 }
 
-thead {
-    background-color: #F37921;
-    color: white;
-    border-color: black;
-}
-
-tbody{
-	background-color: white;
-}
-
 .login {
     width: 300px;
     margin: 0 auto; /* Centraliza no meio da tela */
