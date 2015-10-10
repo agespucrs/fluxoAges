@@ -29,7 +29,7 @@ public class AdicionaProjetoCommand implements Command {
 			Projeto projeto = new Projeto();
 			projeto.setNomeProjeto(nome);
 			//projeto.setEquipe(equipe);
-			projeto.setStatus(status);
+			//projeto.setStatus(status);
 			projeto.setWorkspace(workspace);
 
 			boolean isValido = projetoBO.validarProjeto(projeto);
