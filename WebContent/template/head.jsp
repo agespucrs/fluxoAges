@@ -1,18 +1,23 @@
 <div class="head">
-
-	<a href="index.jsp">
-		<img style="width: 12%;" alt="Logo AgES" src="img/logo-ages.png">
-	</a>
 	
-	<ul>
-		<%-- <li><a href="index.jsp"  class="${param.acao eq 'index' ? 'selected' : ''}">Home</a></li> --%>
-		<li><a href="main?acao=telaUser"    class="${param.acao eq 'telaUser' ? 'selected' : ''}">Cadastar Usuario</a></li>
-		<li><a href="main?acao=listUser"   class="${param.acao eq 'listUser' ? 'selected' : ''}">Listar Usuario</a></li>
-		<li><a href="main?acao=logout" class="${param.acao eq 'logout' ? 'selected' : ''}">Sair</a></li>
-	</ul>
+	 <ul id="nav">
+	 
+        <li><a href="#">Usuários</a>
+             <ul>
+                 <li><a href="main?acao=telaUser"    class="${param.acao eq 'telaUser' ? 'selected' : ''}">Cadastrar</a></li>
+                 <li><a href="main?acao=listUser"   class="${param.acao eq 'listUser' ? 'selected' : ''}">Listar</a></li>
+             </ul>
+        </li>
+        
+        <li style="float: right" ><a href="#">Olá, ${sessionScope.usuario.usuario}</a>
+        	<ul>
+        	<li><a href="main?acao=logout" class="${param.acao eq 'logout' ? 'selected' : ''}">Sair</a></li>
+        	</ul>
+        </li>   
+        
+     </ul>
 	
-	<div class="welcome">
-		Usuário: <b>${sessionScope.usuario.usuario}</b>!
-	</div>
+	<img class="logo" src="img/logo-ages.png" alt="AGES">
 	
 </div>
+	

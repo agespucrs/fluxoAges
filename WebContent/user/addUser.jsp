@@ -4,10 +4,16 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" href="./css/comum.css" />
-		<title>AgES - Adds</title>
+	<link rel="icon" href="img/favicon.ico">
+	
+  	<link rel="stylesheet" href="css/cadastro-usuario.css">
+  	<link rel="stylesheet" href="css/navbar.css">
+  	
+	<title>AGES - Adicionar Usuário</title>
+	
 		<script type="text/javascript">
 		
 			function cadastrar() {
@@ -18,45 +24,71 @@
 		
 		</script>
 </head>
+
+
 <body>
 	<jsp:include page="/template/head.jsp"></jsp:include>
-	<h1>Cadastro Usuario</h1>
-	<div class="main">
-		<form action="" method="post">
-			<jsp:include page="/template/msg.jsp"></jsp:include>
-			<fieldset>
-				<table cellpadding="5">
-					<tr>
-						<td>Matricula <sup class="red">*</sup></td>
-						<td><input type="text" id="matricula" name="matricula" maxlength="11" value="${param.matricula}" /></td> 
-					</tr>
-					<tr>
-						<td>Name <sup class="red">*</sup></td>
-						<td><input type="text" id="nome" name="nome" maxlength="45" value="${param.nome}" /></td>
-					</tr>
-					<tr>
-						<td>Usuario <sup class="red">*</sup></td>
-						<td><input type="text" id="usuario" name="usuario" maxlength="11" value="${param.usuario}" /></td> 
-					</tr>
-					<tr>
-						<td>Senha <sup class="red">*</sup></td>
-						<td><input type="text" id="senha" name="senha" maxlength="45" value="${param.senha}" /></td>
-					</tr><tr>
-						<td>e-Mail Address</td>
-						<td><input type="text" id="email" name="email" maxlength="45" value="${param.email}" /></td>
-					</tr>
-					<tr>
-						<td>Administrador <sup class="red">*</sup></td>
-						<td><input type="radio" id="adm" name="adm" value="S" <%= "S".equals(request.getParameter("adm")) ? "checked" : "" %>/>SIM
-						    <input type="radio" id="adm" name="adm" value="N" <%= "N".equals(request.getParameter("adm")) ? "checked" : "" %>/>NÃO</td>
-					</tr>
-				</table>
-			</fieldset>
-			<span><sup class="red">*</sup> campos obrigatórios</span>
-			<input type="reset"  value="Limpar"  id="limpar" name="limpar" />
-			<input type="button" value=Cadastrar onclick="cadastrar()"/>
-		</form>
-	</div>
+	<br>
+	<main>
+            <section class="cadastro">
+                <h1>Cadastro de Usuários</h1><!-- Título principal -->
+                
+                <jsp:include page="/template/msg.jsp"></jsp:include>
+                
+                <form method="post" action="#">
+                
+                    <label for="projeto" class="lb-text">
+                        <span class="obg">*</span>Matricula:
+                    </label>
+                    
+                    <input id="matricula" name="matricula" type="text" maxlength="9" value="${param.matricula}" required>
+                    
+                    <label for="projeto" class="lb-text">
+                        <span class="obg">*</span>Nome:
+                    </label>
+                    
+                    <input id="nome" name="nome" type="text" maxlength="120" value="${param.nome}" required>
+                    
+                    <label for="projeto" class="lb-text">
+                        <span class="obg">*</span>Usuário:
+                    </label>
+                    
+                    <input id="usuario" name="usuario" type="text" maxlength="120" value="${param.usuario}" required>
+                    
+                    <label for="projeto" class="lb-text">
+                        <span class="obg">*</span>Senha:
+                    </label>
+                    
+                    <input id="senha" name="senha" type="password" maxlength="120" value="${param.senha}" required>
+                    
+                    <label for="projeto" class="lb-text">
+                        <span class="obg">*</span>E-Mail:
+                    </label>
+                    
+                    <input id="email" name="email" type="text" maxlength="120" value="${param.email}" required>
+                    
+                    <div class="selects">
+                        <label for="status">
+                            <span class="obg">*</span>Administrador:<!-- O <span> foi utilizado apenas para estilar o "*" -->
+                        </label>
+                        
+                        <select id="adm" name="adm" required>
+                            <option value="N" <%= "N".equals(request.getParameter("adm")) ? "selected" : "" %> required>Não</option>
+                            <option value="S" <%= "S".equals(request.getParameter("adm")) ? "selected" : "" %> required>Sim</option>
+                        </select>
+                    </div>
+                    
+                    <hr>
+                    
+                    <p>Campos que contém <span>*</span> são obrigatórios</p>
+                    
+                    
+                   
+                    <input class="reset" type="reset" value="Limpar">
+                     <input class="submit" type="submit" value="Cadastrar" onclick="cadastrar()">
+                </form>
+            </section>
+        </main>
 	<jsp:include page="/template/foot.jsp"></jsp:include>
 </body>
 </html>

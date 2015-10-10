@@ -11,6 +11,7 @@
         <!-- <link rel="stylesheet" href="css/reset.css">Esse arquivo css reseta todos os padrões de todas as tags -->
         <link rel="stylesheet" href="css/style.css"><!-- Estilo geral de todas as páginas -->
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/cadastro-projeto.css">
 <script type="text/javascript">
 	function remover(id) {
 		var resposta = confirm("Deseja remover o usuario " + id);

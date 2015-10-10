@@ -7,11 +7,17 @@
     overflow: auto; /* Gambiarra */
 }
 
+.logo {
+    height: 120px;
+    margin: 20px auto 20px;
+    display: block;
+}
+
 /* ========================== */
 /* Cabeçalho do cadastro */
 /* ========================== */
 h1 {
-    width: 468px;/*618px*/
+    width: 507px;/*618px*/
     padding: 10px 16px; /* Espaçamento entre o conteúdo e a borda dele mesmo */
     margin: 0 0 8px 6px; /* Espaçamento em baixo do elemento */
     display: inline-block;
@@ -36,7 +42,9 @@ p {
     margin-bottom: 12px;
     font-size: 12px;
     font-weight: bold;
-    background: #EEE;
+    background: #FFF;
+    text-align: center;
+    
 }
 
 p span {
@@ -58,8 +66,18 @@ label{
     display: block;
 }
 
-input[type="text"] {
+input[type="text"]{
     width: 528px;/*678px*/
+    height: 20px;
+    margin-bottom:24px;
+    padding: 5px 10px;
+    border: 1px solid #CCC;
+    font-size: 16px;
+    color: #999;
+}
+
+input[type="password"]{
+	width: 528px;/*678px*/
     height: 20px;
     margin-bottom:24px;
     padding: 5px 10px;
@@ -110,6 +128,7 @@ hr {
     font-size: 16px; /* Tamanho da fonte */
     background: #F89406;
 }
+
 .reset:hover { /* Quando o mouse estiver em cima desse elemento */
     background: #F5AB35; /* Troca o background */
 }
@@ -117,7 +136,7 @@ hr {
 /* Botão Cadastrar */
 .submit {
     width: 460px;/*590px*/
-    font-size: 20px; /* Tamanho da fonte */
+    font-size: 16px; /* Tamanho da fonte */
     margin-left: 8px; /* Espaçamento a esquerda */
     background: #446CB3;
 }
