@@ -1,46 +1,57 @@
 package br.ages.crud.servlet;
 
+
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-
-public class FileUploadServlet {
-	
+/**
+ * Servlet implementation class UploadServlet
+ */
+@WebServlet("/upload")
+@MultipartConfig
+public class FileUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    // location to store file uploaded
-    private static final String UPLOAD_DIRECTORY = "upload";
- 
-    // upload settings
-    private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
-    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 20; // 20MB
-    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 21; // 21MB
 	
-	
-	protected void doPost(HttpServletRequest request, HttpServletRequest response){
-		
-		 // configures upload settings
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        // sets memory threshold - beyond which files are stored in disk
-        factory.setSizeThreshold(MEMORY_THRESHOLD);
-        // sets temporary location to store files
-        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
- 
-        ServletFileUpload upload = new ServletFileUpload(factory);
-         
-        // sets maximum size of upload file
-        upload.setFileSizeMax(MAX_FILE_SIZE);
-         
-        // sets maximum size of request (include file + form data)
-        upload.setSizeMax(MAX_REQUEST_SIZE);
-		
-	}
-	
-	protected void processRequest(HttpServletRequest request, HttpServletRequest response){
-		
+	private static final String UPLOAD_PATH = "/upload/projetos";
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FileUploadServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String fileName = request.getParameter("nome");
+	    Part part = request.getPart("file"); // Retrieves <input type="file" name="file">    
+	    
+	    File uploads = new File(UPLOAD_PATH);	   
+	    
+	    File file = new File(uploads, fileName + ".pdf");
+
+	    try (InputStream input = part.getInputStream()) {
+	        Files.copy(input, file.toPath());
+	    }	    
+	}
 }

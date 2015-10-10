@@ -20,7 +20,7 @@ public class MensagemContantes {
 	
 	public static final String MSG_ERR_PESSOA_DADOS_INVALIDOS = "Dados da pessoa inválidos ou inconsistentes!";
 
-	public static final String MSG_ERR_USUARIO_DADOS_INVALIDOS = "Dados DO usuário inválidos ou inconsistentes!";
+	public static final String MSG_ERR_USUARIO_DADOS_INVALIDOS = "Dados do usuário inválidos ou inconsistentes!";
 	
 	public static final String MSG_ERR_CAMPO_CPF_MAIOR_RECOMENDADO = "Campo ? com mais de 11 caracteres!";
 	
@@ -41,4 +41,9 @@ public class MensagemContantes {
 	public static final String MSG_INF_LOGOUT = "Logout do Usuario efetuado com sucesso!";
 	
 	public static final String MSG_SENHA_INVALIDA = "A senha do usuario é invalida: Deve ter no minimo 3 e no maximo 8 caracteres, apenas numeros e letras!";
+
+	//msgs de projeto
+	public static final String MSG_ERR_PROJETO_DADOS_INVALIDOS = "Dados DO projeto inválidos ou inconsistentes!";
+	
+	public static final String MSG_SUC_CADASTRO_PROJETO = "Cadastro projeto: ?, efetuado com sucesso!";
 }

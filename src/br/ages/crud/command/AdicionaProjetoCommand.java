@@ -27,19 +27,19 @@ public class AdicionaProjetoCommand implements Command {
 		
 		try{
 			Projeto projeto = new Projeto();
-			projeto.setNome(nome);
-			projeto.setEquipe(equipe);
+			projeto.setNomeProjeto(nome);
+			//projeto.setEquipe(equipe);
 			projeto.setStatus(status);
 			projeto.setWorkspace(workspace);
 
-			boolean isValido = projetoBO.validaCadastroUsuarioA(projeto);
+			boolean isValido = projetoBO.validarProjeto(projeto);
 			
 			if (!isValido) {
-				//request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
+				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
 			} else { // cadastro de projeto com sucesso
-				projetoBO.cadastraUsuario(projeto);
+				projetoBO.cadastrarProjeto(projeto);
 				proxima = "main?acao=listProject";
-				//request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNome()));
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
 			}
 			
 		}catch(Exception e){

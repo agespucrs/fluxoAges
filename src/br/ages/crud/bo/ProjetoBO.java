@@ -28,7 +28,7 @@ public class ProjetoBO {
 	public void cadastrarProjeto(Projeto project) throws NegocioException, SQLException, ParseException {
 		
 		try{
-			projetoDAO.cadastrar(project);
+			projetoDAO.cadastrarProjeto(project);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
@@ -39,7 +39,7 @@ public class ProjetoBO {
 		boolean valido = true;
 		
 		if(project.getStatus().equals("") || project.getStatus() == null) valido = false;
-		if(project.getNome().equals("") || project.getNome() == null) valido = false;
+		if(project.getNomeProjeto().equals("") || project.getNomeProjeto() == null) valido = false;
 		
 		return valido;
 	}
