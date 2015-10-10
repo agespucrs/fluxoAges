@@ -10,7 +10,7 @@ public class Projeto implements Serializable {
 		private int idProjeto;
 		private String nomeProjeto;
 		private String workspace;
-		private String status;
+		private Status status;
 		private ArrayList<Stakeholders> stakeholders;
 		private Date dataInclusao;
 		private Date dataInicio;
@@ -23,7 +23,7 @@ public class Projeto implements Serializable {
 		}
 		
 		public Projeto(int idProjeto, String nomeProjeto, String workspace,
-		ArrayList<Stakeholders> stakeholders, String status, Date dataInicio, Date dataFim, ArrayList<Equipe> equipe) {
+		ArrayList<Stakeholders> stakeholders, Status status, Date dataInicio, Date dataFim, ArrayList<Equipe> equipe) {
 			super();
 			this.idProjeto = idProjeto;
 			this.nomeProjeto = nomeProjeto;
@@ -54,11 +54,11 @@ public class Projeto implements Serializable {
 			this.stakeholders = stakeholders;
 		}
 		
-		public String getStatus(){
+		public Status getStatus(){
 			return status;
 		}
 		
-		public void setStatus(String status) {
+		public void setStatus(Status status) {
 			this.status = status;
 		}
 		
