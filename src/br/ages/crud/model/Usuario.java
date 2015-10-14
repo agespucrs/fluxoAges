@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * Entity Usuario - Data Transfer Objeto 
- * @author Cássio Trindade
+ * @author Cï¿½ssio Trindade
  *
  */
 public class Usuario implements Serializable {
@@ -37,8 +37,6 @@ public class Usuario implements Serializable {
 			this.dataCadastro = dataCadastro;
 			this.dataInclusao = new Date();
 		}
-
-
 
 		public Usuario(String usuario, String senha) {
 			this.usuario = usuario;

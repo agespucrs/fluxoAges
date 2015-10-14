@@ -18,32 +18,30 @@ import com.mysql.jdbc.Statement;
 
 public class ProjetoDAO {
 
-	private ArrayList<Projeto> listarProjetos;
 	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	public ProjetoDAO() {
-		listarProjetos = new ArrayList<>();
+		
 	}
 
 	public ArrayList<Projeto> listarProjetos() throws PersistenciaException, SQLException {
 		Connection conexao = null;
-		 ArrayList<Projeto> listaProjetos = new ArrayList<Projeto>();
-		try {
-			
+		ArrayList<Projeto> listaProjetos = new ArrayList<Projeto>();
 		
+		try {
 			conexao = ConexaoUtil.getConexao();
-			
+		
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_PROJETO");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
-			ResultSet resultset = statement.executeQuery();
+			ResultSet resultSet = statement.executeQuery();
 			
-			while (resultset.next()) {
+			while (resultSet.next()) {
 				Projeto dto = new Projeto();
-				dto.setNomeProjeto(resultset.getString("NOME_PROJETO"));
-				dto.setWorkspace(resultset.getString("WORKSPACE"));
-				dto.setStakeholders((ArrayList) resultset.getArray("STAKEHOLDERS"));
+				dto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
+				dto.setWorkspace(resultSet.getString("WORKSPACE"));
+				dto.setStakeholders((ArrayList) resultSet.getArray("STAKEHOLDERS"));
 				
 				listaProjetos.add(dto);
 			}
@@ -51,12 +49,9 @@ public class ProjetoDAO {
 			e.printStackTrace();
 		}
 		
-		return listarProjetos;
+		return listaProjetos;
 	}
 	
-		
-	
-
 	public void cadastrarProjeto(Projeto projeto) throws PersistenciaException,
 			SQLException, ParseException {
 		Connection conexao = null;
@@ -69,8 +64,8 @@ public class ProjetoDAO {
 			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO, WORKSPACE, STAKEHOLDERS, STATUS, DATA_INCLUSAO, DATA_INICIO, DATA_FIM, EQUIPE)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-			// Conversão das datas para sql (data inicio, data fim , data
-			// inclusão);
+			// Conversï¿½o das datas para sql (data inicio, data fim , data
+			// inclusï¿½o);
 			java.util.Date utilDate1 = new java.util.Date();
 			java.sql.Date dataInclusao = new java.sql.Date(utilDate1.getTime());
 
