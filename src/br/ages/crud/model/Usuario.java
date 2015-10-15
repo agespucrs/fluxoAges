@@ -5,12 +5,12 @@ import java.util.Date;
 
 /**
  * Entity Usuario - Data Transfer Objeto 
- * @author C�ssio Trindade
+ * @author Victor Diehl, Daniele de Souza
  *
  */
-public class Usuario implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Usuario implements Serializable {	
+	
+	private static final long serialVersionUID = 2717027327683138959L;
 	private int idUsuario;
 	private String usuario;
 	private String senha;

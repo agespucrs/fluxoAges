@@ -98,4 +98,28 @@ public class ProjetoDAO {
 			conexao.close();
 		}
 	}
+	
+	public void removeProjeto(Integer idProjeto) throws PersistenciaException {
+		Connection conexao = null;
+		try	{
+			conexao =ConexaoUtil.getConexao();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("DELETE FROM TB_PROJETO WHERE ID_PROJETO= ?");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idProjeto);
+			
+			statement.execute();			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();				
+			}	catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

@@ -168,3 +168,53 @@ SELECT p.*, e.logradouro, c.descricao, uf.descricao FROM ages_e.tb_pessoa p
    on e.cod_cidade = c.id_cidade
    inner join tb_uf uf
    on c.cod_estado = uf.id_uf;
+   
+   
+   
+    -- Tabela Projeto
+  
+  CREATE TABLE tb_projeto (
+  ID_PROJETO int(11) NOT NULL AUTO_INCREMENT,
+  NOME_PROJETO varchar(120) NOT NULL, 
+  STATUS varchar(10) DEFAULT NULL,  
+  WORKSPACE varchar(60) DEFAULT NULL,  
+  DATA_INICIO datetime DEFAULT NULL, 
+  DATA_FIM datetime DEFAULT NULL,
+  DATA_INCLUSAO datetime DEFAULT NULL,
+  PRIMARY KEY (ID_PROJETO) 
+)ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+ 
+-- Tabela Equipe
+
+ CREATE TABLE tb_equipe (
+ ID_EQUIPE int(11) NOT NULL AUTO_INCREMENT,
+ NOME_EQUIPE varchar(45) NOT NULL,
+ METODO varchar(30) NOT NULL,
+ DATA_INCLUSAO datetime DEFAULT NULL,
+ PRIMARY KEY (ID_EQUIPE)
+)ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+ 
+-- Tabela Stakeholders
+
+CREATE TABLE tb_stakeholders (
+  ID_STAKEHOLDER int(11) NOT NULL AUTO_INCREMENT,
+  NOME_STAKEHOLDER varchar(45) NOT NULL,
+  DATA_INCLUSAO datetime DEFAULT NULL, 
+  PRIMARY KEY (ID_STAKEHOLDER)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+-- Tabela Projeto/Equipe
+
+CREATE TABLE tb_projeto_equipe (
+  ID_PROJETO int(11) NOT NULL,
+  ID_EQUIPE int(11) NOT NULL,  
+  PRIMARY KEY (ID_PROJETO,ID_EQUIPE)  
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+-- Tabela Projeto/Stakeholders
+
+CREATE TABLE tb_projeto_stakeholders (
+  ID_PROJETO int(11) NOT NULL,
+  ID_STAKEHOLDER int(11) NOT NULL,   
+  PRIMARY KEY (ID_PROJETO,ID_STAKEHOLDER)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;

@@ -9,8 +9,8 @@ import java.util.Date;
  */
 
 public class Projeto implements Serializable {
-
-	private static final long serialVersionUID = 2L;
+	
+	private static final long serialVersionUID = 8366767996508020776L;
 	private int idProjeto;
 	private String nomeProjeto;
 	private ArrayList<Equipe> equipes;
@@ -104,9 +104,5 @@ public class Projeto implements Serializable {
 
 	public Date getDataInclusao() {
 		return dataInclusao;
-	}
-	
-	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
 	}
 }
