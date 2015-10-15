@@ -13,4 +13,7 @@ public class Constantes {
 	public static final String CONEXAO_BD_USER = "conesao.user";
 	public static final String CONEXAO_BD_PASSWORD = "conexao.password";
 	
+	public static final long PROJETO_ARQUIVO_MAX_BYTES = 1024*1024*20;
+	public static final String PROJETO_UPLOAD_PATH = "/upload/projetos";
+	
 }
