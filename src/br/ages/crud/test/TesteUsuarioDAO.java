@@ -12,6 +12,10 @@ import org.junit.Test;
 import br.ages.crud.dao.UsuarioDAO;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Usuario;
+
+/**
+ * @author Cassio Trindade
+ */
 public class TesteUsuarioDAO {
 	private Usuario usuario, usuarioErrado, usuarioCadastro, usuarioRemove, usuarioDeleta, usuarioBusca;
 	private UsuarioDAO dao;
