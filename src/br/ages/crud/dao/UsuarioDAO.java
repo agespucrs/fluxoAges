@@ -40,14 +40,16 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 */
 
-	public boolean validarUsuario(Usuario usuarioDTO) throws PersistenciaException {
+	public boolean validarUsuario(Usuario usuarioDTO)
+			throws PersistenciaException {
 		try {
 			Connection conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO ");
 			sql.append("WHERE USUARIO = ? AND SENHA = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
 			statement.setString(1, usuarioDTO.getUsuario());
 			statement.setString(2, usuarioDTO.getSenha());
 
@@ -68,7 +70,8 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 * @throws SQLException
 	 */
-	public List<Usuario> listarUsuarios() throws PersistenciaException, SQLException {
+	public List<Usuario> listarUsuarios() throws PersistenciaException,
+			SQLException {
 		Connection conexao = null;
 
 		try {
@@ -77,7 +80,8 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO");
 
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
@@ -101,8 +105,10 @@ public class UsuarioDAO {
 		return listarUsuarios;
 	}
 
-	public void cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
+	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException,
+			SQLException, ParseException {
 		Connection conexao = null;
+
 		try {
 			Integer idUsuario = null;
 
@@ -114,11 +120,11 @@ public class UsuarioDAO {
 
 			// converte a data para data Juliana, data que o banco reconhece;
 			java.util.Date utilDate = new java.util.Date();
-		    java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
-			
+			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
 
 			// Cadastra a pessoa e gera e busca id gerado
-			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conexao.prepareStatement(
+					sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, usuario.getAdministrador());
@@ -132,7 +138,9 @@ public class UsuarioDAO {
 			ResultSet resultset = statement.getGeneratedKeys();
 			if (resultset.first()) {
 				idUsuario = resultset.getInt(1);
+
 			}
+			return idUsuario;
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -147,7 +155,9 @@ public class UsuarioDAO {
 	 * @param idPessoa
 	 * @throws PersistenciaException
 	 */
-	public void removerUsuario(Integer idUsuario) throws PersistenciaException {
+	public boolean removerUsuario(Integer idUsuario)
+			throws PersistenciaException {
+		boolean removidoOK = false;
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
@@ -155,11 +165,12 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("DELETE FROM TB_USUARIO WHERE ID_USUARIO= ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
 			statement.setInt(1, idUsuario);
 
-			statement.execute();
-			
+			removidoOK = statement.execute();
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
@@ -169,5 +180,86 @@ public class UsuarioDAO {
 				e.printStackTrace();
 			}
 		}
+		return removidoOK;
+	}
+
+	public Usuario buscaUsuarioNome(String nomeUsuario)
+			throws PersistenciaException {
+
+		Usuario usuario = new Usuario();
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_USUARIO WHERE NOME = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
+			statement.setString(1, nomeUsuario);
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+
+				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				usuario.setMatricula(resultset.getString("MATRICULA"));
+				usuario.setNome(resultset.getString("NOME"));
+				usuario.setEmail(resultset.getString("EMAIL"));
+				usuario.setUsuario(resultset.getString("USUARIO"));
+				usuario.setSenha(resultset.getString("SENHA"));
+				usuario.setAdministrador(resultset.getString("ADMINISTRADOR"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return usuario;
+	}
+
+	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException {
+		Usuario usuario = new Usuario();
+
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_USUARIO WHERE ID_USUARIO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
+			statement.setInt(1, idUsuario);
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+
+				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				usuario.setMatricula(resultset.getString("MATRICULA"));
+				usuario.setNome(resultset.getString("NOME"));
+				usuario.setEmail(resultset.getString("EMAIL"));
+				usuario.setUsuario(resultset.getString("USUARIO"));
+				usuario.setSenha(resultset.getString("SENHA"));
+				usuario.setAdministrador(resultset.getString("ADMINISTRADOR"));
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return usuario;
+
 	}
 }
