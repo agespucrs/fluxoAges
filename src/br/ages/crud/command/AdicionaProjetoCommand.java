@@ -54,7 +54,7 @@ public class AdicionaProjetoCommand implements Command {
 				if(!tamanhoValido || !extensaoValida){
 					request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_ARQUIVO_INVALIDO.replace("?", String.valueOf(Constantes.PROJETO_ARQUIVO_MAX_BYTES)));
 				} else{
-					ArquivoBO.uploadArquivo(arquivo, nome);
+					ArquivoBO.uploadArquivo(arquivo, nome, Constantes.PROJETO_UPLOAD_PATH);
 					
 					projetoBO.cadastrarProjeto(projeto);
 					

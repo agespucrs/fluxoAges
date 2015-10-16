@@ -14,14 +14,13 @@ import br.ages.crud.util.Constantes;
 
 public class ArquivoBO {
 	
-	private final String UPLOAD_PATH = Constantes.PROJETO_UPLOAD_PATH;
 	
 	public ArquivoBO() {
 	}
 	
-	public void uploadArquivo(Part part, String nome) throws IOException, ServletException{
+	public void uploadArquivo(Part part, String nome, String path) throws IOException, ServletException{
 		
-	    File uploads = new File(UPLOAD_PATH);	    
+	    File uploads = new File(path);	    
 	    File file = new File(uploads, nome + ".pdf");
 	    
 	    try (InputStream input = part.getInputStream()) {
