@@ -15,40 +15,30 @@ import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
 public class TesteUsuarioDAO {
-	private Usuario usuario, usuarioErrado, usuarioCadastrado;
+	private Usuario usuario, usuarioErrado, usuarioCadastro, usuarioRemove, usuarioDeleta, usuarioBusca;
 	private UsuarioDAO dao;
 	private int idUsuario;
 
 	@Before
 	public void init() {
-		usuario = new Usuario("admin", "admin", "S", "0", "Nome Teste",
-				"Email Teste", new Date());
-		usuarioErrado = new Usuario("admin", "senhaErrada");
-		usuarioCadastrado = new Usuario();
+		usuario         = new Usuario("admin", "admin");
+		usuarioErrado   = new Usuario("errado", "senhaErrada");
+		usuarioCadastro = new Usuario("cadastro", "admin", "S", "0cadastro", "Nome Teste","Email Teste", new Date());
+		usuarioRemove   = new Usuario("remove", "admin", "S", "0remove", "Nome Teste","Email Teste", new Date());
+		usuarioBusca    = new Usuario("busca", "admin", "S", "0busca", "Nome Teste","Email Teste", new Date());
+		usuarioDeleta   = new Usuario("deleta", "admin", "S", "0deleta", "Nome Teste","Email Teste", new Date());
 		dao = new UsuarioDAO();
 	}
 
 	@Test
 	public void testConexaoBanco() throws ClassNotFoundException, SQLException {
+
 		boolean conexaoOK = ConexaoUtil.getConexao() != null;
 
 		assertEquals(true, conexaoOK);
-
 	}
 
-	@Test
-	public void testCadastraUsuario() throws PersistenciaException,
-			SQLException, ParseException {
-
-		int idUsuario = dao.cadastrarUsuario(usuario);
-		Usuario usuarioCadastrado = dao.buscaUsuarioId(idUsuario);
-
-		assertEquals(idUsuario, usuarioCadastrado.getIdUsuario());
-
-		dao.removerUsuario(idUsuario);
-
-	}
-
+	
 	@Test
 	public void testLoginUsuarioOk() throws PersistenciaException {
 
@@ -66,25 +56,34 @@ public class TesteUsuarioDAO {
 	}
 
 	@Test
+	public void testCadastraUsuario() throws PersistenciaException,	SQLException, ParseException {
+
+		int idUsuario = dao.cadastrarUsuario(usuarioCadastro);
+		Usuario usuarioCadastrado = dao.buscaUsuarioId(idUsuario);
+
+		assertEquals(idUsuario, usuarioCadastrado.getIdUsuario());
+
+		dao.removerUsuario(idUsuario);
+	}
+
+	@Test
 	public void testBuscaUsuarioPorNome() throws Exception {
 
-		dao.cadastrarUsuario(usuario);
+		dao.cadastrarUsuario(usuarioBusca);
 		Usuario usuarioNome = dao.buscaUsuarioNome("Nome Teste");
 
-		assertEquals("NomeTeste", usuarioNome.getNome());
+		assertEquals("Nome Teste", usuarioNome.getNome());
 		
 		dao.removerUsuario(usuarioNome.getIdUsuario());
-
 	}
 
 	@Test
 	public void testDeletaUsuario() throws Exception {
 
-		dao.cadastrarUsuario(usuario);
+		int idUsuario = dao.cadastrarUsuario(usuarioRemove);
 		boolean removidoOK = dao.removerUsuario(idUsuario);
 	
-		assertEquals(removidoOK, false);
-
+		assertEquals(false, removidoOK);
 	}
 
 	/*
