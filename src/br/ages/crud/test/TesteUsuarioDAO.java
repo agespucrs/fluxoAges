@@ -12,7 +12,6 @@ import org.junit.Test;
 import br.ages.crud.dao.UsuarioDAO;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Usuario;
-import br.ages.crud.util.ConexaoUtil;
 
 public class TesteUsuarioDAO {
 	private Usuario usuario, usuarioErrado, usuarioCadastrado;
@@ -26,14 +25,6 @@ public class TesteUsuarioDAO {
 		usuarioErrado = new Usuario("admin", "senhaErrada");
 		usuarioCadastrado = new Usuario();
 		dao = new UsuarioDAO();
-	}
-
-	@Test
-	public void testConexaoBanco() throws ClassNotFoundException, SQLException {
-		boolean conexaoOK = ConexaoUtil.getConexao() != null;
-
-		assertEquals(true, conexaoOK);
-
 	}
 
 	@Test
