@@ -3,6 +3,10 @@ package br.ages.crud.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/** 
+ * @author Daniele Souza e Victor Diehl
+ */
+
 public class Stakeholder implements Serializable {	
 	
 	private static final long serialVersionUID = 7731547546507235573L;

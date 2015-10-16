@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
 
+/** 
+ * @author Daniele Souza e Victor Diehl
+ */
+
 public class Equipe implements Serializable {
 	
 	private static final long serialVersionUID = -352815037257667825L;

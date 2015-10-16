@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * Entity Usuario - Data Transfer Objeto 
- * @author Victor Diehl, Daniele de Souza
+ * @author Cassio Trindade
  *
  */
 public class Usuario implements Serializable {	

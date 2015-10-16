@@ -3,6 +3,10 @@ package br.ages.crud.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/** 
+ * @author Daniele Souza e Victor Diehl
+ */
+
 public class TipoUsuario implements Serializable {
 
 	private static final long serialVersionUID = -4196928909021033322L;
