@@ -15,5 +15,7 @@ public class Constantes {
 	
 	public static final long PROJETO_ARQUIVO_MAX_BYTES = 1024*1024*20;
 	public static final String PROJETO_UPLOAD_PATH = "/upload/projetos";
+	public static final String PROJETO_FILE_EXT = ".pdf";
+	
 	
 }
