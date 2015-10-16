@@ -12,15 +12,16 @@ import javax.servlet.http.Part;
 
 import br.ages.crud.util.Constantes;
 
-@MultipartConfig
 public class ArquivoBO {
+	
+	private final String UPLOAD_PATH = Constantes.PROJETO_UPLOAD_PATH;
 	
 	public ArquivoBO() {
 	}
 	
 	public void uploadArquivo(Part part, String nome) throws IOException, ServletException{
 		
-	    File uploads = new File(Constantes.PROJETO_UPLOAD_PATH);	    
+	    File uploads = new File(UPLOAD_PATH);	    
 	    File file = new File(uploads, nome + ".pdf");
 	    
 	    try (InputStream input = part.getInputStream()) {
@@ -28,14 +29,46 @@ public class ArquivoBO {
 	    }
 	}
 	
-	public boolean validaArquivo(File file, long tamanho){
+	public boolean validaTamanho(File file, long tamanho){
 		if(file.getTotalSpace() > tamanho)return false;		
 		return true;
 	}
 	
-	public boolean validaArquivo(Part part, long tamanho){
+	public boolean validaTamanho(Part part, long tamanho){
 		if(part.getSize() > tamanho) return false;
 		return true;
+	}
+	
+	public boolean validaExtensao(File file, String ext){
+		String fileExt = getFileExtension(file);
+		
+		if(fileExt.equals(ext)) return true;
+		return false;		
+	}
+	
+	public boolean validaExtensao(Part part, String ext){
+		String fileExt = getFileExtension(part);
+		
+		if(fileExt.equals(ext)) return true;
+		return false;		
+	}
+	
+	///métodos para achar a extensão de um arquivo
+	private String getFileExtension(File file) {
+	    String name = file.getName();
+	    try {
+	        return name.substring(name.lastIndexOf(".") + 1);
+	    } catch (Exception e) {
+	        return "";
+	    }
+	}	
+	private String getFileExtension(Part part) {
+	    String name = part.getName();
+	    try {
+	        return name.substring(name.lastIndexOf(".") + 1);
+	    } catch (Exception e) {
+	        return "";
+	    }
 	}
 	
 }
