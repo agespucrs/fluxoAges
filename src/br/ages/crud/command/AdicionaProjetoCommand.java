@@ -35,7 +35,7 @@ public class AdicionaProjetoCommand implements Command {
 			Projeto projeto = new Projeto();
 			projeto.setNomeProjeto(nome);
 			//projeto.setEquipe(equipe);
-			projeto.setStatus(new Status());
+			projeto.setStatus(Status.valueOf(status));
 			projeto.setWorkspace(workspace);
 
 			boolean isValido = projetoBO.validarProjeto(projeto);			
