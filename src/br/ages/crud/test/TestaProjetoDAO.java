@@ -5,6 +5,10 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
+/** 
+ * @author Daniele Souza e Victor Diehl
+ */
+
 public class TestaProjetoDAO {
 	
 	@Before

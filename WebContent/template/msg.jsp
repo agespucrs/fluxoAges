@@ -1,3 +1,4 @@
+
 <div class="form-group" style="width: 100%; display: ${msgErro != null ? 'block' : 'none'}">
 	<div class="alert alert-danger fade in text-center" role="alert">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -21,3 +22,4 @@
     	${msgAviso != null ? msgAviso : ''}              
 	</div>
 </div>
+
