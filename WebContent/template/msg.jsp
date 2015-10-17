@@ -1,3 +1,23 @@
-<div class="erroDiv" style="display: ${msgErro != null ? 'block' : 'none'}">${msgErro != null ? msgErro : ''}</div>
-<div class="sucessoDiv" style="display: ${msgSucesso != null ? 'block' : 'none'}">${msgSucesso != null ? msgSucesso : ''}</div>
-<div class="avisoDiv" style="display: ${msgAviso != null ? 'block' : 'none'}">${msgAviso != null ? msgAviso : ''}</div>
+<div class="form-group" style="width: 100%; display: ${msgErro != null ? 'block' : 'none'}">
+	<div class="alert alert-danger fade in text-center" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    	<span class="sr-only">Erro:</span>
+    	${msgErro != null ? msgErro : ''}                
+	</div>
+</div>
+
+<div class="form-group" style="width: 100%; display: ${msgSucesso != null ? 'block' : 'none'}">
+	<div class="alert alert-danger fade in text-center" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    	<span class="sr-only">Erro:</span>
+    	${msgSucesso != null ? msgSucesso : ''}                
+	</div>
+</div>
+
+<div class="form-group" style="width: 100%; display: ${msgAviso != null ? 'block' : 'none'}">
+	<div class="alert alert-danger fade in text-center" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    	<span class="sr-only">Erro:</span>
+    	${msgAviso != null ? msgAviso : ''}              
+	</div>
+</div>

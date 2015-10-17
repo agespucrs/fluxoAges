@@ -1,8 +1,19 @@
-body {
-    background: #F4F4F4;
-    font-family: Arial, sans-serif; /* Estilo de fonte (Se o computador não tiver a primeira, ele usa a outra) */
+body{
+	background-color: #EEE;
 }
 
-main {
-    width: 100%; /* Vai ocupar 100% da largura do elemento pai */
+.logo {
+	width: 30%;
+	min-width: 200px;
+}
+
+.logoNavBar {
+	width: 45px;
+}
+
+.panel-login {
+	max-width: 300px; 
+	float: none;
+    margin-left: auto;
+    margin-right: auto;
 }
