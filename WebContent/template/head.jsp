@@ -32,16 +32,41 @@
 			    	</div>
 
 					<ul class="nav navbar-nav">
-					
+						
+						<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuários
+				          		<span class="caret"></span>
+				          	</a>
+				          	<ul class="dropdown-menu">
+				            	<li><a href="main?acao=listUser">Listar</a></li>
+				            	<li><a href="main?acao=addUser">Cadastrar</a></li> 
+				          	</ul>
+        				</li>
+
 			        	<li class="dropdown">
-			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Projeto
-				          	<span class="caret"></span></a>
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Projetos
+				          		<span class="caret"></span>
+			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="#">Listar</a></li>
-				            	<li><a href="#">Cadastrar</a></li> 
+				            	<li><a href="main?acao=adicionarProjeto">Cadastrar</a></li> 
 				          	</ul>
         				</li>
         				
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+        				<li class="dropdown">
+        					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        						<span class="glyphicon glyphicon-user"></span>
+        						Usuário
+        						<span class="caret"></span>
+        					</a>
+                           
+        					<ul class="dropdown-menu dropdown-menu-right">
+        						<li><a href="#">Deslogar</a></li>
+        					</ul>
+        				</li>
 			      	</ul>
 			      	
 		    	</div>

@@ -28,24 +28,25 @@
     		<div class="panel panel-primary panel-login">
     		
     			<div class="panel-heading text-center">
-    				Painel de Login
+    				Sistema de Controle de Fluxo de Projetos
     			</div>
 		         
 		                
                 <div class="panel-body">
     
+    				<h1 class="welcome">Bem <span class="ages">v</span>indo!</h1>
     				<jsp:include page="/template/msg.jsp"></jsp:include>
                     
 			         <form method="post" action="main?acao=login">
 			         	
 			         	
 			         	<div class="form-group">
-			            	<label class="form-label">Usuário:</label>
+			            	<label class="form-label ages">Usuário:</label>
 			            	<input class="form-control" id="login" name="login" value="${param.login}" type="text" maxlength="120" required>
 		             	</div>
 		             	
 		             	<div class="form-group">
-			            	<label class="form-label">Senha:</label>
+			            	<label class="form-label ages">Senha:</label>
 			            	<input class="form-control" id="senha" name="senha" value="${param.senha}" type="password" maxlength="15" required>
 		            	</div>
 		            	
@@ -56,7 +57,7 @@
 		             	<hr>
 		             	
 			            <div class="text-center">
-			             	<input class="btn btn-primary pull-center" type="submit" value="Entrar">
+			             	<input class="btn btn-primary login pull-center" type="submit" value="Entrar">
 			         	</div>
 			         </form>
 			         
