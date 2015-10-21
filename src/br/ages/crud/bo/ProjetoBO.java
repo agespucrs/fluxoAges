@@ -8,6 +8,7 @@ import br.ages.crud.dao.ProjetoDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
+import br.ages.crud.model.Status;
 
 public class ProjetoBO {
 	
@@ -38,10 +39,22 @@ public class ProjetoBO {
 	public boolean validarProjeto(Projeto project){
 		boolean valido = true;
 		
-		if(project.getStatus().equals("") || project.getStatus() == null) valido = false;
-		if(project.getNomeProjeto().equals("") || project.getNomeProjeto() == null) valido = false;
+		if(project.getStatus() == null || (!project.getStatus().equals(Status.ATIVO) && !project.getStatus().equals(Status.INATIVO) && !project.getStatus().equals(Status.CONCLUIDO))) valido = false;
+		if(project.getNomeProjeto() == null || project.getNomeProjeto().equals("")) valido = false;
+		//TODO if(project.getDataInclusao() == null);
 		
 		return valido;
+	}
+	
+	public void editarProjeto(Projeto project, int id){
+		/*
+		try{
+			projetoDAO.editarProjeto(project, id);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		*/
 	}
 	
 	public List<Projeto> listarProjeto() throws NegocioException{
