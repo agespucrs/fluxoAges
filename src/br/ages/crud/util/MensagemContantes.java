@@ -30,6 +30,8 @@ public class MensagemContantes {
 
 	public static final String MSG_ERR_CAMPO_DATA_MENOR_RECOMENDADO = "Campo ? com menos de 10 caracteres!";
 	
+	public static final String MSG_ERR_CAMPO_DATA_INVALIDO = "Ocorreu algum problema no envio da data";
+	
 	public static final String MSG_SUC_CADASTRO_PESSOA = "Cadastro de Pessoa efetuado com sucesso!";
 	
 	public static final String MSG_SUC_CADASTRO_USUARIO = "Cadastro usuário: ?, efetuado com sucesso!";
@@ -48,4 +50,6 @@ public class MensagemContantes {
 	public static final String MSG_SUC_CADASTRO_PROJETO = "Cadastro projeto: ?, efetuado com sucesso!";
 	
 	public static final String MSG_ERR_PROJETO_ARQUIVO_INVALIDO = "Arquivo excede o ?Mb ou não é do tipo PDF";
+
+	
 }
