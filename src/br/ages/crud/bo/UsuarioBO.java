@@ -15,10 +15,10 @@ import br.ages.crud.validator.LoginValidator;
 import br.ages.crud.validator.SenhaValidator;
 
 /**
- * Gerencia os comportamentos de negócio do Usuário Associa os parâmetros da
+ * Gerencia os comportamentos de negï¿½cio do Usuï¿½rio Associa os parï¿½metros da
  * tela as propriedades da classe
  * 
- * @author Cássio Trindade
+ * @author Cï¿½ssio Trindade
  * 
  */
 public class UsuarioBO {
@@ -29,7 +29,7 @@ public class UsuarioBO {
 	}
 
 	/**
-	 * Valida Usuário no sistema
+	 * Valida Usuï¿½rio no sistema
 	 * 
 	 * @param request
 	 * @return
@@ -38,7 +38,7 @@ public class UsuarioBO {
 	public boolean validaUsuario(Usuario usuario) throws NegocioException {
 		boolean isValido = false;
 		try {
-			// valida se o usuário está na base
+			// valida se o usuï¿½rio estï¿½ na base
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			isValido = usuarioDAO.validarUsuario(usuario);
 			if (!isValido) {
@@ -55,7 +55,7 @@ public class UsuarioBO {
 	}
 
 	/**
-	 * Valida os dados de usuário na tela de cadastro com erros aglutinados
+	 * Valida os dados de usuï¿½rio na tela de cadastro com erros aglutinados
 	 * 
 	 * @param usuario
 	 * @return
@@ -66,19 +66,23 @@ public class UsuarioBO {
 		StringBuilder msg = new StringBuilder();
 
 		try {
-			// valida campos estão preenchidos corretamente
+			// valida campos estï¿½o preenchidos corretamente
 			// Matricula
 			if (usuario.getMatricula() == null || "".equals(usuario.getMatricula())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Matricula ").concat("<br/>"));
 
 			}
+			if (!usuario.getMatricula().matches("\\d{9}")){
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_MATRICULA_INVALIDA.replace("?", "Matricula ").concat("<br/>"));
+			}
 			// Nome
 			if (usuario.getNome() == null || "".equals(usuario.getNome())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_NOME_OBRIGATORIO + "<br/>");
 			}
-			// Usuário
+			// Usuï¿½rio
 			if (usuario.getUsuario() == null || "".equals(usuario.getUsuario())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Usuario ").concat("<br/>"));
@@ -112,7 +116,7 @@ public class UsuarioBO {
 	}
 
 	/**
-	 * Valida os dados de usuário na tela de cadastro.
+	 * Valida os dados de usuï¿½rio na tela de cadastro.
 	 * 
 	 * @param usuario
 	 * @return
@@ -121,7 +125,7 @@ public class UsuarioBO {
 	public boolean validaCadastroUsuario(Usuario usuario) throws NegocioException {
 		boolean isValido = true;
 		try {
-			// valida campos estão preenchidos corretamente
+			// valida campos estï¿½o preenchidos corretamente
 			// Matricula
 			if (usuario.getMatricula() == null || "".equals(usuario.getMatricula())) {
 				throw new NegocioException(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Matricula ").concat("<br/>"));
@@ -160,7 +164,7 @@ public class UsuarioBO {
 	}
 
 	/**
-	 * Cadastra Usuario em nível de negócio, chamando o DAO
+	 * Cadastra Usuario em nï¿½vel de negï¿½cio, chamando o DAO
 	 * 
 	 * @param pessoaDTO
 	 * @throws NegocioException
@@ -199,7 +203,7 @@ public class UsuarioBO {
 
 	}
 /**
- * Remove usuário da base
+ * Remove usuï¿½rio da base
  * @param idUsuario
  * @throws NegocioException
  */
