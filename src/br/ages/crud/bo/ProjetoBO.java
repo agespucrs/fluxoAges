@@ -46,6 +46,17 @@ public class ProjetoBO {
 		return valido;
 	}
 	
+	public void editarProjeto(Projeto project, int id){
+		/*
+		try{
+			projetoDAO.editarProjeto(project, id);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		*/
+	}
+	
 	public List<Projeto> listarProjeto() throws NegocioException{
 		List<Projeto> listProject = null;
 		
