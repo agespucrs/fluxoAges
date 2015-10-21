@@ -1,6 +1,7 @@
 package br.ages.crud.command;
 
-import javax.servlet.annotation.MultipartConfig;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
@@ -11,24 +12,24 @@ import br.ages.crud.model.Status;
 import br.ages.crud.util.Constantes;
 import br.ages.crud.util.MensagemContantes;
 
-@MultipartConfig
-public class AdicionaProjetoCommand implements Command {
-	
-	private String proxima;
+public class EditaProjetoCommand implements Command{
 	
 	private ProjetoBO projetoBO;
 	
 	private ArquivoBO arquivoBO;
 	
+	private String proxima;
+
 	@Override
-	public String execute(HttpServletRequest request) {
-		projetoBO =  new ProjetoBO();
-		proxima = "project/addProject.jsp";
+	public String execute(HttpServletRequest request) throws SQLException {
+		
+		String id = request.getParameter("id");
 		
 		String nome = request.getParameter("nome");
 		String equipe = request.getParameter("equipe");
 		String status = request.getParameter("status");
 		String workspace = request.getParameter("workspace");
+		//TODO outros campos
 		
 		
 		try{
@@ -37,7 +38,8 @@ public class AdicionaProjetoCommand implements Command {
 			//projeto.setEquipe(equipe);
 			projeto.setStatus(Status.valueOf(status));
 			projeto.setWorkspace(workspace);
-			//TODO outros campos
+			
+			int idProjeto = Integer.parseInt(id);
 
 			boolean isValido = projetoBO.validarProjeto(projeto);			
 			
@@ -57,7 +59,7 @@ public class AdicionaProjetoCommand implements Command {
 				} else{
 					arquivoBO.uploadArquivo(arquivo, nome, Constantes.PROJETO_UPLOAD_PATH);
 					
-					projetoBO.cadastrarProjeto(projeto);
+					projetoBO.editarProjeto(projeto, idProjeto);
 					
 					proxima = "main?acao=listProject";
 					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
@@ -70,6 +72,7 @@ public class AdicionaProjetoCommand implements Command {
 		}
 			
 		return proxima;
+		
 	}
 
 }
