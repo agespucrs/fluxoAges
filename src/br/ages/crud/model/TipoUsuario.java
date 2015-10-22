@@ -11,7 +11,7 @@ public class TipoUsuario implements Serializable {
 
 	private static final long serialVersionUID = -4196928909021033322L;
 	private int idTipoUsuario;
-	private String tipoUsuario;
+	private String nome;
 	private String descricao;
 	private Date dataInclusao;
 	
@@ -19,9 +19,9 @@ public class TipoUsuario implements Serializable {
 		
 	}
 	
-	public TipoUsuario(int idTipoUsuario, String tipoUsuario, String descricao) {
+	public TipoUsuario(int idTipoUsuario, String nome, String descricao) {
 		this.idTipoUsuario = idTipoUsuario;
-		this.tipoUsuario = tipoUsuario;
+		this.nome = nome;
 		this.descricao = descricao;
 		this.dataInclusao = new Date();
 	}
@@ -34,12 +34,12 @@ public class TipoUsuario implements Serializable {
 		this.idTipoUsuario = idTipoUsuario;
 	}
 
-	public String getTipoUsuario() {
-		return tipoUsuario;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {
