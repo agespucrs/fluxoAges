@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * Entity Usuario - Data Transfer Objeto 
- * @author Cassio Trindade
+ * @author 3- Victor Diehl, Daniele de Souza.
  *
  */
 public class Usuario implements Serializable {	
@@ -14,7 +14,9 @@ public class Usuario implements Serializable {
 	private int idUsuario;
 	private String usuario;
 	private String senha;
-	private String administrador;
+	private TipoUsuario tipoUsuario;
+	private PerfilAcesso perfilAcesso;
+	private StatusUsuario statusUsuario;
 	private String matricula;
 	private String nome;
 	private String email;
@@ -26,15 +28,19 @@ public class Usuario implements Serializable {
 	}			
 	
 	public Usuario(String usuario, String senha, String administrador,
-			       String matricula, String nome, String email, Date dataCadastro) {
+			       String matricula, String nome, String email, Date dataCadastro, 
+			       StatusUsuario statusUsuario, TipoUsuario tipoUsuario, PerfilAcesso 
+			       perfilAcesso) {
 		super();
 		this.usuario = usuario;
 		this.senha = senha;
-		this.administrador = administrador;
 		this.matricula = matricula;
 		this.nome = nome;
 		this.email = email;
+		this.statusUsuario = statusUsuario;
+		this.perfilAcesso = perfilAcesso;
 		this.dataCadastro = dataCadastro;
+		this.tipoUsuario = tipoUsuario;
 		this.dataInclusao = new Date();
 	}
 
@@ -63,14 +69,24 @@ public class Usuario implements Serializable {
  
 	public void  setSenha( String value){
 		 senha = value;
+	}	
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
 	}
-	public String getAdministrador(){
-		 return administrador;
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
- 
-	public void  setAdministrador( String value){
-		 administrador = value;
+
+	public StatusUsuario getStatusUsuario(){
+		return statusUsuario;
 	}
+	
+	public void setStatusUsuario(StatusUsuario statusUsuario) {
+		this.statusUsuario = statusUsuario;
+	}
+	
 	public String getMatricula(){
 		 return matricula;
 	}
@@ -103,6 +119,15 @@ public class Usuario implements Serializable {
 	public Date getDataInclusao() {
 		return dataInclusao;
 	}
-				
+
+	public PerfilAcesso getPerfilDeAcesso() {
+		return perfilAcesso;
+	}
+
+	public void setPerfilAcesso(PerfilAcesso perfilAcesso) {
+		this.perfilAcesso = perfilAcesso;
+	}			
+	
+	
 }
 
