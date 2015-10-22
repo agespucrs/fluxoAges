@@ -96,7 +96,7 @@ public class UsuarioBO {
 			}
 
 			// flag administrador
-			if (usuario.getAdministrador() == null || "".equals(usuario.getAdministrador())) {
+			if (usuario.getPerfilAcesso() == null) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrador").concat("<br/>"));
 			}
@@ -145,7 +145,7 @@ public class UsuarioBO {
 			}
 
 			// flag administrador
-			if (usuario.getAdministrador() == null || "".equals(usuario.getAdministrador())) {
+			if (usuario.getPerfilAcesso() == null) {
 				throw new NegocioException(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrado").concat("<br/>"));
 			}
 

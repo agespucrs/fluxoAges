@@ -120,7 +120,7 @@ public class Usuario implements Serializable {
 		return dataInclusao;
 	}
 
-	public PerfilAcesso getPerfilDeAcesso() {
+	public PerfilAcesso getPerfilAcesso() {
 		return perfilAcesso;
 	}
 

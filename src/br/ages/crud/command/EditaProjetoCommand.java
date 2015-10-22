@@ -8,7 +8,6 @@ import javax.servlet.http.Part;
 import br.ages.crud.bo.ArquivoBO;
 import br.ages.crud.bo.ProjetoBO;
 import br.ages.crud.model.Projeto;
-import br.ages.crud.model.Status;
 import br.ages.crud.util.Constantes;
 import br.ages.crud.util.MensagemContantes;
 
@@ -36,7 +35,7 @@ public class EditaProjetoCommand implements Command{
 			Projeto projeto = new Projeto();
 			projeto.setNomeProjeto(nome);
 			//projeto.setEquipe(equipe);
-			projeto.setStatus(Status.valueOf(status));
+			//projeto.setStatus(Status.valueOf(status));
 			projeto.setWorkspace(workspace);
 			
 			int idProjeto = Integer.parseInt(id);

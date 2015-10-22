@@ -25,10 +25,10 @@ public class TesteUsuarioDAO {
 	public void init() {
 		usuario         = new Usuario("admin", "admin");
 		usuarioErrado   = new Usuario("errado", "senhaErrada");
-		usuarioCadastro = new Usuario("cadastro", "admin", "S", "0cadastro", "Nome Teste","Email Teste", new Date());
+		/*usuarioCadastro = new Usuario("cadastro", "admin", "S", "0cadastro", "Nome Teste","Email Teste", new Date());
 		usuarioRemove   = new Usuario("remove", "admin", "S", "0remove", "Nome Teste","Email Teste", new Date());
 		usuarioBusca    = new Usuario("busca", "admin", "S", "0busca", "Nome Teste","Email Teste", new Date());
-		usuarioDeleta   = new Usuario("deleta", "admin", "S", "0deleta", "Nome Teste","Email Teste", new Date());
+		usuarioDeleta   = new Usuario("deleta", "admin", "S", "0deleta", "Nome Teste","Email Teste", new Date());*/
 		dao = new UsuarioDAO();
 	}
 

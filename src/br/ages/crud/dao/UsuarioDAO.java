@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.PerfilAcesso;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
@@ -92,7 +93,7 @@ public class UsuarioDAO {
 				dto.setEmail(resultset.getString("EMAIL"));
 				dto.setUsuario(resultset.getString("USUARIO"));
 				dto.setSenha(resultset.getString("SENHA"));
-				dto.setAdministrador(resultset.getString("ADMINISTRADOR"));
+				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("ADMINISTRADOR")));
 
 				listarUsuarios.add(dto);
 			}
@@ -127,7 +128,7 @@ public class UsuarioDAO {
 					sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
-			statement.setString(3, usuario.getAdministrador());
+			statement.setString(3, String.valueOf(usuario.getPerfilAcesso()));
 			statement.setString(4, usuario.getMatricula());
 			statement.setString(5, usuario.getNome());
 			statement.setString(6, usuario.getEmail());
@@ -208,7 +209,7 @@ public class UsuarioDAO {
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setAdministrador(resultset.getString("ADMINISTRADOR"));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("ADMINISTRADOR")));
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -246,7 +247,7 @@ public class UsuarioDAO {
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setAdministrador(resultset.getString("ADMINISTRADOR"));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("ADMINISTRADOR")));
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
