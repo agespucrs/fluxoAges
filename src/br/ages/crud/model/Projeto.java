@@ -13,8 +13,8 @@ public class Projeto implements Serializable {
 	private static final long serialVersionUID = 8366767996508020776L;
 	private int idProjeto;
 	private String nomeProjeto;
-	private ArrayList<Equipe> equipes;
-	private Status status;
+	private ArrayList<Usuario> usuarios;
+	private StatusProjeto status;
 	private String workspace;
 	private ArrayList<Stakeholder> stakeholders;
 	private Date dataInclusao;
@@ -26,11 +26,11 @@ public class Projeto implements Serializable {
 		
 	}
 	
-	public Projeto(int idProjeto, String nomeProjeto, ArrayList<Equipe> equipes, String workspace, Status status,
+	public Projeto(int idProjeto, String nomeProjeto, ArrayList<Usuario> usuarios, String workspace, StatusProjeto status,
 	ArrayList<Stakeholder> stakeholders, Date dataInicio, Date dataFim) {
 		this.idProjeto = idProjeto;
 		this.nomeProjeto = nomeProjeto;
-		this.equipes = equipes;
+		this.usuarios = usuarios;
 		this.status = status;
 		this.workspace = workspace;
 		this.stakeholders = stakeholders;
@@ -55,20 +55,20 @@ public class Projeto implements Serializable {
 		this.stakeholders = stakeholders;
 	}
 	
-	public Status getStatus(){
+	public StatusProjeto getStatus(){
 		return status;
 	}
 	
-	public void setStatus(Status status) {
+	public void setStatus(StatusProjeto status) {
 		this.status = status;
 	}
 	
-	public ArrayList<Equipe> getEquipe() {
-		return  equipes; 
+	public ArrayList<Usuario> getUsuarios() {
+		return  usuarios; 
 	}
 	
-	public void setEquipes(ArrayList<Equipe> equipes) {
-		this.equipes = equipes;
+	public void setUsuarios(ArrayList<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 	
 	public String getNomeProjeto() {
