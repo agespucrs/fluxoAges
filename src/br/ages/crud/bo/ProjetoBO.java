@@ -9,6 +9,8 @@ import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Status;
+import br.ages.crud.util.MensagemContantes;
+import br.ages.crud.validator.DataValidator;
 
 public class ProjetoBO {
 	
@@ -32,16 +34,21 @@ public class ProjetoBO {
 			projetoDAO.cadastrarProjeto(project);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
-			throw new NegocioException(e);
+			throw new NegocioException(MensagemContantes.MSG_ERR_CADASTRO_PROJETO);
 		}
 	}
 
 	public boolean validarProjeto(Projeto project){
 		boolean valido = true;
+		DataValidator validator = new DataValidator();
 		
-		if(project.getStatus() == null || (!project.getStatus().equals(Status.ATIVO) && !project.getStatus().equals(Status.INATIVO) && !project.getStatus().equals(Status.CONCLUIDO))) valido = false;
+		if(project.getStatus() == null) valido = false;
 		if(project.getNomeProjeto() == null || project.getNomeProjeto().equals("")) valido = false;
-		//TODO if(project.getDataInclusao() == null);
+		if(project.getDataInicio() == null) valido = false;
+		//if(project.getDataFimPrevisto == null) valido = false;
+		//if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFimPrevisto())) valido = false;		
+		if(project.getDataFim() != null)
+			if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFim())) valido = false;		
 		
 		return valido;
 	}

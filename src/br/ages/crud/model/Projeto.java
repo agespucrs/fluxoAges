@@ -20,6 +20,7 @@ public class Projeto implements Serializable {
 	private Date dataInclusao;
 	private Date dataInicio;
 	private Date dataFim;
+	//private Date dataFimPrevisto; TODO métodos
 			
 	public Projeto() {
 		

@@ -26,15 +26,21 @@ public class AdicionaProjetoCommand implements Command {
 		proxima = "project/addProject.jsp";
 		
 		String nome = request.getParameter("nome");
-		String equipe = request.getParameter("equipe");
+		//
+		String integrante1 = request.getParameter("integrante1");
+		//
 		String status = request.getParameter("status");
 		String workspace = request.getParameter("workspace");
+		String dataInicioString = request.getParameter("dataInicio");
+		String dataFimPrevistoString = request.getParameter("dataFimPrevisto");
+		String dataFimString = request.getParameter("dataFim");
 		
+		//validação de datas (talvez dentro do try?)
 		
 		try{
 			Projeto projeto = new Projeto();
 			projeto.setNomeProjeto(nome);
-			//projeto.setEquipe(equipe);
+			//projeto.setIntegrantes(ArrayList<Usuario);
 			projeto.setStatus(Status.valueOf(status));
 			projeto.setWorkspace(workspace);
 			//TODO outros campos

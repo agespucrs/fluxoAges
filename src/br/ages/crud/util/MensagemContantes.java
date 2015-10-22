@@ -46,12 +46,13 @@ public class MensagemContantes {
 
 	//msgs de projeto
 	public static final String MSG_ERR_PROJETO_DADOS_INVALIDOS = "Dados DO projeto inv�lidos ou inconsistentes!";
-	
-	public static final String MSG_SUC_CADASTRO_PROJETO = "Cadastro projeto: ?, efetuado com sucesso!";
-	
+		
 	public static final String MSG_ERR_PROJETO_ARQUIVO_INVALIDO = "Arquivo excede o ?Mb ou n�o � do tipo PDF";
 
 	public static final String MSG_ERR_MATRICULA_INVALIDA = "Dado de matrícula inválido";
+	
+	public static final String MSG_ERR_CADASTRO_PROJETO = "Ocorreu um erro no cadastro do projeto.";
 
+	public static final String MSG_SUC_CADASTRO_PROJETO = "Cadastro projeto: ?, efetuado com sucesso!";
 	
 }
