@@ -8,7 +8,7 @@ import br.ages.crud.dao.ProjetoDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
-import br.ages.crud.model.Status;
+//import br.ages.crud.model.Status;
 import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.DataValidator;
 
@@ -42,7 +42,7 @@ public class ProjetoBO {
 		boolean valido = true;
 		DataValidator validator = new DataValidator();
 		
-		if(project.getStatus() == null) valido = false;
+		//if(project.getStatus() == null) valido = false;
 		if(project.getNomeProjeto() == null || project.getNomeProjeto().equals("")) valido = false;
 		if(project.getDataInicio() == null) valido = false;
 		//if(project.getDataFimPrevisto == null) valido = false;
