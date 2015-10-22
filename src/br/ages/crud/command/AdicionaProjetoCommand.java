@@ -1,5 +1,7 @@
 package br.ages.crud.command;
 
+import java.util.ArrayList;
+
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -8,6 +10,7 @@ import br.ages.crud.bo.ArquivoBO;
 import br.ages.crud.bo.ProjetoBO;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Status;
+import br.ages.crud.model.Usuario;
 import br.ages.crud.util.Constantes;
 import br.ages.crud.util.MensagemContantes;
 
