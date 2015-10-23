@@ -18,7 +18,7 @@ import br.ages.crud.util.Util;
 
 public class TestaProjetoBO {
 	
-	private Projeto projetoCerto, projetoErrado;
+	private Projeto projetoCerto, projetoErrado, projetoErradoData;
 	private ProjetoBO projetoBO;
 	
 	
@@ -28,23 +28,33 @@ public class TestaProjetoBO {
 		projetoBO = new ProjetoBO();
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
-		Date dataInicio = Util.stringToDate("01/06/2015");
-		Date dataFimPrevisto = Util.stringToDate("01/12/2015");
-		Date dataFim = Util.stringToDate("01/01/2016");
 		
 		
 		projetoCerto = new Projeto();
 		projetoCerto.setIdProjeto(10);
 		projetoCerto.setNomeProjeto("ProjetoCorreto");
 		projetoCerto.setUsuarios(usuarios);
-		projetoCerto.setStatus(StatusProjeto.ATIVO);
+		projetoCerto.setStatusProjeto(StatusProjeto.ATIVO);
 		projetoCerto.setWorkspace("Workspace");
 		projetoCerto.setStakeholders(stakeholders);
-		projetoCerto.setDataInicio(dataInicio);
-		projetoCerto.setDataFimPrevisto(dataFimPrevisto);
-		projetoCerto.setDataFim(dataFim);
+		projetoCerto.setDataInicio(Util.stringToDate("01/06/2015"));
+		projetoCerto.setDataFimPrevisto(Util.stringToDate("01/12/2015"));
+		projetoCerto.setDataFim(Util.stringToDate("01/01/2016"));
 		
 		projetoErrado = new Projeto(-1, null, null, null, null, null, null, null, null);
+		
+		projetoErradoData = new Projeto();
+		projetoErradoData.setIdProjeto(10);
+		projetoErradoData.setNomeProjeto("ProjetoErradoData");
+		projetoErradoData.setUsuarios(usuarios);
+		projetoErradoData.setStatusProjeto(StatusProjeto.CONCLUIDO);
+		projetoErradoData.setWorkspace("Workspace");
+		projetoErradoData.setStakeholders(stakeholders);
+		projetoErradoData.setDataInicio(Util.stringToDate("01/01/2016"));
+		projetoErradoData.setDataFimPrevisto(Util.stringToDate("01/12/2015"));
+		projetoErradoData.setDataFim(Util.stringToDate("01/01/2016"));
+		
+		
 		
 		}
 
@@ -57,6 +67,12 @@ public class TestaProjetoBO {
 	@Test
 	public void testValidarProjetoNotOK(){
 		boolean valido = projetoBO.validarProjeto(projetoErrado);
+		assertEquals(valido, false);
+	}
+	
+	@Test
+	public void testValidarProjetoNotOK2(){
+		boolean valido = projetoBO.validarProjeto(projetoErradoData);
 		assertEquals(valido, false);
 	}
 }
