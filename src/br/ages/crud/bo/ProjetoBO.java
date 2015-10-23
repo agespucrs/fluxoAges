@@ -77,9 +77,9 @@ public class ProjetoBO {
 		return listProject;	
 	}
 	
-	public void removerProjeto(Integer idProjeto) throws NegocioException {
+	public void removerProjeto(Projeto project) throws NegocioException {
 		try {
-			projetoDAO.removeProjeto(idProjeto);
+			projetoDAO.removerProjeto(project);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
