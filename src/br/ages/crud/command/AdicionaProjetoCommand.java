@@ -67,8 +67,13 @@ public class AdicionaProjetoCommand implements Command {
 			
 			Projeto projeto = new Projeto();
 			projeto.setNomeProjeto(nomeProjeto);
+			projeto.setUsuarios(usuarios);
 			projeto.setStatusProjeto(statusProjeto);
-			//TODO resto dos campos
+			projeto.setWorkspace(workspace);
+			projeto.setStakeholders(stakeholders);
+			projeto.setDataInicio(dataInicio);
+			projeto.setDataFim(dataFim);
+			projeto.setDataFimPrevisto(dataFimPrevisto);
 
 			boolean isValido = projetoBO.validarProjeto(projeto);			
 			
@@ -86,7 +91,7 @@ public class AdicionaProjetoCommand implements Command {
 				if(!tamanhoValido || !extensaoValida){
 					request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_ARQUIVO_INVALIDO.replace("?", String.valueOf(Constantes.PROJETO_ARQUIVO_MAX_BYTES)));
 				} else{
-					arquivoBO.uploadArquivo(arquivo, nome, Constantes.PROJETO_UPLOAD_PATH);
+					arquivoBO.uploadArquivo(arquivo, nomeProjeto, Constantes.PROJETO_UPLOAD_PATH);
 					
 					projetoBO.cadastrarProjeto(projeto);
 					
