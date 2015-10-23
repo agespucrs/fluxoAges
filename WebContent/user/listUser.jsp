@@ -37,7 +37,7 @@
 							<th style="text-align: center;">Nome</th>
 							<th style="text-align: center;">E-mail</th>
 							<th style="text-align: center;">Usuário</th>
-							<th style="text-align: center;">Administrador</th>
+							<th style="text-align: center;">Perfil de Acesso</th>
 							<th colspan="2" style="text-align: center;">Ações</th>
 		                </tr>
 		            </thead>
@@ -54,10 +54,9 @@
 			            	<td align="center"><%=usuario.getNome()%></td>
 			            	<td align="center"><%=usuario.getEmail()%></td>
 			            	<td align="center"><%=usuario.getUsuario()%></td>
-			            	<%--
-			            	Tirar esta td e adicionar novas e acordo com as mudanças de atributos na classe Usuario 
-			            	<td align="center"><%=usuario.getAdministrador()%></td> 
-			            	--%>
+			            	
+			            	<td align="center"><%=usuario.getPerfilAcesso()%></td> 
+			            	
 			            	<td align="center">
 			            		<form action="" method="post">
 			            			<a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>

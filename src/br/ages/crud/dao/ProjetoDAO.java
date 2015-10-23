@@ -1,18 +1,15 @@
 package br.ages.crud.dao;
 
-import java.sql.Array;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
+import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
@@ -24,8 +21,6 @@ import com.mysql.jdbc.Statement;
  */
 
 public class ProjetoDAO {
-
-	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	public ProjetoDAO() {
 		
@@ -79,8 +74,6 @@ public class ProjetoDAO {
 			
 			java.sql.Date dataInclusao = new java.sql.Date(projeto.getDataInclusao().getTime());
 
-
-			// Cadastra o projeto/ e gera Id;
 			PreparedStatement statement = conexao.prepareStatement(
 					sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, projeto.getNomeProjeto());
@@ -97,29 +90,80 @@ public class ProjetoDAO {
 			if (resultset.first()) {
 				idProjeto = resultset.getInt(1);
 			}
+			
+			if(!inserirUsuariosProjeto(conexao, projeto)) return;
+			if(!inserirStakeholdersProjeto(conexao, projeto)) return;
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
 	}
-
-	//criar método para inserir usuários
 	
-	//criar método para inserir stakeholders
+	private boolean inserirUsuariosProjeto(Connection conexao, Projeto projeto) throws SQLException {						
+		
+		boolean ok = false;
+		
+		ArrayList<Usuario> listaUsuarios = new ArrayList<>(projeto.getUsuarios());
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO TB_PROJETO_USUARIO (ID_PROJETO, ID_USUARIO)");
+		sql.append("VALUES (?, ?)");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+		
+		for (Usuario usuario: listaUsuarios) {
+			
+			statement.setInt(1, projeto.getIdProjeto());
+			statement.setInt(2, usuario.getIdUsuario());
+			
+			ok = statement.execute();
+			if(!ok) break;
+		}
+		
+		return ok;
+	}
 	
-	public void removeProjeto(Integer idProjeto) throws PersistenciaException {
+	private boolean inserirStakeholdersProjeto(Connection conexao, Projeto projeto) throws SQLException {
+		boolean ok = false;
+		
+		ArrayList<Stakeholder> listaStakeholders = new ArrayList<>(projeto.getStakeholders());
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO TB_PROJETO_STAKEHOLDER (ID_PROJETO, ID_STAKEHOLDER)");
+		sql.append("VALUES (?, ?)");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+		
+		for (Stakeholder stakeholder: listaStakeholders) {
+			
+			statement.setInt(1, projeto.getIdProjeto());
+			statement.setInt(2, stakeholder.getIdStakeholder());
+			
+			ok = statement.execute();
+			if(!ok) break;
+		}
+		
+		return ok;
+	}
+	
+	
+	public void removerProjeto(Projeto projeto) throws PersistenciaException {
 		Connection conexao = null;
 		try	{
-			conexao =ConexaoUtil.getConexao();
+			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("DELETE FROM TB_PROJETO WHERE ID_PROJETO= ?");
+			sql.append("DELETE FROM TB_PROJETO WHERE ID_PROJETO = ?");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
-			statement.setInt(1, idProjeto);
+			statement.setInt(1, projeto.getIdProjeto());
 			
-			statement.execute();			
+			statement.execute();
+			
+			if(!removerUsuariosProjeto(conexao, projeto)) return;
+			if(!removerStakeholdersProjeto(conexao, projeto)) return;
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -130,5 +174,31 @@ public class ProjetoDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private boolean removerUsuariosProjeto(Connection conexao, Projeto projeto) throws SQLException {
+		boolean ok = false;
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM TB_PROJETO_USUARIO WHERE ID_PROJETO = ?");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, projeto.getIdProjeto());
+			ok = statement.execute();
+			
+		return ok;
+	}
+	
+	private boolean removerStakeholdersProjeto(Connection conexao, Projeto projeto) throws SQLException {
+		boolean ok = false;
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM STAKEHOLDER WHERE ID_PROJETO = ?");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, projeto.getIdProjeto());
+			ok = statement.execute();
+			
+		return ok;
 	}
 }

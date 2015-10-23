@@ -58,40 +58,24 @@
                     
                     <div class="form-group">
 			           	<label class="form-label ages">Perfil de Acesso:</label>
-			           	<select id="perfilacesso" name="perfilacesso" required>
-			           		<option>1</option>
-			           		<option>2</option>
+			           	<select id="perfilAcesso" name="perfilAcesso" required>
+			           		<option value="ADMINISTRADOR" <%= "ADMINISTRADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : "" %>>Administrador</option>
+                            <option value="NAVEGADOR" <%= "NAVEGADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : "" %>>Navegador</option>
+		           		</select>
 		            </div>
-                    
-                    <div class="selects">
-                        <label for="status">
-                            <span class="obg">*</span>Administrador:<!-- O <span> foi utilizado apenas para estilar o "*" -->
-                        </label>
-                        
-                        <select id="adm" name="adm" required>
-                            <option value="N" <%= "N".equals(request.getParameter("adm")) ? "selected" : "" %> required>Não</option>
-                            <option value="S" <%= "S".equals(request.getParameter("adm")) ? "selected" : "" %> required>Sim</option>
-                        </select>
-                    </div>
-                    
-                    
                     
                     <hr>
                     
                     <p>Campos que contém <span>*</span> são obrigatórios</p>
                     
                     
-                    
-                    
-                   
-                    <input class="reset" type="reset" value="Limpar">
-                     <input class="submit" type="submit" value="Cadastrar" onclick="cadastrar()">
+                    <div class="text-center">
+			           	<input class="btn btn-primary login pull-center" type="reset" value="Limpar">
+			           	<input class="btn btn-primary login pull-center" type="submit" value="Cadastrar" onclick="cadastrar()">
+			        </div>
                 </form>
-                </div>
+            </div>
 
-        
+</div>
 
-        
-        
-        
 <jsp:include page="/template/foot.jsp"></jsp:include>
