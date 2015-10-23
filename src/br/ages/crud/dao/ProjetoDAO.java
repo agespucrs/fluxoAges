@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.StatusProjeto;
+import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
 import com.mysql.jdbc.Statement;
@@ -67,22 +68,17 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INCLUSAO, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO)");
+			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?)");
-
-			// Conversï¿½o das datas para sql (data inicio, data fim , data
-			// inclusï¿½o);
-			java.util.Date utilDate1 = new java.util.Date();
-			java.sql.Date dataInclusao = new java.sql.Date(utilDate1.getTime());
-
-			java.util.Date utilDate2 = new java.util.Date();
-			java.sql.Date dataInicio = new java.sql.Date(utilDate2.getTime());
-
-			java.util.Date utilDate3 = new java.util.Date();
-			java.sql.Date dataFim = new java.sql.Date(utilDate3.getTime());
 			
-			java.util.Date utilDate4 = new java.util.Date();
-			java.sql.Date dataFimPrevisto = new java.sql.Date(utilDate4.getTime());
+			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
+
+			java.sql.Date dataFim = new java.sql.Date(projeto.getDataFim().getTime());
+			
+			java.sql.Date dataFimPrevisto = new java.sql.Date(projeto.getDataFimPrevisto().getTime());
+			
+			java.sql.Date dataInclusao = new java.sql.Date(projeto.getDataInclusao().getTime());
+
 
 			// Cadastra o projeto/ e gera Id;
 			PreparedStatement statement = conexao.prepareStatement(
@@ -90,14 +86,10 @@ public class ProjetoDAO {
 			statement.setString(1, projeto.getNomeProjeto());
 			statement.setString(2, projeto.getStatusProjeto().toString());
 			statement.setString(3, projeto.getWorkspace());
-			statement.setDate(4, (Date) projeto.getDataInclusao()); // ?????? colocar o id do projeto
-			statement.setDate(5, (Date) projeto.getDataInicio());
-			statement.setDate(6, (Date) projeto.getDataFim());
-			statement.setDate(7, (Date) projeto.getDataFimPrevisto());
-			
-			//criar método para inserir usuários
-			
-			//criar método para inserir stakeholders
+			statement.setDate(4, dataInicio);
+			statement.setDate(5, dataFim);
+			statement.setDate(6, dataFimPrevisto);
+			statement.setDate(7, dataInclusao);
 
 			statement.executeUpdate();
 
@@ -111,6 +103,10 @@ public class ProjetoDAO {
 			conexao.close();
 		}
 	}
+
+	//criar método para inserir usuários
+	
+	//criar método para inserir stakeholders
 	
 	public void removeProjeto(Integer idProjeto) throws PersistenciaException {
 		Connection conexao = null;
