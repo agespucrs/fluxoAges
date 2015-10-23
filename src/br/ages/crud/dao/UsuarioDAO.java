@@ -93,7 +93,7 @@ public class UsuarioDAO {
 				dto.setEmail(resultset.getString("EMAIL"));
 				dto.setUsuario(resultset.getString("USUARIO"));
 				dto.setSenha(resultset.getString("SENHA"));
-				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("ADMINISTRADOR")));
+				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
 
 				listarUsuarios.add(dto);
 			}
