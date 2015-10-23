@@ -20,21 +20,21 @@ public class Usuario implements Serializable {
 	private String matricula;
 	private String nome;
 	private String email;
-	private Date dataCadastro;
 	private Date dataInclusao;
 								
 	public Usuario() {
 		// TODO Auto-generated constructor stub
+		this.dataInclusao = new Date();
 	}			
 	
 	public Usuario(int idUsuario){
 		this.idUsuario = idUsuario;
+		this.dataInclusao = new Date();
 	}
 	
 	public Usuario(String usuario, String senha, String administrador,
-			       String matricula, String nome, String email, Date dataCadastro, 
-			       StatusUsuario statusUsuario, TipoUsuario tipoUsuario, PerfilAcesso 
-			       perfilAcesso) {
+			       String matricula, String nome, String email, StatusUsuario statusUsuario, 
+			       TipoUsuario tipoUsuario, PerfilAcesso perfilAcesso) {
 		super();
 		this.usuario = usuario;
 		this.senha = senha;
@@ -43,7 +43,6 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.statusUsuario = statusUsuario;
 		this.perfilAcesso = perfilAcesso;
-		this.dataCadastro = dataCadastro;
 		this.tipoUsuario = tipoUsuario;
 		this.dataInclusao = new Date();
 	}
@@ -112,13 +111,6 @@ public class Usuario implements Serializable {
 	public void setEmail( String value){
 		 email = value;
 	}
-	public Date getDataCadastro(){
-		 return dataCadastro;
-	}
- 
-	public void  setDataCadastro( Date value){
-		 dataCadastro = value;
-	}
 	
 	public Date getDataInclusao() {
 		return dataInclusao;
@@ -131,7 +123,6 @@ public class Usuario implements Serializable {
 	public void setPerfilAcesso(PerfilAcesso perfilAcesso) {
 		this.perfilAcesso = perfilAcesso;
 	}			
-	
 	
 }
 
