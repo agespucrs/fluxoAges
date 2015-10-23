@@ -1,33 +1,85 @@
 /***
 * Scripts para criacao e insersao de dados
 * Base Dados Fluxo AGES
-* Casssio Trindade
+* Casssio Trindade, Daniele Souza e Victor Diehl
 * 09/2015
 ***/
 
 USE ages_e;
 
 
--- Tabela usuarios e asuario de adm
-CREATE TABLE tb_usuario (
-  ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
+-- Tabela Usuario
+CREATE TABLE TB_USUARIO (
+  ID_USUARIO int(11) NOT NULL AUTO_INCREMENT,
   USUARIO varchar(45) NOT NULL,
   SENHA varchar(45) NOT NULL,
-  ADMINISTRADOR varchar(1) DEFAULT NULL,
+  PERFIL_ACESSO varchar(20) NOT NULL,
+  STATUS_USUARIO varchar(20) NOT NULL,
+  ID_TIPO_USUARIO int(11) NOT NULL,
   MATRICULA varchar(45) NOT NULL,
   NOME varchar(120) DEFAULT NULL,
   EMAIL varchar(120) DEFAULT NULL,
-  DATA_CADASTRO` datetime DEFAULT NULL,
+  DATA_INCLUSAO datetime DEFAULT NULL,
   PRIMARY KEY (ID_USUARIO,MATRICULA),
   UNIQUE KEY MATRICULA_UNIQUE (MATRICULA)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
-INSERT INTO tb_usuario
-(ID_USUARIO,USUARIO,SENHA,ADMINISTRADOR,MATRICULA,NOME,EMAIL,DATA_CADASTRO)
-VALUES
-('10', 'admin', 'admin', 'S', '00000', 'Cássio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
+-- Tabela Tipo Usuario
+CREATE TABLE TB_TIPO_USUARIO (
+  ID_TIPO_USUARIO int(11) NOT NULL AUTO_INCREMENT,
+  NOME varchar(20) NOT NULL,
+  DESCRICAO varchar(120) DEFAULT NULL,
+  DATA_INCLUSAO datetime DEFAULT NULL,
+  PRIMARY KEY (ID_TIPO_USUARIO)
+);
 
-	
+-- Inserts
+INSERT INTO TB_TIPO_USUARIO VALUES
+('1', 'Arquiteto', 'Responsável pela parte técnica', '2015-10-01 00:00:00');
+
+INSERT INTO TB_USUARIO
+(ID_USUARIO,USUARIO,SENHA,PERFIL_ACESSO,STATUS_USUARIO,ID_TIPO_USUARIO,MATRICULA,NOME,EMAIL,DATA_INCLUSAO)
+VALUES
+('10', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO', '1' '00000', 'Cássio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
+
+-- Tabela Projeto
+  CREATE TABLE TB_PROJETO (
+  ID_PROJETO int(11) NOT NULL AUTO_INCREMENT,
+  NOME_PROJETO varchar(120) NOT NULL, 
+  STATUS_PROJETO varchar(10) NOT NULL,  
+  WORKSPACE varchar(60) DEFAULT NULL,  
+  DATA_INICIO datetime NOT NULL, 
+  DATA_FIM datetime DEFAULT NULL,
+  DAFA_FIM_PREVISTO datetime NOT NULL,
+  DATA_INCLUSAO datetime NOT NULL,
+  PRIMARY KEY (ID_PROJETO) 
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+ 
+-- Tabela Stakeholders
+CREATE TABLE TB_STAKEHOLDERS (
+  ID_STAKEHOLDER int(11) NOT NULL AUTO_INCREMENT,
+  NOME_STAKEHOLDER varchar(45) NOT NULL,
+  DATA_INCLUSAO datetime DEFAULT NULL, 
+  PRIMARY KEY (ID_STAKEHOLDER)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+-- Tabela Projeto/Usuario
+CREATE TABLE TB_PROJETO_USUARIO (
+  ID_PROJETO int(11) NOT NULL,
+  ID_USUARIO int(11) NOT NULL,  
+  PRIMARY KEY (ID_PROJETO,ID_USUARIO)  
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+-- Tabela Projeto/Stakeholders
+CREATE TABLE TB_PROJETO_STAKEHOLDERS (
+  ID_PROJETO int(11) NOT NULL,
+  ID_STAKEHOLDER int(11) NOT NULL,   
+  PRIMARY KEY (ID_PROJETO,ID_STAKEHOLDER)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+
+
+/*
 -- Tabela de estados do Brasil	
 CREATE TABLE TB_UF (
   id_uf INTEGER NOT NULL AUTO_INCREMENT,
@@ -64,8 +116,7 @@ INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SP', 'São Paulo');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SE', 'Sergipe');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('TO', 'Tocantins');
 
-
-CREATE TABLE `crud_devmedia`.`tb_cidade` (
+CREATE TABLE TB_CIDADE (
   `ID_CIDADE` INT NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(45) NOT NULL,
   `COD_ESTADO` INT NOT NULL,
@@ -78,19 +129,13 @@ CREATE TABLE `crud_devmedia`.`tb_cidade` (
     ON UPDATE NO ACTION);
 
 INSERT INTO TB_CIDADE (`descricao`, `cod_estado`) 
-	VALUES ('Rio Branco', 1),
-		   ('Cruzeiro do Sul', 1),
-		   ('Maceió', 2),
-		   ('Macapá', 3),
-		   ('Manaus', 4),
-		   ('Salvador', 5);
-		   ('Porto Alegre', 21),
+	VALUES ('Porto Alegre', 21),
 		   ('Alegrete', 21),
 		   ('Bagé', 21),
 		   ('Canoas', 21);
 		   
 -- Tabela de para endereço de Pessoas			   
-CREATE TABLE IF NOT EXISTS `ages_e`.`tb_endereco` (
+CREATE TABLE IF NOT EXISTS `ages_e`.`TB_ENDERECO` (
   `id_endereco` INT(11) NOT NULL AUTO_INCREMENT,
   `logradouro` VARCHAR(45) NOT NULL,
   `cod_cidade` INT(11) NOT NULL,
@@ -101,35 +146,6 @@ CREATE TABLE IF NOT EXISTS `ages_e`.`tb_endereco` (
     REFERENCES `ages_e`.`tb_cidade` (`ID_CIDADE`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1
-COLLATE = latin1_swedish_ci;
-
--- Tabela de Pessoas
-CREATE TABLE IF NOT EXISTS `ages_e`.`tb_pessoa` (
-  `id_pessoa` INT(11) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NOT NULL,
-  `cpf` FLOAT(11) NOT NULL,
-  `dt_nasc` DATE NULL DEFAULT NULL,
-  `sexo` CHAR(1) NOT NULL,
-  `mini_bio` VARCHAR(100) NULL DEFAULT NULL,
-  `cod_endereco` INT(11) NOT NULL,
-  PRIMARY KEY (`id_pessoa`),
-  INDEX `fk_tb_pessoa_tb_endereco1_idx` (`cod_endereco` ASC),
-  CONSTRAINT `fk_tb_pessoa_tb_endereco1`
-    FOREIGN KEY (`cod_endereco`)
-    REFERENCES `ages_e`.`tb_endereco` (`id_endereco`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1
-COLLATE = latin1_swedish_ci;
-
--- Tabela de preferencias
-CREATE TABLE IF NOT EXISTS `ages_e`.`tb_preferencia` (
-  `id_preferencia` INT(11) NOT NULL AUTO_INCREMENT,
-  `descricao` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_preferencia`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_swedish_ci;
@@ -154,67 +170,4 @@ CREATE TABLE IF NOT EXISTS `ages_e`.`tb_preferencia_pessoa` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_swedish_ci;
-
--- Valores das preferencias musicais
-insert into TB_PREFERENCIA (`descricao`) values('	Jazz'),('Blues'),('MPB'),('Pop'),('Rock');
-
-/*
- *  Script principal para retorno dos dados de pessoa
- */
-SELECT p.*, e.logradouro, c.descricao, uf.descricao FROM ages_e.tb_pessoa p
-   inner join tb_endereco e
-   on p.cod_endereco = id_endereco
-   inner join tb_cidade c
-   on e.cod_cidade = c.id_cidade
-   inner join tb_uf uf
-   on c.cod_estado = uf.id_uf;
-   
-   
-   
-    -- Tabela Projeto
-  
-  CREATE TABLE tb_projeto (
-  ID_PROJETO int(11) NOT NULL AUTO_INCREMENT,
-  NOME_PROJETO varchar(120) NOT NULL, 
-  STATUS varchar(10) DEFAULT NULL,  
-  WORKSPACE varchar(60) DEFAULT NULL,  
-  DATA_INICIO datetime DEFAULT NULL, 
-  DATA_FIM datetime DEFAULT NULL,
-  DATA_INCLUSAO datetime DEFAULT NULL,
-  PRIMARY KEY (ID_PROJETO) 
-)ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
- 
--- Tabela Equipe
-
- CREATE TABLE tb_equipe (
- ID_EQUIPE int(11) NOT NULL AUTO_INCREMENT,
- NOME_EQUIPE varchar(45) NOT NULL,
- METODO varchar(30) NOT NULL,
- DATA_INCLUSAO datetime DEFAULT NULL,
- PRIMARY KEY (ID_EQUIPE)
-)ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
- 
--- Tabela Stakeholders
-
-CREATE TABLE tb_stakeholders (
-  ID_STAKEHOLDER int(11) NOT NULL AUTO_INCREMENT,
-  NOME_STAKEHOLDER varchar(45) NOT NULL,
-  DATA_INCLUSAO datetime DEFAULT NULL, 
-  PRIMARY KEY (ID_STAKEHOLDER)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
-
--- Tabela Projeto/Equipe
-
-CREATE TABLE tb_projeto_equipe (
-  ID_PROJETO int(11) NOT NULL,
-  ID_EQUIPE int(11) NOT NULL,  
-  PRIMARY KEY (ID_PROJETO,ID_EQUIPE)  
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
-
--- Tabela Projeto/Stakeholders
-
-CREATE TABLE tb_projeto_stakeholders (
-  ID_PROJETO int(11) NOT NULL,
-  ID_STAKEHOLDER int(11) NOT NULL,   
-  PRIMARY KEY (ID_PROJETO,ID_STAKEHOLDER)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+*/
