@@ -23,7 +23,7 @@ public class Projeto implements Serializable {
 	private Date dataFimPrevisto;
 			
 	public Projeto() {
-		
+		this.dataInclusao = new Date();
 	}
 	
 	public Projeto(int idProjeto, String nomeProjeto, ArrayList<Usuario> usuarios, String workspace, StatusProjeto status,
