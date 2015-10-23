@@ -27,6 +27,10 @@ public class Usuario implements Serializable {
 		// TODO Auto-generated constructor stub
 	}			
 	
+	public Usuario(int idUsuario){
+		this.idUsuario = idUsuario;
+	}
+	
 	public Usuario(String usuario, String senha, String administrador,
 			       String matricula, String nome, String email, Date dataCadastro, 
 			       StatusUsuario statusUsuario, TipoUsuario tipoUsuario, PerfilAcesso 
