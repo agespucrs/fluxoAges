@@ -95,8 +95,7 @@ public class AdicionaProjetoCommand implements Command {
 					
 					proxima = "main?acao=listProject";
 					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
-				}
-				
+				}				
 			}
 			
 		}catch(Exception e){

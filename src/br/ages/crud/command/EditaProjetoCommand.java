@@ -1,6 +1,8 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -8,8 +10,12 @@ import javax.servlet.http.Part;
 import br.ages.crud.bo.ArquivoBO;
 import br.ages.crud.bo.ProjetoBO;
 import br.ages.crud.model.Projeto;
+import br.ages.crud.model.Stakeholder;
+import br.ages.crud.model.StatusProjeto;
+import br.ages.crud.model.Usuario;
 import br.ages.crud.util.Constantes;
 import br.ages.crud.util.MensagemContantes;
+import br.ages.crud.util.Util;
 
 public class EditaProjetoCommand implements Command{
 	
@@ -21,31 +27,52 @@ public class EditaProjetoCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
+		projetoBO =  new ProjetoBO();
+		proxima = "project/editProject.jsp";
 		
-		String id = request.getParameter("id");
-		
-		String nome = request.getParameter("nome");
-		String equipe = request.getParameter("equipe");
-		String status = request.getParameter("status");
+		String idProjetoString = request.getParameter("idProjeto");
+		String nomeProjeto = request.getParameter("nome");
+		String[] usuariosString = request.getParameterValues("usuarios");
+		String statusProjetoString = request.getParameter("status");
+		String[] stakeholdersString = request.getParameterValues("stakeholders");
 		String workspace = request.getParameter("workspace");
-		//TODO outros campos
-		
+		String dataInicioString = request.getParameter("dataInicio");
+		String dataFimString = request.getParameter("dataFim");
+		String dataFimPrevistoString = request.getParameter("dataFimPrevisto");
 		
 		try{
-			Projeto projeto = new Projeto();
-			projeto.setNomeProjeto(nome);
-			//projeto.setEquipe(equipe);
-			//projeto.setStatus(Status.valueOf(status));
-			projeto.setWorkspace(workspace);
-			
-			int idProjeto = Integer.parseInt(id);
+			Integer idProjeto = Integer.parseInt(idProjetoString);
 
-			boolean isValido = projetoBO.validarProjeto(projeto);			
+			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();		
+			for(String s: usuariosString){
+				usuarios.add(new Usuario(Integer.parseInt(s)));
+			}
 			
-			if (!isValido) {
-				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
-			} else {
-				//começa o troço do upload
+			ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();	
+			for(String s: stakeholdersString){
+				stakeholders.add(new Stakeholder(Integer.parseInt(s)));
+			}
+			
+			StatusProjeto statusProjeto = StatusProjeto.valueOf(statusProjetoString); 
+			Date dataInicio = Util.stringToDate(dataInicioString);				
+			Date dataFimPrevisto = Util.stringToDate(dataFimPrevistoString);
+			Date dataFim = Util.stringToDate(dataFimString);
+			
+			
+			Projeto projeto = new Projeto();
+			projeto.setIdProjeto(idProjeto);
+			projeto.setNomeProjeto(nomeProjeto);
+			projeto.setUsuarios(usuarios);
+			projeto.setStatusProjeto(statusProjeto);
+			projeto.setWorkspace(workspace);
+			projeto.setStakeholders(stakeholders);
+			projeto.setDataInicio(dataInicio);
+			projeto.setDataFim(dataFim);
+			projeto.setDataFimPrevisto(dataFimPrevisto);
+			
+			boolean isValido = projetoBO.validarProjeto(projeto);
+			
+			if(isValido){
 				arquivoBO = new ArquivoBO();
 				
 				Part arquivo = request.getPart("arquivo");
@@ -53,25 +80,24 @@ public class EditaProjetoCommand implements Command{
 				boolean tamanhoValido = arquivoBO.validaTamanho(arquivo, Constantes.PROJETO_ARQUIVO_MAX_BYTES);
 				boolean extensaoValida = arquivoBO.validaExtensao(arquivo, Constantes.PROJETO_FILE_EXT);
 				
-				if(!tamanhoValido || !extensaoValida){
-					request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_ARQUIVO_INVALIDO.replace("?", String.valueOf(Constantes.PROJETO_ARQUIVO_MAX_BYTES)));
-				} else{
-					arquivoBO.uploadArquivo(arquivo, nome, Constantes.PROJETO_UPLOAD_PATH);
+				if(tamanhoValido && extensaoValida){
+					arquivoBO.uploadArquivo(arquivo, nomeProjeto, Constantes.PROJETO_UPLOAD_PATH);
 					
-					projetoBO.editarProjeto(projeto, idProjeto);
+					projetoBO.cadastrarProjeto(projeto);
 					
 					proxima = "main?acao=listProject";
 					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
+				} else {
+					request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_ARQUIVO_INVALIDO.replace("?", String.valueOf(Constantes.PROJETO_ARQUIVO_MAX_BYTES)));
 				}
-				
+			} else {
+				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
 			}
-			
 		}catch(Exception e){
 			request.setAttribute("msgErro", e.getMessage());
-		}
-			
-		return proxima;
+		}		
 		
+		return proxima;		
 	}
 
 }
