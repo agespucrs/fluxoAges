@@ -27,7 +27,6 @@ public class AddUserCommand implements Command {
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
 		String perfilAcesso = request.getParameter("perfilAcesso");
-		Date dataCadastro = new Date();
 	
 
 		try {
@@ -38,7 +37,6 @@ public class AddUserCommand implements Command {
 			user.setUsuario(usuario);
 			user.setSenha(senha);
 			user.setPerfilAcesso(PerfilAcesso.valueOf(perfilAcesso));
-			user.setDataCadastro(dataCadastro);
 			
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
 			if (!isValido) {

@@ -12,6 +12,7 @@ import java.util.List;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.PerfilAcesso;
+import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
@@ -19,7 +20,7 @@ import com.mysql.jdbc.Statement;
 
 /**
  * 
- * @author Cássio Trindade
+ * @author Cï¿½ssio Trindade
  *
  */
 public class UsuarioDAO {
@@ -33,7 +34,7 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * Autentica o usuário
+	 * Autentica o usuï¿½rio
 	 * 
 	 * @author cassio trindade
 	 * @param usuarioDTO
@@ -74,30 +75,50 @@ public class UsuarioDAO {
 	public List<Usuario> listarUsuarios() throws PersistenciaException,
 			SQLException {
 		Connection conexao = null;
-
+   //tentativa de readaptaÃ§Ã£o do listarUsuarios()
 		try {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_USUARIO");
+			sql.append("SELECT ");
+			sql.append("u.`ID_USUARIO`,");
+			sql.append("u.`USUARIO`,");
+			sql.append("u.`SENHA`,");
+			sql.append("u.`PERFIL_ACESSO`,");
+			sql.append("u.`STATUS_USUARIO`,");
+			sql.append("u.`ID_TIPO_USUARIO`,");
+			sql.append("u.`MATRICULA`,");
+			sql.append("u.`NOME` unome,");
+			sql.append("u.`EMAIL`,");
+			sql.append("t.`ID_TIPO_USUARIO`,");
+			sql.append("t.`NOME` tnome,");
+			sql.append("t.`DESCRICAO`,");
+			sql.append("t.`DATA_INCLUSAO`");
 
+			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t");
+			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario;");
+			
 			PreparedStatement statement = conexao.prepareStatement(sql
 					.toString());
 			ResultSet resultset = statement.executeQuery();
-
 			while (resultset.next()) {
-				Usuario dto = new Usuario();
-				dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
-				dto.setMatricula(resultset.getString("MATRICULA"));
-				dto.setNome(resultset.getString("NOME"));
-				dto.setEmail(resultset.getString("EMAIL"));
-				dto.setUsuario(resultset.getString("USUARIO"));
-				dto.setSenha(resultset.getString("SENHA"));
-				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+                Usuario dto = new Usuario();
+                TipoUsuario tipoUsuario = new TipoUsuario();
+                dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
+                dto.setMatricula(resultset.getString("MATRICULA"));
+                dto.setNome(resultset.getString("unome"));
+                dto.setEmail(resultset.getString("EMAIL"));
+                dto.setUsuario(resultset.getString("USUARIO"));
+                dto.setSenha(resultset.getString("SENHA"));
+                dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+                tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+                tipoUsuario.setNome(resultset.getString("tnome"));
+                tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
+                dto.setTipoUsuario(tipoUsuario);
 
-				listarUsuarios.add(dto);
-			}
-
+                listarUsuarios.add(dto);
+            }
+		
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
@@ -108,6 +129,7 @@ public class UsuarioDAO {
 
 	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException,
 			SQLException, ParseException {
+		//adicionar paranauÃªs de tipo de usuÃ¡rio e tal
 		Connection conexao = null;
 
 		try {
@@ -151,12 +173,13 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * Método de remoção de um usuário a partir do seu id.
+	 * Mï¿½todo de remoï¿½ï¿½o de um usuï¿½rio a partir do seu id.
 	 * 
 	 * @param idPessoa
 	 * @throws PersistenciaException
 	 */
 	public boolean removerUsuario(Integer idUsuario)
+	//adicionar algum paranauÃª para remover da tabela tb_tipo_usuario tambÃ©m
 			throws PersistenciaException {
 		boolean removidoOK = false;
 		Connection conexao = null;
@@ -185,6 +208,7 @@ public class UsuarioDAO {
 	}
 
 	public Usuario buscaUsuarioNome(String nomeUsuario)
+	//adicionar informaÃ§Ãµes de tipo de usuario?
 			throws PersistenciaException {
 
 		Usuario usuario = new Usuario();
@@ -225,6 +249,7 @@ public class UsuarioDAO {
 	}
 
 	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException {
+		//adicionar informaÃ§Ãµes de tipo de usuario?
 		Usuario usuario = new Usuario();
 
 		Connection conexao = null;
@@ -264,3 +289,6 @@ public class UsuarioDAO {
 
 	}
 }
+
+
+
