@@ -148,6 +148,23 @@ public class ProjetoDAO {
 		return ok;
 	}
 	
+	//TODO: consultar projeto
+	/*
+	public Projeto consultarProjeto(int idProjeto) throws PersistenciaException, SQLException {
+	//base: listarProjetos	
+	}
+	*/
+	
+	//TODO: consultar usuarios projeto
+	
+	//TODO: consultar stakeholders projeto
+	
+	//TODO: editar projeto
+	/*
+	public void editarProjeto(Projeto projeto) throws PersistenciaException, SQLException, ParseException {
+	//base: cadastrarProjeto	
+	}
+	*/
 	
 	public void removerProjeto(Projeto projeto) throws PersistenciaException {
 		Connection conexao = null;
