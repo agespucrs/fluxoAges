@@ -75,7 +75,7 @@ public class UsuarioDAO {
 	public List<Usuario> listarUsuarios() throws PersistenciaException,
 			SQLException {
 		Connection conexao = null;
-
+   //tentativa de readaptação do listarUsuarios()
 		try {
 			conexao = ConexaoUtil.getConexao();
 
@@ -129,6 +129,7 @@ public class UsuarioDAO {
 
 	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException,
 			SQLException, ParseException {
+		//adicionar paranauês de tipo de usuário e tal
 		Connection conexao = null;
 
 		try {
@@ -178,6 +179,7 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 */
 	public boolean removerUsuario(Integer idUsuario)
+	//adicionar algum paranauê para remover da tabela tb_tipo_usuario também
 			throws PersistenciaException {
 		boolean removidoOK = false;
 		Connection conexao = null;
@@ -206,6 +208,7 @@ public class UsuarioDAO {
 	}
 
 	public Usuario buscaUsuarioNome(String nomeUsuario)
+	//adicionar informações de tipo de usuario?
 			throws PersistenciaException {
 
 		Usuario usuario = new Usuario();
@@ -246,6 +249,7 @@ public class UsuarioDAO {
 	}
 
 	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException {
+		//adicionar informações de tipo de usuario?
 		Usuario usuario = new Usuario();
 
 		Connection conexao = null;
