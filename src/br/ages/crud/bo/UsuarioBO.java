@@ -105,7 +105,11 @@ public class UsuarioBO {
 			if (!isValido) {
 				throw new NegocioException(msg.append(MensagemContantes.MSG_ERR_PESSOA_DADOS_INVALIDOS).toString());
 			}
-
+			//
+			if (usuario.getTipoUsuario() == null) {
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Tipo Usuário").concat("<br/>"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
