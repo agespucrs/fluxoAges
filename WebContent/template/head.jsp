@@ -16,7 +16,7 @@
 		<script src="./js/bootstrap.min.js"></script>
 
 		<!-- STYLE -->
-		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="./css/style.css">
     </head>
     
     <body>
@@ -27,7 +27,7 @@
 				
 		    		<div class="navbar-header">
 			      		<a class="navbar-brand" href="#">
-			        		<img class="logoNavBar" src="../img/logo-ages.png" alt="AGES">
+			        		<img class="logoNavBar" src="./img/logo-ages.png" alt="AGES">
 			      		</a>
 			    	</div>
 
