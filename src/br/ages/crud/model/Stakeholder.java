@@ -20,6 +20,10 @@ public class Stakeholder implements Serializable {
 		
 	}	
 	
+	public Stakeholder(int idStakeholder) {
+		this.idStakeholder = idStakeholder;
+	}	
+	
 	public Stakeholder(int idStakeholder, String nomeStakeholder,
 			String descricao) {		
 		this.idStakeholder = idStakeholder;
