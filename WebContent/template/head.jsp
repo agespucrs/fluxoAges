@@ -17,10 +17,14 @@
 
 		<!-- STYLE -->
 		<link rel="stylesheet" href="./css/style.css">
-    </head>
+		
+		
     
     <body>
     	<div class="container">
+    	
+    		<!-- MODAL / POPUP -->
+    		<jsp:include page="./modal.jsp"></jsp:include>
     	
    			<nav class="navbar navbar-default">
 				<div class="container-fluid">

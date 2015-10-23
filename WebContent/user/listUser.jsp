@@ -54,7 +54,6 @@
 			            	<td align="center"><%=usuario.getNome()%></td>
 			            	<td align="center"><%=usuario.getEmail()%></td>
 			            	<td align="center"><%=usuario.getUsuario()%></td>
-			            	
 			            	<td align="center"><%=usuario.getPerfilAcesso()%></td> 
 			            	
 			            	<td align="center">
@@ -62,11 +61,13 @@
 			            			<a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 			            		</form>
 		            		</td>
+		            		
 		            		<td align="center">
 		            			<form action="" method="post">
-			            			<a href="" onclick="remover('<%=usuario.getIdUsuario() %>');" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
+		            				<a href="" data-toggle="modal" data-id="<%=usuario.getIdUsuario() %>" data-usuario="<%=usuario.getNome()%>" data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
 		            			</form>
 		            		</td>
+		            		
 			            </tr>
 							
 						<% } %>
@@ -77,8 +78,8 @@
    			 </div>
 	         
          </div>
-         
-     </div>
+
+ </div>
 
 
 <jsp:include page="../template/foot.jsp"></jsp:include>
