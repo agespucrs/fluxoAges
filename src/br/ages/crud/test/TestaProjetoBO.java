@@ -14,6 +14,7 @@ import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.model.Usuario;
+import br.ages.crud.util.Util;
 
 public class TestaProjetoBO {
 	
@@ -27,11 +28,22 @@ public class TestaProjetoBO {
 		projetoBO = new ProjetoBO();
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
-		Date dataInicio = new Date();
-		Date dataFim = new Date();
+		Date dataInicio = Util.stringToDate("01/06/2015");
+		Date dataFimPrevisto = Util.stringToDate("01/12/2015");
+		Date dataFim = Util.stringToDate("01/01/2016");
 		
 		
-		//projetoCerto = new Projeto(10, "Projeto Correto", equipes, "Spipspops 2.0", StatusProjeto.ATIVO , stakeholders, dataInicio, dataFim);
+		projetoCerto = new Projeto();
+		projetoCerto.setIdProjeto(10);
+		projetoCerto.setNomeProjeto("ProjetoCorreto");
+		projetoCerto.setUsuarios(usuarios);
+		projetoCerto.setStatus(StatusProjeto.ATIVO);
+		projetoCerto.setWorkspace("Workspace");
+		projetoCerto.setStakeholders(stakeholders);
+		projetoCerto.setDataInicio(dataInicio);
+		projetoCerto.setDataFimPrevisto(dataFimPrevisto);
+		projetoCerto.setDataFim(dataFim);
+		
 		projetoErrado = new Projeto(-1, null, null, null, null, null, null, null, null);
 		
 		}

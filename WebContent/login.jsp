@@ -7,13 +7,15 @@
         <title>AGES - Agência Experimental de Engenharia de Software</title><!-- Título da página -->
         <link rel="icon" href="img/favicon.ico">
 
+		
 		<!-- BOOTSTRAP -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+		<script src="./js/bootstrap.min.js"></script>
 		
 		<!-- STYLE -->
 		<link rel="stylesheet" href="./css/style.css">
+
     </head>
     
     <body>

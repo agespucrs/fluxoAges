@@ -21,7 +21,7 @@ public class ProjetoBO {
 	}
 	
 	/**
-	 * Cadastra Projeto em nível de negócio, chamando o DAO
+	 * Cadastra Projeto em nï¿½vel de negï¿½cio, chamando o DAO
 	 * 
 	 * @param projeto
 	 * @throws NegocioException
@@ -76,5 +76,13 @@ public class ProjetoBO {
 
 		return listProject;	
 	}
-
+	
+	public void removerProjeto(Integer idProjeto) throws NegocioException {
+		try {
+			projetoDAO.removeProjeto(idProjeto);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
 }
