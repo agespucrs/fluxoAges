@@ -40,7 +40,7 @@ INSERT INTO TB_TIPO_USUARIO VALUES
 INSERT INTO TB_USUARIO
 (ID_USUARIO,USUARIO,SENHA,PERFIL_ACESSO,STATUS_USUARIO,ID_TIPO_USUARIO,MATRICULA,NOME,EMAIL,DATA_INCLUSAO)
 VALUES
-('10', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO', '1' '00000', 'Cássio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
+('10', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO', '1', '00000', 'Cássio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
 
 -- Tabela Projeto
   CREATE TABLE TB_PROJETO (
