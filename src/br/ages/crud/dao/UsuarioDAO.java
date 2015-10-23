@@ -95,7 +95,7 @@ public class UsuarioDAO {
 			sql.append("t.`DESCRICAO`,");
 			sql.append("t.`DATA_INCLUSAO`");
 
-			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t");
+			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
 			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario;");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql
