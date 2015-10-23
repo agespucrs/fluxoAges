@@ -1,5 +1,7 @@
 package br.ages.crud.command;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.annotation.MultipartConfig;
@@ -9,10 +11,13 @@ import javax.servlet.http.Part;
 import br.ages.crud.bo.ArquivoBO;
 import br.ages.crud.bo.ProjetoBO;
 import br.ages.crud.model.Projeto;
+import br.ages.crud.model.Stakeholder;
+import br.ages.crud.model.StatusProjeto;
 //import br.ages.crud.model.Status;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.Constantes;
 import br.ages.crud.util.MensagemContantes;
+import br.ages.crud.util.Util;
 
 @MultipartConfig
 public class AdicionaProjetoCommand implements Command {
@@ -28,25 +33,42 @@ public class AdicionaProjetoCommand implements Command {
 		projetoBO =  new ProjetoBO();
 		proxima = "project/addProject.jsp";
 		
-		String nome = request.getParameter("nome");
+		String nomeProjeto = request.getParameter("nome");
 		//
-		String integrante1 = request.getParameter("integrante1");
+		String[] usuariosString = request.getParameterValues("usuarios");
+		//éoq
+		String[] stakeholdersString = request.getParameterValues("stakeholders");
 		//
-		String status = request.getParameter("status");
+		String statusProjetoString = request.getParameter("status");
 		String workspace = request.getParameter("workspace");
 		String dataInicioString = request.getParameter("dataInicio");
 		String dataFimPrevistoString = request.getParameter("dataFimPrevisto");
 		String dataFimString = request.getParameter("dataFim");
 		
-		//validação de datas (talvez dentro do try?)
 		
 		try{
+			//cria o array de usuarios com o array de String do request
+			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();		
+			for(String s: usuariosString){
+				usuarios.add(new Usuario(Integer.parseInt(s)));
+			}
+			// mesma coisa mas com stakeholders
+			ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();	
+			for(String s: stakeholdersString){
+				stakeholders.add(new Stakeholder(Integer.parseInt(s)));
+			}
+			// cria um StatusProjeto com o string do request
+			StatusProjeto statusProjeto = StatusProjeto.valueOf(statusProjetoString); 
+			// cria Dates com os strings recebidos
+			Date dataInicio = Util.stringToDate(dataInicioString);				
+			Date dataFimPrevisto = Util.stringToDate(dataFimPrevistoString);
+			Date dataFim = Util.stringToDate(dataFimString);
+			
+			
 			Projeto projeto = new Projeto();
-			projeto.setNomeProjeto(nome);
-			//projeto.setIntegrantes(ArrayList<Usuario);
-			//projeto.setStatus(Status.valueOf(status));
-			projeto.setWorkspace(workspace);
-			//TODO outros campos
+			projeto.setNomeProjeto(nomeProjeto);
+			projeto.setStatusProjeto(statusProjeto);
+			//TODO resto dos campos
 
 			boolean isValido = projetoBO.validarProjeto(projeto);			
 			
