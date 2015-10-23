@@ -56,11 +56,11 @@ public class Projeto implements Serializable {
 		this.stakeholders = stakeholders;
 	}
 	
-	public StatusProjeto getStatus(){
+	public StatusProjeto getStatusProjeto(){
 		return status;
 	}
 	
-	public void setStatus(StatusProjeto status) {
+	public void setStatusProjeto(StatusProjeto status) {
 		this.status = status;
 	}
 	

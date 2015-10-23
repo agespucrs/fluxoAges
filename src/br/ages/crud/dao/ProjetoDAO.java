@@ -2,6 +2,7 @@ package br.ages.crud.dao;
 
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
+import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.util.ConexaoUtil;
 
 import com.mysql.jdbc.Statement;
@@ -43,9 +45,9 @@ public class ProjetoDAO {
 			
 			while (resultSet.next()) {
 				Projeto dto = new Projeto();
+				dto.setIdProjeto(resultSet.getInt("ID_PROJETO"));
 				dto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
-				dto.setWorkspace(resultSet.getString("WORKSPACE"));
-				dto.setStakeholders((ArrayList) resultSet.getArray("STAKEHOLDERS"));
+				dto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));
 				
 				listaProjetos.add(dto);
 			}
@@ -65,8 +67,8 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO, WORKSPACE, STAKEHOLDERS, STATUS, DATA_INCLUSAO, DATA_INICIO, DATA_FIM, EQUIPE)");
-			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INCLUSAO, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO)");
+			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 			// Conversï¿½o das datas para sql (data inicio, data fim , data
 			// inclusï¿½o);
@@ -78,17 +80,24 @@ public class ProjetoDAO {
 
 			java.util.Date utilDate3 = new java.util.Date();
 			java.sql.Date dataFim = new java.sql.Date(utilDate3.getTime());
+			
+			java.util.Date utilDate4 = new java.util.Date();
+			java.sql.Date dataFimPrevisto = new java.sql.Date(utilDate4.getTime());
 
 			// Cadastra o projeto/ e gera Id;
 			PreparedStatement statement = conexao.prepareStatement(
 					sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, projeto.getNomeProjeto());
-			statement.setString(2, projeto.getWorkspace());
-			statement.setArray(3, (Array) projeto.getStakeholders());
-			statement.setInt(4, 1); // ?????? colocar o id do projeto
-			statement.setDate(5, dataInclusao);
-			statement.setDate(6, dataInicio);
-			statement.setDate(7, dataFim);
+			statement.setString(2, projeto.getStatusProjeto().toString());
+			statement.setString(3, projeto.getWorkspace());
+			statement.setDate(4, (Date) projeto.getDataInclusao()); // ?????? colocar o id do projeto
+			statement.setDate(5, (Date) projeto.getDataInicio());
+			statement.setDate(6, (Date) projeto.getDataFim());
+			statement.setDate(7, (Date) projeto.getDataFimPrevisto());
+			
+			//criar método para inserir usuários
+			
+			//criar método para inserir stakeholders
 
 			statement.executeUpdate();
 
