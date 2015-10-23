@@ -91,8 +91,8 @@ public class UsuarioBO {
 			// Senha
 			Map<String, Object> valores = new HashMap<>();
 			valores.put("Senha", usuario.getSenha());
-			if (new SenhaValidator().validar(valores)) {
-				isValido = true;
+			if (!new SenhaValidator().validar(valores)) {
+				isValido = false;
 			}
 
 			// flag administrador
