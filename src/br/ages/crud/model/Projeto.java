@@ -20,14 +20,14 @@ public class Projeto implements Serializable {
 	private Date dataInclusao;
 	private Date dataInicio;
 	private Date dataFim;
-	//private Date dataFimPrevisto; TODO métodos
+	private Date dataFimPrevisto;
 			
 	public Projeto() {
 		
 	}
 	
 	public Projeto(int idProjeto, String nomeProjeto, ArrayList<Usuario> usuarios, String workspace, StatusProjeto status,
-	ArrayList<Stakeholder> stakeholders, Date dataInicio, Date dataFim) {
+	ArrayList<Stakeholder> stakeholders, Date dataInicio, Date dataFim, Date dataFimPrevisto) {
 		this.idProjeto = idProjeto;
 		this.nomeProjeto = nomeProjeto;
 		this.usuarios = usuarios;
@@ -37,6 +37,7 @@ public class Projeto implements Serializable {
 		this.dataInclusao = new Date();
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
+		this.dataFim = dataFimPrevisto;
 	}
 
 	public int getIdProjeto() {
@@ -105,5 +106,13 @@ public class Projeto implements Serializable {
 
 	public Date getDataInclusao() {
 		return dataInclusao;
+	}
+	
+	public Date getDataFimPrevisto() {
+		return dataFimPrevisto;
+	}
+	
+	public void setDataFimPrevisto(Date dataFimPrevisto) {
+		this.dataFimPrevisto = dataFimPrevisto;
 	}
 }
