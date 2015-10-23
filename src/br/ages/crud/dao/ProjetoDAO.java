@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
+import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
@@ -79,8 +80,6 @@ public class ProjetoDAO {
 			
 			java.sql.Date dataInclusao = new java.sql.Date(projeto.getDataInclusao().getTime());
 
-
-			// Cadastra o projeto/ e gera Id;
 			PreparedStatement statement = conexao.prepareStatement(
 					sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, projeto.getNomeProjeto());
@@ -97,16 +96,63 @@ public class ProjetoDAO {
 			if (resultset.first()) {
 				idProjeto = resultset.getInt(1);
 			}
+			
+			inserirUsuarios(conexao, projeto);
+			inserirStakeholders(conexao, projeto);
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			conexao.close();
 		}
 	}
-
-	//criar método para inserir usuários
 	
-	//criar método para inserir stakeholders
+	private boolean inserirUsuarios(Connection conexao, Projeto projeto) throws SQLException {						
+		
+		boolean ok = false;
+		
+		ArrayList<Usuario> listaUsuarios = new ArrayList<>(projeto.getUsuarios());
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO TB_PROJETO_USUARIO (ID_PROJETO, ID_USUARIO)");
+		sql.append("VALUES (?, ?)");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+		
+		for (Usuario usuario: listaUsuarios) {
+			
+			statement.setInt(1, projeto.getIdProjeto());
+			statement.setInt(2, usuario.getIdUsuario());
+			
+			ok = statement.execute();
+			if(!ok) break;
+		}
+		
+		return ok;
+	}
+	
+	private boolean inserirStakeholders(Connection conexao, Projeto projeto) throws SQLException {
+		boolean ok = false;
+		
+		ArrayList<Stakeholder> listaStakeholders = new ArrayList<>(projeto.getStakeholders());
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO TB_PROJETO_STAKEHOLDER (ID_PROJETO, ID_STAKEHOLDER)");
+		sql.append("VALUES (?, ?)");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+		
+		for (Stakeholder stakeholder: listaStakeholders) {
+			
+			statement.setInt(1, projeto.getIdProjeto());
+			statement.setInt(2, stakeholder.getIdStakeholder());
+			
+			ok = statement.execute();
+			if(!ok) break;
+		}
+		
+		return ok;
+	}
 	
 	public void removeProjeto(Integer idProjeto) throws PersistenciaException {
 		Connection conexao = null;
