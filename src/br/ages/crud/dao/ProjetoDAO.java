@@ -1,14 +1,10 @@
 package br.ages.crud.dao;
 
-import java.sql.Array;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import br.ages.crud.exception.PersistenciaException;
@@ -25,8 +21,6 @@ import com.mysql.jdbc.Statement;
  */
 
 public class ProjetoDAO {
-
-	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	public ProjetoDAO() {
 		
@@ -97,8 +91,8 @@ public class ProjetoDAO {
 				idProjeto = resultset.getInt(1);
 			}
 			
-			inserirUsuarios(conexao, projeto);
-			inserirStakeholders(conexao, projeto);
+			if(!inserirUsuariosProjeto(conexao, projeto)) return;
+			if(!inserirStakeholdersProjeto(conexao, projeto)) return;
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -107,7 +101,7 @@ public class ProjetoDAO {
 		}
 	}
 	
-	private boolean inserirUsuarios(Connection conexao, Projeto projeto) throws SQLException {						
+	private boolean inserirUsuariosProjeto(Connection conexao, Projeto projeto) throws SQLException {						
 		
 		boolean ok = false;
 		
@@ -131,7 +125,7 @@ public class ProjetoDAO {
 		return ok;
 	}
 	
-	private boolean inserirStakeholders(Connection conexao, Projeto projeto) throws SQLException {
+	private boolean inserirStakeholdersProjeto(Connection conexao, Projeto projeto) throws SQLException {
 		boolean ok = false;
 		
 		ArrayList<Stakeholder> listaStakeholders = new ArrayList<>(projeto.getStakeholders());
@@ -154,18 +148,22 @@ public class ProjetoDAO {
 		return ok;
 	}
 	
-	public void removeProjeto(Integer idProjeto) throws PersistenciaException {
+	
+	public void removerProjeto(Projeto projeto) throws PersistenciaException {
 		Connection conexao = null;
 		try	{
-			conexao =ConexaoUtil.getConexao();
+			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("DELETE FROM TB_PROJETO WHERE ID_PROJETO= ?");
+			sql.append("DELETE FROM TB_PROJETO WHERE ID_PROJETO = ?");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
-			statement.setInt(1, idProjeto);
+			statement.setInt(1, projeto.getIdProjeto());
 			
-			statement.execute();			
+			statement.execute();
+			
+			if(!removerUsuariosProjeto(conexao, projeto)) return;
+			if(!removerStakeholdersProjeto(conexao, projeto)) return;
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -176,5 +174,31 @@ public class ProjetoDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private boolean removerUsuariosProjeto(Connection conexao, Projeto projeto) throws SQLException {
+		boolean ok = false;
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM TB_PROJETO_USUARIO WHERE ID_PROJETO = ?");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, projeto.getIdProjeto());
+			ok = statement.execute();
+			
+		return ok;
+	}
+	
+	private boolean removerStakeholdersProjeto(Connection conexao, Projeto projeto) throws SQLException {
+		boolean ok = false;
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM STAKEHOLDER WHERE ID_PROJETO = ?");
+		
+		PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, projeto.getIdProjeto());
+			ok = statement.execute();
+			
+		return ok;
 	}
 }
