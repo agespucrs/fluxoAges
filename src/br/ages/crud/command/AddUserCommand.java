@@ -27,7 +27,9 @@ public class AddUserCommand implements Command {
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
 		String perfilAcesso = request.getParameter("perfilAcesso");
-	
+		//falta os negócios do tipo de usuário
+		//String id tipo usuario e tal
+		//status usuario??
 
 		try {
 			Usuario user = new Usuario();
@@ -37,7 +39,8 @@ public class AddUserCommand implements Command {
 			user.setUsuario(usuario);
 			user.setSenha(senha);
 			user.setPerfilAcesso(PerfilAcesso.valueOf(perfilAcesso));
-			
+			//TipoUsuario tUser = new TipoUsuario();
+			//tUser.set
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
 			if (!isValido) {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
