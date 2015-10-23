@@ -54,7 +54,10 @@
 			            	<td align="center"><%=usuario.getNome()%></td>
 			            	<td align="center"><%=usuario.getEmail()%></td>
 			            	<td align="center"><%=usuario.getUsuario()%></td>
-			            	<td align="center"><%=usuario.getAdministrador()%></td>
+			            	<%--
+			            	Tirar esta td e adicionar novas e acordo com as mudanças de atributos na classe Usuario 
+			            	<td align="center"><%=usuario.getAdministrador()%></td> 
+			            	--%>
 			            	<td align="center">
 			            		<form action="" method="post">
 			            			<a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
