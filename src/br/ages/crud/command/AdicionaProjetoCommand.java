@@ -1,7 +1,6 @@
 package br.ages.crud.command;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.annotation.MultipartConfig;
@@ -13,7 +12,6 @@ import br.ages.crud.bo.ProjetoBO;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusProjeto;
-//import br.ages.crud.model.Status;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.Constantes;
 import br.ages.crud.util.MensagemContantes;
