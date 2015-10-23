@@ -13,7 +13,8 @@ public class Stakeholder implements Serializable {
 	private int idStakeholder;
 	private String nomeStakeholder;
 	private String descricao;
-	private Date dataInclusao;
+	private Date dataInclusao;	
+	private Integer idUsuario; //Atributo criado para relacionar stakeholder com usuário, caso ele tenha acesso ao sistema
 	
 	public Stakeholder() {
 		
@@ -25,6 +26,7 @@ public class Stakeholder implements Serializable {
 		this.nomeStakeholder = nomeStakeholder;
 		this.descricao = descricao;
 		this.dataInclusao = new Date();
+		this.idUsuario = null;
 	}
 
 	public int getIdStakeholder() {
