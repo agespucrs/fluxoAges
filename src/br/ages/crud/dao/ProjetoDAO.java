@@ -16,6 +16,10 @@ import br.ages.crud.util.ConexaoUtil;
 
 import com.mysql.jdbc.Statement;
 
+/** 
+ * @author Daniele Souza e Victor Diehl
+ */
+
 public class ProjetoDAO {
 
 	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
