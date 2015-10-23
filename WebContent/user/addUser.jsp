@@ -2,70 +2,66 @@
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Usuario"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="icon" href="img/favicon.ico">
 	
-  	<link rel="stylesheet" href="css/cadastro-usuario.css">
-  	<link rel="stylesheet" href="css/navbar.css">
-  	
-	<title>AGES - Adicionar Usuário</title>
+<script type="text/javascript">
+
+	function cadastrar() {
+		var formCadastro =document.forms[0]; 
+		formCadastro.action ="main?acao=addUser";
+		formCadastro.submit();
+	}
+
+</script>
+
+<jsp:include page="../template/head.jsp"></jsp:include>
 	
-		<script type="text/javascript">
+	<div class="panel panel-primary">
+    		
+		<div class="panel-heading text-center">
+			Cadastro de Usuário
+		</div>
 		
-			function cadastrar() {
-				var formCadastro =document.forms[0]; 
-				formCadastro.action ="main?acao=adicionarProjeto";
-				formCadastro.submit();
-			}
 		
-		</script>
-</head>
-
-
-<body>
-	<jsp:include page="/template/head.jsp"></jsp:include>
-	<br>
-	<main>
-            <section class="cadastro">
-                <h1>Cadastro de Usuários</h1><!-- Título principal -->
-                
-                <jsp:include page="/template/msg.jsp"></jsp:include>
+		<div class="panel-body">
+		
+        	<jsp:include page="/template/msg.jsp"></jsp:include>
+        	
+        	<div class="table-responsive">
                 
                 <form method="post" action="#">
                 
-                    <label for="projeto" class="lb-text">
-                        <span class="obg">*</span>Matricula:
-                    </label>
+               		<div class="form-group">
+			           	<label class="form-label ages">Matrícula:</label>
+			           	<input class="form-control" id="matricula" name="matricula" value="${param.matricula}" type="text" maxlength="9" required>
+		            </div>
+		            
+		            <div class="form-group">
+			           	<label class="form-label ages">Nome:</label>
+			           	<input class="form-control" id="nome" name="nome" value="${param.nome}" type="text" maxlength="120" required>
+		            </div>
+
+					<div class="form-group">
+			           	<label class="form-label ages">Usuário:</label>
+			           	<input class="form-control" id="usuario" name="usuario" value="${param.usuario}" type="text" maxlength="120" required>
+		            </div>
                     
-                    <input id="matricula" name="matricula" type="text" maxlength="9" value="${param.matricula}" required>
+					<div class="form-group">
+			           	<label class="form-label ages">Senha:</label>
+			           	<input class="form-control" id="senha" name="senha" value="${param.senha}" type="password" maxlength="120" required>
+		            </div>
+				
+					<div class="form-group">
+			           	<label class="form-label ages">E-Mail:</label>
+			           	<input class="form-control" id="email" name="email" value="${param.email}" type="text" maxlength="120" required>
+		            </div>
                     
-                    <label for="projeto" class="lb-text">
-                        <span class="obg">*</span>Nome:
-                    </label>
-                    
-                    <input id="nome" name="nome" type="text" maxlength="120" value="${param.nome}" required>
-                    
-                    <label for="projeto" class="lb-text">
-                        <span class="obg">*</span>Usuário:
-                    </label>
-                    
-                    <input id="usuario" name="usuario" type="text" maxlength="120" value="${param.usuario}" required>
-                    
-                    <label for="projeto" class="lb-text">
-                        <span class="obg">*</span>Senha:
-                    </label>
-                    
-                    <input id="senha" name="senha" type="password" maxlength="120" value="${param.senha}" required>
-                    
-                    <label for="projeto" class="lb-text">
-                        <span class="obg">*</span>E-Mail:
-                    </label>
-                    
-                    <input id="email" name="email" type="text" maxlength="120" value="${param.email}" required>
+                    <div class="form-group">
+			           	<label class="form-label ages">Perfil de Acesso:</label>
+			           	<select id="perfilacesso" name="perfilacesso" required>
+			           		<option>1</option>
+			           		<option>2</option>
+		            </div>
                     
                     <div class="selects">
                         <label for="status">
@@ -78,17 +74,24 @@
                         </select>
                     </div>
                     
+                    
+                    
                     <hr>
                     
                     <p>Campos que contém <span>*</span> são obrigatórios</p>
+                    
+                    
                     
                     
                    
                     <input class="reset" type="reset" value="Limpar">
                      <input class="submit" type="submit" value="Cadastrar" onclick="cadastrar()">
                 </form>
-            </section>
-        </main>
-	<jsp:include page="/template/foot.jsp"></jsp:include>
-</body>
-</html>
+                </div>
+
+        
+
+        
+        
+        
+<jsp:include page="/template/foot.jsp"></jsp:include>
