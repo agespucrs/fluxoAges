@@ -32,7 +32,7 @@ public class TestaProjetoBO {
 		
 		
 		//projetoCerto = new Projeto(10, "Projeto Correto", equipes, "Spipspops 2.0", StatusProjeto.ATIVO , stakeholders, dataInicio, dataFim);
-		projetoErrado = new Projeto(-1, null, null, null, null, null, null, null);
+		projetoErrado = new Projeto(-1, null, null, null, null, null, null, null, null);
 		
 		}
 
@@ -47,5 +47,4 @@ public class TestaProjetoBO {
 		boolean valido = projetoBO.validarProjeto(projetoErrado);
 		assertEquals(valido, false);
 	}
-
 }
