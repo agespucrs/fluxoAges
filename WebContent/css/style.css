@@ -18,8 +18,23 @@ body{
     margin-right: auto;
 }
 
+.panel-addUser{
+	max-width: 500px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .login {
 	width: 100%;
+}
+
+.addUser {
+	width: 78%;
+}
+
+.limparUser {
+	width: 20%;
 }
 
 .welcome {

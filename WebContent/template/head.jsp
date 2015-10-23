@@ -43,7 +43,7 @@
 				          	</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=listUser">Listar</a></li>
-				            	<li><a href="main?acao=addUser">Cadastrar</a></li> 
+				            	<li><a href="main?acao=telaUser">Cadastrar</a></li> 
 				          	</ul>
         				</li>
 
@@ -53,7 +53,7 @@
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="#">Listar</a></li>
-				            	<li><a href="main?acao=adicionarProjeto">Cadastrar</a></li> 
+				            	<li><a href="main?acao=adicionaProjeto">Cadastrar</a></li> 
 				          	</ul>
         				</li>
         				

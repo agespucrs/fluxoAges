@@ -16,7 +16,7 @@
 
 <jsp:include page="../template/head.jsp"></jsp:include>
 	
-	<div class="panel panel-primary">
+	<div class="panel panel-primary panel-addUser">
     		
 		<div class="panel-heading text-center">
 			Cadastro de Usuário
@@ -58,7 +58,7 @@
                     
                     <div class="form-group">
 			           	<label class="form-label ages">Perfil de Acesso:</label>
-			           	<select id="perfilAcesso" name="perfilAcesso" required>
+			           	<select class="form-control" id="perfilAcesso" name="perfilAcesso" required>
 			           		<option value="ADMINISTRADOR" <%= "ADMINISTRADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : "" %>>Administrador</option>
                             <option value="NAVEGADOR" <%= "NAVEGADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : "" %>>Navegador</option>
 		           		</select>
@@ -70,12 +70,12 @@
                     
                     
                     <div class="text-center">
-			           	<input class="btn btn-primary login pull-center" type="reset" value="Limpar">
-			           	<input class="btn btn-primary login pull-center" type="submit" value="Cadastrar" onclick="cadastrar()">
+			           	<input class="btn btn-warning limparUser pull-left" type="reset" value="Limpar">
+			           	<input class="btn btn-primary addUser pull-right" type="submit" value="Cadastrar" onclick="cadastrar()">
 			        </div>
                 </form>
             </div>
-
-</div>
+		</div>
+	</div>
 
 <jsp:include page="/template/foot.jsp"></jsp:include>
