@@ -20,20 +20,24 @@ public class MainServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		
 		comandos.put("login", new LoginCommand());
 		comandos.put("logout", new LogoutCommand());
+		
 		comandos.put("telaUser", new CreateScreenUserCommand());
-		comandos.put("addUser", new AddUserCommand());
-		comandos.put("removerUsuario", new RemoveUserCommand());
 		comandos.put("listUser", new ListUserCommand());
+		comandos.put("addUser", new AddUserCommand());
 		comandos.put("editUser", new EditUserCommand());
+		comandos.put("removerUsuario", new RemoveUserCommand());
 		
 		//COMANDO PARA LISTAR PROJETOS
 		
+		comandos.put("telaProjeto", new CreateScreenProjectCommand());
+		comandos.put("listaProjetos", new ListaProjetosCommand());
 		comandos.put("adicionaProjeto", new AdicionaProjetoCommand());
 		comandos.put("editaProjeto", new EditaProjetoCommand());
-		comandos.put("listaProjetos", new ListaProjetosCommand());
-		comandos.put("telaProjeto", new CreateScreenProjectCommand());
+		comandos.put("removeProjeto", new RemoveProjetoCommand());
+		
 	}
 
 	@Override
