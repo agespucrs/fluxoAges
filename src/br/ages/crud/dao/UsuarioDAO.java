@@ -12,6 +12,7 @@ import java.util.List;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.PerfilAcesso;
+import br.ages.crud.model.StatusUsuario;
 import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
@@ -111,7 +112,7 @@ public class UsuarioDAO {
                 dto.setUsuario(resultset.getString("USUARIO"));
                 dto.setSenha(resultset.getString("SENHA"));
                 dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
-                //dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+                dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
                 tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
                 tipoUsuario.setNome(resultset.getString("tnome"));
                 tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));

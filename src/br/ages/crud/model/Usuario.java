@@ -97,6 +97,7 @@ public class Usuario implements Serializable {
 	public void setMatricula( String value){
 		 matricula = value;
 	}
+	
 	public String getNome(){
 		 return nome;
 	}

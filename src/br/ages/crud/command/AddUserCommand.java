@@ -42,7 +42,7 @@ public class AddUserCommand implements Command {
 			//TipoUsuario tUser = new TipoUsuario();
 			//tUser.set
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
-			if (!isValido) {
+			if (isValido == false) {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
 			} else { // cadastro de pessoa com sucesso
 				usuarioBO.cadastraUsuario(user);
