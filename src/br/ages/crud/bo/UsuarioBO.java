@@ -225,7 +225,7 @@ public Usuario getUsuario(int idUsuario) throws NegocioException {
 		Usuario usuario = usuarioDAO.buscaUsuarioId(idUsuario);
 		
 		return usuario;
-	} catch (PersistenciaException e) {
+	} catch (Exception e) {
 		e.printStackTrace();
 		throw new NegocioException(e);
 	}	
