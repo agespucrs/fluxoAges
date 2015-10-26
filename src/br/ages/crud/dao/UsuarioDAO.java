@@ -12,8 +12,8 @@ import java.util.List;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.PerfilAcesso;
-import br.ages.crud.model.StatusUsuario;
 import br.ages.crud.model.TipoUsuario;
+import br.ages.crud.model.StatusUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
@@ -21,7 +21,7 @@ import com.mysql.jdbc.Statement;
 
 /**
  * 
- * @author C�ssio Trindade
+ * @author C?ssio Trindade
  *
  */
 public class UsuarioDAO {
@@ -35,7 +35,7 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * Autentica o usu�rio
+	 * Autentica o usu?rio
 	 * 
 	 * @author cassio trindade
 	 * @param usuarioDTO
@@ -74,9 +74,9 @@ public class UsuarioDAO {
 	 * @throws SQLException
 	 */
 	public List<Usuario> listarUsuarios() throws PersistenciaException,
-			SQLException {
+	SQLException {
 		Connection conexao = null;
-   //tentativa de readaptação do listarUsuarios()
+		//tentativa de readaptação do listarUsuarios()
 		try {
 			conexao = ConexaoUtil.getConexao();
 
@@ -98,28 +98,29 @@ public class UsuarioDAO {
 
 			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
 			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario;");
-			
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
 			ResultSet resultset = statement.executeQuery();
 			while (resultset.next()) {
-                Usuario dto = new Usuario();
-                TipoUsuario tipoUsuario = new TipoUsuario();
-                dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
-                dto.setMatricula(resultset.getString("MATRICULA"));
-                dto.setNome(resultset.getString("unome"));
-                dto.setEmail(resultset.getString("EMAIL"));
-                dto.setUsuario(resultset.getString("USUARIO"));
-                dto.setSenha(resultset.getString("SENHA"));
-                dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
-                dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
-                tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
-                tipoUsuario.setNome(resultset.getString("tnome"));
-                tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
-                dto.setTipoUsuario(tipoUsuario);
+				Usuario dto = new Usuario();
+				TipoUsuario tipoUsuario = new TipoUsuario();
+				dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				dto.setMatricula(resultset.getString("MATRICULA"));
+				dto.setNome(resultset.getString("unome"));
+				dto.setEmail(resultset.getString("EMAIL"));
+				dto.setUsuario(resultset.getString("USUARIO"));
+				dto.setSenha(resultset.getString("SENHA"));
+				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setNome(resultset.getString("tnome"));
+				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
+				dto.setTipoUsuario(tipoUsuario);
 
-                listarUsuarios.add(dto);
-            }
-		
+				listarUsuarios.add(dto);
+			}
+
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
@@ -129,7 +130,7 @@ public class UsuarioDAO {
 	}
 
 	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException,
-			SQLException, ParseException {
+	SQLException, ParseException {
 		//adicionar paranauês de tipo de usuário e tal
 		Connection conexao = null;
 
@@ -174,7 +175,7 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * M�todo de remo��o de um usu�rio a partir do seu id.
+	 * M?todo de remo??o de um usu?rio a partir do seu id.
 	 * 
 	 * @param idPessoa
 	 * @throws PersistenciaException
@@ -218,8 +219,24 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_USUARIO WHERE NOME = ?");
-
+			//sql.append("SELECT * FROM TB_USUARIO WHERE NOME = ?");
+			sql.append("SELECT ");
+			sql.append("u.`ID_USUARIO`,");
+			sql.append("u.`USUARIO`,");
+			sql.append("u.`SENHA`,");
+			sql.append("u.`PERFIL_ACESSO`,");
+			sql.append("u.`STATUS_USUARIO`,");
+			sql.append("u.`ID_TIPO_USUARIO`,");
+			sql.append("u.`MATRICULA`,");
+			sql.append("u.`NOME` unome,");
+			sql.append("u.`EMAIL`,");
+			sql.append("t.`ID_TIPO_USUARIO`,");
+			sql.append("t.`NOME` tnome,");
+			sql.append("t.`DESCRICAO`,");
+			sql.append("t.`DATA_INCLUSAO`");
+			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
+			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario ");
+			sql.append("WHERE u.NOME = ?;");
 			PreparedStatement statement = conexao.prepareStatement(sql
 					.toString());
 			statement.setString(1, nomeUsuario);
@@ -230,11 +247,17 @@ public class UsuarioDAO {
 
 				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
 				usuario.setMatricula(resultset.getString("MATRICULA"));
-				usuario.setNome(resultset.getString("NOME"));
+				usuario.setNome(resultset.getString("unome"));
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("ADMINISTRADOR")));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+				TipoUsuario tipoUsuario = new TipoUsuario();
+				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setNome(resultset.getString("tnome"));
+				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
+				usuario.setTipoUsuario(tipoUsuario);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -258,7 +281,25 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_USUARIO WHERE ID_USUARIO = ?");
+			//			sql.append("SELECT * FROM AGES_E.TB_USUARIO WHERE ID_USUARIO = ?;");
+			//
+			sql.append("SELECT ");
+			sql.append("u.`ID_USUARIO`,");
+			sql.append("u.`USUARIO`,");
+			sql.append("u.`SENHA`,");
+			sql.append("u.`PERFIL_ACESSO`,");
+			sql.append("u.`STATUS_USUARIO`,");
+			sql.append("u.`ID_TIPO_USUARIO`,");
+			sql.append("u.`MATRICULA`,");
+			sql.append("u.`NOME` unome,");
+			sql.append("u.`EMAIL`,");
+			sql.append("t.`ID_TIPO_USUARIO`,");
+			sql.append("t.`NOME` tnome,");
+			sql.append("t.`DESCRICAO`,");
+			sql.append("t.`DATA_INCLUSAO`");
+			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
+			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario ");
+			sql.append("WHERE ID_USUARIO = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql
 					.toString());
@@ -266,14 +307,19 @@ public class UsuarioDAO {
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
-
 				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
 				usuario.setMatricula(resultset.getString("MATRICULA"));
-				usuario.setNome(resultset.getString("NOME"));
+				usuario.setNome(resultset.getString("unome"));
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("ADMINISTRADOR")));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+				TipoUsuario tipoUsuario = new TipoUsuario();
+				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setNome(resultset.getString("tnome"));
+				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
+				usuario.setTipoUsuario(tipoUsuario);
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -290,6 +336,3 @@ public class UsuarioDAO {
 
 	}
 }
-
-
-
