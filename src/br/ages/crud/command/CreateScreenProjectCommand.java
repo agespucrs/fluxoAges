@@ -24,7 +24,7 @@ public class CreateScreenProjectCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
-		//TODO utilizar projetoBO.buscaProjeto e stakeholderBO.listaStakeholders após a implementação dos mesmos
+		//TODO utilizar stakeholderBO.listaStakeholders após a implementação do mesmo
 		try{
 			
 			String isEdit = request.getParameter("isEdit");
@@ -33,12 +33,8 @@ public class CreateScreenProjectCommand implements Command {
 				proxima = "project/editProject.jsp";
 				projetoBO = new ProjetoBO();
 
-				//int id = Integer.parseInt(request.getParameter("id"));
-				//Projeto projeto = projetoBO.buscarUsuario(id);
-				Projeto projeto = new Projeto();
-				projeto.setIdProjeto(10);
-				projeto.setNomeProjeto("placeholder");
-				projeto.setWorkspace("workspace ruim");
+				int idProjeto = Integer.parseInt(request.getParameter("id_projeto"));
+				Projeto projeto = projetoBO.buscarProjeto(idProjeto);
 				
 				usuarioBO = new UsuarioBO();
 				List<Usuario> usuarios = usuarioBO.listarUsuario();
