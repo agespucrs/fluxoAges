@@ -15,6 +15,8 @@ public class CreateScreenUserCommand implements Command {
 	private String proxima;
 
 	private UsuarioBO usuarioBO;
+	
+	//private StakeholderBO stakeholderBO;
 
 	public String execute(HttpServletRequest request) throws SQLException {
 

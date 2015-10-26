@@ -85,4 +85,15 @@ public class ProjetoBO {
 			throw new NegocioException(e);
 		}
 	}
+	
+	public Projeto buscarProjeto(int idProjeto) throws NegocioException {
+		/*try{
+			Projeto projeto = projetoDAO.buscarProjeto(idProjeto);
+			return projeto;
+		} catch(PersistenciaException e){
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}*/
+		return null;
+	}
 }

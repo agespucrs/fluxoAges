@@ -54,5 +54,7 @@ public class MensagemContantes {
 	public static final String MSG_ERR_CADASTRO_PROJETO = "Ocorreu um erro no cadastro do projeto.";
 
 	public static final String MSG_SUC_CADASTRO_PROJETO = "Cadastro projeto: ?, efetuado com sucesso!";
+
+	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto: ?, removido com sucesso!";
 	
 }
