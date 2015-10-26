@@ -140,8 +140,10 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
-			sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
+			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, PERFIL_ACESSO, STATUS_USUARIO, ID_TIPO_USUARIO, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
+			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
+			//sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
+			//sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
 
 			// converte a data para data Juliana, data que o banco reconhece;
 			java.util.Date utilDate = new java.util.Date();
@@ -153,10 +155,12 @@ public class UsuarioDAO {
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, String.valueOf(usuario.getPerfilAcesso()));
-			statement.setString(4, usuario.getMatricula());
-			statement.setString(5, usuario.getNome());
-			statement.setString(6, usuario.getEmail());
-			statement.setDate(7, dataCadastro);
+			statement.setString(4, String.valueOf(usuario.getStatusUsuario()));
+			statement.setInt(5, usuario.getTipoUsuario().getIdTipoUsuario());
+			statement.setString(6, usuario.getMatricula());
+			statement.setString(7, usuario.getNome());
+			statement.setString(8, usuario.getEmail());
+			statement.setDate(9, dataCadastro);
 
 			statement.executeUpdate();
 
@@ -210,7 +214,6 @@ public class UsuarioDAO {
 	}
 
 	public Usuario buscaUsuarioNome(String nomeUsuario)
-	//adicionar informações de tipo de usuario?
 			throws PersistenciaException {
 
 		Usuario usuario = new Usuario();

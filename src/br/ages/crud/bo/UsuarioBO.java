@@ -96,15 +96,15 @@ public class UsuarioBO {
 			}
 
 			// flag administrador
-			if (usuario.getPerfilAcesso() == null || "".equals(usuario.getPerfilAcesso())) {
+/*			if (usuario.getPerfilAcesso() == null || "".equals(usuario.getPerfilAcesso())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrador").concat("<br/>"));
 			}
 			// tipo usuario
 			if (usuario.getTipoUsuario() == null || "".equals(usuario.getTipoUsuario())) {
 				isValido = false;
-				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Tipo Usuário").concat("<br/>"));
-			}
+				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Tipo Usuï¿½rio").concat("<br/>"));
+			}*/
 
 			// valida se Pessoa esta ok
 			if (!isValido) {
