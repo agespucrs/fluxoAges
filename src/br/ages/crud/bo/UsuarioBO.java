@@ -220,4 +220,15 @@ public class UsuarioBO {
 		}
 	}
 
+public Usuario getUsuario(int idUsuario) throws NegocioException {
+	try {
+		Usuario usuario = usuarioDAO.buscaUsuarioId(idUsuario);
+		
+		return usuario;
+	} catch (PersistenciaException e) {
+		e.printStackTrace();
+		throw new NegocioException(e);
+	}	
+}
+
 }
