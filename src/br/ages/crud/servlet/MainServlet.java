@@ -33,7 +33,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("adicionaProjeto", new AdicionaProjetoCommand());
 		comandos.put("editaProjeto", new EditaProjetoCommand());
 		comandos.put("listaProjetos", new ListaProjetosCommand());
-		comandos.put("telaProjeto", null);
+		comandos.put("telaProjeto", new CreateScreenProjectCommand());
 	}
 
 	@Override
