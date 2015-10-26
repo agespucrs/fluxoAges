@@ -53,7 +53,7 @@ public class CreateScreenProjectCommand implements Command {
 				
 			} else {
 				//TODO implementar StakeholderBO e DAO pra fazer essa parte
-				proxima = "user/addProjeto.jsp";
+				proxima = "user/addProject.jsp";
 				
 				ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
 				stakeholders.add(new Stakeholder(1, "Misto", "Quente"));
