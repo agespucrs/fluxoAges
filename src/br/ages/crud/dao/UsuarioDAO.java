@@ -249,7 +249,7 @@ public class UsuarioDAO {
 		return usuario;
 	}
 
-	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException {
+	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException, SQLException {
 		//adicionar informações de tipo de usuario?
 		Usuario usuario = new Usuario();
 
