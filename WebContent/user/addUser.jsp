@@ -3,17 +3,6 @@
 <%@page import="br.ages.crud.model.Usuario"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-	
-<script type="text/javascript">
-
-	function cadastrar() {
-		var formCadastro =document.forms[0]; 
-		formCadastro.action ="main?acao=addUser";
-		formCadastro.submit();
-	}
-
-</script>
-
 <jsp:include page="../template/head.jsp"></jsp:include>
 	
 	<div class="panel panel-primary panel-addUser">
@@ -29,7 +18,7 @@
         	
         	<div class="table-responsive">
                 
-                <form method="post" action="#">
+                <form method="post" action="main?acao=addUser">
                 
                		<div class="form-group">
 			           	<label class="form-label ages">Matrícula: <span class="red">*</span></label>
@@ -87,8 +76,9 @@
                     
                     <div class="text-center">
 			           	<input class="btn btn-warning limparUser pull-left" type="reset" value="Limpar">
-			           	<input class="btn btn-primary addUser pull-right" type="submit" value="Cadastrar" onclick="cadastrar()">
+			           	<input class="btn btn-primary addUser pull-right" type="submit" value="Cadastrar">
 			        </div>
+			        
                 </form>
             </div>
 		</div>
