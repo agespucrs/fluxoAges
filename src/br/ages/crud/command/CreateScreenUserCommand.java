@@ -35,13 +35,7 @@ public class CreateScreenUserCommand implements Command {
 				request.setAttribute("usuario", usuario);
 				
 			} else {
-				//TODO implementar StakeholderBO e DAO pra fazer essa parte
-				proxima = "user/addUser.jsp";
-				ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
-				
-				stakeholders.add(new Stakeholder(1, "Misto", "Quente"));
-				
-				request.setAttribute("stakeholders", stakeholders);				
+				proxima = "user/addUser.jsp";		
 			}
 
 		} catch (Exception e) {
