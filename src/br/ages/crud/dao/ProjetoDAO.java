@@ -22,6 +22,7 @@ import com.mysql.jdbc.Statement;
 
 public class ProjetoDAO {
 
+	private Projeto projeto;
 	public ProjetoDAO() {
 		
 	}
@@ -148,23 +149,81 @@ public class ProjetoDAO {
 		return ok;
 	}
 	
-	//TODO: consultar projeto
-	/*
 	public Projeto consultarProjeto(int idProjeto) throws PersistenciaException, SQLException {
-	//base: listarProjetos	
+		projeto = new Projeto();
+		
+		Connection conexao = null;
+		try{
+			conexao = ConexaoUtil.getConexao();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_PROJETO WHERE ID_PROJETO = ?");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idProjeto);
+		
+			ResultSet resultSet = statement.getResultSet();
+			while (resultSet.next()) {
+				
+				projeto.setIdProjeto(resultSet.getInt("ID_PROJETO"));
+				projeto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
+				projeto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));
+				projeto.setWorkspace(resultSet.getString("WORKSPACE"));
+				projeto.setDataInicio(resultSet.getDate("DATA_INICIO"));
+				projeto.setDataFim(resultSet.getDate("DATA_FIM"));
+				projeto.setDataFimPrevisto(resultSet.getDate("DATA_FIM_PREVISTO"));
+				projeto.setUsuarios(new ArrayList<Usuario>());
+				projeto.setStakeholders(new ArrayList<Stakeholder>());
+				
+			}					
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return projeto;
 	}
-	*/
 	
-	//TODO: consultar usuarios projeto
+	 
+	//TODO: consultar usuarios projeto	
 	
 	//TODO: consultar stakeholders projeto
 	
-	//TODO: editar projeto
-	/*
+	
 	public void editarProjeto(Projeto projeto) throws PersistenciaException, SQLException, ParseException {
-	//base: cadastrarProjeto	
+		Connection conexao = null;
+		try {			
+
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_PROJETO SET NOME_PROJETO = ?, STATUS_PROJETO = ?, WORKSPACE = ?, "
+					+ "DATA_INICIO = ?, DATA_FIM = ?, DATA_FIM_PREVISTO = ? WHERE ID_PROJETO = ?}");
+			
+			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
+
+			java.sql.Date dataFim = new java.sql.Date(projeto.getDataFim().getTime());
+			
+			java.sql.Date dataFimPrevisto = new java.sql.Date(projeto.getDataFimPrevisto().getTime());
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, projeto.getNomeProjeto());
+			statement.setString(2, projeto.getStatusProjeto().toString());
+			statement.setString(3, projeto.getWorkspace());
+			statement.setDate(4, dataInicio);
+			statement.setDate(5, dataFim);
+			statement.setDate(6, dataFimPrevisto);
+			statement.setInt(7, projeto.getIdProjeto());
+
+			statement.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
 	}
-	*/
+	
 	
 	public void removerProjeto(Projeto projeto) throws PersistenciaException {
 		Connection conexao = null;
