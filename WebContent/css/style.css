@@ -48,6 +48,11 @@ body{
 	color: #F89406;
 }
 
+.red{
+	color: red;
+	font-weigth: bold
+}
+
 .modal-ages{
 	color: #FFF;
 	background-color: #296395;

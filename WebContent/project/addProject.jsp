@@ -40,7 +40,7 @@
 		            </div> --%>
 		            
 		            <div class="form-group">
-			           	<label class="form-label ages">Nome:</label>
+			           	<label class="form-label ages">Nome: <span class="red">*</span></label>
 			           	<input class="form-control" id="nome" name="nome" value="${param.nome}" type="text" maxlength="120" required>
 		            </div>
 
