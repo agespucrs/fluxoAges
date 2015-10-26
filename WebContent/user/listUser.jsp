@@ -38,6 +38,8 @@
 							<th style="text-align: center;">E-mail</th>
 							<th style="text-align: center;">Usuário</th>
 							<th style="text-align: center;">Perfil de Acesso</th>
+							<th style="text-align: center;">Status do Usuário</th>
+							<th style="text-align: center;">Tipo de Usuário</th>
 							<th colspan="2" style="text-align: center;">Ações</th>
 		                </tr>
 		            </thead>
@@ -55,7 +57,8 @@
 			            	<td align="center"><%=usuario.getEmail()%></td>
 			            	<td align="center"><%=usuario.getUsuario()%></td>
 			            	<td align="center"><%=usuario.getPerfilAcesso()%></td> 
-			            	
+			            	<td align="center"><%=usuario.getStatusUsuario()%></td>
+			            	<td align="center"><%=usuario.getTipoUsuario()%></td>
 			            	<td align="center">
 			            		<form action="" method="post">
 			            			<a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
