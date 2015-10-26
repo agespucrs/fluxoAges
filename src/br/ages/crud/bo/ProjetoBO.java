@@ -87,13 +87,12 @@ public class ProjetoBO {
 	}
 	
 	public Projeto buscarProjeto(int idProjeto) throws NegocioException {
-		/*try{
-			Projeto projeto = projetoDAO.buscarProjeto(idProjeto);
+		try{
+			Projeto projeto = projetoDAO.consultarProjeto(idProjeto);
 			return projeto;
-		} catch(PersistenciaException e){
+		} catch(PersistenciaException | SQLException e){
 			e.printStackTrace();
 			throw new NegocioException(e);
-		}*/
-		return null;
+		}
 	}
 }
