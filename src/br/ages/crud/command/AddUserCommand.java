@@ -27,9 +27,7 @@ public class AddUserCommand implements Command {
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
 		String perfilAcesso = request.getParameter("perfilAcesso");
-		//falta os negócios do tipo de usuário
-		//String id tipo usuario e tal
-		//status usuario??
+		String tipoUsuario = request.getParameter("tipoUsuario");
 
 		try {
 			Usuario user = new Usuario();

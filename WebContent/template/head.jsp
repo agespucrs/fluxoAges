@@ -63,7 +63,7 @@
         				<li class="dropdown">
         					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
         						<span class="glyphicon glyphicon-user"></span>
-        						Usuário
+        						Olá, ${sessionScope.usuario.usuario}!
         						<span class="caret"></span>
         					</a>
                            

@@ -19,7 +19,7 @@ $( document ).ready(function() {
 		var id = botao.data('id');
 	  	
 	  	$(this).find('.modal-title').text('Editar usuário');
-	  	$(this).find('#modal-descricao').text('Você realmente deseja Editar o usuário (' + usuario + ')?');
+	  	$(this).find('#modal-descricao').text('Você realmente deseja editar o usuário (' + usuario + ')?');
 	  	+
 	  	$('#formEditar').attr('action', "main?acao=editUser&id_usuario=" + id + "&isEdit=true");
 	});

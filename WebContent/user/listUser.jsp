@@ -45,7 +45,7 @@
 			            	<td align="center"><%=usuario.getUsuario()%></td>
 			            	<td align="center"><%=usuario.getPerfilAcesso()%></td> 
 			            	<td align="center"><%=usuario.getStatusUsuario()%></td>
-			            	<td align="center"><%=usuario.getTipoUsuario()%></td>
+			            	<td align="center"><%=usuario.getTipoUsuario().getNome()%></td>
 			            	<td align="center">
 							<form action="" method="post">
 		            				<a href="" data-toggle="modal" data-id="<%=usuario.getIdUsuario() %>" data-usuario="<%=usuario.getNome()%>" 
