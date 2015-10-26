@@ -40,7 +40,7 @@ public class AdicionaProjetoCommand implements Command {
 		String statusProjetoString = request.getParameter("status");
 		String workspace = request.getParameter("workspace");
 		String dataInicioString = request.getParameter("dataInicio");
-		String dataFimPrevistoString = request.getParameter("dataFimPrevisto");
+		String dataFimPrevistoString = request.getParameter("dataFimPrevista");
 		String dataFimString = request.getParameter("dataFim");
 		
 		
