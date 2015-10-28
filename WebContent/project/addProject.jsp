@@ -32,7 +32,7 @@
         	
         	<div class="table-responsive">
                 
-                <form method="post" action="#">
+                <form method="post" action="#" enctype="multipart/form-data">
                 
                		<%-- <div class="form-group">
 			           	<label class="form-label ages">Código do Projeto:</label>
@@ -42,6 +42,15 @@
 		            <div class="form-group">
 			           	<label class="form-label ages">Nome: <span class="red">*</span></label>
 			           	<input class="form-control" id="nome" name="nome" value="${param.nome}" type="text" maxlength="120" required>
+		            </div>
+		            
+		            <div class="form-group">
+			           	<label class="form-label ages">Status do Projeto: <span class="red">*</span></label>
+			           	<select class="form-control" id="statusProjeto" name="statusProjeto" required>
+			           		<option value="ATIVO" <%= "ATIVO".equals(request.getParameter("statusProjeto")) ? "selected" : "" %>>Ativo</option>
+                            <option value="INATIVO" <%= "INATIVO".equals(request.getParameter("statusProjeto")) ? "selected" : "" %>>Inativo</option>
+		           			<option value="CONCLUIDO" <%= "CONCLUIDO".equals(request.getParameter("statusProjeto")) ? "selected" : "" %>>Concluído</option>
+		           		</select>
 		            </div>
 
 					<%-- <%--<div class="form-group integrante">
@@ -88,6 +97,11 @@
                     <div class="form-group">
 			           	<label class="form-label ages">Data de Fim:</label>
 			           	<input class="form-control" id="dataFim" name="dataFim" value="${param.dataFim}" type="text" maxlength="10" required>
+		            </div>
+		            
+		            <div class="form-group">
+			           	<label class="form-label ages">Arquivo: <span class="red">*</span></label>
+			           	<input class="form-control" id="arquivo" name="arquivo" value="${param.arquivo}" type="file" required>
 		            </div>
 		            
                     <hr>
