@@ -142,6 +142,7 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, PERFIL_ACESSO, STATUS_USUARIO, ID_TIPO_USUARIO, MATRICULA, NOME, EMAIL, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
+			//falta inserir os negocios na tabela id_tipo_usuario
 			//sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
 			//sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
 
@@ -185,7 +186,7 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 */
 	public boolean removerUsuario(Integer idUsuario)
-	//adicionar algum paranauê para remover da tabela tb_tipo_usuario também
+	//adicionar algO para remover da tabela tb_tipo_usuario também
 			throws PersistenciaException {
 		boolean removidoOK = false;
 		Connection conexao = null;
@@ -193,8 +194,9 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("DELETE FROM TB_USUARIO WHERE ID_USUARIO= ?");
-
+			//sql.append("SELECT ID_TIPO_USUARIO FROM TB_USUARIO WHERE ID_USUARIO = ? ") 
+			sql.append("DELETE FROM TB_USUARIO WHERE ID_USUARIO= ? ");
+			//sql.append("DELETE FROM TB_TIPO_USUARIO WHERE
 			PreparedStatement statement = conexao.prepareStatement(sql
 					.toString());
 			statement.setInt(1, idUsuario);
