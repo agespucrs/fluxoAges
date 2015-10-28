@@ -4,17 +4,7 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 	
-<script type="text/javascript">
-
-	function cadastrar() {
-		var formCadastro =document.forms[0]; 
-		formCadastro.action ="main?acao=adicionaProjeto";
-		formCadastro.submit();
-	}
-	
-	
-
-</script>
+<script src="../js/maskedinput.js" type="text/javascript"></script>
 <script src="../js/cadastro-projeto.js"></script>
 
 <jsp:include page="../template/head.jsp"></jsp:include>
@@ -32,7 +22,7 @@
         	
         	<div class="table-responsive">
                 
-                <form method="post" action="#" enctype="multipart/form-data">
+                <form method="post" action="main?acao=adicionaProjeto" enctype="multipart/form-data">
                 
                		<%-- <div class="form-group">
 			           	<label class="form-label ages">Código do Projeto:</label>
@@ -86,22 +76,22 @@
 				
 					<div class="form-group">
 			           	<label class="form-label ages">Data de Início:</label>
-			           	<input class="form-control" id="dataInicio" name="dataInicio" value="${param.dataInicio}" type="text" maxlength="10" required>
+			           	<input class="form-control" id="dataInicio" name="dataInicio" value="${param.dataInicio}" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 		            </div>
                     
                      <div class="form-group">
 			           	<label class="form-label ages">Data de Fim Prevista:</label>
-			           	<input class="form-control" id="dataFimPrevista" name="dataFimPrevista" value="${param.dataFimPrevista}" type="text" maxlength="10" required>
+			           	<input class="form-control" id="dataFimPrevista" name="dataFimPrevista" value="${param.dataFimPrevista}" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 		            </div>
                     
                     <div class="form-group">
 			           	<label class="form-label ages">Data de Fim:</label>
-			           	<input class="form-control" id="dataFim" name="dataFim" value="${param.dataFim}" type="text" maxlength="10" required>
+			           	<input class="form-control" id="dataFim" name="dataFim" value="${param.dataFim}" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 		            </div>
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Arquivo: <span class="red">*</span></label>
-			           	<input class="form-control" id="arquivo" name="arquivo" value="${param.arquivo}" type="file" required>
+			           	<input class="form-control" id="arquivo" name="arquivo" value="${param.arquivo}" type="file" >
 		            </div>
 		            
                     <hr>
@@ -111,7 +101,7 @@
                     
                     <div class="text-center">
 			           	<input class="btn btn-warning limparUser pull-left" type="reset" value="Limpar">
-			           	<input class="btn btn-primary addUser pull-right" type="submit" value="Cadastrar" onclick="cadastrar()">
+			           	<input class="btn btn-primary addUser pull-right" type="submit" value="Cadastrar">
 			        </div>
                 </form>
             </div>
