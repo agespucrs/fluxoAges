@@ -53,7 +53,7 @@
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=listaProjetos">Listar</a></li>
-				            	<li><a href="main?acao=adicionaProjeto">Cadastrar</a></li> 
+				            	<li><a href="main?acao=telaProjeto">Cadastrar</a></li> 
 				          	</ul>
         				</li>
         				

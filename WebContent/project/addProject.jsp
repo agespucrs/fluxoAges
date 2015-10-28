@@ -62,13 +62,13 @@
                     
                     <!-- STAKEHOLDER -->
                     
-                    <div class="form-group">
+                    <%-- <div class="form-group">
 			           	<label class="form-label ages">Status: <span class="red">*</span></label>
 			           	<select class="form-control" id="statusUsuario" name="statusUsuario" required>
 			           		<option value="ATIVO" <%= "ATIVO".equals(request.getParameter("statusUsuario")) ? "selected" : "" %>>Ativo</option>
                             <option value="INATIVO" <%= "INATIVO".equals(request.getParameter("statusUsuario")) ? "selected" : "" %>>Inativo</option>
 		           		</select>
-		            </div>
+		            </div> --%>
                     
 					<div class="form-group">
 			           	<label class="form-label ages">Workspace:</label>
@@ -80,9 +80,9 @@
 			           	<input class="form-control" id="dataInicio" name="dataInicio" value="${param.dataInicio}" type="text" maxlength="10" required>
 		            </div>
                     
-                    <div class="form-group">
+                     <div class="form-group">
 			           	<label class="form-label ages">Data de Fim Prevista:</label>
-			           	<input class="form-control" id="dataFimPrevista" name="dataFimPrevista" value="${param.dataFimPrevista" type="text" maxlength="10" required>
+			           	<input class="form-control" id="dataFimPrevista" name="dataFimPrevista" value="${param.dataFimPrevista}" type="text" maxlength="10" required>
 		            </div>
                     
                     <div class="form-group">
