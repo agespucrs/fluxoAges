@@ -24,13 +24,15 @@ public class MainServlet extends HttpServlet {
 		comandos.put("login", new LoginCommand());
 		comandos.put("logout", new LogoutCommand());
 		
+		//COMANDOS DE USUARIO
+		
 		comandos.put("telaUser", new CreateScreenUserCommand());
 		comandos.put("listUser", new ListUserCommand());
 		comandos.put("addUser", new AddUserCommand());
 		comandos.put("editUser", new EditUserCommand());
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		
-		//COMANDO PARA LISTAR PROJETOS
+		//COMANDOS DE PROJETO
 		
 		comandos.put("telaProjeto", new CreateScreenProjectCommand());
 		comandos.put("listaProjetos", new ListaProjetosCommand());
