@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import com.mysql.jdbc.Statement;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
@@ -14,15 +19,15 @@ import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
-import com.mysql.jdbc.Statement;
-
 /** 
  * @author Daniele Souza e Victor Diehl
  */
 
 public class ProjetoDAO {
 
+	private Usuario usuarioProjeto;
 	private Projeto projeto;
+	private UsuarioDAO usuarioDAO;
 	public ProjetoDAO() {
 		
 	}
@@ -30,23 +35,39 @@ public class ProjetoDAO {
 	public ArrayList<Projeto> listarProjetos() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		ArrayList<Projeto> listaProjetos = new ArrayList<Projeto>();
+		ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
 		
 		try {
 			conexao = ConexaoUtil.getConexao();
 		
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_PROJETO");
+			sql.append("SELECT ID_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DAFA_FIM_PREVISTO, STATUS_PROJETO");
+			sql.append(" FROM TB_PROJETO");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultSet = statement.executeQuery();
-			
+		
 			while (resultSet.next()) {
-				Projeto dto = new Projeto();
-				dto.setIdProjeto(resultSet.getInt("ID_PROJETO"));
-				dto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
-				dto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));
+				Projeto projeto = new Projeto();
+				projeto.setIdProjeto(resultSet.getInt("ID_PROJETO"));
+				projeto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
+				projeto.setWorkspace(resultSet.getString("WORKSPACE"));
 				
-				listaProjetos.add(dto);
+			
+				Date dataInicio = resultSet.getDate("DATA_INICIO");
+				projeto.setDataInicio(dataInicio);
+			
+	   		Date dataFim = resultSet.getDate("DATA_FIM");
+				projeto.setDataFim(dataFim);
+				
+				Date dataFimPrevisto = resultSet.getDate("DAFA_FIM_PREVISTO");;
+				projeto.setDataFimPrevisto(dataFimPrevisto);
+	
+				projeto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));
+				
+				projeto.setUsuarios(buscaUsuarioProjeto(conexao, resultSet.getInt("ID_PROJETO")));
+				
+				listaProjetos.add(projeto);
 			}
 		}  catch (Exception e) {
 			e.printStackTrace();
@@ -55,6 +76,41 @@ public class ProjetoDAO {
 		return listaProjetos;
 	}
 	
+	private ArrayList<Usuario> buscaUsuarioProjeto(Connection conexao, int idProjeto) throws PersistenciaException, SQLException {
+				
+		List<Usuario> usuariosProjeto = new ArrayList<Usuario>();
+		
+		try {
+					
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ID_USUARIO ");
+			sql.append(" FROM TB_PROJETO_USUARIO");
+			sql.append(" WHERE ID_PROJETO = ?");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idProjeto);
+			
+			ResultSet resultset = statement.executeQuery();
+			int idUsuario = 0;
+			usuarioDAO = new UsuarioDAO();
+			usuarioProjeto = new Usuario();
+			
+			while (resultset.next()) {
+				idUsuario = resultset.getInt(1);
+				usuarioProjeto = usuarioDAO.buscaUsuarioId(idUsuario);
+				usuariosProjeto.add(usuarioProjeto);
+			}
+		
+			Collections.sort(usuariosProjeto);
+			
+	}  catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	return (ArrayList<Usuario>) usuariosProjeto;
+		
+	}
+
 	public void cadastrarProjeto(Projeto projeto) throws PersistenciaException,
 			SQLException, ParseException {
 		Connection conexao = null;

@@ -29,7 +29,7 @@ public class CreateScreenUserCommand implements Command {
 				proxima = "user/editUser.jsp";
 				usuarioBO = new UsuarioBO();
 
-				int id = Integer.parseInt(request.getParameter("id"));
+				int id = Integer.parseInt(request.getParameter("id_usuario"));
 				Usuario usuario = usuarioBO.getUsuario(id);
 
 				request.setAttribute("usuario", usuario);

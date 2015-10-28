@@ -140,7 +140,7 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, PERFIL_ACESSO, STATUS_USUARIO, ID_TIPO_USUARIO, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
+			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, PERFIL_ACESSO, STATUS_USUARIO, ID_TIPO_USUARIO, MATRICULA, NOME, EMAIL, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
 			//sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
 			//sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
@@ -156,7 +156,7 @@ public class UsuarioDAO {
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, String.valueOf(usuario.getPerfilAcesso()));
 			statement.setString(4, String.valueOf(usuario.getStatusUsuario()));
-			statement.setInt(5, usuario.getTipoUsuario().getIdTipoUsuario());
+			statement.setInt(5, 1); //XXX alterar para usar a classe TipoUsuario
 			statement.setString(6, usuario.getMatricula());
 			statement.setString(7, usuario.getNome());
 			statement.setString(8, usuario.getEmail());

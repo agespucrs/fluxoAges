@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.model.PerfilAcesso;
+import br.ages.crud.model.StatusUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
 
@@ -26,6 +27,7 @@ public class AddUserCommand implements Command {
 		String matricula = request.getParameter("matricula");
 		String usuario = request.getParameter("usuario");
 		String senha = request.getParameter("senha");
+		String statusUsuario = request.getParameter("statusUsuario"); // XXX Acrescentado  StatusUsuario
 		String perfilAcesso = request.getParameter("perfilAcesso");
 		String tipoUsuario = request.getParameter("tipoUsuario");
 
@@ -36,6 +38,7 @@ public class AddUserCommand implements Command {
 			user.setMatricula(matricula);
 			user.setUsuario(usuario);
 			user.setSenha(senha);
+			user.setStatusUsuario(StatusUsuario.valueOf(statusUsuario));
 			user.setPerfilAcesso(PerfilAcesso.valueOf(perfilAcesso));
 			//TipoUsuario tUser = new TipoUsuario();
 			//tUser.set

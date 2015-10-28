@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Entity Usuario - Data Transfer Objeto 
+ * Entity Usuario - Data Transfer Objeto
+ * 
  * @author 3- Victor Diehl, Daniele de Souza.
  *
  */
-public class Usuario implements Serializable {	
-	
+public class Usuario implements Serializable, Comparable<Usuario> {
+
 	private static final long serialVersionUID = 2717027327683138959L;
 	private int idUsuario;
 	private String usuario;
@@ -21,20 +22,18 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String email;
 	private Date dataInclusao;
-								
+
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 		this.dataInclusao = new Date();
-	}			
-	
-	public Usuario(int idUsuario){
+	}
+
+	public Usuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 		this.dataInclusao = new Date();
 	}
-	
-	public Usuario(String usuario, String senha, String administrador,
-			       String matricula, String nome, String email, StatusUsuario statusUsuario, 
-			       TipoUsuario tipoUsuario, PerfilAcesso perfilAcesso) {
+
+	public Usuario(String usuario, String senha, String administrador, String matricula, String nome, String email, StatusUsuario statusUsuario, TipoUsuario tipoUsuario, PerfilAcesso perfilAcesso) {
 		super();
 		this.usuario = usuario;
 		this.senha = senha;
@@ -52,28 +51,30 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	public int getIdUsuario(){
-		 return idUsuario;
+	public int getIdUsuario() {
+		return idUsuario;
 	}
- 
-	public void  setIdUsuario( int value){
-		 idUsuario = value;
+
+	public void setIdUsuario(int value) {
+		idUsuario = value;
 	}
-	public String getUsuario(){
-		 return usuario;
+
+	public String getUsuario() {
+		return usuario;
 	}
- 
-	public void  setUsuario( String value){
-		 usuario = value;
+
+	public void setUsuario(String value) {
+		usuario = value;
 	}
-	public String getSenha(){
-		 return senha;
+
+	public String getSenha() {
+		return senha;
 	}
- 
-	public void  setSenha( String value){
-		 senha = value;
-	}	
-	
+
+	public void setSenha(String value) {
+		senha = value;
+	}
+
 	public TipoUsuario getTipoUsuario() {
 		return tipoUsuario;
 	}
@@ -82,37 +83,38 @@ public class Usuario implements Serializable {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public StatusUsuario getStatusUsuario(){
+	public StatusUsuario getStatusUsuario() {
 		return statusUsuario;
 	}
-	
+
 	public void setStatusUsuario(StatusUsuario statusUsuario) {
 		this.statusUsuario = statusUsuario;
 	}
-	
-	public String getMatricula(){
-		 return matricula;
+
+	public String getMatricula() {
+		return matricula;
 	}
- 
-	public void setMatricula( String value){
-		 matricula = value;
+
+	public void setMatricula(String value) {
+		matricula = value;
 	}
-	
-	public String getNome(){
-		 return nome;
+
+	public String getNome() {
+		return nome;
 	}
- 
-	public void setNome( String value){
-		 nome = value;
+
+	public void setNome(String value) {
+		nome = value;
 	}
-	public String getEmail(){
-		 return email;
+
+	public String getEmail() {
+		return email;
 	}
- 
-	public void setEmail( String value){
-		 email = value;
+
+	public void setEmail(String value) {
+		email = value;
 	}
-	
+
 	public Date getDataInclusao() {
 		return dataInclusao;
 	}
@@ -123,7 +125,12 @@ public class Usuario implements Serializable {
 
 	public void setPerfilAcesso(PerfilAcesso perfilAcesso) {
 		this.perfilAcesso = perfilAcesso;
-	}			
-	
-}
+	}
 
+	@Override
+	public int compareTo(Usuario usuario) {
+		return this.getNome().compareToIgnoreCase(usuario.getNome());
+
+	}
+
+}
