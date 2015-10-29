@@ -352,9 +352,13 @@ public class UsuarioDAO {
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idUsuario);
 			ResultSet resultset = statement.executeQuery();
-
-			t = resultset.getInt("ID_USUARIO");
-
+			//gambiarra
+			try{
+				t = resultset.getInt("ID_USUARIO");
+			} catch (SQLException e){
+				return -1;
+			}
+			//fim gambiarra
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
