@@ -212,15 +212,32 @@ public class UsuarioBO {
  * Remove usu�rio da base
  * @param idUsuario
  * @throws NegocioException
+ * @throws SQLException 
  */
-	public void removerUsuario(Integer idUsuario) throws NegocioException {
+	public void removerUsuario(Integer idUsuario) throws NegocioException, SQLException {
 		try {
-			usuarioDAO.removerUsuario(idUsuario);
+			
+			if(validaUsuarioProjeto(idUsuario))
+				usuarioDAO.removerUsuario(idUsuario);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
 	}
+
+private boolean validaUsuarioProjeto(Integer idUsuario) throws NegocioException, SQLException {
+	//chama um DAO que verifica se o usuario está em algum projeto, 
+	//se estiver(retorna qualquer coisa diferente de -1), retorna falso. 
+	int id = -1;
+	try{
+	id = usuarioDAO.verificaUsuarioProjeto(idUsuario);
+	} catch (PersistenciaException e){
+		e.printStackTrace();
+		throw new NegocioException(e);
+	}
+	if (id != -1) return false;
+	return true;
+}
 
 public Usuario getUsuario(int idUsuario) throws NegocioException {
 	try {

@@ -340,4 +340,31 @@ public class UsuarioDAO {
 		return usuario;
 
 	}
+	public int verificaUsuarioProjeto(Integer idUsuario) throws PersistenciaException, SQLException{
+		int t = -1;
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("select id_usuario from ages_e.tb_projeto_usuario where id_usuario = ?;");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idUsuario);
+			ResultSet resultset = statement.executeQuery();
+
+			t = resultset.getInt("ID_USUARIO");
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return t;
+	}
 }
