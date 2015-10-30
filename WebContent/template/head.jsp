@@ -19,9 +19,6 @@
 		<link rel="stylesheet" href="./css/style.css">
 		
 		<!-- Include the plugin's CSS and JS: Cassio -->
-		<script type="text/javascript" src="./js/bootstrap-multiselect.js"></script>
-		<link rel="stylesheet" href="./css/bootstrap-multiselect.css" type="text/css" />
-		
 		<script src="./js/jquery.bootstrap-duallistbox.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-duallistbox.min.css">
 		
