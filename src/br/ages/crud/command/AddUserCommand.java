@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.model.PerfilAcesso;
 import br.ages.crud.model.StatusUsuario;
+import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
 
@@ -40,8 +41,12 @@ public class AddUserCommand implements Command {
 			user.setSenha(senha);
 			user.setStatusUsuario(StatusUsuario.valueOf(statusUsuario));
 			user.setPerfilAcesso(PerfilAcesso.valueOf(perfilAcesso));
-			//TipoUsuario tUser = new TipoUsuario();
-			//tUser.set
+			/*TipoUsuario tUser = new TipoUsuario();
+			if (tipoUsuario.equals("ALUNO")){
+				tUser.setIdTipoUsuario(2);
+			}
+			else tUser.setIdTipoUsuario(1); */
+			
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
 			if (isValido == false) {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);

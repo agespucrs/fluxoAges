@@ -157,7 +157,9 @@ public class UsuarioDAO {
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, String.valueOf(usuario.getPerfilAcesso()));
 			statement.setString(4, String.valueOf(usuario.getStatusUsuario()));
-			statement.setInt(5, 1); //XXX alterar para usar a classe TipoUsuario
+			statement.setInt(5, 1);
+			 //XXX alterar para usar a classe TipoUsuario
+			//statement.setInt(5, usuario.getTipoUsuario().getIdTipoUsuario());
 			statement.setString(6, usuario.getMatricula());
 			statement.setString(7, usuario.getNome());
 			statement.setString(8, usuario.getEmail());
