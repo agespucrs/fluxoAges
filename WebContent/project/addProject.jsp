@@ -105,7 +105,7 @@
 
 				<div class="form-group">
 					<label class="form-label ages">Arquivo: <span class="red">*</span></label> <input class="form-control" id="arquivo" name="arquivo" value="${param.arquivo}"
-						type="file" required>
+						type="file" >
 				</div>
 
 				<hr>
@@ -150,8 +150,6 @@
 		nonSelectedFilter : '',
 		filterTextClear : 'Mostrar Todos',
 		infoTextEmpty : 'Sem stakeholders ',
-		
-		
 	});
 </script>
 
@@ -159,8 +157,12 @@
 <script>
 	//Põe cor laranja nos titulos
 	$('div[class*="box"]').find('label').css('color', '#F89406');
-	//Dá espaçamento no Workspace
-	$('label:contains("Workspace")').addClass('margin-top');
+	
 	//Dá espaçamento no grupo usuários
 	$('div[class*="bootstrap-duallistbox-container"]').eq(1).addClass('margin-top');
+	//Dá espaçamento no Workspace
+	$('label:contains("Workspace")').addClass('margin-top');
+	
+	//Remove aparencia de input de texto do input de arquivo
+	$('label:contains("Arquivo")').siblings('input').removeClass('form-control');
 </script>

@@ -86,16 +86,17 @@ public class AdicionaProjetoCommand implements Command {
 				boolean tamanhoValido = arquivoBO.validaTamanho(arquivo, Constantes.PROJETO_ARQUIVO_MAX_BYTES);
 				boolean extensaoValida = arquivoBO.validaExtensao(arquivo, Constantes.PROJETO_FILE_EXT);
 				
-				if(!tamanhoValido || !extensaoValida){
+				/*if(!tamanhoValido || !extensaoValida){
 					request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_ARQUIVO_INVALIDO.replace("?", String.valueOf(Constantes.PROJETO_ARQUIVO_MAX_BYTES)));
 				} else{
 					arquivoBO.uploadArquivo(arquivo, nomeProjeto, Constantes.PROJETO_UPLOAD_PATH);
+					
 					
 					projetoBO.cadastrarProjeto(projeto);
 					
 					proxima = "main?acao=listProject";
 					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
-				}				
+				}*/				
 			}
 			
 		}catch(Exception e){
