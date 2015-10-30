@@ -5,7 +5,7 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 
-<script src="../js/maskedinput.js" type="text/javascript"></script>
+
 <script src="./js/cadastro-projeto.js"></script>
 
 <jsp:include page="../template/head.jsp"></jsp:include>
@@ -14,14 +14,13 @@
 
 	<div class="panel-heading text-center">Cadastro de Projeto</div>
 
-
 	<div class="panel-body">
 
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 
 		<div class="table-responsive">
 
-			<form method="post" action="main?acao=adicionaProjeto" > <!-- enctype="multipart/form-data" -->
+			<form method="post" action="main?acao=adicionaProjeto"> <!-- enctype="multipart/form-data" > -->
 
 				<%-- <div class="form-group">
 			           	<label class="form-label ages">Código do Projeto:</label>
@@ -42,23 +41,29 @@
 						<option value="CONCLUIDO" <%="CONCLUIDO".equals(request.getParameter("statusProjeto")) ? "selected" : ""%>>Concluído</option>
 					</select>
 				</div>
+				
 				<div class="form-group integrante ">
-					<label class="form-label ages">Integrantes:</label>
-					
+										
 					<!-- STAKEHOLDER -->
-					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->
-					<select id="select-stakeholders" name="listaStakeholders" multiple="multiple">
+					<!-- segue o link do antigo componente utilizado na criação da seleção de stakeholders -->
+					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->					
+					
+					<div class="col-md-12">
+						<select multiple="multiple" size="10" name="listaStakeholders" class="listaStakeholders">
 						<%
 							List<Stakeholder> listaStakeholders = (List<Stakeholder>) request.getAttribute("listaStakeholders");
 							for (Stakeholder stakeholder : listaStakeholders) {
 						%>
-
-						<option id="stakeholders" name="stakeholders" value="<%=stakeholder.getIdStakeholder()%>"><%=stakeholder.getNomeStakeholder()%></option>
-
+							<option value="<%=stakeholder.getIdStakeholder()%>"><%=stakeholder.getNomeStakeholder()%></option>
 						<%
 							}
 						%>
-					</select> 
+						
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group integrante">					
 					<!-- USUARIOS -->
 					<!-- http://www.virtuosoft.eu/code/bootstrap-duallistbox/ -->
 					<div class="col-md-12">
@@ -71,10 +76,11 @@
 						<%
 							}
 						%>
+						
 						</select>
-
 					</div>
 				</div>
+				
 				<div class="form-group">
 					<label class="form-label ages">Workspace:</label> 
 					<input class="form-control" id="workspace" name="workspace" value="${param.workspace}" type="text"
@@ -118,21 +124,7 @@
 </div>
 
 <jsp:include page="/template/foot.jsp"></jsp:include>
-<!-- Initialize the plugin: -->
-<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#select-stakeholders').multiselect({
-			enableFiltering : true,
-			includeSelectAllOption : true,
-			maxHeight : 400,
-			dropUp : true,
-			nonSelectedText : 'Selecione os Stakeholders',
-			nSelectedText : '- Stakeholders',
-			numberDisplayed: 1
-		});
-	});
-</script>
+
 <!-- USUARIOS -->
 <!-- http://www.virtuosoft.eu/code/bootstrap-duallistbox/ -->
 <script>
@@ -144,5 +136,19 @@
 		nonSelectedFilter : '',
 		filterTextClear : 'Mostrar Todos',
 		infoTextEmpty : 'Sem usuarios '
+	});
+</script>
+
+<script>
+	var demo2 = $('.listaStakeholders').bootstrapDualListbox({
+		nonSelectedListLabel : 'Stakeholders',
+		selectedListLabel : 'Stakeholders do Projeto',
+		preserveSelectionOnMove : 'moved',
+		moveOnSelect : false,
+		nonSelectedFilter : '',
+		filterTextClear : 'Mostrar Todos',
+		infoTextEmpty : 'Sem stakeholders ',
+		
+		
 	});
 </script>
