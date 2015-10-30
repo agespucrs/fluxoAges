@@ -68,11 +68,11 @@ public class UsuarioBO {
 		try {
 			// valida campos est�o preenchidos corretamente
 			// Matricula
-			if (usuario.getMatricula() == null || "".equals(usuario.getMatricula())) {
+			/*if (usuario.getMatricula() == null || "".equals(usuario.getMatricula())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Matricula ").concat("<br/>"));
 
-			}
+			}*/
 			if (!usuario.getMatricula().matches("\\d{9}")){
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_MATRICULA_INVALIDA.replace("?", "Matricula ").concat("<br/>"));
@@ -91,7 +91,10 @@ public class UsuarioBO {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Email ").concat("<br/>"));
 			}
-
+			if(!usuario.getNome().matches("(([A-Z][a-z]*)\\s{0,1})*")){
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_NOME_INVALIDO.replace("?", "Nome ").concat("<br/>"));
+			}
 			// Senha
 			Map<String, Object> valores = new HashMap<>();
 			valores.put("Senha", usuario.getSenha());

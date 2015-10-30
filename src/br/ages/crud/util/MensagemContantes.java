@@ -57,6 +57,9 @@ public class MensagemContantes {
 
 	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto: ?, removido com sucesso!";
 
-	public static final String MSG_ERR_EMAIL_INVALIDO = "Email com formato inválido";
+	public static final String MSG_ERR_EMAIL_INVALIDO = "Email com formato inválido.\nExemplo correto: aaaa@aaa.aaa || bla@acad.pucrs.br"
+			+ "\nNão aceita acentuação e caracteres especiais";
+
+	public static final String MSG_ERR_NOME_INVALIDO = "Nome com formato inválido.\nExemplos corretos: Aaaaaa || Aa Aa";
 	
 }
