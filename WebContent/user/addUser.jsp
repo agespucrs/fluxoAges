@@ -64,8 +64,8 @@
 		            <div class="form-group">
 			           	<label class="form-label ages">Tipo de Usuário: <span class="red">*</span></label>
 			           	<select class="form-control" id="tipoUsuario" name="tipoUsuario" required>
-                            <option value="ALUNO" <%= "ALUNO".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Aluno</option>
-			           		<option value="ARQUITETO" <%= "ARQUITETO".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Arquiteto</option>
+                            <option value="2" <%= "ALUNO".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Aluno</option>
+			           		<option value="1" <%= "ARQUITETO".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Arquiteto</option>
 		           		</select>
 		            </div>
                     

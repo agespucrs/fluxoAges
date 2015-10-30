@@ -4,6 +4,8 @@
 * Casssio Trindade, Daniele Souza e Victor Diehl
 * 09/2015
 ***/
+alter table ages_e.tb_usuario
+add constraint U_username unique(usuario);
 
 USE ages_e;
 
@@ -30,8 +32,6 @@ CREATE TABLE TB_USUARIO (
   UNIQUE KEY MATRICULA_UNIQUE (MATRICULA)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
-alter table ages_e.tb_usuario
-add constraint U_username unique(usuario);
 -- Tabela Tipo Usuario
 CREATE TABLE TB_TIPO_USUARIO (
   ID_TIPO_USUARIO int(11) NOT NULL AUTO_INCREMENT,

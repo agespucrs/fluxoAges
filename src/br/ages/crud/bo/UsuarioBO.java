@@ -9,6 +9,7 @@ import java.util.Map;
 import br.ages.crud.dao.UsuarioDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.LoginValidator;
@@ -205,7 +206,15 @@ public class UsuarioBO {
 		if (id != -1) return false;
 		return true;
 	}
-
+	public TipoUsuario consultaTipoUsuario(String idTipoUsuario) throws NegocioException{
+		try {
+			TipoUsuario tipoUsuario = usuarioDAO.consultaTipoUsuario(idTipoUsuario);
+			return tipoUsuario;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}	
+	}
 	public Usuario getUsuario(int idUsuario) throws NegocioException {
 		try {
 			Usuario usuario = usuarioDAO.buscaUsuarioId(idUsuario);

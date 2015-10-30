@@ -31,7 +31,7 @@ public class AddUserCommand implements Command {
 		String statusUsuario = request.getParameter("statusUsuario"); // XXX Acrescentado  StatusUsuario
 		String perfilAcesso = request.getParameter("perfilAcesso");
 		String tipoUsuario = request.getParameter("tipoUsuario");
-
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAaatipoUsuario:" + tipoUsuario);
 		try {
 			Usuario user = new Usuario();
 			user.setNome(nome);
@@ -41,11 +41,10 @@ public class AddUserCommand implements Command {
 			user.setSenha(senha);
 			user.setStatusUsuario(StatusUsuario.valueOf(statusUsuario));
 			user.setPerfilAcesso(PerfilAcesso.valueOf(perfilAcesso));
-			/*TipoUsuario tUser = new TipoUsuario();
-			if (tipoUsuario.equals("ALUNO")){
-				tUser.setIdTipoUsuario(2);
-			}
-			else tUser.setIdTipoUsuario(1); */
+			TipoUsuario tUser = new TipoUsuario();
+			
+			tUser = usuarioBO.consultaTipoUsuario(tipoUsuario);
+			user.setTipoUsuario(tUser);
 			
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
 			if (isValido == false) {
