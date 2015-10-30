@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Util {
 
+	public Util() {
+		
+	}
+	
 	public static String concatenaMensagensRequest(HttpServletRequest request, Exception e, String msg) {
 		String msgErro = "";
 		if (request.getAttribute(msg) != null) {

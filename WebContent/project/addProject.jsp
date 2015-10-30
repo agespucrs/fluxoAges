@@ -6,9 +6,10 @@
 
 
 
-<script src="./js/cadastro-projeto.js"></script>
+
 
 <jsp:include page="../template/head.jsp"></jsp:include>
+<script src="../js/cadastro-projeto.js"></script>
 
 <div class="panel panel-primary panel-addUser">
 
@@ -49,7 +50,7 @@
 					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->					
 					
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaStakeholders" class="listaStakeholders">
+						<select multiple="multiple" size="10" name="listaStakeholders" class="listaStakeholders" required>
 						<%
 							List<Stakeholder> listaStakeholders = (List<Stakeholder>) request.getAttribute("listaStakeholders");
 							for (Stakeholder stakeholder : listaStakeholders) {
@@ -67,7 +68,7 @@
 					<!-- USUARIOS -->
 					<!-- http://www.virtuosoft.eu/code/bootstrap-duallistbox/ -->
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaUsuarios" class="listaUsuarios">
+						<select multiple="multiple" size="10" name="listaUsuarios" class="listaUsuarios" required>
 						<%
 							List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listaUsuarios");
 							for (Usuario usuario : listaUsuarios) {
@@ -82,35 +83,35 @@
 				</div>
 				
 				<div class="form-group">
-					<label class="form-label ages">Workspace:</label> 
+					<label class="form-label ages">Workspace: <span class="red">*</span></label> 
 					<input class="form-control" id="workspace" name="workspace" value="${param.workspace}" type="text"
 						maxlength="120" required>
 				</div>
 
 				<div class="form-group">
-					<label class="form-label ages">Data de Início:</label> <input class="form-control" id="dataInicio" name="dataInicio" value="${param.dataInicio}"
+					<label class="form-label ages">Data de Início: <span class="red">*</span></label> <input class="form-control" id="dataInicio" name="dataInicio" value="${param.dataInicio}"
 						type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 				</div>
 
 				<div class="form-group">
-					<label class="form-label ages">Data de Fim Prevista:</label> <input class="form-control" id="dataFimPrevista" name="dataFimPrevista"
+					<label class="form-label ages">Data de Fim Prevista: <span class="red">*</span></label> <input class="form-control" id="dataFimPrevista" name="dataFimPrevista"
 						value="${param.dataFimPrevista}" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 				</div>
 
 				<div class="form-group">
 					<label class="form-label ages">Data de Fim:</label> <input class="form-control" id="dataFim" name="dataFim" value="${param.dataFim}" type="text"
-						maxlength="10" placeholder="DD/MM/AAAA" required>
+						maxlength="10" placeholder="DD/MM/AAAA">
 				</div>
 
 				<div class="form-group">
 					<label class="form-label ages">Arquivo: <span class="red">*</span></label> <input class="form-control" id="arquivo" name="arquivo" value="${param.arquivo}"
-						type="file">
+						type="file" required>
 				</div>
 
 				<hr>
 
 				<p>
-					Campos que contém <span>*</span> são obrigatórios
+					Campos que contém <span class="red">*</span> são obrigatórios
 				</p>
 
 
@@ -122,6 +123,7 @@
 		</div>
 	</div>
 </div>
+
 
 <jsp:include page="/template/foot.jsp"></jsp:include>
 
@@ -151,4 +153,14 @@
 		
 		
 	});
+</script>
+
+
+<script>
+	//Põe cor laranja nos titulos
+	$('div[class*="box"]').find('label').css('color', '#F89406');
+	//Dá espaçamento no Workspace
+	$('label:contains("Workspace")').addClass('margin-top');
+	//Dá espaçamento no grupo usuários
+	$('div[class*="bootstrap-duallistbox-container"]').eq(1).addClass('margin-top');
 </script>
