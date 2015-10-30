@@ -5,15 +5,15 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 
-<script src="../js/maskedinput.js" type="text/javascript"></script>
-<script src="./js/cadastro-projeto.js"></script>
+
+
 
 <jsp:include page="../template/head.jsp"></jsp:include>
+<script src="../js/cadastro-projeto.js"></script>
 
 <div class="panel panel-primary panel-addUser">
 
 	<div class="panel-heading text-center">Cadastro de Projeto</div>
-
 
 	<div class="panel-body">
 
@@ -21,7 +21,7 @@
 
 		<div class="table-responsive">
 
-			<form method="post" action="main?acao=adicionaProjeto" > <!-- enctype="multipart/form-data" -->
+			<form method="post" action="main?acao=adicionaProjeto"> <!-- enctype="multipart/form-data" > -->
 
 				<%-- <div class="form-group">
 			           	<label class="form-label ages">Código do Projeto:</label>
@@ -42,27 +42,33 @@
 						<option value="CONCLUIDO" <%="CONCLUIDO".equals(request.getParameter("statusProjeto")) ? "selected" : ""%>>Concluído</option>
 					</select>
 				</div>
+				
 				<div class="form-group integrante ">
-					<label class="form-label ages">Integrantes:</label>
-					
+										
 					<!-- STAKEHOLDER -->
-					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->
-					<select id="select-stakeholders" name="listaStakeholders" multiple="multiple">
+					<!-- segue o link do antigo componente utilizado na criação da seleção de stakeholders -->
+					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->					
+					
+					<div class="col-md-12">
+						<select multiple="multiple" size="10" name="listaStakeholders" class="listaStakeholders" required>
 						<%
 							List<Stakeholder> listaStakeholders = (List<Stakeholder>) request.getAttribute("listaStakeholders");
 							for (Stakeholder stakeholder : listaStakeholders) {
 						%>
-
-						<option id="stakeholders" name="stakeholders" value="<%=stakeholder.getIdStakeholder()%>"><%=stakeholder.getNomeStakeholder()%></option>
-
+							<option value="<%=stakeholder.getIdStakeholder()%>"><%=stakeholder.getNomeStakeholder()%></option>
 						<%
 							}
 						%>
-					</select> 
+						
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group integrante">					
 					<!-- USUARIOS -->
 					<!-- http://www.virtuosoft.eu/code/bootstrap-duallistbox/ -->
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaUsuarios" class="listaUsuarios">
+						<select multiple="multiple" size="10" name="listaUsuarios" class="listaUsuarios" required>
 						<%
 							List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listaUsuarios");
 							for (Usuario usuario : listaUsuarios) {
@@ -71,40 +77,41 @@
 						<%
 							}
 						%>
+						
 						</select>
-
 					</div>
 				</div>
+				
 				<div class="form-group">
-					<label class="form-label ages">Workspace:</label> 
+					<label class="form-label ages">Workspace: <span class="red">*</span></label> 
 					<input class="form-control" id="workspace" name="workspace" value="${param.workspace}" type="text"
 						maxlength="120" required>
 				</div>
 
 				<div class="form-group">
-					<label class="form-label ages">Data de Início:</label> <input class="form-control" id="dataInicio" name="dataInicio" value="${param.dataInicio}"
+					<label class="form-label ages">Data de Início: <span class="red">*</span></label> <input class="form-control" id="dataInicio" name="dataInicio" value="${param.dataInicio}"
 						type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 				</div>
 
 				<div class="form-group">
-					<label class="form-label ages">Data de Fim Prevista:</label> <input class="form-control" id="dataFimPrevista" name="dataFimPrevista"
+					<label class="form-label ages">Data de Fim Prevista: <span class="red">*</span></label> <input class="form-control" id="dataFimPrevista" name="dataFimPrevista"
 						value="${param.dataFimPrevista}" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 				</div>
 
 				<div class="form-group">
 					<label class="form-label ages">Data de Fim:</label> <input class="form-control" id="dataFim" name="dataFim" value="${param.dataFim}" type="text"
-						maxlength="10" placeholder="DD/MM/AAAA" required>
+						maxlength="10" placeholder="DD/MM/AAAA">
 				</div>
 
 				<div class="form-group">
 					<label class="form-label ages">Arquivo: <span class="red">*</span></label> <input class="form-control" id="arquivo" name="arquivo" value="${param.arquivo}"
-						type="file">
+						type="file" required>
 				</div>
 
 				<hr>
 
 				<p>
-					Campos que contém <span>*</span> são obrigatórios
+					Campos que contém <span class="red">*</span> são obrigatórios
 				</p>
 
 
@@ -117,22 +124,9 @@
 	</div>
 </div>
 
+
 <jsp:include page="/template/foot.jsp"></jsp:include>
-<!-- Initialize the plugin: -->
-<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#select-stakeholders').multiselect({
-			enableFiltering : true,
-			includeSelectAllOption : true,
-			maxHeight : 400,
-			dropUp : true,
-			nonSelectedText : 'Selecione os Stakeholders',
-			nSelectedText : '- Stakeholders',
-			numberDisplayed: 1
-		});
-	});
-</script>
+
 <!-- USUARIOS -->
 <!-- http://www.virtuosoft.eu/code/bootstrap-duallistbox/ -->
 <script>
@@ -145,4 +139,28 @@
 		filterTextClear : 'Mostrar Todos',
 		infoTextEmpty : 'Sem usuarios '
 	});
+</script>
+
+<script>
+	var demo2 = $('.listaStakeholders').bootstrapDualListbox({
+		nonSelectedListLabel : 'Stakeholders',
+		selectedListLabel : 'Stakeholders do Projeto',
+		preserveSelectionOnMove : 'moved',
+		moveOnSelect : false,
+		nonSelectedFilter : '',
+		filterTextClear : 'Mostrar Todos',
+		infoTextEmpty : 'Sem stakeholders ',
+		
+		
+	});
+</script>
+
+
+<script>
+	//Põe cor laranja nos titulos
+	$('div[class*="box"]').find('label').css('color', '#F89406');
+	//Dá espaçamento no Workspace
+	$('label:contains("Workspace")').addClass('margin-top');
+	//Dá espaçamento no grupo usuários
+	$('div[class*="bootstrap-duallistbox-container"]').eq(1).addClass('margin-top');
 </script>

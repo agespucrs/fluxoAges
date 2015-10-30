@@ -28,6 +28,7 @@ public class ProjetoDAO {
 	private Usuario usuarioProjeto;
 	private Projeto projeto;
 	private UsuarioDAO usuarioDAO;
+	
 	public ProjetoDAO() {
 		
 	}
@@ -35,13 +36,13 @@ public class ProjetoDAO {
 	public ArrayList<Projeto> listarProjetos() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		ArrayList<Projeto> listaProjetos = new ArrayList<Projeto>();
-		ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
+		//TODO: lista stakeholders
 		
 		try {
 			conexao = ConexaoUtil.getConexao();
 		
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ID_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DAFA_FIM_PREVISTO, STATUS_PROJETO");
+			sql.append("SELECT ID_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DAFA_FIM_PREVISTO");
 			sql.append(" FROM TB_PROJETO");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -51,21 +52,19 @@ public class ProjetoDAO {
 				Projeto projeto = new Projeto();
 				projeto.setIdProjeto(resultSet.getInt("ID_PROJETO"));
 				projeto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
+				projeto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));
 				projeto.setWorkspace(resultSet.getString("WORKSPACE"));
-				
 			
 				Date dataInicio = resultSet.getDate("DATA_INICIO");
 				projeto.setDataInicio(dataInicio);
 			
-	   		Date dataFim = resultSet.getDate("DATA_FIM");
+				Date dataFim = resultSet.getDate("DATA_FIM");
 				projeto.setDataFim(dataFim);
 				
 				Date dataFimPrevisto = resultSet.getDate("DAFA_FIM_PREVISTO");;
 				projeto.setDataFimPrevisto(dataFimPrevisto);
-	
-				projeto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));
 				
-				projeto.setUsuarios(buscaUsuarioProjeto(conexao, resultSet.getInt("ID_PROJETO")));
+				projeto.setUsuarios(buscarUsuariosProjeto(conexao, resultSet.getInt("ID_PROJETO")));
 				
 				listaProjetos.add(projeto);
 			}
@@ -76,7 +75,7 @@ public class ProjetoDAO {
 		return listaProjetos;
 	}
 	
-	private ArrayList<Usuario> buscaUsuarioProjeto(Connection conexao, int idProjeto) throws PersistenciaException, SQLException {
+	private ArrayList<Usuario> buscarUsuariosProjeto(Connection conexao, int idProjeto) throws PersistenciaException, SQLException {
 				
 		List<Usuario> usuariosProjeto = new ArrayList<Usuario>();
 		
@@ -239,7 +238,6 @@ public class ProjetoDAO {
 		}
 		return projeto;
 	}
-	
 	 
 	//TODO: consultar usuarios projeto	
 	
@@ -280,7 +278,7 @@ public class ProjetoDAO {
 		}
 	}
 	
-	
+	/*
 	public void removerProjeto(Projeto projeto) throws PersistenciaException {
 		Connection conexao = null;
 		try	{
@@ -332,5 +330,5 @@ public class ProjetoDAO {
 			ok = statement.execute();
 			
 		return ok;
-	}
+	}*/
 }

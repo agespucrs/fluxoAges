@@ -76,7 +76,7 @@ public class UsuarioDAO {
 	public List<Usuario> listarUsuarios() throws PersistenciaException,
 	SQLException {
 		Connection conexao = null;
-		//tentativa de readaptação do listarUsuarios()
+		// tentativa de readaptação do listarUsuarios()
 		try {
 			conexao = ConexaoUtil.getConexao();
 
@@ -111,9 +111,12 @@ public class UsuarioDAO {
 				dto.setEmail(resultset.getString("EMAIL"));
 				dto.setUsuario(resultset.getString("USUARIO"));
 				dto.setSenha(resultset.getString("SENHA"));
-				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
-				dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
-				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset
+						.getString("PERFIL_ACESSO")));
+				dto.setStatusUsuario(StatusUsuario.valueOf(resultset
+						.getString("STATUS_USUARIO")));
+				tipoUsuario.setIdTipoUsuario(resultset
+						.getInt("ID_TIPO_USUARIO"));
 				tipoUsuario.setNome(resultset.getString("tnome"));
 				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
 				dto.setTipoUsuario(tipoUsuario);
@@ -131,7 +134,7 @@ public class UsuarioDAO {
 
 	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException,
 	SQLException, ParseException {
-		//adicionar paranauês de tipo de usuário e tal
+		// adicionar paranauês de tipo de usuário e tal
 		Connection conexao = null;
 
 		try {
@@ -142,9 +145,9 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, PERFIL_ACESSO, STATUS_USUARIO, ID_TIPO_USUARIO, MATRICULA, NOME, EMAIL, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
-			//falta inserir os negocios na tabela id_tipo_usuario
-			//sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
-			//sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
+			// falta inserir os negocios na tabela id_tipo_usuario
+			// sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
+			// sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
 
 			// converte a data para data Juliana, data que o banco reconhece;
 			java.util.Date utilDate = new java.util.Date();
@@ -157,7 +160,9 @@ public class UsuarioDAO {
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, String.valueOf(usuario.getPerfilAcesso()));
 			statement.setString(4, String.valueOf(usuario.getStatusUsuario()));
-			statement.setInt(5, 1); //XXX alterar para usar a classe TipoUsuario
+			// statement.setInt(5, 1);
+			// XXX alterar para usar a classe TipoUsuario
+			statement.setInt(5, usuario.getTipoUsuario().getIdTipoUsuario());
 			statement.setString(6, usuario.getMatricula());
 			statement.setString(7, usuario.getNome());
 			statement.setString(8, usuario.getEmail());
@@ -174,6 +179,7 @@ public class UsuarioDAO {
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
+
 		} finally {
 			conexao.close();
 		}
@@ -186,7 +192,7 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 */
 	public boolean removerUsuario(Integer idUsuario)
-	//adicionar algO para remover da tabela tb_tipo_usuario também
+	// adicionar algO para remover da tabela tb_tipo_usuario também
 			throws PersistenciaException {
 		boolean removidoOK = false;
 		Connection conexao = null;
@@ -194,9 +200,9 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			//sql.append("SELECT ID_TIPO_USUARIO FROM TB_USUARIO WHERE ID_USUARIO = ? ") 
+			// sql.append("SELECT ID_TIPO_USUARIO FROM TB_USUARIO WHERE ID_USUARIO = ? ")
 			sql.append("DELETE FROM TB_USUARIO WHERE ID_USUARIO= ? ");
-			//sql.append("DELETE FROM TB_TIPO_USUARIO WHERE
+			// sql.append("DELETE FROM TB_TIPO_USUARIO WHERE
 			PreparedStatement statement = conexao.prepareStatement(sql
 					.toString());
 			statement.setInt(1, idUsuario);
@@ -224,7 +230,7 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			//sql.append("SELECT * FROM TB_USUARIO WHERE NOME = ?");
+			// sql.append("SELECT * FROM TB_USUARIO WHERE NOME = ?");
 			sql.append("SELECT ");
 			sql.append("u.`ID_USUARIO`,");
 			sql.append("u.`USUARIO`,");
@@ -256,10 +262,13 @@ public class UsuarioDAO {
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
-				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset
+						.getString("PERFIL_ACESSO")));
+				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset
+						.getString("STATUS_USUARIO")));
 				TipoUsuario tipoUsuario = new TipoUsuario();
-				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setIdTipoUsuario(resultset
+						.getInt("ID_TIPO_USUARIO"));
 				tipoUsuario.setNome(resultset.getString("tnome"));
 				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
 				usuario.setTipoUsuario(tipoUsuario);
@@ -277,8 +286,9 @@ public class UsuarioDAO {
 		return usuario;
 	}
 
-	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException, SQLException {
-		//adicionar informações de tipo de usuario?
+	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException,
+	SQLException {
+		// adicionar informações de tipo de usuario?
 		Usuario usuario = new Usuario();
 
 		Connection conexao = null;
@@ -286,7 +296,7 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			//			sql.append("SELECT * FROM AGES_E.TB_USUARIO WHERE ID_USUARIO = ?;");
+			// sql.append("SELECT * FROM AGES_E.TB_USUARIO WHERE ID_USUARIO = ?;");
 			//
 			sql.append("SELECT ");
 			sql.append("u.`ID_USUARIO`,");
@@ -318,10 +328,13 @@ public class UsuarioDAO {
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
-				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset
+						.getString("PERFIL_ACESSO")));
+				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset
+						.getString("STATUS_USUARIO")));
 				TipoUsuario tipoUsuario = new TipoUsuario();
-				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setIdTipoUsuario(resultset
+						.getInt("ID_TIPO_USUARIO"));
 				tipoUsuario.setNome(resultset.getString("tnome"));
 				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
 				usuario.setTipoUsuario(tipoUsuario);
@@ -340,7 +353,9 @@ public class UsuarioDAO {
 		return usuario;
 
 	}
-	public int verificaUsuarioProjeto(Integer idUsuario) throws PersistenciaException, SQLException{
+
+	public int verificaUsuarioProjeto(Integer idUsuario)
+			throws PersistenciaException, SQLException {
 		int t = -1;
 		Connection conexao = null;
 		try {
@@ -349,16 +364,17 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("select id_usuario from ages_e.tb_projeto_usuario where id_usuario = ?;");
 
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
 			statement.setInt(1, idUsuario);
 			ResultSet resultset = statement.executeQuery();
-			//gambiarra
-			try{
+			// gambiarra
+			try {
 				t = resultset.getInt("ID_USUARIO");
-			} catch (SQLException e){
+			} catch (SQLException e) {
 				return -1;
 			}
-			//fim gambiarra
+			// fim gambiarra
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
@@ -370,5 +386,36 @@ public class UsuarioDAO {
 		}
 
 		return t;
+	}
+
+	public TipoUsuario consultaTipoUsuario(String idTipoUsuario) throws PersistenciaException {
+		Connection conexao = null;
+		TipoUsuario tipoUsuario = new TipoUsuario();
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from ages_e.tb_tipo_usuario where id_tipo_usuario = ?;");
+
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
+			statement.setString(1, idTipoUsuario);
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()){
+				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setNome(resultset.getString("NOME"));
+				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return tipoUsuario;
 	}
 }
