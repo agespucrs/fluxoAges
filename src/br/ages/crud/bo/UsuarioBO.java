@@ -87,7 +87,7 @@ public class UsuarioBO {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Usuario ").concat("<br/>"));
 			}
-			if (!usuario.getEmail().matches("\\S+@[a-zA-Z]+.[a-z]+")) {
+			if (!usuario.getEmail().matches("\\S+@[a-zA-Z]+(.[a-z]+)+")) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Email ").concat("<br/>"));
 			}
