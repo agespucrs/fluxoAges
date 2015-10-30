@@ -56,5 +56,7 @@ public class MensagemContantes {
 	public static final String MSG_SUC_CADASTRO_PROJETO = "Cadastro projeto: ?, efetuado com sucesso!";
 
 	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto: ?, removido com sucesso!";
+
+	public static final String MSG_ERR_EMAIL_INVALIDO = "Email com formato inválido";
 	
 }

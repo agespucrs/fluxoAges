@@ -87,6 +87,10 @@ public class UsuarioBO {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Usuario ").concat("<br/>"));
 			}
+			if (!usuario.getEmail().matches("\\S+@[a-zA-Z]+.[a-z]+")) {
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Email ").concat("<br/>"));
+			}
 
 			// Senha
 			Map<String, Object> valores = new HashMap<>();
@@ -96,7 +100,7 @@ public class UsuarioBO {
 			}
 
 			// flag administrador
-/*			if (usuario.getPerfilAcesso() == null || "".equals(usuario.getPerfilAcesso())) {
+			/*			if (usuario.getPerfilAcesso() == null || "".equals(usuario.getPerfilAcesso())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrador").concat("<br/>"));
 			}
@@ -111,7 +115,7 @@ public class UsuarioBO {
 				throw new NegocioException(msg.append(MensagemContantes.MSG_ERR_PESSOA_DADOS_INVALIDOS).toString());
 			}
 			//
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
@@ -128,46 +132,6 @@ public class UsuarioBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public boolean validaCadastroUsuario(Usuario usuario) throws NegocioException {
-		boolean isValido = true;
-		try {
-			// valida campos est�o preenchidos corretamente
-			// Matricula
-			if (usuario.getMatricula() == null || "".equals(usuario.getMatricula())) {
-				throw new NegocioException(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Matricula ").concat("<br/>"));
-			}
-			// Nome
-			if (usuario.getNome() == null || "".equals(usuario.getNome())) {
-				throw new NegocioException(MensagemContantes.MSG_ERR_CAMPO_NOME_OBRIGATORIO);
-			}
-			// Usuario
-			if (usuario.getUsuario() == null || "".equals(usuario.getUsuario())) {
-				throw new NegocioException(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Usuario ").concat("<br/>"));
-			}
-
-			// Senha
-			if (usuario.getSenha() == null || "".equals(usuario.getSenha())) {
-				throw new NegocioException(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Senha ").concat("<br/>"));
-			}
-
-			// flag administrador
-			if (usuario.getPerfilAcesso() == null) {
-				throw new NegocioException(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrado").concat("<br/>"));
-			}
-
-			// valida se Pessoa esta ok
-			if (!isValido) {
-				throw new NegocioException(MensagemContantes.MSG_ERR_PESSOA_DADOS_INVALIDOS);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new NegocioException(e);
-		}
-
-		return isValido;
-
-	}
 
 	/**
 	 * Cadastra Usuario em n�vel de neg�cio, chamando o DAO
@@ -208,15 +172,15 @@ public class UsuarioBO {
 		return listUser;
 
 	}
-/**
- * Remove usu�rio da base
- * @param idUsuario
- * @throws NegocioException
- * @throws SQLException 
- */
+	/**
+	 * Remove usu�rio da base
+	 * @param idUsuario
+	 * @throws NegocioException
+	 * @throws SQLException 
+	 */
 	public void removerUsuario(Integer idUsuario) throws NegocioException, SQLException {
 		try {
-			
+
 			if(validaUsuarioProjeto(idUsuario))
 				usuarioDAO.removerUsuario(idUsuario);
 		} catch (PersistenciaException e) {
@@ -225,29 +189,29 @@ public class UsuarioBO {
 		}
 	}
 
-private boolean validaUsuarioProjeto(Integer idUsuario) throws NegocioException, SQLException {
-	//chama um DAO que verifica se o usuario está em algum projeto, 
-	//se estiver(retorna qualquer coisa diferente de -1), retorna falso. 
-	int id = -1;
-	try{
-	id = usuarioDAO.verificaUsuarioProjeto(idUsuario);
-	} catch (PersistenciaException e){
-		e.printStackTrace();
-		throw new NegocioException(e);
+	private boolean validaUsuarioProjeto(Integer idUsuario) throws NegocioException, SQLException {
+		//chama um DAO que verifica se o usuario está em algum projeto, 
+		//se estiver(retorna qualquer coisa diferente de -1), retorna falso. 
+		int id = -1;
+		try{
+			id = usuarioDAO.verificaUsuarioProjeto(idUsuario);
+		} catch (PersistenciaException e){
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		if (id != -1) return false;
+		return true;
 	}
-	if (id != -1) return false;
-	return true;
-}
 
-public Usuario getUsuario(int idUsuario) throws NegocioException {
-	try {
-		Usuario usuario = usuarioDAO.buscaUsuarioId(idUsuario);
-		
-		return usuario;
-	} catch (Exception e) {
-		e.printStackTrace();
-		throw new NegocioException(e);
-	}	
-}
+	public Usuario getUsuario(int idUsuario) throws NegocioException {
+		try {
+			Usuario usuario = usuarioDAO.buscaUsuarioId(idUsuario);
+
+			return usuario;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}	
+	}
 
 }

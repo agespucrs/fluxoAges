@@ -30,6 +30,8 @@ CREATE TABLE TB_USUARIO (
   UNIQUE KEY MATRICULA_UNIQUE (MATRICULA)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
+alter table ages_e.tb_usuario
+add constraint U_username unique(usuario);
 -- Tabela Tipo Usuario
 CREATE TABLE TB_TIPO_USUARIO (
   ID_TIPO_USUARIO int(11) NOT NULL AUTO_INCREMENT,
@@ -41,12 +43,12 @@ CREATE TABLE TB_TIPO_USUARIO (
 
 -- Inserts
 INSERT INTO TB_TIPO_USUARIO VALUES
-('1', 'Arquiteto', 'Responsável pela parte técnica', '2015-10-01 00:00:00');
+('1', 'Arquiteto', 'Responsï¿½vel pela parte tï¿½cnica', '2015-10-01 00:00:00');
 
 INSERT INTO TB_USUARIO
 (ID_USUARIO,USUARIO,SENHA,PERFIL_ACESSO,STATUS_USUARIO,ID_TIPO_USUARIO,MATRICULA,NOME,EMAIL,DATA_INCLUSAO)
 VALUES
-('10', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO', '1', '00000', 'Cássio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
+('10', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO', '1', '00000', 'Cï¿½ssio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
 
 -- Tabela Projeto
   CREATE TABLE TB_PROJETO (
@@ -102,29 +104,29 @@ CREATE TABLE TB_UF (
 
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AC', 'Acre');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AL', 'Alagoas');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AP', 'Amapá');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AP', 'Amapï¿½');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AM', 'Amazonas');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('BA', 'Bahia');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('CE', 'Ceará');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('CE', 'Cearï¿½');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('DF', 'Distrito Federal');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('ES', 'Espírito Santo');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('GO', 'Goiás');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MA', 'Maranhão');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('ES', 'Espï¿½rito Santo');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('GO', 'Goiï¿½s');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MA', 'Maranhï¿½o');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MT', 'Mato Grosso');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MS', 'Mato Grosso do Sul');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MG', 'Minas Gerais');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PA', 'Pará');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PB', 'Paraíba');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PR', 'Paraná');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PA', 'Parï¿½');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PB', 'Paraï¿½ba');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PR', 'Paranï¿½');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PE', 'Pernambuco');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PI', 'Piauí');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PI', 'Piauï¿½');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RJ', 'Rio de Janeiro');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RN', 'Rio Grande do Norte');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RS', 'Rio Grande do Sul');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RO', 'Rondônia');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RO', 'Rondï¿½nia');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RR', 'Roraima');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SC', 'Santa Catarina');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SP', 'São Paulo');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SP', 'Sï¿½o Paulo');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SE', 'Sergipe');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('TO', 'Tocantins');
 
@@ -143,10 +145,10 @@ CREATE TABLE TB_CIDADE (
 INSERT INTO TB_CIDADE (`descricao`, `cod_estado`) 
 	VALUES ('Porto Alegre', 21),
 		   ('Alegrete', 21),
-		   ('Bagé', 21),
+		   ('Bagï¿½', 21),
 		   ('Canoas', 21);
 		   
--- Tabela de para endereço de Pessoas			   
+-- Tabela de para endereï¿½o de Pessoas			   
 CREATE TABLE IF NOT EXISTS `ages_e`.`TB_ENDERECO` (
   `id_endereco` INT(11) NOT NULL AUTO_INCREMENT,
   `logradouro` VARCHAR(45) NOT NULL,
