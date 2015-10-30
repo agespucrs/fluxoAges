@@ -25,6 +25,13 @@ public class CreateScreenProjectCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		//TODO utilizar stakeholderBO.listaStakeholders após a implementação do mesmo
+		
+		ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
+		stakeholders.add(new Stakeholder(1, "Getulio Vargas", "Diretor"));
+		stakeholders.add(new Stakeholder(2, "Armando Nogueira", "Desenvolvedor"));
+		stakeholders.add(new Stakeholder(3, "Bento Gonsalves", "Gerente"));
+		
+		
 		try{
 			
 			String isEdit = request.getParameter("isEdit");
@@ -39,26 +46,22 @@ public class CreateScreenProjectCommand implements Command {
 				usuarioBO = new UsuarioBO();
 				List<Usuario> usuarios = usuarioBO.listarUsuario();
 				
-				ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
-				stakeholders.add(new Stakeholder(1, "Misto", "Quente"));
+				
 				
 				request.setAttribute("projeto", projeto);
-				request.setAttribute("usuarios", usuarios);
-				request.setAttribute("stakeholders", stakeholders);
+				request.setAttribute("listaUsuarios", usuarios);
+				request.setAttribute("listaStakeholders", stakeholders);
 				
 				
 			} else {
 				//TODO implementar StakeholderBO e DAO pra fazer essa parte
 				proxima = "project/addProject.jsp";
-				
-				ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
-				stakeholders.add(new Stakeholder(1, "Misto", "Quente"));
-
+		
 				usuarioBO = new UsuarioBO();
 				List<Usuario> usuarios = usuarioBO.listarUsuario();				
 				
-				request.setAttribute("stakeholders", stakeholders);		
-				request.setAttribute("usuarios", usuarios);
+				request.setAttribute("listaStakeholders", stakeholders);		
+				request.setAttribute("listaUsuarios", usuarios);
 			}
 		} catch(Exception e){
 			request.setAttribute("msgErro", e.getMessage());
