@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.ages.crud.command.*;
+import br.ages.crud.util.LogParametrosSession;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
@@ -54,6 +55,9 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
 		}
+	
+		LogParametrosSession.logParametros(request);
+		
 		request.getRequestDispatcher(proxima).forward(request, reponse);
 		
 	}

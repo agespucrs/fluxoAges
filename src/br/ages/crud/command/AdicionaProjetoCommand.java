@@ -31,13 +31,13 @@ public class AdicionaProjetoCommand implements Command {
 		projetoBO =  new ProjetoBO();
 		proxima = "project/addProject.jsp";
 		
-		String nomeProjeto = request.getParameter("nome");
+		String nomeProjeto = request.getParameter("nomeProjeto");
 		//
-		String[] usuariosString = request.getParameterValues("usuarios");
+		String[] usuariosString = request.getParameterValues("listaUsuarios");
 		//éoq
-		String[] stakeholdersString = request.getParameterValues("stakeholders");
+		String[] stakeholdersString = request.getParameterValues("listaStakeholders");
 		//
-		String statusProjetoString = request.getParameter("status");
+		String statusProjetoString = request.getParameter("statusProjeto");
 		String workspace = request.getParameter("workspace");
 		String dataInicioString = request.getParameter("dataInicio");
 		String dataFimPrevistoString = request.getParameter("dataFimPrevista");
