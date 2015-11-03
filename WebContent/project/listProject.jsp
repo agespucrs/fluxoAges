@@ -93,14 +93,18 @@
 						<td align="center"><%=projeto.getDataFim()%></td>
 						<td align="center"><%=projeto.getDataFimPrevisto()%></td>
 						<td align="center">
-							<form action="" method="post">
-								<a href="" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-							</form>
-						</td>
-
-						<td align="center"><a href="" data-toggle="modal" data-id="<%=projeto.getIdProjeto()%>" data-projeto="<%=projeto.getNomeProjeto()%>"
-							data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a></td>
-
+						<form action="" method="post">
+	            				<a href="" data-toggle="modalProjeto" data-id="<%=projeto.getIdProjeto() %>" data-projeto="<%=projeto.getNomeProjeto()%>" 
+	            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+	            			</form>
+	            		</td>
+	            		
+	            		<td align="center">
+	            			<form action="" method="post">
+	            				<a href="" data-toggle="modalProjeto" data-id="<%=projeto.getIdProjeto() %>" data-projeto="<%=projeto.getNomeProjeto()%>" 
+	            				data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
+	            			</form>
+	            		</td>
 					</tr>
 
 					<%
