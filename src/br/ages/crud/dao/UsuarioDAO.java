@@ -191,9 +191,7 @@ public class UsuarioDAO {
 	 * @param idPessoa
 	 * @throws PersistenciaException
 	 */
-	public boolean removerUsuario(Integer idUsuario)
-	// adicionar algO para remover da tabela tb_tipo_usuario também
-			throws PersistenciaException {
+	public boolean removerUsuario(Integer idUsuario) throws PersistenciaException {
 		boolean removidoOK = false;
 		Connection conexao = null;
 		try {
@@ -417,5 +415,41 @@ public class UsuarioDAO {
 			}
 		}
 		return tipoUsuario;
+	}
+	
+	public boolean editaUsuario(Usuario usuario) throws PersistenciaException{
+		boolean okei = false;
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			int id = usuario.getIdUsuario();
+			
+			sql.append("UPDATE AGES_E.TB_USUARIO SET SENHA = ?, PERFIL_ACESSO = ?,"
+					+ "STATUS_USUARIO = ?, ID_TIPO_USUARIO = ?, NOME = ?, EMAIL = ?, MATRICULA = ?"
+					+ "  WHERE ID_USUARIO = " + id + ";");
+
+			PreparedStatement statement = conexao.prepareStatement(sql
+					.toString());
+			
+			statement.setString(1, usuario.getSenha());
+			statement.setString(2, usuario.getPerfilAcesso().name());
+			statement.setString(3, usuario.getStatusUsuario().name());
+			statement.setString(4, usuario.getTipoUsuario().getNome());
+			statement.setString(5, usuario.getNome());
+			statement.setString(6, usuario.getEmail());
+			statement.setString(7, usuario.getMatricula());
+			okei = statement.execute();
+		}
+		catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return okei;
 	}
 }
