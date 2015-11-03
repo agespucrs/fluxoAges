@@ -126,10 +126,10 @@
 						maxlength="10" placeholder="DD/MM/AAAA">
 				</div>
 
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label class="form-label ages">Arquivo: <span class="red">*</span></label> <input class="form-control" id="arquivo" name="arquivo" value=""
 						type="file" >
-				</div>
+				</div> -->
 
 				<hr>
 
