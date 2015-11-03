@@ -21,7 +21,7 @@ import com.mysql.jdbc.Statement;
 
 /**
  * 
- * @author C?ssio Trindade
+ * @author Cassio Trindade
  *
  */
 public class UsuarioDAO {
@@ -43,27 +43,34 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 */
 
-	public boolean validarUsuario(Usuario usuarioDTO)
-			throws PersistenciaException {
+	public Usuario validarUsuario(Usuario usuarioDTO) throws PersistenciaException {
+		Usuario usuario = new Usuario();
 		try {
+
 			Connection conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT * FROM TB_USUARIO ");
 			sql.append("WHERE USUARIO = ? AND SENHA = ?");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, usuarioDTO.getUsuario());
 			statement.setString(2, usuarioDTO.getSenha());
 
-			ResultSet resultSet = statement.executeQuery();
-			return resultSet.next();
-
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				usuario.setMatricula(resultset.getString("MATRICULA"));
+				usuario.setNome(resultset.getString("NOME"));
+				usuario.setEmail(resultset.getString("EMAIL"));
+				usuario.setUsuario(resultset.getString("USUARIO"));
+				usuario.setSenha(resultset.getString("SENHA"));
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			throw new PersistenciaException(e);
 		}
 
+		return usuario;
 	}
 
 	/**
@@ -73,8 +80,7 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 * @throws SQLException
 	 */
-	public List<Usuario> listarUsuarios() throws PersistenciaException,
-	SQLException {
+	public List<Usuario> listarUsuarios() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		// tentativa de readaptação do listarUsuarios()
 		try {
@@ -99,8 +105,7 @@ public class UsuarioDAO {
 			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
 			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario;");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
 			while (resultset.next()) {
 				Usuario dto = new Usuario();
@@ -111,12 +116,9 @@ public class UsuarioDAO {
 				dto.setEmail(resultset.getString("EMAIL"));
 				dto.setUsuario(resultset.getString("USUARIO"));
 				dto.setSenha(resultset.getString("SENHA"));
-				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset
-						.getString("PERFIL_ACESSO")));
-				dto.setStatusUsuario(StatusUsuario.valueOf(resultset
-						.getString("STATUS_USUARIO")));
-				tipoUsuario.setIdTipoUsuario(resultset
-						.getInt("ID_TIPO_USUARIO"));
+				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
 				tipoUsuario.setNome(resultset.getString("tnome"));
 				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
 				dto.setTipoUsuario(tipoUsuario);
@@ -132,8 +134,7 @@ public class UsuarioDAO {
 		return listarUsuarios;
 	}
 
-	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException,
-	SQLException, ParseException {
+	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
 		// adicionar paranauês de tipo de usuário e tal
 		Connection conexao = null;
 
@@ -146,7 +147,8 @@ public class UsuarioDAO {
 			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, PERFIL_ACESSO, STATUS_USUARIO, ID_TIPO_USUARIO, MATRICULA, NOME, EMAIL, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
 			// falta inserir os negocios na tabela id_tipo_usuario
-			// sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR, MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
+			// sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR,
+			// MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
 			// sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
 
 			// converte a data para data Juliana, data que o banco reconhece;
@@ -154,8 +156,7 @@ public class UsuarioDAO {
 			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
 
 			// Cadastra a pessoa e gera e busca id gerado
-			PreparedStatement statement = conexao.prepareStatement(
-					sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, usuario.getUsuario());
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, String.valueOf(usuario.getPerfilAcesso()));
@@ -198,11 +199,11 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			// sql.append("SELECT ID_TIPO_USUARIO FROM TB_USUARIO WHERE ID_USUARIO = ? ")
+			// sql.append("SELECT ID_TIPO_USUARIO FROM TB_USUARIO WHERE ID_USUARIO = ?
+			// ")
 			sql.append("DELETE FROM TB_USUARIO WHERE ID_USUARIO= ? ");
 			// sql.append("DELETE FROM TB_TIPO_USUARIO WHERE
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idUsuario);
 
 			removidoOK = statement.execute();
@@ -219,8 +220,7 @@ public class UsuarioDAO {
 		return removidoOK;
 	}
 
-	public Usuario buscaUsuarioNome(String nomeUsuario)
-			throws PersistenciaException {
+	public Usuario buscaUsuarioNome(String nomeUsuario) throws PersistenciaException {
 
 		Usuario usuario = new Usuario();
 		Connection conexao = null;
@@ -246,8 +246,7 @@ public class UsuarioDAO {
 			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
 			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario ");
 			sql.append("WHERE u.NOME = ?;");
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, nomeUsuario);
 
 			ResultSet resultset = statement.executeQuery();
@@ -260,13 +259,10 @@ public class UsuarioDAO {
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset
-						.getString("PERFIL_ACESSO")));
-				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset
-						.getString("STATUS_USUARIO")));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
 				TipoUsuario tipoUsuario = new TipoUsuario();
-				tipoUsuario.setIdTipoUsuario(resultset
-						.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
 				tipoUsuario.setNome(resultset.getString("tnome"));
 				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
 				usuario.setTipoUsuario(tipoUsuario);
@@ -284,8 +280,7 @@ public class UsuarioDAO {
 		return usuario;
 	}
 
-	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException,
-	SQLException {
+	public Usuario buscaUsuarioId(int idUsuario) throws PersistenciaException, SQLException {
 		// adicionar informações de tipo de usuario?
 		Usuario usuario = new Usuario();
 
@@ -314,8 +309,7 @@ public class UsuarioDAO {
 			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario ");
 			sql.append("WHERE ID_USUARIO = ?;");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idUsuario);
 			ResultSet resultset = statement.executeQuery();
 
@@ -326,13 +320,10 @@ public class UsuarioDAO {
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset
-						.getString("PERFIL_ACESSO")));
-				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset
-						.getString("STATUS_USUARIO")));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
 				TipoUsuario tipoUsuario = new TipoUsuario();
-				tipoUsuario.setIdTipoUsuario(resultset
-						.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
 				tipoUsuario.setNome(resultset.getString("tnome"));
 				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
 				usuario.setTipoUsuario(tipoUsuario);
@@ -352,8 +343,7 @@ public class UsuarioDAO {
 
 	}
 
-	public int verificaUsuarioProjeto(Integer idUsuario)
-			throws PersistenciaException, SQLException {
+	public int verificaUsuarioProjeto(Integer idUsuario) throws PersistenciaException, SQLException {
 		int t = -1;
 		Connection conexao = null;
 		try {
@@ -362,8 +352,7 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("select id_usuario from ages_e.tb_projeto_usuario where id_usuario = ?;");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idUsuario);
 			ResultSet resultset = statement.executeQuery();
 			// gambiarra
@@ -395,11 +384,10 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("select * from ages_e.tb_tipo_usuario where id_tipo_usuario = ?;");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, idTipoUsuario);
 			ResultSet resultset = statement.executeQuery();
-			while (resultset.next()){
+			while (resultset.next()) {
 				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
 				tipoUsuario.setNome(resultset.getString("NOME"));
 				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
@@ -416,22 +404,19 @@ public class UsuarioDAO {
 		}
 		return tipoUsuario;
 	}
-	
-	public boolean editaUsuario(Usuario usuario) throws PersistenciaException{
+
+	public boolean editaUsuario(Usuario usuario) throws PersistenciaException {
 		boolean okei = false;
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			int id = usuario.getIdUsuario();
-			
-			sql.append("UPDATE AGES_E.TB_USUARIO SET SENHA = ?, PERFIL_ACESSO = ?,"
-					+ "STATUS_USUARIO = ?, ID_TIPO_USUARIO = ?, NOME = ?, EMAIL = ?, MATRICULA = ?"
-					+ "  WHERE ID_USUARIO = " + id + ";");
 
-			PreparedStatement statement = conexao.prepareStatement(sql
-					.toString());
-			
+			sql.append("UPDATE AGES_E.TB_USUARIO SET SENHA = ?, PERFIL_ACESSO = ?," + "STATUS_USUARIO = ?, ID_TIPO_USUARIO = ?, NOME = ?, EMAIL = ?, MATRICULA = ?" + "  WHERE ID_USUARIO = " + id + ";");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
 			statement.setString(1, usuario.getSenha());
 			statement.setString(2, usuario.getPerfilAcesso().name());
 			statement.setString(3, usuario.getStatusUsuario().name());
@@ -440,8 +425,7 @@ public class UsuarioDAO {
 			statement.setString(6, usuario.getEmail());
 			statement.setString(7, usuario.getMatricula());
 			okei = statement.execute();
-		}
-		catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
 		} finally {
 			try {

@@ -12,7 +12,6 @@ import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
-import br.ages.crud.validator.LoginValidator;
 import br.ages.crud.validator.SenhaValidator;
 
 /**
@@ -36,13 +35,14 @@ public class UsuarioBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public boolean validaUsuario(Usuario usuario) throws NegocioException {
-		boolean isValido = false;
+	public Usuario validaUsuario(Usuario usuario) throws NegocioException {
+	
+		Usuario user = new Usuario();
 		try {
-			// valida se o usu�rio est� na base
+			// valida se o usuario existe na base
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			isValido = usuarioDAO.validarUsuario(usuario);
-			if (!isValido) {
+			user = usuarioDAO.validarUsuario(usuario);
+			if (user == null){
 				throw new NegocioException(MensagemContantes.MSG_ERR_USUARIO_SENHA_INVALIDOS);
 			}
 
@@ -51,7 +51,7 @@ public class UsuarioBO {
 			throw new NegocioException(e);
 		}
 
-		return isValido;
+		return user;
 
 	}
 
