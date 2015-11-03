@@ -32,11 +32,11 @@ public class AdicionaProjetoCommand implements Command {
 		proxima = "project/addProject.jsp";
 		
 		String nomeProjeto = request.getParameter("nomeProjeto");
-		//
+
 		String[] usuariosString = request.getParameterValues("listaUsuarios");
-		//éoq
+
 		String[] stakeholdersString = request.getParameterValues("listaStakeholders");
-		//
+
 		String statusProjetoString = request.getParameter("statusProjeto");
 		String workspace = request.getParameter("workspace");
 		String dataInicioString = request.getParameter("dataInicio");
@@ -75,28 +75,11 @@ public class AdicionaProjetoCommand implements Command {
 
 			boolean isValido = projetoBO.validarProjeto(projeto);			
 			
-			if (!isValido) {
+			if(isValido) {
+				projetoBO.cadastrarProjeto(projeto);
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", nomeProjeto));
+			} else{
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
-			} else {
-				//começa o troço do upload
-				arquivoBO = new ArquivoBO();
-				
-				Part arquivo = request.getPart("arquivo");
-				
-				boolean tamanhoValido = arquivoBO.validaTamanho(arquivo, Constantes.PROJETO_ARQUIVO_MAX_BYTES);
-				boolean extensaoValida = arquivoBO.validaExtensao(arquivo, Constantes.PROJETO_FILE_EXT);
-				
-				/*if(!tamanhoValido || !extensaoValida){
-					request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_ARQUIVO_INVALIDO.replace("?", String.valueOf(Constantes.PROJETO_ARQUIVO_MAX_BYTES)));
-				} else{
-					arquivoBO.uploadArquivo(arquivo, nomeProjeto, Constantes.PROJETO_UPLOAD_PATH);
-					
-					
-					projetoBO.cadastrarProjeto(projeto);
-					
-					proxima = "main?acao=listProject";
-					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
-				}*/				
 			}
 			
 		}catch(Exception e){

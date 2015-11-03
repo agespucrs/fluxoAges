@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.ages.crud.bo.ProjetoBO;
+import br.ages.crud.exception.NegocioException;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusProjeto;
@@ -60,19 +61,37 @@ public class TestaProjetoBO {
 
 	@Test
 	public void testValidarProjetoOK() {
-		boolean valido = projetoBO.validarProjeto(projetoCerto);
+		boolean valido = false;
+		try {
+			valido = projetoBO.validarProjeto(projetoCerto);
+		} catch (NegocioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(valido, true);
 	}
 	
 	@Test
 	public void testValidarProjetoNotOK(){
-		boolean valido = projetoBO.validarProjeto(projetoErrado);
+		boolean valido = true;
+		try {
+			valido = projetoBO.validarProjeto(projetoErrado);
+		} catch (NegocioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(valido, false);
 	}
 	
 	@Test
 	public void testValidarProjetoNotOK2(){
-		boolean valido = projetoBO.validarProjeto(projetoErradoData);
+		boolean valido = true;
+		try {
+			valido = projetoBO.validarProjeto(projetoErradoData);
+		} catch (NegocioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(valido, false);
 	}
 }
