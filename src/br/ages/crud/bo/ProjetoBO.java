@@ -38,17 +38,47 @@ public class ProjetoBO {
 		}
 	}
 
-	public boolean validarProjeto(Projeto project){
+	public boolean validarProjeto(Projeto project) throws NegocioException{
 		boolean valido = true;
-		DataValidator validator = new DataValidator();
-		
-		//if(project.getStatus() == null) valido = false;
-		if(project.getNomeProjeto() == null || project.getNomeProjeto().equals("")) valido = false;
-		if(project.getDataInicio() == null) valido = false;
-		//if(project.getDataFimPrevisto == null) valido = false;
-		//if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFimPrevisto())) valido = false;		
-		if(project.getDataFim() != null)
-			if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFim())) valido = false;		
+		StringBuilder msg = new StringBuilder();
+		try{
+			DataValidator validator = new DataValidator();
+
+			if(project.getStatusProjeto() == null){
+				valido = false;
+				msg.append(MensagemContantes.MSG_ERR_CAMPO_INVALIDO.replace("?", "Status ").concat("<br/>"));
+			}
+			if(project.getNomeProjeto() == null || project.getNomeProjeto().equals("")){
+				valido = false;
+				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Nome do projeto ").concat("<br/>"));
+			}
+			if(project.getDataInicio() == null){
+				valido = false;
+				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Data de início ").concat("<br/>"));
+			}
+			if(project.getDataFimPrevisto() == null){
+				valido = false;
+				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Data de fim prevista ").concat("<br/>"));
+			}
+			if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFimPrevisto())){
+				valido = false;
+				msg.append(MensagemContantes.MSG_ERR_PROJETO_DATA_INCONSISTENTE.replace("?", " prevista").concat("<br/>"));
+			}
+			if(project.getDataFim() != null){
+				if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFim())){
+					valido = false;		
+					msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "").concat("<br/>"));
+				}					
+			}
+			
+			if(!valido){
+				throw new NegocioException(msg.append(MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS).toString());
+			}
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
 		
 		return valido;
 	}

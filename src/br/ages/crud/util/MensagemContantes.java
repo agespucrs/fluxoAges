@@ -45,13 +45,15 @@ public class MensagemContantes {
 	public static final String MSG_INF_LOGOUT = "Logout do usuário efetuado com sucesso!";
 	
 	public static final String MSG_SENHA_INVALIDA = "A senha do usuario é inválida: Deve ter no mínimo 3 e no máximo 8 caracteres, apenas números e letras!";
-
+	
+	public static final String MSG_ERR_MATRICULA_INVALIDA = "Dado de matrícula inválido";
+	
 	//msgs de projeto
 	public static final String MSG_ERR_PROJETO_DADOS_INVALIDOS = "Dados DO projeto inválidos ou inconsistentes!";
 		
 	public static final String MSG_ERR_PROJETO_ARQUIVO_INVALIDO = "Arquivo excede o ?Mb ou não é do tipo PDF";
-
-	public static final String MSG_ERR_MATRICULA_INVALIDA = "Dado de matrícula inválido";
+	
+	public static final String MSG_ERR_PROJETO_DATA_INCONSISTENTE = "Data de in�cio deve ser anterior a data de fim?!";
 	
 	public static final String MSG_ERR_CADASTRO_PROJETO = "Ocorreu um erro no cadastro do projeto.";
 
