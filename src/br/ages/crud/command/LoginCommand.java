@@ -15,6 +15,7 @@ public class LoginCommand implements Command {
 	public String execute(HttpServletRequest request) {
 		// seta a mesma pagina, para o caso de erro/exceção
 		proxima = "login.jsp";
+		Usuario user = new Usuario();
 		usuarioBO = new UsuarioBO();
 
 		String usuario = request.getParameter("login");
@@ -23,9 +24,12 @@ public class LoginCommand implements Command {
 		Usuario usuarioDTO = new Usuario(usuario, senha);
 
 		try {
-			if (usuarioBO.validaUsuario(usuarioDTO)) {
-				request.getSession().setAttribute("usuario", usuarioDTO);
+			user = usuarioBO.validaUsuario(usuarioDTO); 
+			if (user != null) {
+				
+				request.getSession().setAttribute("usuarioSessao", user);
 				proxima = "main?acao=listUser";
+			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -47,7 +47,7 @@ public class LoginFilter implements Filter {
 	
 		if (!isURLToExclusao(uri, httpRequest)) {
 			HttpSession session = httpRequest.getSession();
-			if (session.getAttribute("usuario") == null) {
+			if (session.getAttribute("usuarioSessao") == null) {
 				request.setAttribute("msgErro", "Acesso negado! Você precisa logar primeiro");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
