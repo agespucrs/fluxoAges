@@ -69,27 +69,15 @@ public class EditaProjetoCommand implements Command{
 			projeto.setDataInicio(dataInicio);
 			projeto.setDataFim(dataFim);
 			projeto.setDataFimPrevisto(dataFimPrevisto);
-			
+
 			boolean isValido = projetoBO.validarProjeto(projeto);
-			
+
 			if(isValido){
-				arquivoBO = new ArquivoBO();
-				
-				Part arquivo = request.getPart("arquivo");
-				
-				boolean tamanhoValido = arquivoBO.validaTamanho(arquivo, Constantes.PROJETO_ARQUIVO_MAX_BYTES);
-				boolean extensaoValida = arquivoBO.validaExtensao(arquivo, Constantes.PROJETO_FILE_EXT);
-				
-				if(tamanhoValido && extensaoValida){
-					arquivoBO.uploadArquivo(arquivo, nomeProjeto, Constantes.PROJETO_UPLOAD_PATH);
-					
-					projetoBO.cadastrarProjeto(projeto);
-					
-					proxima = "main?acao=listProject";
-					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
-				} else {
-					request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_ARQUIVO_INVALIDO.replace("?", String.valueOf(Constantes.PROJETO_ARQUIVO_MAX_BYTES)));
-				}
+				projetoBO.cadastrarProjeto(projeto);
+
+				proxima = "main?acao=listProject";
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
+
 			} else {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
 			}
