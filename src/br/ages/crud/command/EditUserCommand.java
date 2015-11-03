@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.dao.UsuarioDAO;
+import br.ages.crud.exception.NegocioException;
 import br.ages.crud.model.PerfilAcesso;
 import br.ages.crud.model.StatusUsuario;
 import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
+import br.ages.crud.util.MensagemContantes;
 
 
 public class EditUserCommand implements Command{
@@ -37,32 +39,37 @@ public class EditUserCommand implements Command{
 		String emailString = request.getParameter("email");
 		
 		
-		try{
-			Integer idUsuario = Integer.parseInt(idUsuarioString);
+		try{			
+			TipoUsuario tipoUsuario = new TipoUsuario();
+			tipoUsuario.setIdTipoUsuario(Integer.parseInt(idTipoUsuario));
 			
 			PerfilAcesso perfilAcesso = PerfilAcesso.valueOf(perfilAcessoString);
 			
 			StatusUsuario statusUsuario = StatusUsuario.valueOf(statusUsuarioString);
 						
 			Usuario usuario = new Usuario();
-			usuario.setIdUsuario(idUsuario);
-			usuario.setSenha(senhaString);
-		
+
+			usuario.setSenha(senhaString);		
+			usuario.setTipoUsuario(tipoUsuario);
 			usuario.setPerfilAcesso(perfilAcesso);
+			usuario.setStatusUsuario(statusUsuario);
 			usuario.setMatricula(matriculaString);
 			usuario.setNome(nomeString);
-			usuario.setEmail(emailString);
+			usuario.setEmail(emailString);			
 			
-			TipoUsuario tipoUsuario =  usuarioBO.consultaTipoUsuario(idTipoUsuario);
-			
-			usuario.setTipoUsuario(tipoUsuario);
-			
-			boolean isValido = usuarioBO.validaUsuario(usuario);
+			boolean isValido = usuarioBO.validaCadastroUsuarioA(usuario);
 					
 			if(isValido){
-				usuarioBO.cadastraUsuario(usuario);
-			}
-		return proxima;		
+				//usuarioBO.editarUsuario(usuario);	TODO ESPERAR METODO DO DAO
+				proxima = "main?acao=listUser";
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?", nomeString));				
+			} else {
+				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
+			}				
+		} catch(NegocioException e){			
+			request.setAttribute("msgErro", e.getMessage());
+		}
+		return proxima;
 	}
 
 }
