@@ -60,7 +60,7 @@ public class EditUserCommand implements Command{
 			boolean isValido = usuarioBO.validaCadastroUsuarioA(usuario);
 					
 			if(isValido){
-				//usuarioBO.editarUsuario(usuario);	TODO ESPERAR METODO DO DAO
+				usuarioBO.editaUsuario(usuario);
 				proxima = "main?acao=listUser";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?", nomeString));				
 			} else {

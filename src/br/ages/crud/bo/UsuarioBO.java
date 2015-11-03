@@ -226,4 +226,14 @@ public class UsuarioBO {
 		}	
 	}
 
+	public void editaUsuario(Usuario usuario) throws NegocioException {
+		try{
+			usuarioDAO.editaUsuario(usuario);
+		} catch(Exception e){
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		
+	}
+
 }
