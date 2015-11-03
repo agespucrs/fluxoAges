@@ -59,8 +59,7 @@
 		            				data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
 		            			</form>
 		            		</td>
-		            		
-			            </tr>
+		            	</tr>
 							
 						<% } %>
 					</tbody>
