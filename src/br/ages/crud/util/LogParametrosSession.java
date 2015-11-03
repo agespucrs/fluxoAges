@@ -23,7 +23,7 @@ public class LogParametrosSession {
 			if (paramValues.length == 1) {
 				String paramValue = paramValues[0];
 				if (paramValue.length() == 0)
-					System.out.println("No Value>");
+					System.out.println("Sem Valor");
 				else
 					System.out.println("valor: " + paramValue);
 			} else {

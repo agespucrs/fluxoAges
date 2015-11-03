@@ -1,3 +1,4 @@
+<%@page import="br.ages.crud.model.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,6 +25,7 @@
 		
     
     <body>
+     <% Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioSessao"); %>
     	<div class="container">
     	
     		<!-- MODAL / POPUP -->
@@ -66,7 +68,7 @@
         				<li class="dropdown">
         					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
         						<span class="glyphicon glyphicon-user"></span>
-        						Olá, ${sessionScope.usuario.usuario}!
+        						Olá, <%=usuarioSessao.getNome()%>!
         						<span class="caret"></span>
         					</a>
                            
