@@ -23,7 +23,7 @@
                 <form method="post" action="main?acao=editUser">
                 	<input class="form-control" type="hidden" id="idUsuario" name="idUsuario" value="<%=usuario.getIdUsuario()%>">
                		<div class="form-group">
-			           	<label class="form-label ages">Matrícula: <span class="red">*</span></label>
+			           	<label class="form-label ages">Matrícula:
 			           	<input class="form-control" id="matricula" name="matricula" value="<%=usuario.getMatricula() %>" type="text" maxlength="9" disabled="disabled">
 		            </div>
 		            
@@ -33,13 +33,13 @@
 		            </div>
 
 					<div class="form-group">
-			           	<label class="form-label ages">Usuário: <span class="red">*</span></label>
-			           	<input class="form-control" id="usuario" name="usuario" value="<%=usuario.getUsuario() %>" type="text" maxlength="120" required>
+			           	<label class="form-label ages">Usuário:
+			           	<input class="form-control" id="usuario" name="usuario" value="<%=usuario.getUsuario() %>" type="text" maxlength="120" disabled>
 		            </div>
                     
 					<div class="form-group">
 			           	<label class="form-label ages">Senha: <span class="red">*</span></label>
-			           	<input class="form-control" id="senha" name="senha" value="<%=usuario.getSenha() %>" type="password" maxlength="120" required>
+			           	<input class="form-control" id="senha" name="senha" value="<%=usuario.getSenha() %>" type="text" maxlength="120" required>
 		            </div>
 				
 					<div class="form-group">
@@ -78,7 +78,7 @@
                     
                     <div class="text-center">
 			           	<input class="btn btn-warning limparUser pull-left" type="reset" value="Limpar">
-			           	<input class="btn btn-primary addUser pull-right" type="submit" value="Editar">
+			           	<input class="btn btn-primary addUser pull-right" type="submit" value="Salvar">
 			        </div>
 			        
                 </form>
