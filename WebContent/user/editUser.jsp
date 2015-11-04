@@ -24,7 +24,7 @@
                 	<input class="form-control" type="hidden" id="idUsuario" name="idUsuario" value="<%=usuario.getIdUsuario()%>">
                		<div class="form-group">
 			           	<label class="form-label ages">Matrícula:
-			           	<input class="form-control" id="matricula" name="matricula" value="<%=usuario.getMatricula() %>" type="text" maxlength="9" disabled="disabled">
+			           	<input class="form-control" id="matricula" name="matricula" value="<%=usuario.getMatricula() %>" type="text" maxlength="9" readonly>
 		            </div>
 		            
 		            <div class="form-group">
@@ -34,7 +34,7 @@
 
 					<div class="form-group">
 			           	<label class="form-label ages">Usuário:
-			           	<input class="form-control" id="usuario" name="usuario" value="<%=usuario.getUsuario() %>" type="text" maxlength="120" disabled>
+			           	<input class="form-control" id="usuario" name="usuario" value="<%=usuario.getUsuario() %>" type="text" maxlength="120" readonly>
 		            </div>
                     
 					<div class="form-group">
