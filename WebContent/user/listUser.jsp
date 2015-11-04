@@ -2,6 +2,9 @@
 <%@page import="java.util.List"%>
 <jsp:include page="../template/head.jsp"></jsp:include>
 
+			<!-- MODAL / POPUP -->
+    		<jsp:include page="../template/modal.jsp"></jsp:include>
+    		
 	<div class="panel panel-primary">
     		
 		<div class="panel-heading text-center">

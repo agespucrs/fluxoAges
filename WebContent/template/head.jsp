@@ -28,8 +28,7 @@
      <% Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioSessao"); %>
     	<div class="container">
     	
-    		<!-- MODAL / POPUP -->
-    		<jsp:include page="./modal.jsp"></jsp:include>
+    		
     	
    			<nav class="navbar navbar-default">
 				<div class="container-fluid">

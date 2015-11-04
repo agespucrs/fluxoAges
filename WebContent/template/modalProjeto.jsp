@@ -2,14 +2,8 @@
 <script>
 $( document ).ready(function() {
 	$('#modalExcluir').on('show.bs.modal', function (event) {
-	  	var botao = $(event.relatedTarget);
-	  	var usuario = botao.data('projeto');
-		var id = botao.data('id');
-	  	
 	  	$(this).find('.modal-title').text('Excluir projeto');
-	  	$(this).find('#modal-descricao').text('Você realmente deseja excluir o projeto (' + projeto + ')?');
-	  	
-	  	$('#formExcluir').attr('action', "main?acao=removerProjeto&id_projeto=" + id);
+	  	$(this).find('#modal-descricao').text('A opção de excluir projeto será adicionada na próxima versão...');
 	});
 	
 	
@@ -37,13 +31,6 @@ $( document ).ready(function() {
 	      		
 		      	<div class="modal-body">
 	        		<p id="modal-descricao"></p>
-		      	</div>
-		      	
-		      	<div class="modal-footer">
-		      		<form action="" method="post" id="formExcluir">
-		      			<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-		      			<button type="submit" class="btn btn-primary">Excluir</button>
-		      		</form>
 		      	</div>
 		      	
 		    </div>

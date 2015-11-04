@@ -3,20 +3,10 @@
 <%@page import="java.util.List"%>
 
 
-<script type="text/javascript">
-	function remover(id) {
-		to
-		var resposta = confirm("Deseja remover o usuario " + id);
-
-		if (resposta == true) {
-			var formCadastro = document.forms[0];
-			formCadastro.action = "main?acao=removerProjeto&id_projeto=" + id;
-			formCadastro.submit();
-		}
-	}
-</script>
-
 <jsp:include page="../template/head.jsp"></jsp:include>
+			
+			<!-- MODAL / POPUP -->
+    		<jsp:include page="../template/modalProjeto.jsp"></jsp:include>
 
 <div class="panel panel-primary">
 
@@ -48,8 +38,10 @@
 
 				<tbody>
 					<%
+						
 						List<Projeto> listaProjetos = (List<Projeto>) request.getAttribute("listaProjetos");
 						for (Projeto projeto : listaProjetos) {
+						
 					%>
 
 					<tr>
