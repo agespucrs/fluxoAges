@@ -36,13 +36,13 @@ public class ProjetoDAO {
 	public ArrayList<Projeto> listarProjetos() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		ArrayList<Projeto> listaProjetos = new ArrayList<Projeto>();
-		//TODO: lista stakeholders
+		//TODO: lista stakeholderso
 		
 		try {
 			conexao = ConexaoUtil.getConexao();
 		
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ID_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DAFA_FIM_PREVISTO");
+			sql.append("SELECT ID_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO");
 			sql.append(" FROM TB_PROJETO");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -61,7 +61,7 @@ public class ProjetoDAO {
 				Date dataFim = resultSet.getDate("DATA_FIM");
 				projeto.setDataFim(dataFim);
 				
-				Date dataFimPrevisto = resultSet.getDate("DAFA_FIM_PREVISTO");;
+				Date dataFimPrevisto = resultSet.getDate("DATA_FIM_PREVISTO");;
 				projeto.setDataFimPrevisto(dataFimPrevisto);
 				
 				projeto.setUsuarios(buscarUsuariosProjeto(conexao, resultSet.getInt("ID_PROJETO")));
@@ -119,7 +119,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DAFA_FIM_PREVISTO, DATA_INCLUSAO)");
+			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?)");
 			
 			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
@@ -145,10 +145,11 @@ public class ProjetoDAO {
 			ResultSet resultset = statement.getGeneratedKeys();
 			if (resultset.first()) {
 				idProjeto = resultset.getInt(1);
+				projeto.setIdProjeto(idProjeto);
 			}
 			
 			if(!inserirUsuariosProjeto(conexao, projeto)) return;
-			if(!inserirStakeholdersProjeto(conexao, projeto)) return;
+		/*	if(!inserirStakeholdersProjeto(conexao, projeto)) return;*/
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
