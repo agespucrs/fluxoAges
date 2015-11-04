@@ -64,12 +64,12 @@ public class ProjetoBO {
 				valido = false;
 				msg.append(MensagemContantes.MSG_ERR_PROJETO_DATA_INCONSISTENTE.replace("?", " prevista").concat("<br/>"));
 			}
-			if(project.getDataFim() != null){
+	/*		if(project.getDataFim() != null){
 				if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFim())){
 					valido = false;		
 					msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "").concat("<br/>"));
-				}					
-			}
+				}		*/			
+			
 			
 			if(!valido){
 				throw new NegocioException(msg.append(MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS).toString());

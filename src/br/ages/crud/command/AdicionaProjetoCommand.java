@@ -1,19 +1,18 @@
 package br.ages.crud.command;
 
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 
 import br.ages.crud.bo.ArquivoBO;
 import br.ages.crud.bo.ProjetoBO;
+import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.model.Usuario;
-import br.ages.crud.util.Constantes;
 import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.util.Util;
 
@@ -26,10 +25,14 @@ public class AdicionaProjetoCommand implements Command {
 	
 	private ArquivoBO arquivoBO;
 	
+	private UsuarioBO usuarioBO;
+	
+	private Usuario usuario;
+	
 	@Override
 	public String execute(HttpServletRequest request) {
 		projetoBO =  new ProjetoBO();
-		proxima = "project/addProject.jsp";
+		proxima = "main?acao=telaProjeto";
 		
 		String nomeProjeto = request.getParameter("nomeProjeto");
 
@@ -48,26 +51,46 @@ public class AdicionaProjetoCommand implements Command {
 			//cria o array de usuarios com o array de String do request
 			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();		
 			for(String s: usuariosString){
-				usuarios.add(new Usuario(Integer.parseInt(s)));
+				usuario = new Usuario();
+				usuario.setIdUsuario(Integer.valueOf(s));
+				usuarios.add(usuario);
 			}
-			// mesma coisa mas com stakeholders
+		// mesma coisa mas com stakeholders
 			ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();	
+		// XXX altera na próxima iteração quando da criação do Caso de Uso de Stakeholder
+					stakeholders.add(new Stakeholder(1, "Getulio Vargas", "Diretor"));
+					stakeholders.add(new Stakeholder(2, "Armando Nogueira", "Desenvolvedor"));
+		  		stakeholders.add(new Stakeholder(3, "Bento Gonsalves", "Gerente"));
+					// *************
+					
+			
+			
+			/*	
 			for(String s: stakeholdersString){
 				stakeholders.add(new Stakeholder(Integer.parseInt(s)));
-			}
+			}*/
 			// cria um StatusProjeto com o string do request
 			StatusProjeto statusProjeto = StatusProjeto.valueOf(statusProjetoString); 
 			// cria Dates com os strings recebidos
 			Date dataInicio = Util.stringToDate(dataInicioString);				
 			Date dataFimPrevisto = Util.stringToDate(dataFimPrevistoString);
+			
+			dataFimString = dataFimString == "" ? "00/00/00" : dataFimString;
+			
 			Date dataFim = Util.stringToDate(dataFimString);
 			
 			
 			Projeto projeto = new Projeto();
 			projeto.setNomeProjeto(nomeProjeto);
+			
 			projeto.setUsuarios(usuarios);
+			
+			
 			projeto.setStatusProjeto(statusProjeto);
 			projeto.setWorkspace(workspace);
+			
+			
+			
 			projeto.setStakeholders(stakeholders);
 			projeto.setDataInicio(dataInicio);
 			projeto.setDataFim(dataFim);
@@ -77,6 +100,7 @@ public class AdicionaProjetoCommand implements Command {
 			
 			if(isValido) {
 				projetoBO.cadastrarProjeto(projeto);
+				proxima = "main?acao=listaProjetos";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", nomeProjeto));
 			} else{
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
@@ -84,6 +108,7 @@ public class AdicionaProjetoCommand implements Command {
 			
 		}catch(Exception e){
 			request.setAttribute("msgErro", e.getMessage());
+			e.printStackTrace();
 		}
 			
 		return proxima;

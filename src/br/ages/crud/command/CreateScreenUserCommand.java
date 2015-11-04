@@ -30,7 +30,7 @@ public class CreateScreenUserCommand implements Command {
 				usuarioBO = new UsuarioBO();
 
 				int id = Integer.parseInt(request.getParameter("id_usuario"));
-				Usuario usuario = usuarioBO.getUsuario(id);
+				Usuario usuario = usuarioBO.buscaUsuarioId(id);
 
 				request.setAttribute("usuario", usuario);
 				

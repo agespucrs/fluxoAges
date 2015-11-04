@@ -148,7 +148,7 @@ public class ProjetoDAO {
 				projeto.setIdProjeto(idProjeto);
 			}
 			
-			if(!inserirUsuariosProjeto(conexao, projeto)) return;
+			inserirUsuariosProjeto(conexao, projeto) ;
 		/*	if(!inserirStakeholdersProjeto(conexao, projeto)) return;*/
 			
 		} catch (ClassNotFoundException | SQLException e) {

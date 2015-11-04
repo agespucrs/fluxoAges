@@ -215,7 +215,7 @@ public class UsuarioBO {
 			throw new NegocioException(e);
 		}	
 	}
-	public Usuario getUsuario(int idUsuario) throws NegocioException {
+	public Usuario buscaUsuarioId(int idUsuario) throws NegocioException {
 		try {
 			Usuario usuario = usuarioDAO.buscaUsuarioId(idUsuario);
 
