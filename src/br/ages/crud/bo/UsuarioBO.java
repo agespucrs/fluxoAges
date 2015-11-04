@@ -74,10 +74,10 @@ public class UsuarioBO {
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Matricula ").concat("<br/>"));
 
 			}*/
-		/*	if (!usuario.getMatricula().matches("\\d{5-9}")){
+			if (!usuario.getMatricula().matches("\\d{5,9}")){
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_MATRICULA_INVALIDA.replace("?", "Matricula ").concat("<br/>"));
-			}*/
+			}
 			// Nome
 			if (usuario.getNome() == null || "".equals(usuario.getNome())) {
 				isValido = false;
