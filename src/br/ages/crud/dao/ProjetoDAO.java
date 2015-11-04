@@ -42,7 +42,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 		
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ID_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DAFA_FIM_PREVISTO");
+			sql.append("SELECT ID_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO");
 			sql.append(" FROM TB_PROJETO");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -61,7 +61,7 @@ public class ProjetoDAO {
 				Date dataFim = resultSet.getDate("DATA_FIM");
 				projeto.setDataFim(dataFim);
 				
-				Date dataFimPrevisto = resultSet.getDate("DAFA_FIM_PREVISTO");;
+				Date dataFimPrevisto = resultSet.getDate("DATA_FIM_PREVISTO");;
 				projeto.setDataFimPrevisto(dataFimPrevisto);
 				
 				projeto.setUsuarios(buscarUsuariosProjeto(conexao, resultSet.getInt("ID_PROJETO")));
