@@ -48,9 +48,14 @@ public class EditUserCommand implements Command{
 			StatusUsuario statusUsuario = StatusUsuario.valueOf(statusUsuarioString);
 						
 			Usuario usuario = new Usuario();
-
+			
+			usuario.setIdUsuario(Integer.valueOf(idUsuarioString));
+			usuario.setUsuario(usuarioString);
 			usuario.setSenha(senhaString);		
-			usuario.setTipoUsuario(tipoUsuario);
+			
+			TipoUsuario tipoUsuario2 = usuarioBO.consultaTipoUsuario(idTipoUsuario);
+			
+			usuario.setTipoUsuario(tipoUsuario2);
 			usuario.setPerfilAcesso(perfilAcesso);
 			usuario.setStatusUsuario(statusUsuario);
 			usuario.setMatricula(matriculaString);

@@ -21,10 +21,10 @@
         	<div class="table-responsive">
                 
                 <form method="post" action="main?acao=editUser">
-                
+                	<input class="form-control" type="hidden" id="idUsuario" name="idUsuario" value="<%=usuario.getIdUsuario()%>">
                		<div class="form-group">
 			           	<label class="form-label ages">Matrícula: <span class="red">*</span></label>
-			           	<input class="form-control" id="matricula" name="matricula" value="<%=usuario.getMatricula() %>" type="text" maxlength="9" required>
+			           	<input class="form-control" id="matricula" name="matricula" value="<%=usuario.getMatricula() %>" type="text" maxlength="9" disabled="disabled">
 		            </div>
 		            
 		            <div class="form-group">

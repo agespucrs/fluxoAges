@@ -35,7 +35,7 @@ public class TesteUsuarioDAO {
 	@Test
 	public void testLoginUsuarioOk() throws PersistenciaException {
 
-		boolean isValido = dao.validarUsuario(usuario);
+		boolean isValido = dao.validarUsuario(usuario) == null;
 
 		assertEquals(true, isValido);
 	}
@@ -43,7 +43,7 @@ public class TesteUsuarioDAO {
 	@Test
 	public void testLoginUsuarioNaoOk() throws PersistenciaException {
 
-		boolean isValido = dao.validarUsuario(usuarioErrado);
+		boolean isValido = dao.validarUsuario(usuarioErrado) != null;
 
 		assertEquals(false, isValido);
 	}

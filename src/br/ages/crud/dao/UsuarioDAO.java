@@ -420,7 +420,7 @@ public class UsuarioDAO {
 			statement.setString(1, usuario.getSenha());
 			statement.setString(2, usuario.getPerfilAcesso().name());
 			statement.setString(3, usuario.getStatusUsuario().name());
-			statement.setString(4, usuario.getTipoUsuario().getNome());
+			statement.setInt(4, usuario.getTipoUsuario().getIdTipoUsuario());
 			statement.setString(5, usuario.getNome());
 			statement.setString(6, usuario.getEmail());
 			statement.setString(7, usuario.getMatricula());
