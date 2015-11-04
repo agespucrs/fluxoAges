@@ -42,7 +42,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 		
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ID_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO");
+			sql.append("SELECT ID_PROJETO, STATUS_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO");
 			sql.append(" FROM TB_PROJETO");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -176,7 +176,7 @@ public class ProjetoDAO {
 			statement.setInt(2, usuario.getIdUsuario());
 			
 			ok = statement.execute();
-			if(!ok) break;
+			
 		}
 		
 		return ok;
@@ -199,7 +199,6 @@ public class ProjetoDAO {
 			statement.setInt(2, stakeholder.getIdStakeholder());
 			
 			ok = statement.execute();
-			if(!ok) break;
 		}
 		
 		return ok;
