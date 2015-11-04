@@ -26,6 +26,14 @@ public class Projeto implements Serializable {
 		this.dataInclusao = new Date();
 	}
 	
+	public Projeto(int idProjeto, String nome, StatusProjeto status, Date dataInicio, Date dataFimPrevisto) {
+		this.idProjeto = idProjeto;
+		this.nomeProjeto = nomeProjeto;		
+		this.status = status;
+		this.dataInicio = dataInicio;		
+		this.dataFimPrevisto = dataFimPrevisto;
+	}
+	
 	public Projeto(int idProjeto, String nomeProjeto, ArrayList<Usuario> usuarios, String workspace, StatusProjeto status,
 	ArrayList<Stakeholder> stakeholders, Date dataInicio, Date dataFim, Date dataFimPrevisto) {
 		this.idProjeto = idProjeto;

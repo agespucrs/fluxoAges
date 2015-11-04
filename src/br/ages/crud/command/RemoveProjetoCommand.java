@@ -26,8 +26,8 @@ public class RemoveProjetoCommand implements Command{
 			Projeto projeto = new Projeto();
 			projeto.setIdProjeto(idProjeto);
 			
-			projetoBO.removerProjeto(projeto);
-			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_PROJETO.replace("?", idProjeto.toString()).concat("<br/>"));
+/*			projetoBO.removerProjeto(projeto);
+			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_PROJETO.replace("?", idProjeto.toString()).concat("<br/>")); */
 			
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
