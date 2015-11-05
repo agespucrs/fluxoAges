@@ -23,7 +23,7 @@
                 <form method="post" action="main?acao=editUser">
                 	<input class="form-control" type="hidden" id="idUsuario" name="idUsuario" value="<%=usuario.getIdUsuario()%>">
                		<div class="form-group">
-			           	<label class="form-label ages">Matrícula:
+			           	<label class="form-label ages">Matrícula:</label>
 			           	<input class="form-control" id="matricula" name="matricula" value="<%=usuario.getMatricula() %>" type="text" maxlength="9" readonly>
 		            </div>
 		            
@@ -33,7 +33,7 @@
 		            </div>
 
 					<div class="form-group">
-			           	<label class="form-label ages">Usuário:
+			           	<label class="form-label ages">Usuário:</label>
 			           	<input class="form-control" id="usuario" name="usuario" value="<%=usuario.getUsuario() %>" type="text" maxlength="120" readonly>
 		            </div>
                     
