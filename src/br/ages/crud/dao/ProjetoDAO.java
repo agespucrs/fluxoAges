@@ -212,12 +212,12 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_PROJETO WHERE ID_PROJETO = ?");
+			sql.append("SELECT ID_PROJETO, NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO FROM TB_PROJETO WHERE ID_PROJETO = ?");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idProjeto);
 		
-			ResultSet resultSet = statement.getResultSet();
+			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				
 				projeto.setIdProjeto(resultSet.getInt("ID_PROJETO"));
