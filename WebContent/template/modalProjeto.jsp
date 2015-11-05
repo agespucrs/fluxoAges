@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	
 	$('#modalEditar').on('show.bs.modal', function (event) {
 	  	var botao = $(event.relatedTarget);
-	  	var usuario = botao.data('usuario');
+	  	var projeto = botao.data('projeto');
 		var id = botao.data('id');
 	  	
 	  	$(this).find('.modal-title').text('Editar projeto');
@@ -36,8 +36,6 @@ $( document ).ready(function() {
 		    </div>
 	  	</div>
 	</div>
-
-	
 	
 	<div class="modal fade" id="modalEditar" role="dialog">
   		<div class="modal-dialog">
