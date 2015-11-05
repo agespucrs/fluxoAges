@@ -5,12 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
-import com.mysql.jdbc.Statement;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
@@ -18,6 +17,8 @@ import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
+
+import com.mysql.jdbc.Statement;
 
 /** 
  * @author Daniele Souza e Victor Diehl
@@ -219,7 +220,7 @@ public class ProjetoDAO {
 		
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				
+
 				projeto.setIdProjeto(resultSet.getInt("ID_PROJETO"));
 				projeto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
 				projeto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));

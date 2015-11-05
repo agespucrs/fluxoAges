@@ -31,10 +31,10 @@ public class EditaProjetoCommand implements Command{
 		proxima = "project/editProject.jsp";
 		
 		String idProjetoString = request.getParameter("idProjeto");
-		String nomeProjeto = request.getParameter("nome");
-		String[] usuariosString = request.getParameterValues("usuarios");
-		String statusProjetoString = request.getParameter("status");
-		String[] stakeholdersString = request.getParameterValues("stakeholders");
+		String nomeProjeto = request.getParameter("nomeProjeto");
+		String[] usuariosString = request.getParameterValues("listaUsuarios");
+		String statusProjetoString = request.getParameter("statusProjeto");
+		String[] stakeholdersString = request.getParameterValues("listaStakeholders");
 		String workspace = request.getParameter("workspace");
 		String dataInicioString = request.getParameter("dataInicio");
 		String dataFimString = request.getParameter("dataFim");

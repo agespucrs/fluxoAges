@@ -69,4 +69,17 @@ public class Util {
 			
 		return data;
 	}
+	
+	public static Date stringToDate(String s) throws ParseException{
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date data;
+		try {
+			data = formatter.parse(s);
+		} catch (ParseException e) {
+			throw new ParseException(MensagemContantes.MSG_ERR_CAMPO_DATA_INVALIDO, e.getErrorOffset());
+		}
+
+			
+		return data;
+	}
 }

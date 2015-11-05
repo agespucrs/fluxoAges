@@ -24,10 +24,7 @@
 
 			<form method="post" action="main?acao=editaProjeto"> <!-- enctype="multipart/form-data" > -->
 
-				<%-- <div class="form-group">
-			           	<label class="form-label ages">Código do Projeto:</label>
-			           	<input class="form-control" id="codigo" name="codigo" value="${param.codigo}" type="text" maxlength="120" disabled>
-		            </div> --%>
+				<input class="form-control" type="hidden" id="idProjeto" name="idProjeto" value="<%=projeto.getIdProjeto()%>">
 
 				<div class="form-group">
 					<label class="form-label ages">Nome: <span class="red">*</span></label> 
@@ -51,7 +48,7 @@
 					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->					
 					
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaStakeholders" class="listaStakeholders" required>
+						<select multiple="multiple" size="10" name="listaStakeholders" id="listaStakeholders" class="listaStakeholders" required>
 						<%
 							List<Stakeholder> listaStakeholders = (List<Stakeholder>) request.getAttribute("listaStakeholders");
 							List<Stakeholder> listaStakeholdersProjeto = (List<Stakeholder>) projeto.getStakeholders();
@@ -64,7 +61,7 @@
 						%>
 						
 						<%
-							for (Stakeholder stakeholder : listaStakeholders) {
+							for (Stakeholder stakeholder : listaStakeholdersProjeto) {
 						%>
 							<option value="<%=stakeholder.getIdStakeholder()%>"><%=stakeholder.getNomeStakeholder()%></option>
 						<%
@@ -80,7 +77,7 @@
 					<!-- USUARIOS -->
 					<!-- http://www.virtuosoft.eu/code/bootstrap-duallistbox/ -->
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaUsuarios" class="listaUsuarios" required>
+						<select multiple="multiple" size="10" name="listaUsuarios" id="listaUsuarios" class="listaUsuarios" required>
 						<%
 							
 							List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listaUsuarios");
