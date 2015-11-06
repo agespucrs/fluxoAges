@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Usuario"%>
 <%@page import="br.ages.crud.model.Projeto"%>
+<%@page import="br.ages.crud.util.Util" %>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 
@@ -109,17 +110,17 @@
 				</div>
 
 				<div class="form-group">
-					<label class="form-label ages">Data de Início: <span class="red">*</span></label> <input class="form-control" id="dataInicio" name="dataInicio" value="<%=projeto.getDataInicio() %>"
+					<label class="form-label ages">Data de Início: <span class="red">*</span></label> <input class="form-control" id="dataInicio" name="dataInicio" value="<%=Util.dateToString(projeto.getDataInicio()) %>"
 						type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 				</div>
 
 				<div class="form-group">
 					<label class="form-label ages">Data de Fim Prevista: <span class="red">*</span></label> <input class="form-control" id="dataFimPrevista" name="dataFimPrevista"
-						value="<%=projeto.getDataFimPrevisto()%>" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
+						value="<%=Util.dateToString(projeto.getDataFimPrevisto())%>" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 				</div>
 
 				<div class="form-group">
-					<label class="form-label ages">Data de Fim:</label> <input class="form-control" id="dataFim" name="dataFim" value="<%=projeto.getDataFim()%>" type="text"
+					<label class="form-label ages">Data de Fim:</label> <input class="form-control" id="dataFim" name="dataFim" value="<%=Util.dateToString(projeto.getDataFim()) %>" type="text"
 						maxlength="10" placeholder="DD/MM/AAAA">
 				</div>
 
