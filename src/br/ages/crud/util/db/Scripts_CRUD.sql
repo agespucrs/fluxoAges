@@ -4,8 +4,10 @@
 * Casssio Trindade, Daniele Souza e Victor Diehl
 * 09/2015
 ***/
-alter table ages_e.tb_usuario
-add constraint U_username unique(usuario);
+
+
+-- alter table ages_e.tb_usuario
+-- add constraint U_username unique(usuario);
 
 USE ages_e;
 
@@ -14,7 +16,7 @@ USE ages_e;
 -- DROP TABLE TB_PROJETO_STAKEHOLDERS;
 -- DROP TABLE TB_USUARIO;
 -- DROP TABLE TB_PROJETO;
--- DROP TABLE TB_STAKEHOLDERS
+-- DROP TABLE TB_STAKEHOLDERS;
 
 -- Tabela Usuario
 CREATE TABLE TB_USUARIO (
@@ -29,7 +31,8 @@ CREATE TABLE TB_USUARIO (
   EMAIL varchar(120) DEFAULT NULL,
   DATA_INCLUSAO datetime DEFAULT NULL,
   PRIMARY KEY (ID_USUARIO,MATRICULA),
-  UNIQUE KEY MATRICULA_UNIQUE (MATRICULA)
+  UNIQUE KEY MATRICULA_UNIQUE (MATRICULA),
+  CONSTRAINT U_USERNAME UNIQUE (USUARIO)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- Tabela Tipo Usuario

@@ -124,8 +124,9 @@ public class ProjetoDAO {
 
 			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
 
-			java.sql.Date dataFim = new java.sql.Date(projeto.getDataFim().getTime());
-
+			java.sql.Date dataFim = null;
+			if(projeto.getDataFim() != null) dataFim = new java.sql.Date(projeto.getDataFim().getTime());
+			
 			java.sql.Date dataFimPrevisto = new java.sql.Date(projeto.getDataFimPrevisto().getTime());
 
 			java.sql.Date dataInclusao = new java.sql.Date(projeto.getDataInclusao().getTime());
@@ -255,7 +256,8 @@ public class ProjetoDAO {
 
 			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
 
-			java.sql.Date dataFim = new java.sql.Date(projeto.getDataFim().getTime());
+			java.sql.Date dataFim = null;
+			if(projeto.getDataFim() != null) dataFim = new java.sql.Date(projeto.getDataFim().getTime());
 
 			java.sql.Date dataFimPrevisto = new java.sql.Date(projeto.getDataFimPrevisto().getTime());
 
