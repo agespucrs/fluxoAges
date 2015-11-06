@@ -62,12 +62,12 @@ public class EditUserCommand implements Command{
 			usuario.setNome(nomeString);
 			usuario.setEmail(emailString);			
 			
-			boolean isValido = usuarioBO.validaCadastroUsuarioA(usuario);
+			boolean isValido = usuarioBO.validaUsuarioA(usuario);
 					
 			if(isValido){
 				usuarioBO.editaUsuario(usuario);
 				proxima = "main?acao=listUser";
-				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_USUARIO.replace("?", nomeString));				
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_EDICAO_USUARIO.replace("?", nomeString));				
 			} else {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
 			}				

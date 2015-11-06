@@ -46,7 +46,7 @@ public class AddUserCommand implements Command {
 			tUser = usuarioBO.consultaTipoUsuario(tipoUsuario);
 			user.setTipoUsuario(tUser);
 			
-			boolean isValido = usuarioBO.validaCadastroUsuarioA(user);
+			boolean isValido = usuarioBO.validaUsuarioA(user);
 			if (isValido == false) {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
 			} else { // cadastro de pessoa com sucesso

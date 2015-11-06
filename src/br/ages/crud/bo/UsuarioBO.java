@@ -1,6 +1,7 @@
 package br.ages.crud.bo;
 
 import java.sql.SQLException;
+import java.text.Normalizer;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +41,7 @@ public class UsuarioBO {
 		Usuario user = new Usuario();
 		try {
 			// valida se o usuario existe na base
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
+
 			user = usuarioDAO.validarUsuario(usuario);
 			if (user == null){
 				throw new NegocioException(MensagemContantes.MSG_ERR_USUARIO_SENHA_INVALIDOS);
@@ -62,7 +63,7 @@ public class UsuarioBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public boolean validaCadastroUsuarioA(Usuario usuario) throws NegocioException {
+	public boolean validaUsuarioA(Usuario usuario) throws NegocioException {
 		boolean isValido = true;
 		StringBuilder msg = new StringBuilder();
 
@@ -92,7 +93,10 @@ public class UsuarioBO {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Email ").concat("<br/>"));
 			}
-			if(!usuario.getNome().matches("(([A-Z][a-z]*)\\s{0,1})*")){
+			
+			String nome = Normalizer.normalize(usuario.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+			
+			if(!nome.matches("(([A-Z][a-z]*)\\s{0,1})+")){
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_NOME_INVALIDO.replace("?", "Nome ").concat("<br/>"));
 			}
