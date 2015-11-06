@@ -227,7 +227,8 @@ public class ProjetoDAO {
 				projeto.setDataInicio(resultSet.getDate("DATA_INICIO"));
 				projeto.setDataFim(resultSet.getDate("DATA_FIM"));
 				projeto.setDataFimPrevisto(resultSet.getDate("DATA_FIM_PREVISTO"));
-				projeto.setUsuarios(new ArrayList<Usuario>());
+				ArrayList<Usuario> usuarios = buscarUsuariosProjeto(conexao, projeto.getIdProjeto());
+				projeto.setUsuarios(usuarios);
 				projeto.setStakeholders(new ArrayList<Stakeholder>());
 
 			}
