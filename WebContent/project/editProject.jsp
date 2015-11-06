@@ -64,7 +64,7 @@
 						<%
 							for (Stakeholder stakeholder : listaStakeholdersProjeto) {
 						%>
-							<option value="<%=stakeholder.getIdStakeholder()%>"><%=stakeholder.getNomeStakeholder()%></option>
+							<option value="<%=stakeholder.getIdStakeholder()%>" selected="selected"><%=stakeholder.getNomeStakeholder()%></option>
 						<%
 							}
 						%>
@@ -94,11 +94,11 @@
 						<%	
 							for (Usuario usuarioProjeto : listaUsuariosProjeto) {
 						%>
-							<option value="<%=usuarioProjeto.getIdUsuario()%>"><%=usuarioProjeto.getNome()%> "selected" : ""</option>
+							<option value="<%=usuarioProjeto.getIdUsuario()%>" selected="selected"><%=usuarioProjeto.getNome()%></option>
 						<%
 							}
 						%>
-						
+						  
 						</select>
 					</div>
 				</div>

@@ -2,8 +2,14 @@
 <script>
 $( document ).ready(function() {
 	$('#modalExcluir').on('show.bs.modal', function (event) {
-	  	$(this).find('.modal-title').text('Excluir projeto');
-	  	$(this).find('#modal-descricao').text('A opção de excluir projeto será adicionada na próxima versão...');
+		var botao = $(event.relatedTarget);
+	  	var projeto = botao.data('projeto');
+		var id = botao.data('id');
+		
+		$(this).find('.modal-title').text('Excluir projeto');
+	  	$(this).find('#modal-descricao').text('Voce relamente queer Excluir o Projeto (' + projeto + ')?');
+	  	+
+		$('#formExcluir').attr('action', "main?acao=removeProjeto&id_projeto=" + id );
 	});
 	
 	
@@ -31,6 +37,13 @@ $( document ).ready(function() {
 	      		
 		      	<div class="modal-body">
 	        		<p id="modal-descricao"></p>
+		      	</div>
+		      	
+		      		<div class="modal-footer">
+		      		<form action="" method="post" id="formExcluir">
+		      			<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		      			<button type="submit" class="btn btn-primary">Excluir</button>
+		      		</form>
 		      	</div>
 		      	
 		    </div>
