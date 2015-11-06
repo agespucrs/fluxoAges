@@ -72,7 +72,7 @@
         					</a>
                            
         					<ul class="dropdown-menu dropdown-menu-right">
-        						<li><a href="main?acao=logout">Deslogar</a></li>
+        						<li><a href="main?acao=logout">Logout</a></li>
         					</ul>
         				</li>
 			      	</ul>

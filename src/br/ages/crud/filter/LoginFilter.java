@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import br.ages.crud.util.MensagemContantes;
+
 /**
  * Servlet Filter implementation class LoginFilter
  */
@@ -48,7 +50,7 @@ public class LoginFilter implements Filter {
 		if (!isURLToExclusao(uri, httpRequest)) {
 			HttpSession session = httpRequest.getSession();
 			if (session.getAttribute("usuarioSessao") == null) {
-				request.setAttribute("msgErro", "Acesso negado! Você precisa logar primeiro");
+				request.setAttribute("msgErro", MensagemContantes.MSG_INF_DENY);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
 				chain.doFilter(request, response);

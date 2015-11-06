@@ -53,6 +53,8 @@ public class MensagemContantes {
 	
 	public static final String MSG_INF_LOGOUT = "Logout do usuário efetuado com sucesso!";
 	
+	public static final String MSG_INF_DENY = "Acesso negado!";
+	
 	//msgs de projeto
 	public static final String MSG_ERR_PROJETO_DADOS_INVALIDOS = "Dados do projeto inválidos ou inconsistentes!";
 		
