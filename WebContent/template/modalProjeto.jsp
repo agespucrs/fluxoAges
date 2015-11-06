@@ -7,7 +7,7 @@ $( document ).ready(function() {
 		var id = botao.data('id');
 		
 		$(this).find('.modal-title').text('Excluir projeto');
-	  	$(this).find('#modal-descricao').text('Voce relamente queer Excluir o Projeto (' + projeto + ')?');
+	  	$(this).find('#modal-descricao').text('Você realmente quer excluir o projeto ' + projeto + '?');
 	  	+
 		$('#formExcluir').attr('action', "main?acao=removeProjeto&id_projeto=" + id );
 	});
@@ -19,7 +19,7 @@ $( document ).ready(function() {
 		var id = botao.data('id');
 	  	
 	  	$(this).find('.modal-title').text('Editar projeto');
-	  	$(this).find('#modal-descricao').text('Você realmente deseja editar o projeto (' + projeto + ')?');
+	  	$(this).find('#modal-descricao').text('Você realmente deseja editar o projeto ' + projeto + '?');
 	  	+
 	  	$('#formEditar').attr('action', "main?acao=telaProjeto&id_projeto=" + id + "&isEdit=true");
 	});
