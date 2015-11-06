@@ -73,9 +73,8 @@ public class EditaProjetoCommand implements Command{
 			boolean isValido = projetoBO.validarProjeto(projeto);
 
 			if(isValido){
-				projetoBO.cadastrarProjeto(projeto);
-
-				proxima = "main?acao=listProject";
+				projetoBO.editarProjeto(projeto);
+				proxima = "main?acao=listaProjetos";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
 
 			} else {

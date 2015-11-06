@@ -225,6 +225,8 @@ public class ProjetoDAO {
 				projeto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
 				projeto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));
 				projeto.setWorkspace(resultSet.getString("WORKSPACE"));
+				
+				
 				projeto.setDataInicio(resultSet.getDate("DATA_INICIO"));
 				projeto.setDataFim(resultSet.getDate("DATA_FIM"));
 				projeto.setDataFimPrevisto(resultSet.getDate("DATA_FIM_PREVISTO"));
@@ -253,7 +255,7 @@ public class ProjetoDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE TB_PROJETO SET NOME_PROJETO = ?, STATUS_PROJETO = ?, WORKSPACE = ?, "
-					+ "DATA_INICIO = ?, DATA_FIM = ?, DATA_FIM_PREVISTO = ? WHERE ID_PROJETO = ?}");
+					+ "DATA_INICIO = ?, DATA_FIM = ?, DATA_FIM_PREVISTO = ? WHERE ID_PROJETO = ?;");
 			
 			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
 
