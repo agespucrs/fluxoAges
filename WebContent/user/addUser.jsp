@@ -37,7 +37,7 @@
                     
 					<div class="form-group">
 			           	<label class="form-label ages">Senha: <span class="red">*</span></label>
-			           	<input class="form-control" id="senha" name="senha" value="${param.senha}" type="password" maxlength="120" required>
+			           	<input class="form-control" id="senha" name="senha" value="${param.senha}" type="password" maxlength="8" required>
 		            </div>
 				
 					<div class="form-group">

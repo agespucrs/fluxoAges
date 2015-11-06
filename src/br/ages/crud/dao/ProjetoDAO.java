@@ -5,12 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
-import com.mysql.jdbc.Statement;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
@@ -19,11 +18,11 @@ import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
+import com.mysql.jdbc.Statement;
 /**
  * @author Daniele Souza e Victor Diehl
  */
 
-@SuppressWarnings({ "unused" })
 public class ProjetoDAO {
 
 	private Usuario usuarioProjeto;
@@ -64,7 +63,6 @@ public class ProjetoDAO {
 				projeto.setDataFim(dataFim);
 
 				Date dataFimPrevisto = resultSet.getDate("DATA_FIM_PREVISTO");
-				;
 				projeto.setDataFimPrevisto(dataFimPrevisto);
 
 				projeto.setUsuarios(buscarUsuariosProjeto(conexao, resultSet.getInt("ID_PROJETO")));
@@ -251,7 +249,8 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE TB_PROJETO SET NOME_PROJETO = ?, STATUS_PROJETO = ?, WORKSPACE = ?, " + "DATA_INICIO = ?, DATA_FIM = ?, DATA_FIM_PREVISTO = ? WHERE ID_PROJETO = ?}");
+			sql.append("UPDATE TB_PROJETO SET NOME_PROJETO = ?, STATUS_PROJETO = ?, WORKSPACE = ?, "
+					+ "DATA_INICIO = ?, DATA_FIM = ?, DATA_FIM_PREVISTO = ? WHERE ID_PROJETO = ?;");
 
 			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
 

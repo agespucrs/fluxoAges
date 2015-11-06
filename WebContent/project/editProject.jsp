@@ -115,7 +115,11 @@
 				</div>
 
 				<div class="form-group">
+<<<<<<< HEAD
 					<label class="form-label ages">Data de Fim Prevista: <span class="red">*</span></label> <input class="form-control" id="dataFimPrevista" name="dataFimPrevista"
+=======
+					<label class="form-label ages">Data de Fim Previsto: <span class="red">*</span></label> <input class="form-control" id="dataFimPrevisto" name="dataFimPrevisto"
+>>>>>>> branch 'dev' of https://github.com/agespucrs/fluxoAges.git
 						value="<%=Util.dateToString(projeto.getDataFimPrevisto())%>" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 				</div>
 

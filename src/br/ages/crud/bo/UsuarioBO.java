@@ -66,6 +66,8 @@ public class UsuarioBO {
 	public boolean validaUsuarioA(Usuario usuario) throws NegocioException {
 		boolean isValido = true;
 		StringBuilder msg = new StringBuilder();
+		
+		String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 		try {
 			// valida campos est�o preenchidos corretamente
@@ -89,7 +91,7 @@ public class UsuarioBO {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Usuario ").concat("<br/>"));
 			}
-			if (!usuario.getEmail().matches("\\S+@[a-zA-Z]+(.[a-z]+)+")) {
+			if (!usuario.getEmail().matches(EMAIL_PATTERN)) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Email ").concat("<br/>"));
 			}
