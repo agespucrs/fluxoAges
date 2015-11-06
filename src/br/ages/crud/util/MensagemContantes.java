@@ -70,7 +70,7 @@ public class MensagemContantes {
 
 	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto ? removido com sucesso!";
 
-	public static final Object MSG_REMOVER_USER_USUARIO_EM_PROJETO = "O usu√°rio de id ? est√° em algum projeto e n√£o pode ser removido.";
+	public static final String MSG_ERR_REMOVE_USUARIO_EM_PROJETO = "O usu·rio ? est· em algum projeto e n„o pode ser removido!";
 
 
 }
