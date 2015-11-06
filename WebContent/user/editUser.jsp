@@ -50,24 +50,24 @@
                     <div class="form-group">
 			           	<label class="form-label ages">Perfil de Acesso: <span class="red">*</span></label>
 			           	<select class="form-control" id="perfilAcesso" name="perfilAcesso" required>
-			           		<option value="ADMINISTRADOR" <%= "ADMINISTRADOR".equals(usuario.getPerfilAcesso()) ? "selected" : "" %>>Administrador</option>
-                            <option value="NAVEGADOR" <%= "NAVEGADOR".equals(usuario.getPerfilAcesso()) ? "selected" : "" %>>Navegador</option>
+                            <option value="NAVEGADOR" <%= "NAVEGADOR".equals(usuario.getPerfilAcesso().toString()) ? "selected" : "" %>>Navegador</option>
+			           		<option value="ADMINISTRADOR" <%= "ADMINISTRADOR".equals(usuario.getPerfilAcesso().toString()) ? "selected" : "" %>>Administrador</option>
 		           		</select>
 		            </div>
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Status: <span class="red">*</span></label>
 			           	<select class="form-control" id="statusUsuario" name="statusUsuario" required>
-			           		<option value="ATIVO" <%= "ATIVO".equals(usuario.getStatusUsuario()) ? "selected" : "" %>>Ativo</option>
-                            <option value="INATIVO" <%= "INATIVO".equals(usuario.getStatusUsuario()) ? "selected" : "" %>>Inativo</option>
+			           		<option value="ATIVO" <%= "ATIVO".equals(usuario.getStatusUsuario().toString()) ? "selected" : "" %>>Ativo</option>
+                            <option value="INATIVO" <%= "INATIVO".equals(usuario.getStatusUsuario().toString()) ? "selected" : "" %>>Inativo</option>
 		           		</select>
 		            </div>
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Tipo de Usuário: <span class="red">*</span></label>
 			           	<select class="form-control" id="tipoUsuario" name="tipoUsuario" required>
-                            <option value="2" <%= "ALUNO".equals(usuario.getTipoUsuario()) ? "selected" : "" %>>Aluno</option>
-			           		<option value="1" <%= "ARQUITETO".equals(usuario.getTipoUsuario()) ? "selected" : "" %>>Arquiteto</option>
+                            <option value="2" <%= usuario.getTipoUsuario().getIdTipoUsuario() == 2 ? "selected" : "" %>>Aluno</option>
+			           		<option value="1" <%= usuario.getTipoUsuario().getIdTipoUsuario() == 1 ? "selected" : "" %>>Arquiteto</option>
 		           		</select>
 		            </div>
                     

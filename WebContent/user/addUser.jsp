@@ -48,8 +48,8 @@
                     <div class="form-group">
 			           	<label class="form-label ages">Perfil de Acesso: <span class="red">*</span></label>
 			           	<select class="form-control" id="perfilAcesso" name="perfilAcesso" required>
-			           		<option value="ADMINISTRADOR" <%= "ADMINISTRADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : "" %>>Administrador</option>
                             <option value="NAVEGADOR" <%= "NAVEGADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : "" %>>Navegador</option>
+			           		<option value="ADMINISTRADOR" <%= "ADMINISTRADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : "" %>>Administrador</option>
 		           		</select>
 		            </div>
 		            
@@ -64,8 +64,8 @@
 		            <div class="form-group">
 			           	<label class="form-label ages">Tipo de Usuário: <span class="red">*</span></label>
 			           	<select class="form-control" id="tipoUsuario" name="tipoUsuario" required>
-                            <option value="2" <%= "ALUNO".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Aluno</option>
-			           		<option value="1" <%= "ARQUITETO".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Arquiteto</option>
+                            <option value="2" <%= "2".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Aluno</option>
+			           		<option value="1" <%= "1".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Arquiteto</option>
 		           		</select>
 		            </div>
                     
