@@ -58,11 +58,11 @@ public class ProjetoBO {
 			}
 			if(project.getDataFimPrevisto() == null){
 				valido = false;
-				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Data de fim prevista ").concat("<br/>"));
+				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Data de fim previsto ").concat("<br/>"));
 			}
 			if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFimPrevisto())){
 				valido = false;
-				msg.append(MensagemContantes.MSG_ERR_PROJETO_DATA_INCONSISTENTE.replace("?", " prevista").concat("<br/>"));
+				msg.append(MensagemContantes.MSG_ERR_PROJETO_DATA_INCONSISTENTE.replace("?", " previsto").concat("<br/>"));
 			}
 	/*		if(project.getDataFim() != null){
 				if(!validator.maisCedoQue(project.getDataInicio(), project.getDataFim())){
@@ -114,7 +114,7 @@ public class ProjetoBO {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
-	} 
+	}
 	
 	public Projeto buscarProjeto(int idProjeto) throws NegocioException {
 		try{
