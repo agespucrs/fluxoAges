@@ -57,6 +57,8 @@ public class Util {
 		return(cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11)); 
 	}
 	
+
+	
 	public static Date stringToDate(String s) throws ParseException{
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date data;
@@ -70,16 +72,11 @@ public class Util {
 		return data;
 	}
 	
-	public static Date stringToDate(String s) throws ParseException{
+	public static String dateToString(Date d) throws ParseException{
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		Date data;
-		try {
-			data = formatter.parse(s);
-		} catch (ParseException e) {
-			throw new ParseException(MensagemContantes.MSG_ERR_CAMPO_DATA_INVALIDO, e.getErrorOffset());
-		}
+		String data;
+		data = formatter.format(d);
 
-			
 		return data;
 	}
 }
