@@ -107,14 +107,14 @@ public class ProjetoBO {
 		return listProject;	
 	}
 	
-/*	public void removerProjeto(Projeto project) throws NegocioException {
+	public void removerProjeto(Projeto project) throws NegocioException {
 		try {
 			projetoDAO.removerProjeto(project);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
-	} */
+	} 
 	
 	public Projeto buscarProjeto(int idProjeto) throws NegocioException {
 		try{
