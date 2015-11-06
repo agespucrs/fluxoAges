@@ -34,38 +34,39 @@ public class MensagemContantes {
 	
 	public static final String MSG_SUC_CADASTRO_PESSOA = "Cadastro de Pessoa efetuado com sucesso!";
 	
-	public static final String MSG_SUC_CADASTRO_USUARIO = "Cadastro usuário: ?, efetuado com sucesso!";
+	public static final String MSG_SUC_CADASTRO_USUARIO = "Usuário ? cadastrado com sucesso!";
 	
-	public static final String MSG_SUC_EDICAO_USUARIO = "Edição usuário: ?, efetuada com sucesso!";
+	public static final String MSG_SUC_EDICAO_USUARIO = "Usuário ? editado com sucesso!";
 	
-	public static final String MSG_SUC_REMOVE_USUARIO= "Usuario: ?, removido com sucesso!";
+	public static final String MSG_SUC_REMOVE_USUARIO= "Usuario ? removido com sucesso!";
 	
 	public static final String MSG_SUC_ATUALIZADA_PESSOA = "Atualização de Pessoa efetuada com sucesso!";
 	
 	public static final String MSG_INF_LOGOUT = "Logout do usuário efetuado com sucesso!";
 	
-	public static final String MSG_SENHA_INVALIDA = "A senha do usuario é inválida: Deve ter no mínimo 3 e no máximo 8 caracteres, apenas nÃºmeros e letras!";
+	public static final String MSG_SENHA_INVALIDA = "A senha do usuario é inválida: Deve ter no mínimo 3 e no máximo 8 caracteres, apenas números e letras!";
 	
-	public static final String MSG_ERR_MATRICULA_INVALIDA = "Dado de matrícula inválido";
+	public static final String MSG_ERR_MATRICULA_INVALIDA = "Matrícula inválida!";
+	
+	public static final String MSG_ERR_EMAIL_INVALIDO = "E-mail com formato inválido.<br>Não use acentuação e caracteres especiais!"
+			+ "<br>Exemplo correto: ages_user@acad.pucrs.br";
+	
+	public static final String MSG_ERR_NOME_INVALIDO = "Nome com formato inválido.<br>Exemplos corretos: Aaaaaa || Aa Aa";
 	
 	//msgs de projeto
-	public static final String MSG_ERR_PROJETO_DADOS_INVALIDOS = "Dados DO projeto inválidos ou inconsistentes!";
+	public static final String MSG_ERR_PROJETO_DADOS_INVALIDOS = "Dados do projeto inválidos ou inconsistentes!";
 		
-	public static final String MSG_ERR_PROJETO_ARQUIVO_INVALIDO = "Arquivo excede o ?Mb ou não é do tipo PDF";
+	public static final String MSG_ERR_PROJETO_ARQUIVO_INVALIDO = "Arquivo excede o ?Mb ou não é do tipo PDF!";
 	
-	public static final String MSG_ERR_PROJETO_DATA_INCONSISTENTE = "Data de início deve ser anterior a data de fim?!";
+	public static final String MSG_ERR_PROJETO_DATA_INCONSISTENTE = "Data de início deve ser anterior a data de fim?!"; //? proposital
 	
 	public static final String MSG_ERR_CADASTRO_PROJETO = "Ocorreu um erro no cadastro do projeto.";
 
-	public static final String MSG_SUC_CADASTRO_PROJETO = "Cadastro projeto: ?, efetuado com sucesso!";
+	public static final String MSG_SUC_CADASTRO_PROJETO = "Projeto ? cadastro com sucesso!";
 	
-	public static final String MSG_SUC_EDICAO_PROJETO = "Edição projeto: ?, efetuada com sucesso!";
+	public static final String MSG_SUC_EDICAO_PROJETO = "Projeto ? editado com sucesso!";
 
-	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto: ?, removido com sucesso!";
+	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto ? removido com sucesso!";
 
-	public static final String MSG_ERR_EMAIL_INVALIDO = "Email com formato inválido.\nExemplo correto: aaaa@aaa.aaa || bla@acad.pucrs.br"
-			+ "\nNão aceita acentuação e caracteres especiais";
 
-	public static final String MSG_ERR_NOME_INVALIDO = "Nome com formato inválido.\nExemplos corretos: Aaaaaa || Aa Aa";
-	
 }
