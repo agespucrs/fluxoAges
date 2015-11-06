@@ -1,6 +1,8 @@
 <%@page import="br.ages.crud.model.Stakeholder"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.LinkedHashSet"%>
 <%@page import="br.ages.crud.model.Usuario"%>
 <%@page import="br.ages.crud.model.Projeto"%>
 <%@page import="br.ages.crud.util.Util" %>
@@ -83,6 +85,8 @@
 							
 							List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listaUsuarios");
 							List<Usuario> listaUsuariosProjeto = (List<Usuario>) projeto.getUsuarios();
+							
+							
 							
 							for (Usuario usuario : listaUsuarios) {
 						%>

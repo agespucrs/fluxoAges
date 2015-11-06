@@ -39,12 +39,23 @@ public class CreateScreenProjectCommand implements Command {
 			if (isEdit != null && !"".equals(isEdit)) {
 				proxima = "project/editProject.jsp";
 				projetoBO = new ProjetoBO();
-
+				usuarioBO = new UsuarioBO();
 				int idProjeto = Integer.parseInt(request.getParameter("id_projeto"));
 				Projeto projeto = projetoBO.buscarProjeto(idProjeto);
 				
-				usuarioBO = new UsuarioBO();
+				List<Usuario> usuarioProjeto = projeto.getUsuarios();
 				List<Usuario> usuarios = usuarioBO.listarUsuario();
+
+				
+				for(int i = 0; i < usuarioProjeto.size(); i++){
+					for(int j = 0; j < usuarios.size(); j++){
+						if(usuarios.get(j).getIdUsuario() == usuarioProjeto.get(i).getIdUsuario()){
+							usuarios.remove(j);
+							break;
+						}
+					}
+				}
+				
 				
 				
 				
