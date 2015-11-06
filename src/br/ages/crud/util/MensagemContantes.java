@@ -41,6 +41,10 @@ public class MensagemContantes {
 	
 	public static final String MSG_ERR_NOME_INVALIDO = "Nome com formato inválido.<br>Exemplo correto: João Cardoso";
 	
+	public static final String MSG_ERR_USUARIO_JA_EXISTENTE = "Usuário ou matrícula já cadastrados!";
+	
+	public static final String MSG_ERR_REMOVE_USUARIO_EM_PROJETO = "O usuário ? está em algum projeto e não pode ser removido!";
+	
 	public static final String MSG_SUC_CADASTRO_PESSOA = "Cadastro de Pessoa efetuado com sucesso!";
 	
 	public static final String MSG_SUC_CADASTRO_USUARIO = "Usuário ? cadastrado com sucesso!";
@@ -55,7 +59,9 @@ public class MensagemContantes {
 	
 	public static final String MSG_INF_DENY = "Acesso negado!";
 	
+
 	//msgs de projeto
+
 	public static final String MSG_ERR_PROJETO_DADOS_INVALIDOS = "Dados do projeto inválidos ou inconsistentes!";
 		
 	public static final String MSG_ERR_PROJETO_ARQUIVO_INVALIDO = "Arquivo excede o ?Mb ou não é do tipo PDF!";
@@ -69,8 +75,6 @@ public class MensagemContantes {
 	public static final String MSG_SUC_EDICAO_PROJETO = "Projeto ? editado com sucesso!";
 
 	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto ? removido com sucesso!";
-
-	public static final String MSG_ERR_REMOVE_USUARIO_EM_PROJETO = "O usuário ? está em algum projeto e não pode ser removido!";
 
 
 }

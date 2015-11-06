@@ -16,6 +16,7 @@ import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.StatusUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
+import br.ages.crud.util.MensagemContantes;
 
 import com.mysql.jdbc.Statement;
 
@@ -137,6 +138,7 @@ public class UsuarioDAO {
 	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
 		// adicionar paranauês de tipo de usuário e tal
 		Connection conexao = null;
+		
 
 		try {
 			Integer idUsuario = null;
@@ -179,7 +181,7 @@ public class UsuarioDAO {
 			return idUsuario;
 
 		} catch (ClassNotFoundException | SQLException e) {
-			throw new PersistenciaException(e);
+			throw new PersistenciaException(MensagemContantes.MSG_ERR_USUARIO_JA_EXISTENTE.replace("?", usuario.getUsuario()));
 
 		} finally {
 			conexao.close();
