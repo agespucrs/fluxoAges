@@ -41,6 +41,7 @@ public class ProjetoBO {
 	public boolean validarProjeto(Projeto project) throws NegocioException{
 		boolean valido = true;
 		StringBuilder msg = new StringBuilder();
+		msg.append(MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS.concat("<br/>"));
 		try{
 			DataValidator validator = new DataValidator();
 
@@ -72,7 +73,7 @@ public class ProjetoBO {
 			
 			
 			if(!valido){
-				throw new NegocioException(msg.append(MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS).toString());
+				throw new NegocioException(msg.toString());
 			}
 			
 		} catch(Exception e){
