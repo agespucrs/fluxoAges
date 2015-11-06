@@ -22,7 +22,7 @@ public class RemoveUserCommand implements Command {
 			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_USUARIO.replace("?", idUsuario.toString()).concat("<br/>"));
 			
 		} catch (Exception e) {
-			request.setAttribute("msgErro", e.getMessage());
+			request.setAttribute("msgErro", MensagemContantes.MSG_REMOVER_USER_USUARIO_EM_PROJETO);
 		}
 
 		return proximo;
