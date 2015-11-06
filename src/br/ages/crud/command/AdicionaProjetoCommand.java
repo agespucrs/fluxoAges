@@ -74,11 +74,7 @@ public class AdicionaProjetoCommand implements Command {
 			// cria Dates com os strings recebidos
 			Date dataInicio = Util.stringToDate(dataInicioString);				
 			Date dataFimPrevisto = Util.stringToDate(dataFimPrevistoString);
-			
-			dataFimString = dataFimString == "" ? "00/00/00" : dataFimString;
-			
-			Date dataFim = Util.stringToDate(dataFimString);
-			
+			Date dataFim = dataFimString.equals("") ? null : Util.stringToDate(dataFimString);
 			
 			Projeto projeto = new Projeto();
 			projeto.setNomeProjeto(nomeProjeto);

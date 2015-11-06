@@ -121,7 +121,7 @@
 
 				<div class="form-group">
 					<label class="form-label ages">Data de Fim:</label> <input class="form-control" id="dataFim" name="dataFim" 
-						value="<%=Util.dateToString(projeto.getDataFim()) %>" type="text" maxlength="10" placeholder="DD/MM/AAAA">
+						value="<%=projeto.getDataFim() == null ? "" : Util.dateToString(projeto.getDataFim()) %>" type="text" maxlength="10" placeholder="DD/MM/AAAA">
 				</div>
 
 				<!-- <div class="form-group">

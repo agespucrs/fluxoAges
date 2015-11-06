@@ -82,7 +82,7 @@
 						</td>
 						<%-- 	<td align="center"><%=projeto.getStakeholders()%></td>  --%>
 						<td align="center"><%=projeto.getDataInicio()%></td>
-						<td align="center"><%=projeto.getDataFim()%></td>
+						<td align="center"><%=projeto.getDataFim() == null ? "Não definido" : projeto.getDataFim() %></td>
 						<td align="center"><%=projeto.getDataFimPrevisto()%></td>
 						<td align="center">
 						<form action="" method="post">

@@ -56,7 +56,7 @@ public class EditaProjetoCommand implements Command{
 			StatusProjeto statusProjeto = StatusProjeto.valueOf(statusProjetoString); 
 			Date dataInicio = Util.stringToDate(dataInicioString);				
 			Date dataFimPrevisto = Util.stringToDate(dataFimPrevistoString);
-			Date dataFim = Util.stringToDate(dataFimString);
+			Date dataFim = dataFimString.equals("") ? null : Util.stringToDate(dataFimString);
 			
 			
 			Projeto projeto = new Projeto();
