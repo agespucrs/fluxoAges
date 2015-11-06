@@ -115,17 +115,13 @@
 				</div>
 
 				<div class="form-group">
-<<<<<<< HEAD
-					<label class="form-label ages">Data de Fim Prevista: <span class="red">*</span></label> <input class="form-control" id="dataFimPrevista" name="dataFimPrevista"
-=======
 					<label class="form-label ages">Data de Fim Previsto: <span class="red">*</span></label> <input class="form-control" id="dataFimPrevisto" name="dataFimPrevisto"
->>>>>>> branch 'dev' of https://github.com/agespucrs/fluxoAges.git
 						value="<%=Util.dateToString(projeto.getDataFimPrevisto())%>" type="text" maxlength="10" placeholder="DD/MM/AAAA" required>
 				</div>
 
 				<div class="form-group">
-					<label class="form-label ages">Data de Fim:</label> <input class="form-control" id="dataFim" name="dataFim" value="<%=Util.dateToString(projeto.getDataFim()) %>" type="text"
-						maxlength="10" placeholder="DD/MM/AAAA">
+					<label class="form-label ages">Data de Fim:</label> <input class="form-control" id="dataFim" name="dataFim" 
+						value="<%=Util.dateToString(projeto.getDataFim()) %>" type="text" maxlength="10" placeholder="DD/MM/AAAA">
 				</div>
 
 				<!-- <div class="form-group">
