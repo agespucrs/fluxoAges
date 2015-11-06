@@ -71,7 +71,7 @@ public class EditUserCommand implements Command{
 			} else {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
 			}				
-		} catch(NegocioException e){			
+		} catch(Exception e){			
 			request.setAttribute("msgErro", e.getMessage());
 		}
 		return proxima;

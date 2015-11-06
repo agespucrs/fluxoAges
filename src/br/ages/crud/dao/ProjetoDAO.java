@@ -271,6 +271,9 @@ public class ProjetoDAO {
 			statement.setInt(7, projeto.getIdProjeto());
 
 			statement.executeUpdate();
+			
+			removerUsuariosProjeto(conexao, projeto);
+			inserirUsuariosProjeto(conexao, projeto);
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);

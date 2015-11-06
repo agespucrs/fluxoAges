@@ -75,7 +75,7 @@ public class EditaProjetoCommand implements Command{
 			if(isValido){
 				projetoBO.editarProjeto(projeto);
 				proxima = "main?acao=listaProjetos";
-				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", projeto.getNomeProjeto()));
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_EDICAO_PROJETO.replace("?", projeto.getNomeProjeto()));
 
 			} else {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
