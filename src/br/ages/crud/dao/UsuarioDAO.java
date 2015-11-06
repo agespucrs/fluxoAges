@@ -57,14 +57,14 @@ public class UsuarioDAO {
 			statement.setString(2, usuarioDTO.getSenha());
 
 			ResultSet resultset = statement.executeQuery();
-			while (resultset.next()) {
+			if(resultset.next()) {
 				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
 				usuario.setMatricula(resultset.getString("MATRICULA"));
 				usuario.setNome(resultset.getString("NOME"));
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-			}
+			} else usuario = null;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			throw new PersistenciaException(e);

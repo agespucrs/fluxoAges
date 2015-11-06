@@ -38,7 +38,7 @@ public class UsuarioBO {
 	 */
 	public Usuario validaUsuario(Usuario usuario) throws NegocioException {
 	
-		Usuario user = new Usuario();
+		Usuario user = null;
 		try {
 			// valida se o usuario existe na base
 
