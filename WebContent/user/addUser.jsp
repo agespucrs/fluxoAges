@@ -8,7 +8,7 @@
 	<div class="panel panel-primary panel-addUser">
     		
 		<div class="panel-heading text-center">
-			Cadastro de Usu·rio
+			Cadastro de Usu√°rio
 		</div>
 		
 		
@@ -21,7 +21,7 @@
                 <form method="post" action="main?acao=addUser">
                 
                		<div class="form-group">
-			           	<label class="form-label ages">MatrÌcula: <span class="red">*</span></label>
+			           	<label class="form-label ages">Matr√≠cula: <span class="red">*</span></label>
 			           	<input class="form-control" id="matricula" name="matricula" value="${param.matricula}" type="text" maxlength="9" required>
 		            </div>
 		            
@@ -31,13 +31,13 @@
 		            </div>
 
 					<div class="form-group">
-			           	<label class="form-label ages">Usu·rio: <span class="red">*</span></label>
+			           	<label class="form-label ages">Usu√°rio: <span class="red">*</span></label>
 			           	<input class="form-control" id="usuario" name="usuario" value="${param.usuario}" type="text" maxlength="120" required>
 		            </div>
                     
 					<div class="form-group">
 			           	<label class="form-label ages">Senha: <span class="red">*</span></label>
-			           	<input class="form-control" id="senha" name="senha" value="${param.senha}" type="password" maxlength="8" required>
+			           	<input class="form-control" id="senha" name="senha" value="${param.senha}" type="text" maxlength="8" required>
 		            </div>
 				
 					<div class="form-group">
@@ -62,7 +62,7 @@
 		            </div>
 		            
 		            <div class="form-group">
-			           	<label class="form-label ages">Tipo de Usu·rio: <span class="red">*</span></label>
+			           	<label class="form-label ages">Tipo de Usu√°rio: <span class="red">*</span></label>
 			           	<select class="form-control" id="tipoUsuario" name="tipoUsuario" required>
                             <option value="2" <%= "2".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Aluno</option>
 			           		<option value="1" <%= "1".equals(request.getParameter("tipoUsuario")) ? "selected" : "" %>>Arquiteto</option>
@@ -71,7 +71,7 @@
                     
                     <hr>
                     
-                    <p>Campos que contÈm <span class="red">*</span> s„o obrigatÛrios</p>
+                    <p>Campos que cont√©m <span class="red">*</span> s√£o obrigat√≥rios</p>
                     
                     
                     <div class="text-center">
