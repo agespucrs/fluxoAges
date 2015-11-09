@@ -62,6 +62,7 @@ public class UsuarioDAO {
 				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
 				usuario.setMatricula(resultset.getString("MATRICULA"));
 				usuario.setNome(resultset.getString("NOME"));
+				usuario.setPerfilAcesso( PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")) );
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));

@@ -26,6 +26,7 @@ public class EditUserCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		usuarioBO =  new UsuarioBO();
+		Usuario usuario;
 		proxima = "user/editUser.jsp";
 		
 		String idUsuarioString = request.getParameter("idUsuario");
@@ -47,7 +48,7 @@ public class EditUserCommand implements Command{
 			
 			StatusUsuario statusUsuario = StatusUsuario.valueOf(statusUsuarioString);
 						
-			Usuario usuario = new Usuario();
+			usuario = new Usuario();
 			
 			usuario.setIdUsuario(Integer.valueOf(idUsuarioString));
 			usuario.setUsuario(usuarioString);
@@ -62,16 +63,18 @@ public class EditUserCommand implements Command{
 			usuario.setNome(nomeString);
 			usuario.setEmail(emailString);			
 			
+			request.setAttribute("usuario", usuario);
+			
 			boolean isValido = usuarioBO.validaUsuarioA(usuario);
 					
 			if(isValido){
 				usuarioBO.editaUsuario(usuario);
 				proxima = "main?acao=listUser";
-				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_EDICAO_USUARIO.replace("?", nomeString));				
-			} else {
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_EDICAO_USUARIO.replace("?", nomeString));
+			} else {				
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
 			}				
-		} catch(Exception e){			
+		} catch(Exception e){		
 			request.setAttribute("msgErro", e.getMessage());
 		}
 		return proxima;

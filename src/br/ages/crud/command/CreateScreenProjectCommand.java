@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.ProjetoBO;
 import br.ages.crud.bo.UsuarioBO;
+import br.ages.crud.exception.NegocioException;
+import br.ages.crud.model.PerfilAcesso;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.Usuario;
+import br.ages.crud.util.MensagemContantes;
 
 public class CreateScreenProjectCommand implements Command {
 
@@ -26,6 +29,8 @@ public class CreateScreenProjectCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		//TODO utilizar stakeholderBO.listaStakeholders após a implementação do mesmo
+		proxima = "main?acao=listaProjetos";
+		Usuario currentUser = (Usuario)request.getSession().getAttribute("usuarioSessao");		
 		
 		ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
 		stakeholders.add(new Stakeholder(1, "Getulio Vargas", "Diretor"));
@@ -33,7 +38,7 @@ public class CreateScreenProjectCommand implements Command {
 		stakeholders.add(new Stakeholder(3, "Bento Gonsalves", "Gerente"));
 		
 		try{
-			
+			if( !currentUser.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR) ) throw new NegocioException(MensagemContantes.MSG_INF_DENY);
 			String isEdit = request.getParameter("isEdit");
 			
 			if (isEdit != null && !"".equals(isEdit)) {

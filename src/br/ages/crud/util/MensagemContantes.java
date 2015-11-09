@@ -43,7 +43,7 @@ public class MensagemContantes {
 	
 	public static final String MSG_ERR_USUARIO_JA_EXISTENTE = "Usuário ou matrícula já cadastrados!";
 	
-	public static final String MSG_ERR_REMOVE_USUARIO_EM_PROJETO = "O usuário ? está em algum projeto e não pode ser removido!";
+	public static final String MSG_ERR_REMOVE_USUARIO_EM_PROJETO = "Este usuário já está em algum projeto e não pode ser removido!";
 	
 	public static final String MSG_SUC_CADASTRO_PESSOA = "Cadastro de Pessoa efetuado com sucesso!";
 	

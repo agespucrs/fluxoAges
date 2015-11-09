@@ -196,7 +196,7 @@ public class UsuarioBO {
 				usuarioDAO.removerUsuario(idUsuario);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
-			throw new NegocioException(e);
+			throw new NegocioException(MensagemContantes.MSG_ERR_REMOVE_USUARIO_EM_PROJETO);
 		}
 	}
 
