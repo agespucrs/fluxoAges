@@ -11,10 +11,8 @@ public class Stakeholder implements Serializable {
 	
 	private static final long serialVersionUID = 7731547546507235573L;
 	private int idStakeholder;
-	private String nomeStakeholder;
-	private String descricao;
-	private Date dataInclusao;	
-	private Integer idUsuario; //Atributo criado para relacionar stakeholder com usuário, caso ele tenha acesso ao sistema
+	private String nomeStakeholder;	
+	private Date dataInclusao;		
 	
 	public Stakeholder() {
 		
@@ -24,13 +22,10 @@ public class Stakeholder implements Serializable {
 		this.idStakeholder = idStakeholder;
 	}	
 	
-	public Stakeholder(int idStakeholder, String nomeStakeholder,
-			String descricao) {		
+	public Stakeholder(int idStakeholder, String nomeStakeholder) {		
 		this.idStakeholder = idStakeholder;
 		this.nomeStakeholder = nomeStakeholder;
-		this.descricao = descricao;
 		this.dataInclusao = new Date();
-		this.idUsuario = null;
 	}
 
 	public int getIdStakeholder() {
@@ -47,14 +42,6 @@ public class Stakeholder implements Serializable {
 
 	public void setNomeStakeholder(String nomeStakeholder) {
 		this.nomeStakeholder = nomeStakeholder;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 	
 	public Date getDataInclusao() {

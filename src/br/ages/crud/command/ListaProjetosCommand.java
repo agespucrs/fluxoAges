@@ -25,9 +25,7 @@ public class ListaProjetosCommand implements Command{
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());
 		}
-
 		return proxima;
 	}
-
 }
 

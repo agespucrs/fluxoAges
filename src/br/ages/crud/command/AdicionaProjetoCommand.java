@@ -57,11 +57,11 @@ public class AdicionaProjetoCommand implements Command {
 			}
 		// mesma coisa mas com stakeholders
 			ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();	
-		// XXX altera na próxima iteração quando da criação do Caso de Uso de Stakeholder
+		/* XXX altera na próxima iteração quando da criação do Caso de Uso de Stakeholder
 					stakeholders.add(new Stakeholder(1, "Getulio Vargas", "Diretor"));
 					stakeholders.add(new Stakeholder(2, "Armando Nogueira", "Desenvolvedor"));
 		  		stakeholders.add(new Stakeholder(3, "Bento Gonsalves", "Gerente"));
-					// *************
+		*/	 
 					
 			
 			

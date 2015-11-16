@@ -33,9 +33,10 @@ public class CreateScreenProjectCommand implements Command {
 		Usuario currentUser = (Usuario)request.getSession().getAttribute("usuarioSessao");		
 		
 		ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
-		stakeholders.add(new Stakeholder(1, "Getulio Vargas", "Diretor"));
+	/*	stakeholders.add(new Stakeholder(1, "Getulio Vargas", "Diretor"));
 		stakeholders.add(new Stakeholder(2, "Armando Nogueira", "Desenvolvedor"));
 		stakeholders.add(new Stakeholder(3, "Bento Gonsalves", "Gerente"));
+		*/
 		
 		try{
 			if( !currentUser.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR) ) throw new NegocioException(MensagemContantes.MSG_INF_DENY);
