@@ -76,5 +76,7 @@ public class MensagemContantes {
 
 	public static final String MSG_SUC_REMOVE_PROJETO = "Projeto ? removido com sucesso!";
 
-
+	//msgs de stakeholder
+	
+	public static final String  MSG_ERR_STAKEHOLDER_JA_EXISTENTE = "Stakeholder ? já cadastrados!";
 }

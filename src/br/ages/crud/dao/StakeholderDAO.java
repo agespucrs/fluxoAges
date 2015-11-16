@@ -1,0 +1,120 @@
+package br.ages.crud.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
+import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Stakeholder;
+import br.ages.crud.util.ConexaoUtil;
+import br.ages.crud.util.MensagemContantes;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import com.mysql.jdbc.Statement;
+
+public class StakeholderDAO {
+
+	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	
+	private ArrayList<Stakeholder> listarStakeholders;
+	
+	public StakeholderDAO() {
+		listarStakeholders = new ArrayList<>();
+	}
+	
+	public Stakeholder validarStakeholder(Stakeholder stakeholderDTO) throws PersistenciaException{
+		Stakeholder stakeholder = new Stakeholder();
+		try{
+			Connection conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_STAKEHOLDERS");
+			sql.append("WHERE NOME_STAKEHOLDER = ?");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, stakeholderDTO.getNomeStakeholder());
+			
+			ResultSet resultset = statement.executeQuery();
+			if(resultset.next()) {
+				stakeholder.setIdStakeholder(resultset.getInt("ID_STAKEHOLDER"));
+				stakeholder.setNomeStakeholder(resultset.getString("NOME_STAKEHOLDER"));
+			} else stakeholder = null;
+		} catch(ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+				throw new PersistenciaException(e);
+		}	
+		return stakeholder;
+	}
+	
+	public List<Stakeholder> listarStakeholders() throws PersistenciaException, SQLException {
+		Connection conexao = null;
+		
+		try {
+			conexao = ConexaoUtil.getConexao();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ");
+			sql.append("ID_STAKEHOLDER,");
+			sql.append("NOME_STAKEHOLDER,");
+			sql.append("DATA_INCLUSAO");
+			
+			sql.append("FROM AGES_E.TB_STAKEHOLDERS");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			ResultSet resultset = statement.executeQuery();
+			while(resultset.next()) {
+				Stakeholder dto = new Stakeholder();
+				dto.setIdStakeholder(resultset.getInt("ID_STAKEHOLDER"));
+				dto.setNomeStakeholder(resultset.getString("NOME_STAKEHOLDER"));
+				
+				listarStakeholders.add(dto);
+			}
+		} catch (ClassNotFoundException | SQLException e ) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return listarStakeholders;
+	}
+	
+	public int cadastrarStakeholder(Stakeholder stakeholder) throws PersistenciaException, SQLException, ParseException {
+		
+		Connection conexao = null;
+		
+		try {
+			Integer idStakeholder = null;
+			
+			conexao = ConexaoUtil.getConexao();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO TB_STAKEHOLDER (NOME_STAKEHOLDER,DATA_INCLUSAO)");
+			sql.append("VALUES (?,?)");
+			
+			java.util.Date utilDate = new java.util.Date();
+			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, stakeholder.getNomeStakeholder());
+			statement.setDate(2, dataCadastro);
+			
+			statement.executeUpdate();
+			
+			ResultSet resultset = statement.getGeneratedKeys();
+			if(resultset.first()) {
+				idStakeholder = resultset.getInt(1);
+			}
+			return idStakeholder;
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(MensagemContantes.MSG_ERR_STAKEHOLDER_JA_EXISTENTE.replace("?", stakeholder.getNomeStakeholder()));
+		}	finally {
+			conexao.close();
+		}
+	}
+}
+
+
