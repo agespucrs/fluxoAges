@@ -171,6 +171,32 @@ public class StakeholderDAO {
 			}
 			return ok;
 		}
+	
+	public boolean removerStakeholder(Integer idStakeholder) throws PersistenciaException {
+		boolean removidoOK = false;
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("DELETE FROM TB_STAKEHOLDERS WHERE ID_STAKEHOLDER= ? ");
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idStakeholder);
+
+			removidoOK = statement.execute();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return removidoOK;
+		}
 	}
 
 
