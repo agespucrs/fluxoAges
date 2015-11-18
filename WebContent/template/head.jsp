@@ -61,6 +61,16 @@
 				          	</ul>
         				</li>
         				
+        				<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Stakeholders
+				          		<span class="caret"></span>
+			          		</a>
+				          	<ul class="dropdown-menu">
+				            	<li><a href="main?acao=listaStakeholder">Listar</a></li>
+				            	<li><a href="main?acao=telaStakeholder">Cadastrar</a></li> 
+				          	</ul>
+        				</li>
+        				
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
