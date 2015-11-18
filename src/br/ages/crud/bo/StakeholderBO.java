@@ -45,6 +45,7 @@ public class StakeholderBO {
 		return isValido;
 	}
 	
+
 	public void cadastraStakeholder(Stakeholder stakeholder) throws NegocioException, SQLException, ParseException {
 		
 		try{
@@ -111,4 +112,5 @@ public class StakeholderBO {
 		}
 	}
 	
+
 }
