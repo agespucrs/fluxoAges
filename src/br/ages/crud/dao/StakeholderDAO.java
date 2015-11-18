@@ -92,7 +92,7 @@ public class StakeholderDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_STAKEHOLDER (NOME_STAKEHOLDER,DATA_INCLUSAO)");
+			sql.append("INSERT INTO TB_STAKEHOLDERS (NOME_STAKEHOLDER,DATA_INCLUSAO)");
 			sql.append("VALUES (?,?)");
 			
 			java.util.Date utilDate = new java.util.Date();
@@ -115,6 +115,63 @@ public class StakeholderDAO {
 			conexao.close();
 		}
 	}
-}
+	
+	public Stakeholder buscarStakeholderNome(String nomeStakeholder) throws PersistenciaException {
+		Stakeholder stakeholder = new Stakeholder();
+		Connection conexao = null;
+		try{
+			conexao = ConexaoUtil.getConexao();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM TB_STAKEHOLDERS WHERE NOME_STAKEHOLDER = ?");
+			sql.append("ID_STAKEHOLDER,");
+			sql.append("NOME_STAKEHOLDER;");
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+		    statement.setString(1, nomeStakeholder);
+			
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()){
+				stakeholder.setIdStakeholder(resultset.getInt("ID_STAKEHOLDER"));
+				stakeholder.setNomeStakeholder(resultset.getString("NOME_STAKEHOLDER"));
+				
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try{
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return stakeholder;
+	}	
+	public boolean editaStakeholder(Stakeholder stakeholder) throws PersistenciaException {
+		boolean ok = false;
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			int id = stakeholder.getIdStakeholder();
+			
+			sql.append("UPDATE AGES.E.TB_STAKEHOLDERS SET NOME_STAKEHOLDER = ?" + " WHERE ID_STAKEHOLDER = " + id + ";");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			
+			statement.setString(1, stakeholder.getNomeStakeholder());
+			ok = statement.execute();
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);				
+			} finally {
+				try{
+					conexao.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return ok;
+		}
+	}
+
 
 
