@@ -31,7 +31,6 @@ public class AddUserCommand implements Command {
 		String statusUsuario = request.getParameter("statusUsuario"); // XXX Acrescentado  StatusUsuario
 		String perfilAcesso = request.getParameter("perfilAcesso");
 		String tipoUsuario = request.getParameter("tipoUsuario");
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAaatipoUsuario:" + tipoUsuario);
 		try {
 			Usuario user = new Usuario();
 			user.setNome(nome);
