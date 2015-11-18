@@ -9,7 +9,11 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.PerfilAcesso;
 import br.ages.crud.model.Stakeholder;
+import br.ages.crud.model.StatusUsuario;
+import br.ages.crud.model.TipoUsuario;
+import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 import br.ages.crud.util.MensagemContantes;
 
@@ -114,6 +118,78 @@ public class StakeholderDAO {
 		}	finally {
 			conexao.close();
 		}
+	}
+	
+	public Stakeholder buscaStakeholderId(int idStakeholder) throws PersistenciaException, SQLException {
+		
+		Stakeholder stakeholder = new Stakeholder();
+
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT * FROM AGES_E.TB_STAKEHOLDERS WHERE ID_STAKEHOLDER = ?;");
+			
+			sql.append("SELECT ");			
+			sql.append("ID_STAKEHOLDER,");
+			sql.append("NOME_STAKEHOLDER,");			
+			sql.append("DATA_INCLUSAO");			
+			sql.append("WHERE ID_STAKEHOLDER = ?;");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idStakeholder);
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				stakeholder.setIdStakeholder(resultset.getInt("ID_STAKEHOLDER"));
+				stakeholder.setNomeStakeholder(resultset.getString("NOME_STAKEHOLDER"));			
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return stakeholder;
+
+	}
+	
+	public int verificaStakeholderProjeto(Integer idStakeholder) throws PersistenciaException, SQLException {
+		int t = -1;
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("select id_stakeholder from ages_e.tb_projeto_stakeholder where id_stakeholder = ?;");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idStakeholder);
+			ResultSet resultset = statement.executeQuery();
+			// gambiarra
+			try {
+				t = resultset.getInt("ID_STAKEHOLDER");
+			} catch (SQLException e) {
+				return -1;
+			}
+			// fim gambiarra
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return t;
 	}
 	
 	public Stakeholder buscarStakeholderNome(String nomeStakeholder) throws PersistenciaException {

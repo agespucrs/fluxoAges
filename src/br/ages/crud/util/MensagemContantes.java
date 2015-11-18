@@ -85,4 +85,6 @@ public class MensagemContantes {
 	public static final String MSG_ERR_STAKEHOLDER_NOME_OBRIGATORIO = "Campo Nome obrigatório!";
 	
 	public static final String MSG_ERR_STAKEHOLDER_NOME_INVALIDO = "Nome com formato inválido.<br>Exemplo: João Pedro";
+	
+	public static final String MSG_ERR_REMOVE_STAKEHOLDER_EM_PROJETO = "Este stakeholder já está em algum projeto e não pode ser removido!";
 }
