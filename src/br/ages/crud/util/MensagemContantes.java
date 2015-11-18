@@ -85,12 +85,14 @@ public class MensagemContantes {
 	public static final String MSG_ERR_STAKEHOLDER_NOME_OBRIGATORIO = "Campo Nome obrigatï¿½rio!";
 	
 
-	public static final String MSG_ERR_STAKEHOLDER_NOME_INVALIDO = "Nome com formato inválido.<br>Exemplo: João Pedro";
+	public static final String MSG_ERR_STAKEHOLDER_NOME_INVALIDO = "Nome com formato invï¿½lido.<br>Exemplo: Joï¿½o Pedro";
 	
-	public static final String MSG_ERR_REMOVE_STAKEHOLDER_EM_PROJETO = "Este stakeholder já está em algum projeto e não pode ser removido!";
+	public static final String MSG_ERR_REMOVE_STAKEHOLDER_EM_PROJETO = "Este stakeholder jï¿½ estï¿½ em algum projeto e nï¿½o pode ser removido!";
 
 	public static final String MSG_SUC_CADASTRO_STAKEHOLDER = "Stakeholder ? cadastrado com sucesso";
 	
-	public static final String MSG_SUC_EDITA_STAKEHOLDER ="";
+	public static final String MSG_SUC_EDITA_STAKEHOLDER ="Stakeholder ? editado com sucesso";
+
+	public static final String MSG_SUC_REMOVE_STAKEHOLDER = "Stakeholder de id ? removido com sucesso";
 
 }
