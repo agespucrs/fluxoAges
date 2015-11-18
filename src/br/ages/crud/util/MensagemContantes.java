@@ -79,4 +79,10 @@ public class MensagemContantes {
 	//msgs de stakeholder
 	
 	public static final String  MSG_ERR_STAKEHOLDER_JA_EXISTENTE = "Stakeholder ? já cadastrados!";
+	
+	public static final String MSG_ERR_STAKEHOLDER_DADO_INVALIDO = "Dado do Stakeholder inválido ou inconsistente!";
+	
+	public static final String MSG_ERR_STAKEHOLDER_NOME_OBRIGATORIO = "Campo Nome obrigatório!";
+	
+	public static final String MSG_ERR_STAKEHOLDER_NOME_INVALIDO = "Nome com formato inválido.<br>Exemplo: João Pedro";
 }
