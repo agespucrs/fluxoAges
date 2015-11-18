@@ -1,13 +1,9 @@
 package br.ages.crud.bo;
 
-import java.sql.SQLException;
 import java.text.Normalizer;
-import java.text.ParseException;
-import java.util.List;
 
 import br.ages.crud.dao.StakeholderDAO;
 import br.ages.crud.exception.NegocioException;
-import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Stakeholder;
 import br.ages.crud.util.MensagemContantes;
 
@@ -45,31 +41,4 @@ public class StakeholderBO {
 		return isValido;
 	}
 	
-	public void cadastraStakeholder(Stakeholder stakeholder) throws NegocioException, SQLException, ParseException {
-		
-		try{
-			stakeholderDAO.cadastrarStakeholder(stakeholder);
-		} catch (PersistenciaException e) {
-			throw new NegocioException(e);
-		}
-		
-	}
-	
-	public List<Stakeholder> listarStakeholder() throws NegocioException {
-		
-		List<Stakeholder> listStakeholder = null;
-		
-		try {
-			listStakeholder = stakeholderDAO.listarStakeholders();
-		} catch(PersistenciaException | SQLException e) {
-			e.printStackTrace();
-			throw new NegocioException(e);
-		}
-		
-		return listStakeholder;
-	}
-	
-	public void removerStakeholder(){
-		
-	}
 }
