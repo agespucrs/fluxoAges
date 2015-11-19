@@ -14,7 +14,7 @@ public class ListStakeholdersCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		stakeholderBO = new StakeholderBO();
-		proxima = "stakeholder/listStakeholder.jsp";
+		proxima = "project/listStakeholder.jsp";
 		
 		try {
 			List<Stakeholder> listaStakeholders = stakeholderBO.listarStakeholder();
