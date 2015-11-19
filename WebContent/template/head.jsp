@@ -66,7 +66,7 @@
 				          		<span class="caret"></span>
 			          		</a>
 				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=listaStakeholder">Listar</a></li>
+				            	<li><a href="main?acao=listaStakeholders">Listar</a></li>
 				            	<li><a href="main?acao=telaStakeholder">Cadastrar</a></li> 
 				          	</ul>
         				</li>

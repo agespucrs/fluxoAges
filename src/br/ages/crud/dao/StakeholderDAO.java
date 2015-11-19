@@ -65,7 +65,7 @@ public class StakeholderDAO {
 			sql.append("SELECT ");
 			sql.append("ID_STAKEHOLDER,");
 			sql.append("NOME_STAKEHOLDER,");
-			sql.append("DATA_INCLUSAO");
+			sql.append("DATA_INCLUSAO ");
 			
 			sql.append("FROM AGES_E.TB_STAKEHOLDERS");
 			
