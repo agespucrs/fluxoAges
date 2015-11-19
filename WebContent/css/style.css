@@ -25,7 +25,12 @@ body{
 	margin-right: auto;
 }
 
-
+.panel-addPonto{
+	max-width: 600px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
 .panel-addStakeholder{
 	max-width: 400px;
 	float: none;

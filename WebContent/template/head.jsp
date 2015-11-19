@@ -23,6 +23,13 @@
 		<script src="./js/jquery.bootstrap-duallistbox.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-duallistbox.min.css">
 		
+		<!-- Include the plugin's CSS and JS: Cassio DateTime Picker -->
+		<script type="text/javascript" src="./js/moment.js"></script>
+		<script type="text/javascript" src="./js/pt-br.js"></script>
+		<script type="text/javascript" src="./js/transition.js"></script>
+		<script type="text/javascript" src="./js/collapse.js"></script>
+		<script type="text/javascript" src="./js/bootstrap-datetimepicker.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-datetimepicker.min.css">
     
     <body>
      <% Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioSessao"); %>
@@ -71,6 +78,15 @@
 				          	</ul>
         				</li>
         				
+        				<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Alunos
+				          		<span class="caret"></span>
+			          		</a>
+				          	<ul class="dropdown-menu">
+				            	<li><a href="main?acao=registrarPonto">Registrar Ponto</a></li>
+				            	
+				          	</ul>
+        				</li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">

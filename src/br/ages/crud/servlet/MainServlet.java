@@ -50,7 +50,8 @@ public class MainServlet extends HttpServlet {
 		comandos.put("editaStakeholder", new EditStakeholderCommand());
 		comandos.put("removeStakeholder", new RemoveStakeholderCommand());
 
-		
+		//COMANDOS ALUNO
+		comandos.put("registrarPonto", new RegistraPontoCommand());
 	}
 
 	@Override
