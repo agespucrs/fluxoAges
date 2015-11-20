@@ -22,10 +22,15 @@
 							<label  for="sel1" class="form-label ages">Aluno:<span class="red">*</span></label> 
 							<select class="form-control" id="sel1" >
 						        <option><%=usuario.getNome()%></option>
-						        <option>Aluno 1</option>
-						        <option>Aluno 2</option>
-						        <option>Aluno 4</option>
-					        </select>
+							 	<%
+									List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("usuarios");
+									for (Usuario u : listaUsuarios) {
+							  	 %>
+								<option value="<%=u.getIdUsuario()%>"><%=u.getNome()%></option>
+								<%
+									}
+								%>
+					]        </select>
 						</div>
 					</div>
 					<div class="form-group">
