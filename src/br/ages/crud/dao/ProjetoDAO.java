@@ -138,7 +138,7 @@ public class ProjetoDAO {
 				stakeholdersProjeto.add(stakeholderProjeto);
 			}
 
-			//Collections.sort(stakeholdersProjeto);
+			Collections.sort(stakeholdersProjeto);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -334,8 +334,8 @@ public class ProjetoDAO {
 
 			statement.execute();
 
-			/* removerUsuariosProjeto(conexao, projeto); */
-			/* removerStakeholdersProjeto(conexao, projeto); */
+			removerUsuariosProjeto(conexao, projeto);
+			removerStakeholdersProjeto(conexao, projeto);
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);

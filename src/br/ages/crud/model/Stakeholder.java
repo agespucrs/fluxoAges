@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Daniele Souza e Victor Diehl
  */
 
-public class Stakeholder implements Serializable {	
+public class Stakeholder implements Serializable, Comparable<Stakeholder>  {	
 	
 	private static final long serialVersionUID = 7731547546507235573L;
 	private int idStakeholder;
@@ -50,6 +50,11 @@ public class Stakeholder implements Serializable {
 	
 	public void setDataInclusao(Date dataInclusao) {
 		this.dataInclusao = dataInclusao;
+	}
+
+	@Override
+	public int compareTo(Stakeholder stakeholder) {
+		return this.getNomeStakeholder().compareToIgnoreCase(stakeholder.getNomeStakeholder());
 	}
 	
 }
