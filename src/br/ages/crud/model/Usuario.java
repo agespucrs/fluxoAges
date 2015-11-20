@@ -130,7 +130,6 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	@Override
 	public int compareTo(Usuario usuario) {
 		return this.getNome().compareToIgnoreCase(usuario.getNome());
-
 	}
 
 }

@@ -25,10 +25,12 @@ import com.mysql.jdbc.Statement;
 
 public class ProjetoDAO {
 
-	private Usuario usuarioProjeto;
 	private Projeto projeto;
+	private Usuario usuarioProjeto;
 	private UsuarioDAO usuarioDAO;
-
+	private Stakeholder stakeholderProjeto;
+	private StakeholderDAO stakeholderDAO;
+	
 	public ProjetoDAO() {
 
 	}
@@ -36,7 +38,7 @@ public class ProjetoDAO {
 	public ArrayList<Projeto> listarProjetos() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		ArrayList<Projeto> listaProjetos = new ArrayList<Projeto>();
-		// TODO: lista stakeholderso
+		// TODO: lista stakeholders
 
 		try {
 			conexao = ConexaoUtil.getConexao();
@@ -111,6 +113,41 @@ public class ProjetoDAO {
 
 	}
 
+	private ArrayList<Stakeholder> buscarStakeholdersProjeto(Connection conexao, int idProjeto) throws PersistenciaException, SQLException {
+
+		List<Stakeholder> stakeholdersProjeto = new ArrayList<Stakeholder>();
+
+		try {
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ID_STAKEHOLDER ");
+			sql.append(" FROM TB_PROJETO_STAKEHOLDER");
+			sql.append(" WHERE ID_PROJETO = ?");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idProjeto);
+
+			ResultSet resultset = statement.executeQuery();
+			int idStakeholder = 0;
+			stakeholderDAO = new StakeholderDAO();
+			stakeholderProjeto = new Stakeholder();
+
+			while (resultset.next()) {
+				idStakeholder = resultset.getInt(1);
+				stakeholderProjeto = stakeholderDAO.buscaStakeholderId(idStakeholder);
+				stakeholdersProjeto.add(stakeholderProjeto);
+			}
+
+			Collections.sort(stakeholdersProjeto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return (ArrayList<Stakeholder>) stakeholdersProjeto;
+
+	}
+	
 	public void cadastrarProjeto(Projeto projeto) throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
 		try {
@@ -229,6 +266,8 @@ public class ProjetoDAO {
 				projeto.setDataFimPrevisto(resultSet.getDate("DATA_FIM_PREVISTO"));
 				ArrayList<Usuario> usuarios = buscarUsuariosProjeto(conexao, projeto.getIdProjeto());
 				projeto.setUsuarios(usuarios);
+				ArrayList<Stakeholder> stakeholders = buscarStakeholdersProjeto(conexao, projeto.getIdProjeto());
+				projeto.setStakeholders(stakeholders);
 				projeto.setStakeholders(new ArrayList<Stakeholder>());
 
 			}
@@ -295,8 +334,8 @@ public class ProjetoDAO {
 
 			statement.execute();
 
-			/* removerUsuariosProjeto(conexao, projeto); */
-			/* removerStakeholdersProjeto(conexao, projeto); */
+			removerUsuariosProjeto(conexao, projeto);
+			removerStakeholdersProjeto(conexao, projeto);
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);

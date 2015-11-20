@@ -1,6 +1,7 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +13,17 @@ public class RegistraPontoCommand implements Command {
 
 	private String proxima;
 	private UsuarioBO usuarioBO;
+	private List<Usuario> usuarios; 
 
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		proxima = "aluno/ponto.jsp";
 		usuarioBO = new UsuarioBO();
+		usuarios = new ArrayList<>();
 		try {
-			Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
-			List<Usuario> usuarios = usuarioBO.listarUsuario();
+			//Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
+			usuarios = usuarioBO.listarUsuario();
+			request.setAttribute("usuarios", usuarios);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());
