@@ -50,7 +50,7 @@
 					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->					
 					
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaStakeholders" class="listaStakeholders" required>
+						<select multiple="multiple" size="10" name="listaStakeholders" class="listaStakeholders">
 						<%
 							List<Stakeholder> listaStakeholders = (List<Stakeholder>) request.getAttribute("listaStakeholders");
 							for (Stakeholder stakeholder : listaStakeholders) {

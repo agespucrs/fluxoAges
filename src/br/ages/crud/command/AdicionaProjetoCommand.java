@@ -96,7 +96,8 @@ public class AdicionaProjetoCommand implements Command {
 			
 			if(isValido) {
 				projetoBO.cadastrarProjeto(projeto);
-				proxima = "main?acao=listaProjetos";
+				request.setAttribute("projeto", projeto);
+				proxima = "project/uploadProject.jsp";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", nomeProjeto));
 			} else{
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
