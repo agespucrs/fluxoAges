@@ -55,7 +55,7 @@ public class StakeholderDAO {
 		return stakeholder;
 	}
 	
-	public List<Stakeholder> listarStakeholders() throws PersistenciaException, SQLException {
+	public ArrayList<Stakeholder> listarStakeholders() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		
 		try {
@@ -129,13 +129,12 @@ public class StakeholderDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM AGES_E.TB_STAKEHOLDERS WHERE ID_STAKEHOLDER = ?;");
-			
-			sql.append("SELECT ");			
-			sql.append("ID_STAKEHOLDER,");
-			sql.append("NOME_STAKEHOLDER,");			
-			sql.append("DATA_INCLUSAO");			
-			sql.append("WHERE ID_STAKEHOLDER = ?;");
+			sql.append("SELECT ");
+			sql.append(" ID_STAKEHOLDER,");
+			sql.append(" NOME_STAKEHOLDER,");			
+			sql.append(" DATA_INCLUSAO");			
+			sql.append(" FROM AGES_E.TB_STAKEHOLDERS ");
+			sql.append(" WHERE ID_STAKEHOLDER = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idStakeholder);

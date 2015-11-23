@@ -1,8 +1,8 @@
 package br.ages.crud.bo;
 
 import java.sql.SQLException;
-import java.text.Normalizer;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ages.crud.dao.StakeholderDAO;
@@ -29,12 +29,12 @@ public class StakeholderBO {
 				msg.append(MensagemContantes.MSG_ERR_STAKEHOLDER_NOME_OBRIGATORIO + "<br>");
 			}
 			
-			String nomeStakeholder = Normalizer.normalize(stakeholder.getNomeStakeholder(), Normalizer.Form.NFD).replace("\\p{InCombiningDiacriticalMarks}+", "");
+			//String nomeStakeholder = Normalizer.normalize(stakeholder.getNomeStakeholder(), Normalizer.Form.NFD).replace("\\p{InCombiningDiacriticalMarks}+", "");
 			
-			if(!nomeStakeholder.matches("(([A-Z][a-z]*)\\s{0,1}")) {
+			/*if(!nomeStakeholder.matches("(([A-Z][a-z]*)\\s{0,1}")) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_STAKEHOLDER_NOME_INVALIDO.replace("?","Nomen").concat("<br/>"));
-			}
+			}*/
 			if (!isValido) {
 				throw new NegocioException(msg.toString());
 			}
@@ -56,15 +56,15 @@ public class StakeholderBO {
 		
 	}
 	
-	public List<Stakeholder> listarStakeholder() throws NegocioException {
+	public ArrayList<Stakeholder> listarStakeholder() throws NegocioException {
 		
-		List<Stakeholder> listStakeholder = null;
+		ArrayList<Stakeholder> listStakeholder = null;
 		
 		try {
 			listStakeholder = stakeholderDAO.listarStakeholders();
 		} catch(PersistenciaException | SQLException e) {
 			e.printStackTrace();
-			throw new NegocioException(e);
+			throw new NegocioException(MensagemContantes.MSG_ERR_REMOVE_STAKEHOLDER_EM_PROJETO); // XXX arrumar msg
 		}
 		
 		return listStakeholder;

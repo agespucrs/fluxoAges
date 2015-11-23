@@ -121,7 +121,7 @@ public class ProjetoDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ID_STAKEHOLDER ");
-			sql.append(" FROM TB_PROJETO_STAKEHOLDER");
+			sql.append(" FROM TB_PROJETO_STAKEHOLDERS");
 			sql.append(" WHERE ID_PROJETO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());

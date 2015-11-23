@@ -1,13 +1,13 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.ProjetoBO;
+import br.ages.crud.bo.StakeholderBO;
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.model.PerfilAcesso;
@@ -24,21 +24,20 @@ public class CreateScreenProjectCommand implements Command {
 	
 	private UsuarioBO usuarioBO;
 	
-	//private StakeoholderBO stakeholderBO;
+	private StakeholderBO stakeholderBO;
 
 	@Override
-	public String execute(HttpServletRequest request) throws SQLException {
+	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 		//TODO utilizar stakeholderBO.listaStakeholders após a implementação do mesmo
 		proxima = "main?acao=listaProjetos";
 		Usuario currentUser = (Usuario)request.getSession().getAttribute("usuarioSessao");		
-		
-		ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
-	/*	stakeholders.add(new Stakeholder(1, "Getulio Vargas", "Diretor"));
-		stakeholders.add(new Stakeholder(2, "Armando Nogueira", "Desenvolvedor"));
-		stakeholders.add(new Stakeholder(3, "Bento Gonsalves", "Gerente"));
-		*/
+		stakeholderBO = new StakeholderBO();
 		
 		try{
+			
+			ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
+			stakeholders = stakeholderBO.listarStakeholder();
+			
 			if( !currentUser.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR) ) throw new NegocioException(MensagemContantes.MSG_INF_DENY);
 			String isEdit = request.getParameter("isEdit");
 			
@@ -61,9 +60,6 @@ public class CreateScreenProjectCommand implements Command {
 						}
 					}
 				}
-				
-				
-				
 				
 				request.setAttribute("projeto", projeto);
 				request.setAttribute("listaUsuarios", usuarios);
