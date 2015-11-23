@@ -73,25 +73,14 @@ public class StakeholderBO {
 	
 	public void removerStakeholder(Integer idStakeholder) throws NegocioException, SQLException {
 		try{
-			if(validaStakeholderProjeto(idStakeholder))
-				stakeholderDAO.removerStakeholder(idStakeholder);
+		  stakeholderDAO.removerStakeholder(idStakeholder);
 		} catch(PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(MensagemContantes.MSG_ERR_REMOVE_STAKEHOLDER_EM_PROJETO);
 		}		
 	}
 	
-	private boolean validaStakeholderProjeto(Integer idStakeholder) throws NegocioException, SQLException {
-		int id = -1;
-		try{
-			id = stakeholderDAO.verificaStakeholderProjeto(idStakeholder);			
-		} catch(PersistenciaException e) {
-			e.printStackTrace();
-			throw new NegocioException(e);
-		}
-		if(id != -1) return false;
-		return true;
-	}
+	
 	
 	public Stakeholder bucaStakeholderId(int idStakeholder) throws NegocioException {
 		try{

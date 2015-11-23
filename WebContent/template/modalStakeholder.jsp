@@ -3,13 +3,13 @@
 $( document ).ready(function() {
 	$('#modalExcluir').on('show.bs.modal', function (event) {
 	  	var botao = $(event.relatedTarget);
-	  	var usuario = botao.data('stakeholder');
-		var idStakeholder = botao.data('idStakeholder');
+	  	var stakeholder = botao.data('stakeholder');
+		var id = botao.data('id');
 	  	
 	  	$(this).find('.modal-title').text('Excluir stakeholder');
-	  	$(this).find('#modal-descricao').text('Você realmente deseja excluir o stakeholder ('+idStakeholder + ' id ' + stakeholder + ')?');
+	  	$(this).find('#modal-descricao').text('Você realmente deseja excluir o stakeholder (' + stakeholder + ')?');
 	  	
-	  	$('#formExcluir').attr('action', "main?acao=removerStakeholder&idStakeholder=" + idStakeholder);
+	  	$('#formExcluir').attr('action', "main?acao=removeStakeholder&id_stakeholder=" + id);
 	});
 	
 	
@@ -21,7 +21,7 @@ $( document ).ready(function() {
 	  	$(this).find('.modal-title').text('Editar stakeholder');
 	  	$(this).find('#modal-descricao').text('Você realmente deseja editar o stakeholder (' + stakeholder + ')?');
 	  	+
-	  	$('#formEditar').attr('action', "main?acao=telaStakeholder&idStakeholder=" + idStakeholder + "&isEdit=true");
+	  	$('#formEditar').attr('action', "main?acao=telaStakeholder&id_stakeholder=" + idStakeholder + "&isEdit=true");
 	});
 });
 </script>
