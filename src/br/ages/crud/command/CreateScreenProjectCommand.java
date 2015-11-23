@@ -35,7 +35,7 @@ public class CreateScreenProjectCommand implements Command {
 		
 		try{
 			
-			ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
+			List<Stakeholder> stakeholders = new ArrayList<Stakeholder>();
 			stakeholders = stakeholderBO.listarStakeholder();
 			
 			if( !currentUser.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR) ) throw new NegocioException(MensagemContantes.MSG_INF_DENY);

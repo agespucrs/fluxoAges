@@ -1,8 +1,9 @@
+
 package br.ages.crud.bo;
 
 import java.sql.SQLException;
+import java.text.Normalizer;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.ages.crud.dao.StakeholderDAO;
@@ -56,15 +57,15 @@ public class StakeholderBO {
 		
 	}
 	
-	public ArrayList<Stakeholder> listarStakeholder() throws NegocioException {
+	public List<Stakeholder> listarStakeholder() throws NegocioException {
 		
-		ArrayList<Stakeholder> listStakeholder = null;
+		List<Stakeholder> listStakeholder = null;
 		
 		try {
 			listStakeholder = stakeholderDAO.listarStakeholders();
 		} catch(PersistenciaException | SQLException e) {
 			e.printStackTrace();
-			throw new NegocioException(MensagemContantes.MSG_ERR_REMOVE_STAKEHOLDER_EM_PROJETO); // XXX arrumar msg
+			throw new NegocioException(e);
 		}
 		
 		return listStakeholder;
@@ -114,3 +115,4 @@ public class StakeholderBO {
 	
 
 }
+
