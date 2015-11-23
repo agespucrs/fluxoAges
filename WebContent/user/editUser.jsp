@@ -10,7 +10,7 @@
 	<div class="panel panel-primary panel-addUser">
     		
 		<div class="panel-heading text-center">
-			Cadastro de Usuário
+			Editar Usuário
 		</div>
 		
 		
