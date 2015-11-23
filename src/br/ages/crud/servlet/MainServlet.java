@@ -46,7 +46,7 @@ public class MainServlet extends HttpServlet {
 		
 		comandos.put("telaStakeholder", new CreateScreenStakeholderCommand());
 		comandos.put("listaStakeholders", new ListStakeholdersCommand());
-		comandos.put("adicionaStakeholder", new AddStakeholderCommand());
+		comandos.put("addStakeholder", new AddStakeholderCommand());
 		comandos.put("editaStakeholder", new EditStakeholderCommand());
 		comandos.put("removeStakeholder", new RemoveStakeholderCommand());
 

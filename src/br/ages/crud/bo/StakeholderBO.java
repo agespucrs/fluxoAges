@@ -29,12 +29,12 @@ public class StakeholderBO {
 				msg.append(MensagemContantes.MSG_ERR_STAKEHOLDER_NOME_OBRIGATORIO + "<br>");
 			}
 			
-			String nomeStakeholder = Normalizer.normalize(stakeholder.getNomeStakeholder(), Normalizer.Form.NFD).replace("\\p{InCombiningDiacriticalMarks}+", "");
+			//String nomeStakeholder = Normalizer.normalize(stakeholder.getNomeStakeholder(), Normalizer.Form.NFD).replace("\\p{InCombiningDiacriticalMarks}+", "");
 			
-			if(!nomeStakeholder.matches("(([A-Z][a-z]*)\\s{0,1}")) {
+			/*if(!nomeStakeholder.matches("(([A-Z][a-z]*)\\s{0,1}")) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_STAKEHOLDER_NOME_INVALIDO.replace("?","Nomen").concat("<br/>"));
-			}
+			}*/
 			if (!isValido) {
 				throw new NegocioException(msg.toString());
 			}
