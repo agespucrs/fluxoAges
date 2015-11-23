@@ -28,7 +28,7 @@ public class EditStakeholderCommand implements Command {
 			boolean isValido = stakeholderBO.validaStakeholder(stakeholder);
 			if (isValido){
 				stakeholderBO.editaStakeholder(stakeholder);
-				proxima = "main?acao=listStakeholder";
+				proxima = "main?acao=listaStakeholders";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_EDITA_STAKEHOLDER.replace("?", nome));
 			}else {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_STAKEHOLDER_DADO_INVALIDO);

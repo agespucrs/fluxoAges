@@ -38,7 +38,6 @@ public class ProjetoDAO {
 	public ArrayList<Projeto> listarProjetos() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		ArrayList<Projeto> listaProjetos = new ArrayList<Projeto>();
-		// TODO: lista stakeholders
 
 		try {
 			conexao = ConexaoUtil.getConexao();
@@ -68,7 +67,8 @@ public class ProjetoDAO {
 				projeto.setDataFimPrevisto(dataFimPrevisto);
 
 				projeto.setUsuarios(buscarUsuariosProjeto(conexao, resultSet.getInt("ID_PROJETO")));
-
+				projeto.setStakeholders(buscarStakeholdersProjeto(conexao, resultSet.getInt("ID_PROJETO")));
+				
 				listaProjetos.add(projeto);
 			}
 		} catch (Exception e) {
@@ -121,7 +121,7 @@ public class ProjetoDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ID_STAKEHOLDER ");
-			sql.append(" FROM TB_PROJETO_STAKEHOLDER");
+			sql.append(" FROM TB_PROJETO_STAKEHOLDERS");
 			sql.append(" WHERE ID_PROJETO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -186,7 +186,7 @@ public class ProjetoDAO {
 			}
 
 			inserirUsuariosProjeto(conexao, projeto);
-			/* if(!inserirStakeholdersProjeto(conexao, projeto)) return; */
+			inserirStakeholdersProjeto(conexao, projeto);
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -279,10 +279,6 @@ public class ProjetoDAO {
 		return projeto;
 	}
 
-	// TODO: consultar usuarios projeto
-
-	// TODO: consultar stakeholders projeto
-
 	public void editarProjeto(Projeto projeto) throws PersistenciaException, SQLException, ParseException {
 		Connection conexao = null;
 		try {
@@ -320,7 +316,7 @@ public class ProjetoDAO {
 			conexao.close();
 		}
 	}
-
+	
 	public void removerProjeto(Projeto projeto) throws PersistenciaException {
 		Connection conexao = null;
 		try {

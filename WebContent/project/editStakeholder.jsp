@@ -1,12 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.List"%>
+<%@page import="br.ages.crud.model.Stakeholder"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-</body>
-</html>
+<%Stakeholder stakeholder = (Stakeholder) request.getAttribute("stakeholder"); %>
+
+<jsp:include page="../template/head.jsp"></jsp:include>
+	
+	<div class="panel panel-primary panel-addStakeholder">
+    		
+		<div class="panel-heading text-center">
+			Editar Stakeholder
+		</div>
+		
+		
+		<div class="panel-body">
+		
+        	<jsp:include page="/template/msg.jsp"></jsp:include>
+        	
+        	<div class="table-responsive">
+                
+                <form method="post" action="main?acao=editaStakeholder">
+                	<input class="form-control" type="hidden" id="idStakeholder" name="idStakeholder" value="<%=stakeholder.getIdStakeholder()%>">
+                	
+		            <div class="form-group">
+			           	<label class="form-label ages">Nome: <span class="red">*</span></label>
+			           	<input class="form-control" id="nome" name="nome" value="<%=stakeholder.getNomeStakeholder() %>" type="text" maxlength="120" required>
+		            </div>
+    
+                    <hr>
+                    
+                    <p>Campos que contém <span class="red">*</span> são obrigatórios</p>
+                    
+                    
+                    <div class="text-center">
+			           	<input class="btn btn-warning limparUser pull-left" type="reset" value="Limpar">
+			           	<input class="btn btn-primary addUser pull-right" type="submit" value="Salvar">
+			        </div>
+			        
+                </form>
+            </div>
+		</div>
+	</div>
+
+<jsp:include page="/template/foot.jsp"></jsp:include>

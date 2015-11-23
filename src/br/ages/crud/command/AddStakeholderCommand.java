@@ -15,20 +15,20 @@ public class AddStakeholderCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		stakeholderBO = new StakeholderBO();
-		proxima = "stakeholder/addStakeholder.jsp";
+		proxima = "project/addStakeholder.jsp";
 		
-		String nome = request.getParameter("nome");
+		String nomeStakeholder = request.getParameter("nomeStakeholder");
 		
 		try {
 			Stakeholder stakeholder = new Stakeholder();
-			stakeholder.setNomeStakeholder(nome);
+			stakeholder.setNomeStakeholder(nomeStakeholder);
 			
 			boolean isValido = stakeholderBO.validaStakeholder(stakeholder);
 			if (!isValido){
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_STAKEHOLDER_DADO_INVALIDO);
 			} else {
 				stakeholderBO.cadastraStakeholder(stakeholder);
-				proxima = "main?acao=listStakeholder";
+				proxima = "main?acao=listaStakeholders";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_STAKEHOLDER.replace("?", stakeholder.getNomeStakeholder()));
 			}
 		} catch (Exception e) {

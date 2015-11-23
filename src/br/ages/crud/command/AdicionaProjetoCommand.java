@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.ArquivoBO;
 import br.ages.crud.bo.ProjetoBO;
+import br.ages.crud.bo.StakeholderBO;
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.model.Projeto;
 import br.ages.crud.model.Stakeholder;
@@ -28,6 +29,8 @@ public class AdicionaProjetoCommand implements Command {
 	private UsuarioBO usuarioBO;
 	
 	private Usuario usuario;
+	
+	private StakeholderBO stakeholderBO;
 	
 	@Override
 	public String execute(HttpServletRequest request) {
@@ -57,18 +60,9 @@ public class AdicionaProjetoCommand implements Command {
 			}
 		// mesma coisa mas com stakeholders
 			ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();	
-		/* XXX altera na próxima iteração quando da criação do Caso de Uso de Stakeholder
-					stakeholders.add(new Stakeholder(1, "Getulio Vargas", "Diretor"));
-					stakeholders.add(new Stakeholder(2, "Armando Nogueira", "Desenvolvedor"));
-		  		stakeholders.add(new Stakeholder(3, "Bento Gonsalves", "Gerente"));
-		*/	 
-					
+
 			
 			
-			/*	
-			for(String s: stakeholdersString){
-				stakeholders.add(new Stakeholder(Integer.parseInt(s)));
-			}*/
 			// cria um StatusProjeto com o string do request
 			StatusProjeto statusProjeto = StatusProjeto.valueOf(statusProjetoString); 
 			// cria Dates com os strings recebidos

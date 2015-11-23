@@ -21,5 +21,5 @@ public interface Command {
 	 * @throws NegocioException
 	 */
 
-	public String execute(HttpServletRequest request) throws SQLException ;
+	public String execute(HttpServletRequest request) throws SQLException, NegocioException ;
 }

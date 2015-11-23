@@ -17,7 +17,7 @@
 
 <div class="panel panel-primary panel-addUser">
 
-	<div class="panel-heading text-center">Edição de Projeto</div>
+	<div class="panel-heading text-center">Editar Projeto</div>
 
 	<div class="panel-body">
 
