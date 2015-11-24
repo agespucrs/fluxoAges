@@ -225,7 +225,7 @@ public class ProjetoDAO {
 		ArrayList<Stakeholder> listaStakeholders = new ArrayList<>(projeto.getStakeholders());
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO TB_PROJETO_STAKEHOLDER (ID_PROJETO, ID_STAKEHOLDER)");
+		sql.append("INSERT INTO TB_PROJETO_STAKEHOLDERS (ID_PROJETO, ID_STAKEHOLDER)");
 		sql.append("VALUES (?, ?)");
 
 		PreparedStatement statement = conexao.prepareStatement(sql.toString());

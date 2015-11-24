@@ -32,6 +32,8 @@ public class AdicionaProjetoCommand implements Command {
 	
 	private StakeholderBO stakeholderBO;
 	
+	private Stakeholder stakeholder;
+	
 	@Override
 	public String execute(HttpServletRequest request) {
 		projetoBO =  new ProjetoBO();
@@ -60,7 +62,11 @@ public class AdicionaProjetoCommand implements Command {
 			}
 		// mesma coisa mas com stakeholders
 			ArrayList<Stakeholder> stakeholders = new ArrayList<Stakeholder>();	
-
+			for(String s : stakeholdersString){
+				stakeholder = new Stakeholder();
+				stakeholder.setIdStakeholder(Integer.valueOf(s));
+				stakeholders.add(stakeholder);
+			}
 			
 			
 			// cria um StatusProjeto com o string do request
