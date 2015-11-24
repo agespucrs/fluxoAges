@@ -225,11 +225,12 @@ public class ProjetoDAO {
 		ArrayList<Stakeholder> listaStakeholders = new ArrayList<>(projeto.getStakeholders());
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO TB_PROJETO_STAKEHOLDER (ID_PROJETO, ID_STAKEHOLDER)");
+		sql.append("INSERT INTO TB_PROJETO_STAKEHOLDERS (ID_PROJETO, ID_STAKEHOLDER)");
 		sql.append("VALUES (?, ?)");
 
 		PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
+		
 		for (Stakeholder stakeholder : listaStakeholders) {
 
 			statement.setInt(1, projeto.getIdProjeto());
@@ -309,6 +310,8 @@ public class ProjetoDAO {
 			
 			removerUsuariosProjeto(conexao, projeto);
 			inserirUsuariosProjeto(conexao, projeto);
+			removerStakeholdersProjeto(conexao, projeto);
+			inserirStakeholdersProjeto(conexao, projeto);
 
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new PersistenciaException(e);
@@ -361,7 +364,7 @@ public class ProjetoDAO {
 		boolean ok = false;
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM STAKEHOLDER WHERE ID_PROJETO = ?");
+		sql.append("DELETE FROM TB_PROJETO_STAKEHOLDERS WHERE ID_PROJETO = ?");
 
 		PreparedStatement statement = conexao.prepareStatement(sql.toString());
 		statement.setInt(1, projeto.getIdProjeto());

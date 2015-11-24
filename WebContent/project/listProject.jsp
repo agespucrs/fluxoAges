@@ -1,5 +1,6 @@
 <%@page import="br.ages.crud.model.Projeto"%>
 <%@page import="br.ages.crud.model.Usuario"%>
+<%@page import="br.ages.crud.model.Stakeholder"%>
 <%@page import="java.util.List"%>
 
 
@@ -66,18 +67,19 @@
 						<td align="center"><%=projeto.getStatusProjeto()%></td>
 						<td align="center"><%=projeto.getWorkspace()%></td>
 						<td align="center">
-							<button data-toggle="collapse" data-target="#stakeholders<%=projeto.getIdProjeto()%>">3</button>
+							<button data-toggle="collapse" data-target="#stakeholders<%=projeto.getIdProjeto()%>"><%=projeto.getStakeholders().size()%></button>
 							<div id="stakeholders<%=projeto.getIdProjeto()%>" class="collapse">
-								<%-- <%=projeto.getStakeholders()%> --%>
-
+								<%
+									List<Stakeholder> listStakeholders = projeto.getStakeholders();
+										for (Stakeholder stakeholder : listStakeholders) {
+								%>
 								<div class="row">
-									<div class="col-sm-2 dl-horizontal">100</div>
-									<div class="col-sm-4">Zezinho</div>
+									<div class="col-sm-2 dl-horizontal"><strong><%=stakeholder.getIdStakeholder()%></strong></div>
+									<div class="col-sm-4"><%=stakeholder.getNomeStakeholder()%></div>
 								</div>
-								<div class="row">
-									<div class="col-sm-2" style="background-color:lavenderblush;">2 </div>
-									<div class="col-sm-8">Pedrinho</div>
-								</div>
+								<%
+									}
+								%>
 							</div>
 						</td>
 						<%-- 	<td align="center"><%=projeto.getStakeholders()%></td>  --%>
