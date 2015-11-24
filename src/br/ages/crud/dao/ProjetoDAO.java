@@ -230,6 +230,7 @@ public class ProjetoDAO {
 
 		PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
+		
 		for (Stakeholder stakeholder : listaStakeholders) {
 
 			statement.setInt(1, projeto.getIdProjeto());
