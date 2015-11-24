@@ -5,6 +5,8 @@
 <!-- MODAL / POPUP -->
 <jsp:include page="../template/modalStakeholder.jsp"></jsp:include>
 
+
+
 <div class="panel panel-primary">
 
 	<div class="panel-heading text-center">Stakeholders</div>
@@ -32,16 +34,14 @@
 							for (Stakeholder stakeholder : listaStakeholders) {
 						%>
 
-					<tr>
-						<td align="center"><%=stakeholder.getIdStakeholder()%></td>
-						<td align="center"><%=stakeholder.getNomeStakeholder()%></td>
+					<tr class="coluna-sh">
+						<td align="center" id = 'cel<%=stakeholder.getIdStakeholder()%>'><%=stakeholder.getIdStakeholder()%></td>
+						<td class="sh-nome" align="center"><p><%=stakeholder.getNomeStakeholder()%></p>
+							<input type="text" class="hidden" value="<%=stakeholder.getNomeStakeholder()%>"></input>
+						</td>
 						<td align="center">
 							<form action="" method="post">
-								<a href="" data-toggle="modal"
-									data-idStakeholder="<%=stakeholder.getIdStakeholder() %>"
-									data-stakeholder="<%=stakeholder.getNomeStakeholder()%>"
-									data-target="#modalEditar" title="Editar"> <i
-									class="glyphicon glyphicon-pencil"></i></a>
+								<a class="edit" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 							</form>
 						</td>
 
@@ -69,5 +69,20 @@
 
 </div>
 
+<script>
+$('.edit').click(function(){
+	
+	console.log("taqui")
+	
+	var pai = $(this).closest('.coluna-sh');
+	
+	console.log(pai)
+	
+	pai.find('.sh-nome p').hide();
+	
+	pai.find('.sh-nome input').removeClass('hidden');
+	
+	$(this).find("glyphicon").removeClass('glyphicon-pencil').addClass('glyphicon-ok');
 
+});</script>
 <jsp:include page="../template/foot.jsp"></jsp:include>
