@@ -77,8 +77,7 @@
 				            	<li><a href="main?acao=telaStakeholder">Cadastrar</a></li> 
 				          	</ul>
         				</li>
-        				
-<<<<<<< HEAD
+
         				<li class="dropdown">
 			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Alunos
 				          		<span class="caret"></span>
@@ -88,8 +87,7 @@
 				            	
 				          	</ul>
         				</li>
-=======
->>>>>>> dev
+
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
@@ -108,8 +106,5 @@
 			      	
 		    	</div>
 			</nav>
-<<<<<<< HEAD
 
-=======
->>>>>>> dev
     		
