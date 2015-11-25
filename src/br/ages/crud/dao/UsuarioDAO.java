@@ -138,7 +138,6 @@ public class UsuarioDAO {
 	}
 
 	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
-		
 		Connection conexao = null;
 
 		try {
@@ -437,7 +436,11 @@ public class UsuarioDAO {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Lista os tipos de usu�rios
+=======
+	 * Lista os tipos de usu�rios
+>>>>>>> branch 'dev' of https://github.com/agespucrs/fluxoAges.git
 	 * @return
 	 * @throws PersistenciaException
 	 */
