@@ -18,8 +18,10 @@ public class EditStakeholderCommand implements Command {
 		
 		String nome = request.getParameter("nome");
 		
+		String id = request.getParameter("id_sh");
+		
 		try {
-			stakeholder = new Stakeholder();
+			stakeholder = StakeholderBO.buscaStakeholderId(Integer.parseInt(id));
 			
 			stakeholder.setNomeStakeholder(nome);
 			

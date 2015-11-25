@@ -35,14 +35,15 @@
 						%>
 
 					<tr class="coluna-sh">
-						<td align="center" id = 'cel<%=stakeholder.getIdStakeholder()%>'><%=stakeholder.getIdStakeholder()%></td>
+						<td align="center" class="sh-id" id='<%=stakeholder.getIdStakeholder()%>'><%=stakeholder.getIdStakeholder()%></td>
 						<td class="sh-nome" align="center"><p><%=stakeholder.getNomeStakeholder()%></p>
-							<input type="text" class="hidden" value="<%=stakeholder.getNomeStakeholder()%>"></input>
+						<form action="" method="post" class="form-edit">
+							<input class="new-sh-nome hidden" type="text" value="<%=stakeholder.getNomeStakeholder()%>"></input>
+						</form>
 						</td>
 						<td align="center">
-							<form action="" method="post">
-								<a class="edit" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-							</form>
+							<i class="glyphicon glyphicon-ok pointer hidden" style="cursor:pointer"></i>
+							<i class="glyphicon glyphicon-pencil pointer" style="cursor:pointer"></i>	
 						</td>
 
 						<td align="center">
@@ -70,11 +71,31 @@
 </div>
 
 <script>
-$('.edit').click(function(){
+
+$(".glyphicon-ok").click(function(){
 	
-	console.log("taqui")
+	console.log("pai")
 	
-	var pai = $(this).closest('.coluna-sh');
+	var pai = $(this).parent().parent();
+	
+	console.log(pai);
+	
+	var nome = pai.find('.new-sh-nome').val();
+	
+	var id = pai.find('.sh-id').attr('id');
+
+	console.log(nome, id);
+	//if (nome != pai.find('.sh-nome p').val()){
+		pai.find('.form-edit').prop('action', "main?acao=editaStakeholder&id_sh=" + id + "&nome=" + nome).submit();
+	//}
+	
+	
+});
+
+
+$('.glyphicon-pencil').click(function(){
+	
+	var pai = $(this).parent().parent();
 	
 	console.log(pai)
 	
@@ -82,7 +103,13 @@ $('.edit').click(function(){
 	
 	pai.find('.sh-nome input').removeClass('hidden');
 	
-	$(this).find("glyphicon").removeClass('glyphicon-pencil').addClass('glyphicon-ok');
+	$(this).hide();
+	
+	pai.find(".glyphicon-ok").removeClass("hidden");	
 
-});</script>
+});
+
+
+
+</script>
 <jsp:include page="../template/foot.jsp"></jsp:include>
