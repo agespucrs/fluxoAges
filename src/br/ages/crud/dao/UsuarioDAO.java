@@ -82,6 +82,59 @@ public class UsuarioDAO {
 	 * @throws PersistenciaException
 	 * @throws SQLException
 	 */
+	public List<Usuario> listarUsuariosAlunos() throws PersistenciaException, SQLException {
+		Connection conexao = null;
+		// tentativa de readaptação do listarUsuarios()
+		try {
+			conexao = ConexaoUtil.getConexao();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ");
+			sql.append("u.`ID_USUARIO`,");
+			sql.append("u.`USUARIO`,");
+			sql.append("u.`SENHA`,");
+			sql.append("u.`PERFIL_ACESSO`,");
+			sql.append("u.`STATUS_USUARIO`,");
+			sql.append("u.`ID_TIPO_USUARIO`,");
+			sql.append("u.`MATRICULA`,");
+			sql.append("u.`NOME`,");
+			sql.append("u.`EMAIL` ");
+			
+			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
+			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
+			sql.append(" WHERE t.nome = 'Aluno';");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				Usuario dto = new Usuario();
+				dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				dto.setMatricula(resultset.getString("MATRICULA"));
+				dto.setNome(resultset.getString("NOME"));
+				dto.setEmail(resultset.getString("EMAIL"));
+				dto.setUsuario(resultset.getString("USUARIO"));
+				dto.setSenha(resultset.getString("SENHA"));
+				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+					
+				listarUsuarios.add(dto);
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return listarUsuarios;
+	}
+	
+	/**
+	 * Lista os Usuarios da basee
+	 * 
+	 * @return
+	 * @throws PersistenciaException
+	 * @throws SQLException
+	 */
 	public List<Usuario> listarUsuarios() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		// tentativa de readaptação do listarUsuarios()

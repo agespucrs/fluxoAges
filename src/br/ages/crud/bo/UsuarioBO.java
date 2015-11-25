@@ -169,6 +169,26 @@ public class UsuarioBO {
 	 * @return
 	 * @throws NegocioException
 	 */
+	public List<Usuario> listarUsuarioAlunos() throws NegocioException   {
+		
+		List<Usuario> listUser = null;
+		
+		try {
+			listUser = usuarioDAO.listarUsuariosAlunos();
+		} catch (PersistenciaException | SQLException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		
+		return listUser;
+	}
+	
+		/**
+	 * Lista as pessoas a partir das classes de DAO
+	 * 
+	 * @return
+	 * @throws NegocioException
+	 */
 	public List<Usuario> listarUsuario() throws NegocioException   {
 
 		List<Usuario> listUser = null;

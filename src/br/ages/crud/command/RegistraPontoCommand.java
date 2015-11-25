@@ -23,7 +23,7 @@ public class RegistraPontoCommand implements Command {
 		try {
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
 		
-			usuarios = usuarioBO.listarUsuario();
+			usuarios = usuarioBO.listarUsuarioAlunos();
 		
 			for(int i = 0; i < usuarios.size(); i++){
 					if(usuarios.get(i).getIdUsuario() == usuario.getIdUsuario()){
