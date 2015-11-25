@@ -9,7 +9,7 @@
 
 
 <jsp:include page="../template/head.jsp"></jsp:include>
-<script src="../js/cadastro-projeto.js"></script>
+
 
 <div class="panel panel-primary panel-addUser">
 

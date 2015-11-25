@@ -229,7 +229,7 @@ public class StakeholderDAO {
 			StringBuilder sql = new StringBuilder();
 			int id = stakeholder.getIdStakeholder();
 			
-			sql.append("UPDATE AGES.E.TB_STAKEHOLDERS SET NOME_STAKEHOLDER = ?" + " WHERE ID_STAKEHOLDER = " + id + ";");
+			sql.append("UPDATE TB_STAKEHOLDERS SET NOME_STAKEHOLDER = ?" + " WHERE ID_STAKEHOLDER = " + id + ";");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			

@@ -20,7 +20,7 @@ public class CreateScreenStakeholderCommand implements Command {
 			if (isEdit != null && !"".equals(isEdit)) {
 
 				int idStakeholder = Integer.parseInt(request.getParameter("idStakeholder"));
-				Stakeholder stakeholder = stakeholderBO.bucaStakeholderId(idStakeholder);
+				Stakeholder stakeholder = stakeholderBO.buscaStakeholderId(idStakeholder);
 				request.setAttribute("nomeStakeholder", stakeholder.getNomeStakeholder());
 				
 				proxima = "project/addStakeholder.jsp";

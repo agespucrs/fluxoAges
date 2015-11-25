@@ -28,7 +28,7 @@ public class CreateScreenProjectCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
-		//TODO utilizar stakeholderBO.listaStakeholders após a implementação do mesmo
+		//TODO utilizar stakeholderBO.listaStakeholders apï¿½s a implementaï¿½ï¿½o do mesmo
 		proxima = "main?acao=listaProjetos";
 		Usuario currentUser = (Usuario)request.getSession().getAttribute("usuarioSessao");		
 		stakeholderBO = new StakeholderBO();

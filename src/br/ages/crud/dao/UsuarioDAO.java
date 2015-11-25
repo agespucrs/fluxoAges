@@ -191,7 +191,6 @@ public class UsuarioDAO {
 	}
 
 	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
-		// adicionar paranauês de tipo de usuário e tal
 		Connection conexao = null;
 
 		try {
@@ -202,10 +201,6 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, PERFIL_ACESSO, STATUS_USUARIO, ID_TIPO_USUARIO, MATRICULA, NOME, EMAIL, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
-			// falta inserir os negocios na tabela id_tipo_usuario
-			// sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR,
-			// MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
-			// sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
 
 			// converte a data para data Juliana, data que o banco reconhece;
 			java.util.Date utilDate = new java.util.Date();
@@ -494,7 +489,11 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * Lista os tipos de usu�rios
+<<<<<<< HEAD
+	 * Lista os tipos de usu�rios
+=======
+	 * Lista os tipos de usu�rios
+>>>>>>> branch 'dev' of https://github.com/agespucrs/fluxoAges.git
 	 * @return
 	 * @throws PersistenciaException
 	 */

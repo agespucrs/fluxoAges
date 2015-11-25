@@ -13,7 +13,7 @@ import br.ages.crud.model.Stakeholder;
 import br.ages.crud.util.MensagemContantes;
 
 public class StakeholderBO {
-	StakeholderDAO stakeholderDAO = null;
+	static StakeholderDAO stakeholderDAO = null;
 	
 	public StakeholderBO(){
 		stakeholderDAO = new StakeholderDAO();
@@ -82,7 +82,7 @@ public class StakeholderBO {
 	
 	
 	
-	public Stakeholder bucaStakeholderId(int idStakeholder) throws NegocioException {
+	public static Stakeholder buscaStakeholderId(int idStakeholder) throws NegocioException {
 		try{
 			Stakeholder stakeholder = stakeholderDAO.buscaStakeholderId(idStakeholder);
 			
