@@ -2,6 +2,10 @@ package br.ages.crud.command;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +14,7 @@ import br.ages.crud.dao.UsuarioDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.model.PerfilAcesso;
 import br.ages.crud.model.Stakeholder;
+import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
 
@@ -33,15 +38,23 @@ public class CreateScreenUserCommand implements Command {
 			
 			
 			if (isEdit != null && !"".equals(isEdit)) {
-				proxima = "user/editUser.jsp";
+				
 				usuarioBO = new UsuarioBO();
-
+				
 				int id = Integer.parseInt(request.getParameter("id_usuario"));
 				Usuario usuario = usuarioBO.buscaUsuarioId(id);
-
-				request.setAttribute("usuario", usuario);
 				
-			} else {
+				
+				request.setAttribute("usuario", usuario);
+				proxima = "user/editUser.jsp";
+				
+			} else { // Adiciona um novo usuário
+				usuarioBO = new UsuarioBO();
+				List<TipoUsuario> tipoUsuarios = new ArrayList<TipoUsuario>();
+
+				tipoUsuarios = usuarioBO.listaTipoUsuarios();
+				request.setAttribute("tipoUsuarios", tipoUsuarios);
+				
 				proxima = "user/addUser.jsp";		
 			}
 
