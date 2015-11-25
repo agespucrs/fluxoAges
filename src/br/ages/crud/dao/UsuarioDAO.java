@@ -58,15 +58,16 @@ public class UsuarioDAO {
 			statement.setString(2, usuarioDTO.getSenha());
 
 			ResultSet resultset = statement.executeQuery();
-			if(resultset.next()) {
+			if (resultset.next()) {
 				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
 				usuario.setMatricula(resultset.getString("MATRICULA"));
 				usuario.setNome(resultset.getString("NOME"));
-				usuario.setPerfilAcesso( PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")) );
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
 				usuario.setEmail(resultset.getString("EMAIL"));
 				usuario.setUsuario(resultset.getString("USUARIO"));
 				usuario.setSenha(resultset.getString("SENHA"));
-			} else usuario = null;
+			} else
+				usuario = null;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			throw new PersistenciaException(e);
@@ -137,9 +138,8 @@ public class UsuarioDAO {
 	}
 
 	public int cadastrarUsuario(Usuario usuario) throws PersistenciaException, SQLException, ParseException {
-		// adicionar paranauês de tipo de usuário e tal
-		Connection conexao = null;
 		
+		Connection conexao = null;
 
 		try {
 			Integer idUsuario = null;
@@ -149,10 +149,6 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, PERFIL_ACESSO, STATUS_USUARIO, ID_TIPO_USUARIO, MATRICULA, NOME, EMAIL, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
-			// falta inserir os negocios na tabela id_tipo_usuario
-			// sql.append("INSERT INTO TB_USUARIO (USUARIO, SENHA, ADMINISTRADOR,
-			// MATRICULA, NOME, EMAIL, DATA_CADASTRO)");
-			// sql.append("VALUES (?, ?, ?, ?, ?, ?, ? )");
 
 			// converte a data para data Juliana, data que o banco reconhece;
 			java.util.Date utilDate = new java.util.Date();
@@ -438,5 +434,57 @@ public class UsuarioDAO {
 			}
 		}
 		return okei;
+	}
+
+	/**
+	 * Lista os tipos de usu�rios
+	 * @return
+	 * @throws PersistenciaException
+	 */
+	public List<TipoUsuario> listaTipoUsuarios() throws PersistenciaException {
+		Usuario usuario = new Usuario();
+
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+			
+			List<TipoUsuario> tipoUsuarios = new ArrayList<>();
+
+			StringBuilder sql = new StringBuilder();
+			// sql.append("SELECT * FROM AGES_E.TB_USUARIO WHERE ID_USUARIO = ?;");
+			//
+			sql.append("SELECT ");
+			sql.append("`ID_TIPO_USUARIO`,");
+			sql.append("`NOME` ,");
+			sql.append("`DESCRICAO`,");
+			sql.append("`DATA_INCLUSAO` ");
+			sql.append("FROM tb_tipo_usuario; ");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				TipoUsuario tipoUsuario = new TipoUsuario();
+				
+				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
+				tipoUsuario.setNome(resultset.getString("NOME"));
+				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
+				usuario.setTipoUsuario(tipoUsuario);
+
+				tipoUsuarios.add(tipoUsuario);
+
+			}
+
+			return tipoUsuarios;
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
