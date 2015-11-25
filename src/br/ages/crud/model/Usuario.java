@@ -33,7 +33,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		this.dataInclusao = new Date();
 	}
 
-	public Usuario(String usuario, String senha, String administrador, String matricula, String nome, String email, StatusUsuario statusUsuario, TipoUsuario tipoUsuario, PerfilAcesso perfilAcesso) {
+	public Usuario(String usuario, String senha, String matricula, String nome, String email, StatusUsuario statusUsuario, TipoUsuario tipoUsuario, PerfilAcesso perfilAcesso) {
 		super();
 		this.usuario = usuario;
 		this.senha = senha;

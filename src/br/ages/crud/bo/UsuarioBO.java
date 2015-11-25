@@ -16,8 +16,8 @@ import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.SenhaValidator;
 
 /**
- * Gerencia os comportamentos de neg�cio do Usu�rio Associa os par�metros da
- * tela as propriedades da classe
+ * Gerencia os comportamentos de neg�cio do Usu�rio Associa os par�metros
+ * da tela as propriedades da classe
  * 
  * @author C�ssio Trindade
  * 
@@ -37,13 +37,13 @@ public class UsuarioBO {
 	 * @throws NegocioException
 	 */
 	public Usuario validaUsuario(Usuario usuario) throws NegocioException {
-	
+
 		Usuario user = null;
 		try {
 			// valida se o usuario existe na base
 
 			user = usuarioDAO.validarUsuario(usuario);
-			if (user == null){
+			if (user == null) {
 				throw new NegocioException(MensagemContantes.MSG_ERR_USUARIO_SENHA_INVALIDOS);
 			}
 
@@ -65,20 +65,23 @@ public class UsuarioBO {
 	 */
 	public boolean validaUsuarioA(Usuario usuario) throws NegocioException {
 		boolean isValido = true;
-		StringBuilder msg = new StringBuilder();		
+		StringBuilder msg = new StringBuilder();
 		msg.append(MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS.concat("<br/>"));
-		
+
 		String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 		try {
 			// valida campos est�o preenchidos corretamente
 			// Matricula
-			/*if (usuario.getMatricula() == null || "".equals(usuario.getMatricula())) {
-				isValido = false;
-				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Matricula ").concat("<br/>"));
-
-			}*/
-			if (!usuario.getMatricula().matches("\\d{5,9}")){
+			/*
+			 * if (usuario.getMatricula() == null ||
+			 * "".equals(usuario.getMatricula())) { isValido = false;
+			 * msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?",
+			 * "Matricula ").concat("<br/>"));
+			 * 
+			 * }
+			 */
+			if (!usuario.getMatricula().matches("\\d{5,9}")) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_MATRICULA_INVALIDA.replace("?", "Matricula ").concat("<br/>"));
 			}
@@ -96,10 +99,10 @@ public class UsuarioBO {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Email ").concat("<br/>"));
 			}
-			
+
 			String nome = Normalizer.normalize(usuario.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-			
-			if(!nome.matches("(([A-Z][a-z]*)\\s{0,1})+")){
+
+			if (!nome.matches("(([A-Z][a-z]*)\\s{0,1})+")) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_NOME_INVALIDO.replace("?", "Nome ").concat("<br/>"));
 			}
@@ -111,15 +114,16 @@ public class UsuarioBO {
 			}
 
 			// flag administrador
-			/*			if (usuario.getPerfilAcesso() == null || "".equals(usuario.getPerfilAcesso())) {
-				isValido = false;
-				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Administrador").concat("<br/>"));
-			}
-			// tipo usuario
-			if (usuario.getTipoUsuario() == null || "".equals(usuario.getTipoUsuario())) {
-				isValido = false;
-				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Flag Tipo Usu�rio").concat("<br/>"));
-			}*/
+			/*
+			 * if (usuario.getPerfilAcesso() == null ||
+			 * "".equals(usuario.getPerfilAcesso())) { isValido = false;
+			 * msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?",
+			 * "Flag Administrador").concat("<br/>")); } // tipo usuario if
+			 * (usuario.getTipoUsuario() == null ||
+			 * "".equals(usuario.getTipoUsuario())) { isValido = false;
+			 * msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?",
+			 * "Flag Tipo Usu�rio").concat("<br/>")); }
+			 */
 
 			// valida se Pessoa esta ok
 			if (!isValido) {
@@ -169,7 +173,7 @@ public class UsuarioBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public List<Usuario> listarUsuario() throws NegocioException   {
+	public List<Usuario> listarUsuario() throws NegocioException {
 
 		List<Usuario> listUser = null;
 
@@ -183,16 +187,18 @@ public class UsuarioBO {
 		return listUser;
 
 	}
+
 	/**
 	 * Remove usu�rio da base
+	 * 
 	 * @param idUsuario
 	 * @throws NegocioException
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public void removerUsuario(Integer idUsuario) throws NegocioException, SQLException {
 		try {
 
-			if(validaUsuarioProjeto(idUsuario))
+			if (validaUsuarioProjeto(idUsuario))
 				usuarioDAO.removerUsuario(idUsuario);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
@@ -201,27 +207,30 @@ public class UsuarioBO {
 	}
 
 	private boolean validaUsuarioProjeto(Integer idUsuario) throws NegocioException, SQLException {
-		//chama um DAO que verifica se o usuario está em algum projeto, 
-		//se estiver(retorna qualquer coisa diferente de -1), retorna falso. 
+		// chama um DAO que verifica se o usuario está em algum projeto,
+		// se estiver(retorna qualquer coisa diferente de -1), retorna falso.
 		int id = -1;
-		try{
+		try {
 			id = usuarioDAO.verificaUsuarioProjeto(idUsuario);
-		} catch (PersistenciaException e){
+		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
-		if (id != -1) return false;
+		if (id != -1)
+			return false;
 		return true;
 	}
-	public TipoUsuario consultaTipoUsuario(String idTipoUsuario) throws NegocioException{
+
+	public TipoUsuario consultaTipoUsuario(String idTipoUsuario) throws NegocioException {
 		try {
 			TipoUsuario tipoUsuario = usuarioDAO.consultaTipoUsuario(idTipoUsuario);
 			return tipoUsuario;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
-		}	
+		}
 	}
+
 	public Usuario buscaUsuarioId(int idUsuario) throws NegocioException {
 		try {
 			Usuario usuario = usuarioDAO.buscaUsuarioId(idUsuario);
@@ -230,17 +239,29 @@ public class UsuarioBO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
-		}	
+		}
 	}
 
 	public void editaUsuario(Usuario usuario) throws NegocioException {
-		try{
+		try {
 			usuarioDAO.editaUsuario(usuario);
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
+
+	}
+
+	public List<TipoUsuario> listaTipoUsuarios() throws NegocioException {
+		try {
+
+			List<TipoUsuario> tipoUsuarios = usuarioDAO.listaTipoUsuarios();
+			return tipoUsuarios;
 		
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
 	}
 
 }
