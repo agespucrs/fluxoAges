@@ -25,7 +25,7 @@
 
 		<div class="table-responsive">
 
-			<form method="post" action="main?acao=editaProjeto"> <!-- enctype="multipart/form-data" > -->
+			<form method="post" action="main?acao=editaProjeto" name='listaStakeholders' enctype="multipart/form-data" >
 
 				<input class="form-control" type="hidden" id="idProjeto" name="idProjeto" value="<%=projeto.getIdProjeto()%>">
 
@@ -51,7 +51,7 @@
 					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->					
 					
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaStakeholders" id="listaStakeholders" class="listaStakeholders" required>
+						<select multiple="multiple" size="10" name="listaStakeholders" id="listaStakeholders" class="listaStakeholders">
 						<%
 							List<Stakeholder> listaStakeholders = (List<Stakeholder>) request.getAttribute("listaStakeholders");
 							List<Stakeholder> listaStakeholdersProjeto = (List<Stakeholder>) projeto.getStakeholders();
