@@ -9,9 +9,11 @@
 
 		<div class="panel-heading text-center">Livro Ponto</div>
 		<div class="panel-body">
+		
+		<jsp:include page="/template/msg.jsp"></jsp:include>
 
 			<div class="table-responsive">
-				<form method="post">
+				<form method="post" action="main?acao=adicionaPonto" >
 				<%
 				
 				Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
@@ -20,8 +22,8 @@
 					<div class="form-group">
 						<div class='' id='nomeAluno'>
 							<label  for="sel1" class="form-label ages">Aluno:<span class="red">*</span></label> 
-							<select class="form-control" id="sel1" >
-						        <option><%=usuario.getNome()%></option>
+							<select class="form-control" id="idAluno" name="idAluno" >
+						        <option value="<%=usuario.getIdUsuario()%>"><%=usuario.getNome()%></option>
 							 	<%
 									List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("usuarios");
 									for (Usuario u : listaUsuarios) {
@@ -36,16 +38,17 @@
 					<div class="form-group">
 					<label class="form-label ages">Entrada:<span class="red">*</span></label> 
 						<div class='input-group date' id='dataEntrada'>
-							<input id='dataEntrada' type='text' class="form-control" />
+							<input type='text' class="form-control" id='dtEntrada' name="dtEntrada"/>
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="form-label ages">Saída:<span class="red">*</span></label> 
+						<label class="form-label ages">Saída:</label> 
 						<div class='input-group date' id='dataSaida'>
-							<input type='text' class="form-control" /> <span class="input-group-addon">
+							<input type='text' class="form-control" id="dtSaida" name="dtSaida"/> 
+							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
 						</div>
@@ -53,18 +56,24 @@
 					<div class="form-group">
 						<div class='' id='nomeResponsavel'>
 							<label for="sel2" class="form-label ages">Responsável:<span class="red">*</span></label> 
-							<select class="form-control" id="sel2"  >
-						        <option>Selecione...</option>
-						        <option>Responsável 1</option>
-						        <option>Responsável 2</option>
-						        <option>Responsável 3</option>
+							<select class="form-control" id="idResponsavel" name="idResponsavel" >
+						        <option value="0">Selecione...</option>
+						         
+							 	<%
+									List<Usuario> listaResponsaveis = (List<Usuario>) request.getAttribute("responsaveis");
+									for (Usuario u : listaResponsaveis) {
+							  	 %>
+								<option value="<%=u.getIdUsuario()%>"><%=u.getNome()%></option>
+								<%
+									}
+								%>
 					        </select>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class='' id='senhaResponsavel'>
 							<label class="form-label ages">Senha:<span class="red">*</span></label> 
-							<input type='password' class="form-control" /> 
+							<input type='password' class="form-control" id="senhaResponsavel" name="senhaResponsavel" /> 
 						</div>
 					</div>
 
@@ -91,6 +100,7 @@
 		$('#dataEntrada').datetimepicker({
 			locale : 'pt-br',
 			sideBySide : true,
+			showTodayButton: true
 		});
 
 		$('#dataSaida').datetimepicker({
@@ -101,10 +111,12 @@
 
 		$("#dataEntrada").on("dp.change", function(e) {
 			$('#dataSaida').data("DateTimePicker").minDate(e.date);
+			/* alert(document.getElementById('dataSaida').value); */
 		});
 
 		$("#dataSaida").on("dp.change", function(e) {
 			$('#dataEntrada').data("DateTimePicker").maxDate(e.date);
+			/* alert(document.getElementById('dataEntrada').value); */
 		});
 	});
 </script>
