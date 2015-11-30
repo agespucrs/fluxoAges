@@ -4,21 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.PerfilAcesso;
-import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.StatusUsuario;
+import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 import br.ages.crud.util.MensagemContantes;
-
-import com.mysql.jdbc.Statement;
 
 /**
  * 
@@ -26,8 +24,6 @@ import com.mysql.jdbc.Statement;
  *
  */
 public class UsuarioDAO {
-
-	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	private ArrayList<Usuario> listarUsuarios;
 
@@ -76,59 +72,6 @@ public class UsuarioDAO {
 		return usuario;
 	}
 
-	/**
-	 * Lista os Usuarios da basee
-	 * 
-	 * @return
-	 * @throws PersistenciaException
-	 * @throws SQLException
-	 */
-	public List<Usuario> listarUsuariosAlunos() throws PersistenciaException, SQLException {
-		Connection conexao = null;
-		// tentativa de readapta√ß√£o do listarUsuarios()
-		try {
-			conexao = ConexaoUtil.getConexao();
-			
-			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ");
-			sql.append("u.`ID_USUARIO`,");
-			sql.append("u.`USUARIO`,");
-			sql.append("u.`SENHA`,");
-			sql.append("u.`PERFIL_ACESSO`,");
-			sql.append("u.`STATUS_USUARIO`,");
-			sql.append("u.`ID_TIPO_USUARIO`,");
-			sql.append("u.`MATRICULA`,");
-			sql.append("u.`NOME`,");
-			sql.append("u.`EMAIL` ");
-			
-			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
-			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
-			sql.append(" WHERE t.nome = 'Aluno';");
-			
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
-			ResultSet resultset = statement.executeQuery();
-			while (resultset.next()) {
-				Usuario dto = new Usuario();
-				dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
-				dto.setMatricula(resultset.getString("MATRICULA"));
-				dto.setNome(resultset.getString("NOME"));
-				dto.setEmail(resultset.getString("EMAIL"));
-				dto.setUsuario(resultset.getString("USUARIO"));
-				dto.setSenha(resultset.getString("SENHA"));
-				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
-				dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
-					
-				listarUsuarios.add(dto);
-			}
-			
-		} catch (ClassNotFoundException | SQLException e) {
-			throw new PersistenciaException(e);
-		} finally {
-			conexao.close();
-		}
-		return listarUsuarios;
-	}
-	
 	/**
 	 * Lista os Usuarios da basee
 	 * 
@@ -212,8 +155,6 @@ public class UsuarioDAO {
 			statement.setString(2, usuario.getSenha());
 			statement.setString(3, String.valueOf(usuario.getPerfilAcesso()));
 			statement.setString(4, String.valueOf(usuario.getStatusUsuario()));
-			// statement.setInt(5, 1);
-			// XXX alterar para usar a classe TipoUsuario
 			statement.setInt(5, usuario.getTipoUsuario().getIdTipoUsuario());
 			statement.setString(6, usuario.getMatricula());
 			statement.setString(7, usuario.getNome());
@@ -489,11 +430,10 @@ public class UsuarioDAO {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Lista os tipos de usuÔøΩrios
-=======
-	 * Lista os tipos de usuÔøΩrios
->>>>>>> branch 'dev' of https://github.com/agespucrs/fluxoAges.git
+	 * <<<<<<< HEAD Lista os tipos de usuÔøΩrios ======= Lista os tipos de
+	 * usuÔøΩrios >>>>>>> branch 'dev' of
+	 * https://github.com/agespucrs/fluxoAges.git
+	 * 
 	 * @return
 	 * @throws PersistenciaException
 	 */
@@ -503,7 +443,7 @@ public class UsuarioDAO {
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
-			
+
 			List<TipoUsuario> tipoUsuarios = new ArrayList<>();
 
 			StringBuilder sql = new StringBuilder();
@@ -521,7 +461,7 @@ public class UsuarioDAO {
 
 			while (resultset.next()) {
 				TipoUsuario tipoUsuario = new TipoUsuario();
-				
+
 				tipoUsuario.setIdTipoUsuario(resultset.getInt("ID_TIPO_USUARIO"));
 				tipoUsuario.setNome(resultset.getString("NOME"));
 				tipoUsuario.setDescricao(resultset.getString("DESCRICAO"));
@@ -542,5 +482,114 @@ public class UsuarioDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Busca nos banco os usu·rios respons·veis
+	 * 
+	 * @return
+	 * @throws PersistenciaException
+	 * @throws SQLException
+	 */
+	public List<Usuario> listarUsuariosReponsaveis() throws PersistenciaException, SQLException {
+		Connection conexao = null;
+		// tentativa de readapta√ß√£o do listarUsuarios()
+		try {
+			conexao = ConexaoUtil.getConexao();
+			listarUsuarios = new ArrayList<>();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ");
+			sql.append("u.`ID_USUARIO`,");
+			sql.append("u.`USUARIO`,");
+			sql.append("u.`SENHA`,");
+			sql.append("u.`PERFIL_ACESSO`,");
+			sql.append("u.`STATUS_USUARIO`,");
+			sql.append("u.`ID_TIPO_USUARIO`,");
+			sql.append("u.`MATRICULA`,");
+			sql.append("u.`NOME`,");
+			sql.append("u.`EMAIL` ");
+
+			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
+			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
+			sql.append(" WHERE t.nome in ('Professor', 'Secretaria');");
+			
+			//XXX Alterar a tabela TB_TIPO_USUARIO para ter um flag marcando se o tipo È respons·vel
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				Usuario dto = new Usuario();
+				dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				dto.setMatricula(resultset.getString("MATRICULA"));
+				dto.setNome(resultset.getString("NOME"));
+				dto.setEmail(resultset.getString("EMAIL"));
+				dto.setUsuario(resultset.getString("USUARIO"));
+				dto.setSenha(resultset.getString("SENHA"));
+				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+
+				listarUsuarios.add(dto);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return listarUsuarios;
+	}
+	/**
+	 * Lista os Usuarios da basee
+	 * 
+	 * @return
+	 * @throws PersistenciaException
+	 * @throws SQLException
+	 */
+	public List<Usuario> listarUsuariosAlunos() throws PersistenciaException, SQLException {
+		Connection conexao = null;
+		// tentativa de readapta√ß√£o do listarUsuarios()
+		try {
+			conexao = ConexaoUtil.getConexao();
+			listarUsuarios = new ArrayList<>();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ");
+			sql.append("u.`ID_USUARIO`,");
+			sql.append("u.`USUARIO`,");
+			sql.append("u.`SENHA`,");
+			sql.append("u.`PERFIL_ACESSO`,");
+			sql.append("u.`STATUS_USUARIO`,");
+			sql.append("u.`ID_TIPO_USUARIO`,");
+			sql.append("u.`MATRICULA`,");
+			sql.append("u.`NOME`,");
+			sql.append("u.`EMAIL` ");
+
+			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
+			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
+			sql.append(" WHERE t.nome = 'Aluno';");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			ResultSet resultset = statement.executeQuery();
+			while (resultset.next()) {
+				Usuario dto = new Usuario();
+				dto.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				dto.setMatricula(resultset.getString("MATRICULA"));
+				dto.setNome(resultset.getString("NOME"));
+				dto.setEmail(resultset.getString("EMAIL"));
+				dto.setUsuario(resultset.getString("USUARIO"));
+				dto.setSenha(resultset.getString("SENHA"));
+				dto.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				dto.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+
+				listarUsuarios.add(dto);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			conexao.close();
+		}
+		return listarUsuarios;
 	}
 }

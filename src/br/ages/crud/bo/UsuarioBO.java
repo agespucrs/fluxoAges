@@ -16,10 +16,10 @@ import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.SenhaValidator;
 
 /**
- * Gerencia os comportamentos de negï¿½cio do Usuï¿½rio Associa os parï¿½metros da
+ * Gerencia os comportamentos de neggocio do Usuario Associa os parametros da
  * tela as propriedades da classe
  * 
- * @author Cï¿½ssio Trindade
+ * @author Cassio Trindade
  * 
  */
 public class UsuarioBO {
@@ -30,7 +30,23 @@ public class UsuarioBO {
 	}
 
 	/**
-	 * Valida Usuï¿½rio no sistema
+	 * Valida se a senha do Responsavel pelo ponto esta correta. Estando correta
+	 * altera o Status do ponto.
+	 * 
+	 * @param usuario
+	 * @param senhaResponsavel
+	 * @return
+	 * @throws PersistenciaException
+	 */
+	public boolean validaUsuarioResponsavel(String usuario, String senhaResponsavel) throws PersistenciaException {
+		Usuario usuarioResponsavel = new Usuario(usuario, senhaResponsavel);
+		Usuario u = usuarioDAO.validarUsuario(usuarioResponsavel);
+		Boolean ok = u != null ? true : false;
+		return ok;
+	}
+
+	/**
+	 * Valida Usuario no sistema
 	 * 
 	 * @param request
 	 * @return
@@ -173,27 +189,27 @@ public class UsuarioBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public List<Usuario> listarUsuarioAlunos() throws NegocioException   {
-		
+	public List<Usuario> listarUsuarioAlunos() throws NegocioException {
+
 		List<Usuario> listUser = null;
-		
+
 		try {
 			listUser = usuarioDAO.listarUsuariosAlunos();
 		} catch (PersistenciaException | SQLException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
-		
+
 		return listUser;
 	}
-	
-		/**
+
+	/**
 	 * Lista as pessoas a partir das classes de DAO
 	 * 
 	 * @return
 	 * @throws NegocioException
 	 */
-	public List<Usuario> listarUsuario() throws NegocioException   {
+	public List<Usuario> listarUsuario() throws NegocioException {
 
 		List<Usuario> listUser = null;
 
@@ -277,11 +293,31 @@ public class UsuarioBO {
 
 			List<TipoUsuario> tipoUsuarios = usuarioDAO.listaTipoUsuarios();
 			return tipoUsuarios;
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
+	}
+
+	/**
+	 * Lista os usuários responsáveis
+	 * 
+	 * @return
+	 * @throws NegocioException
+	 * @throws SQLException
+	 */
+	public List<Usuario> listaUsuariosReponsaveis() throws NegocioException, SQLException {
+		List<Usuario> listResponsaveis = null;
+
+		try {
+			listResponsaveis = usuarioDAO.listarUsuariosReponsaveis();
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+
+		return listResponsaveis;
 	}
 
 }
