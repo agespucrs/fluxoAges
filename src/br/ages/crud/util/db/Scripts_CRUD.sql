@@ -97,7 +97,18 @@ CREATE TABLE tb_projeto_stakeholders (
   CONSTRAINT fk_stakeholder FOREIGN KEY (ID_STAKEHOLDER) REFERENCES tb_stakeholders (ID_STAKEHOLDER) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- Tabela para o Registro do Ponto, horas fora aula na agencia.
+CREATE TABLE `ages_e`.`tb_ponto` (
+  `id_ponto` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `data_entrada` DATETIME NULL COMMENT '',
+  `hora_entrada` DATETIME NULL COMMENT '',
+  `data_saida` DATETIME NULL COMMENT '',
+  `hora_saida` DATETIME NULL COMMENT '',
+  `id_usuario_aluno` INT NULL COMMENT '',
+  `id_usuario_responsavel` INT NULL COMMENT '',
+  `status_ponto` VARCHAR(30) NULL COMMENT '',
+  PRIMARY KEY (`id_ponto`)  COMMENT '')
+COMMENT = 'Tabela para o Registro do Ponto, horas fora aula na agencia. ';
 
 /*
 -- Tabela de estados do Brasil	
