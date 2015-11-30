@@ -71,7 +71,9 @@
 							<div id="stakeholders<%=projeto.getIdProjeto()%>" class="collapse">
 								<%
 									List<Stakeholder> listStakeholders = projeto.getStakeholders();
-										for (Stakeholder stakeholder : listStakeholders) {
+									
+									for (Stakeholder stakeholder : listStakeholders) {
+											
 								%>
 								<div class="row">
 									<div class="col-sm-2 dl-horizontal"><strong><%=stakeholder.getIdStakeholder()%></strong></div>

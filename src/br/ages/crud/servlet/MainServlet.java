@@ -51,7 +51,9 @@ public class MainServlet extends HttpServlet {
 		comandos.put("removeStakeholder", new RemoveStakeholderCommand());
 
 		//COMANDOS ALUNO
-		comandos.put("registrarPonto", new RegistraPontoCommand());
+		comandos.put("registrarPonto", new CreateScreenPontoCommand());
+		comandos.put("adicionaPonto", new AddPontoCommand());
+		comandos.put("listatPontoHora", new ListPontoTotalHorasCommand());
 	}
 
 	@Override
