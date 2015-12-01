@@ -66,11 +66,11 @@ public class PontoBO {
 		return statusPonto;
 	}
 
-	public ArrayList<ResumoPonto> listaPontoAlunos() throws NegocioException {
+	public ArrayList<ResumoPonto> listaPontoAlunos(int idUsuario) throws NegocioException {
 		pontoDAO = new PontoDAO();
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		try {
-			listaPontos = pontoDAO.listaPontoAlunos();
+			listaPontos = pontoDAO.listaPontoAlunos(idUsuario);
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -80,8 +80,9 @@ public class PontoBO {
 
 	public static void main(String[] args) throws NumberFormatException, NegocioException {
 		PontoBO p = new PontoBO();
+		int idUsuario = 31;
 		int total = 0;
-		for (ResumoPonto time : p.listaPontoAlunos()) {
+		for (ResumoPonto time : p.listaPontoAlunos(idUsuario)) {
 			String[] splits = (time.getHoraEntrada().toString()).split(":");
 			total += (Integer.parseInt(splits[0]) * 60 + Integer.parseInt(splits[1]));
 		}

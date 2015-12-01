@@ -53,7 +53,7 @@ public class MainServlet extends HttpServlet {
 		//COMANDOS ALUNO
 		comandos.put("registrarPonto", new CreateScreenPontoCommand());
 		comandos.put("adicionaPonto", new AddPontoCommand());
-		comandos.put("listatPontoHora", new ListPontoTotalHorasCommand());
+		comandos.put("listaPontoHora", new ListPontoTotalHorasCommand());
 	}
 
 	@Override

@@ -84,7 +84,7 @@
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=registrarPonto">Registrar Ponto</a></li>
-				            	<li><a href="main?acao=listatPontoHora">Lista Horas Ponto</a></li>
+				            	<li><a href="main?acao=listaPontoHora">Lista Horas Ponto</a></li>
 				            	
 				          	</ul>
         				</li>

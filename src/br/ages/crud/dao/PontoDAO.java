@@ -71,7 +71,7 @@ public class PontoDAO {
 
 	}
 
-	public ArrayList<ResumoPonto> listaPontoAlunos() throws SQLException {
+	public ArrayList<ResumoPonto> listaPontoAlunos(int idUsuario) throws SQLException {
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		Connection conexao = null;
 		try {
@@ -80,9 +80,17 @@ public class PontoDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("select p.id_ponto, u.nome, p.data_entrada, timediff(p.hora_saida,p.hora_entrada) horas ");
 			sql.append("FROM tb_ponto p, tb_usuario u ");
-			sql.append("where p.id_usuario_aluno = u.id_usuario; ");
-
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			
+			PreparedStatement statement;
+			if (idUsuario == 0) {
+				sql.append("where p.id_usuario_aluno = u.id_usuario");
+				statement = conexao.prepareStatement(sql.toString());
+			} else {
+				statement = conexao.prepareStatement(sql.toString());
+				sql.append("where p.id_usuario_aluno = ?; ");
+				statement.setInt(1, idUsuario);
+			}
+			
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
@@ -98,7 +106,7 @@ public class PontoDAO {
 		} catch (ClassNotFoundException | SQLException e) {
 
 			e.printStackTrace();
-			
+
 		} finally {
 			conexao.close();
 		}
@@ -108,6 +116,6 @@ public class PontoDAO {
 
 	public static void main(String[] args) throws SQLException {
 		PontoDAO p = new PontoDAO();
-		System.out.println(p.listaPontoAlunos());
+		System.out.println(p.listaPontoAlunos(1));
 	}
 }

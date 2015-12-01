@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.ages.crud.model.ResumoPonto"%>
+<%@page import="br.ages.crud.model.Usuario"%>
 <%@page import="java.util.List"%>
 <jsp:include page="../template/head.jsp"></jsp:include>
 
@@ -8,14 +9,27 @@
 
 	<div class="panel-heading text-center">Hora Ponto Alunos</div>
 
+	<jsp:include page="/template/msg.jsp"></jsp:include>
 
 	<div class="panel-body">
-
-		<jsp:include page="/template/msg.jsp"></jsp:include>
-
+		<form id="formListAluno" action="">
+		<div class='' id='nomeAluno'>
+			<label for="sel1" class="form-label ages">Aluno:<span class="red">*</span></label> 
+			<select class="form-control" id="idAluno" name="idAluno" >
+				<%
+					List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("usuarios");
+					for (Usuario u : listaUsuarios) {
+				%>
+				<option value="<%=u.getIdUsuario()%>"><%=u.getNome()%></option>
+				<%
+					}
+				%>
+			</select>
+		</div>
+		</form>
 		<div class="table-responsive">
 
-			<table class="table table-hover table-striped table-bordered">
+			<table class="table table-hover table-striped table-bordered" id="listaAlunos">
 
 				<thead>
 					<tr>
@@ -27,10 +41,10 @@
 				</thead>
 
 				<tbody>
-						<%
-							ArrayList<ResumoPonto> listaPontos = (ArrayList<ResumoPonto>) request.getAttribute("listaPontos");
-							for (ResumoPonto ponto: listaPontos) {
-						%>
+					<%
+						ArrayList<ResumoPonto> listaPontos = (ArrayList<ResumoPonto>) request.getAttribute("listaPontos");
+						for (ResumoPonto ponto : listaPontos) {
+					%>
 
 					<tr class="coluna-sh">
 						<td align="center" class="sh-id"><%=ponto.getIdPonto()%></td>
@@ -39,9 +53,9 @@
 						<td align="center"><%=ponto.getHoraEntrada()%></td>
 					</tr>
 
-						<% 
-							} 
-						%>
+					<%
+						}
+					%>
 				</tbody>
 
 			</table>
@@ -53,45 +67,14 @@
 </div>
 
 <script>
-
-$(".glyphicon-ok").click(function(){
-	
-	console.log("pai")
-	
-	var pai = $(this).parent().parent();
-	
-	console.log(pai);
-	
-	var nome = pai.find('.new-sh-nome').val();
-	
-	var id = pai.find('.sh-id').attr('id');
-
-	console.log(nome, id);
-	//if (nome != pai.find('.sh-nome p').val()){
-		pai.find('.form-edit').prop('action', "main?acao=editaStakeholder&id_sh=" + id + "&nome=" + nome).submit();
-	//}
+	$("#idAluno").change(
+			function() {
+				var id = this.value;
+				var formPai = $("#formListAluno");
+				formPai.attr("action","main?acao=listaPontoHora&id_usuario=" + id).submit;
+				console.log("main?acao=listaPontoHora&id_usuario=" + id);
+			});
 	
 	
-});
-
-
-$('.glyphicon-pencil').click(function(){
-	
-	var pai = $(this).parent().parent();
-	
-	console.log(pai)
-	
-	pai.find('.sh-nome p').hide();
-	
-	pai.find('.sh-nome input').removeClass('hidden');
-	
-	$(this).hide();
-	
-	pai.find(".glyphicon-ok").removeClass("hidden");	
-
-});
-
-
-
 </script>
 <jsp:include page="../template/foot.jsp"></jsp:include>
