@@ -80,14 +80,14 @@ public class PontoDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("select p.id_ponto, u.nome, p.data_entrada, timediff(p.hora_saida,p.hora_entrada) horas ");
 			sql.append("FROM tb_ponto p, tb_usuario u ");
+			sql.append("where p.id_usuario_aluno = u.id_usuario");
 			
 			PreparedStatement statement;
 			if (idUsuario == 0) {
-				sql.append("where p.id_usuario_aluno = u.id_usuario");
 				statement = conexao.prepareStatement(sql.toString());
 			} else {
+				sql.append(" and p.id_usuario_aluno = ?; ");
 				statement = conexao.prepareStatement(sql.toString());
-				sql.append("where p.id_usuario_aluno = ?; ");
 				statement.setInt(1, idUsuario);
 			}
 			

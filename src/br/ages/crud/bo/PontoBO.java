@@ -71,6 +71,8 @@ public class PontoBO {
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		try {
 			listaPontos = pontoDAO.listaPontoAlunos(idUsuario);
+			
+			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -78,15 +80,17 @@ public class PontoBO {
 		return listaPontos;
 	}
 
-	public static void main(String[] args) throws NumberFormatException, NegocioException {
-		PontoBO p = new PontoBO();
-		int idUsuario = 31;
+	public String calculatotalHorasAluno(ArrayList<ResumoPonto> listaPontos) throws NumberFormatException, NegocioException {
+		
+		String totalHorasAluno;
 		int total = 0;
-		for (ResumoPonto time : p.listaPontoAlunos(idUsuario)) {
+		for (ResumoPonto time : listaPontos) {
 			String[] splits = (time.getHoraEntrada().toString()).split(":");
 			total += (Integer.parseInt(splits[0]) * 60 + Integer.parseInt(splits[1]));
 		}
 
-		System.out.println(total / 60 + ":" + total % 60);
+		totalHorasAluno = (total / 60 + ":" + total % 60);
+		
+		return totalHorasAluno ;
 	}
 }

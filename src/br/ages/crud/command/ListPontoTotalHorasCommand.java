@@ -27,14 +27,19 @@ public class ListPontoTotalHorasCommand implements Command {
 		proxima = "aluno/listPontoHora.jsp";
 
 		try {
+		
 			
+			Integer idUsuario = Integer.valueOf(request.getParameter("id_usuario"));
+						
 			usuarios = usuarioBO.listarUsuarioAlunos();
-			int idUsuario = 0;
+			
 			request.setAttribute("usuarios", usuarios);
-			request.setAttribute("id_usuario", idUsuario);
+			
 			
 			ArrayList<ResumoPonto>  listaPontos = pontoBO.listaPontoAlunos(idUsuario);
 			request.setAttribute("listaPontos", listaPontos );
+			request.setAttribute("totalHorasAluno", pontoBO.calculatotalHorasAluno(listaPontos));
+			
 		} catch (NegocioException e) {
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());
