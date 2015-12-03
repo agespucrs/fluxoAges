@@ -30,12 +30,12 @@ public class FileUploadServlet extends HttpServlet {
          
         Part part = request.getPart("file");
         String fileName = extractFileName(part);    
-        part.write(savePath + File.separator + fileName);        
+        part.write(new File(savePath + File.separator + fileName).toString());        
  
         request.setAttribute("msgSucesso", "Upload feito com sucesso!");
         
-        request.setAttribute("acao", "listaProjetos");
-        getServletContext().getRequestDispatcher("main").forward(
+        //request.setAttribute("acao", "listaProjetos");
+        getServletContext().getRequestDispatcher("/main?acao=listaProjetos").forward(
                 request, response);
     }
  

@@ -41,9 +41,10 @@ public class MainServlet extends HttpServlet {
 		comandos.put("adicionaProjeto", new AdicionaProjetoCommand());
 		comandos.put("editaProjeto", new EditaProjetoCommand());
 		comandos.put("removeProjeto", new RemoveProjetoCommand());
+		comandos.put("uploadProjeto", new UploadProjetoCommand());
 		
 		//COMANDOS DE STAKEHOLDER
-
+		
 		comandos.put("telaStakeholder", new CreateScreenStakeholderCommand());
 		comandos.put("listaStakeholders", new ListStakeholdersCommand());
 		comandos.put("addStakeholder", new AddStakeholderCommand());

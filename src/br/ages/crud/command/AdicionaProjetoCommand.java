@@ -69,6 +69,7 @@ public class AdicionaProjetoCommand implements Command {
 			}
 			
 			
+
 			// cria um StatusProjeto com o string do request
 			StatusProjeto statusProjeto = StatusProjeto.valueOf(statusProjetoString); 
 			// cria Dates com os strings recebidos
@@ -96,7 +97,8 @@ public class AdicionaProjetoCommand implements Command {
 			
 			if(isValido) {
 				projetoBO.cadastrarProjeto(projeto);
-				proxima = "main?acao=listaProjetos";
+				request.setAttribute("projeto", projeto);
+				proxima = "project/uploadProject.jsp";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PROJETO.replace("?", nomeProjeto));
 			} else{
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_PROJETO_DADOS_INVALIDOS);
