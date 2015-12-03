@@ -9,7 +9,7 @@ public class ResumoPonto implements Serializable {
 	private int idPonto;
 	private String nomeAluno;
 	private Date dataEtrada;
-	private Date horaEntrada;
+	private Date horaTotalDia;
 
 	public ResumoPonto() {
 	}
@@ -38,12 +38,12 @@ public class ResumoPonto implements Serializable {
 		this.dataEtrada = dataEtrada;
 	}
 
-	public Date getHoraEntrada() {
-		return horaEntrada;
+	public Date getHoraTotalDia() {
+		return horaTotalDia;
 	}
 
-	public void setHoraEntrada(Date horaEntrada) {
-		this.horaEntrada = horaEntrada;
+	public void setHoraTotalDia(Date horaEntrada) {
+		this.horaTotalDia = horaEntrada;
 	}
 
 }

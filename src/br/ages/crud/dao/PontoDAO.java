@@ -12,6 +12,7 @@ import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Ponto;
 import br.ages.crud.model.ResumoPonto;
+import br.ages.crud.model.StatusPonto;
 import br.ages.crud.util.ConexaoUtil;
 import br.ages.crud.util.MensagemContantes;
 
@@ -38,10 +39,10 @@ public class PontoDAO {
 			java.sql.Time horaEntrada = new java.sql.Time(ponto.getDataEntrada().getTime());
 			statement.setTime(2, horaEntrada);
 
-			java.sql.Date dataSaida = new java.sql.Date(ponto.getDataSaida().getTime());
+			java.sql.Date dataSaida = ponto.getDataSaida() == null ? null: new java.sql.Date(ponto.getDataSaida().getTime());
 			statement.setDate(3, dataSaida);
 
-			java.sql.Time horaSaida = new java.sql.Time(ponto.getDataSaida().getTime());
+			java.sql.Time horaSaida = ponto.getDataSaida() == null ? null : new java.sql.Time(ponto.getDataSaida().getTime());
 			statement.setTime(4, horaSaida);
 
 			statement.setInt(5, ponto.getAluno().getIdUsuario());
@@ -80,7 +81,8 @@ public class PontoDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append("select p.id_ponto, u.nome, p.data_entrada, timediff(p.hora_saida,p.hora_entrada) horas ");
 			sql.append("FROM tb_ponto p, tb_usuario u ");
-			sql.append("where p.id_usuario_aluno = u.id_usuario");
+			sql.append("where p.id_usuario_aluno = u.id_usuario ");
+			sql.append("and p.status_ponto ='"+StatusPonto.VALIDO+"'");
 			
 			PreparedStatement statement;
 			if (idUsuario == 0) {
@@ -98,7 +100,7 @@ public class PontoDAO {
 				ponto.setIdPonto(resultSet.getInt("ID_PONTO"));
 				ponto.setNomeAluno(resultSet.getString("NOME"));
 				ponto.setDataEtrada(resultSet.getDate("DATA_ENTRADA"));
-				ponto.setHoraEntrada(resultSet.getTime("HORAS"));
+				ponto.setHoraTotalDia(resultSet.getTime("HORAS"));
 				// " + horaTotal);
 
 				listaPontos.add(ponto);

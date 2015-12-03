@@ -55,7 +55,7 @@
 						<td align="center" class="sh-id"><%=ponto.getIdPonto()%></td>
 						<td align="center"><%=ponto.getNomeAluno()%></td>
 						<td align="center"><%=ponto.getDataEtrada()%></td>
-						<td align="center"><%=ponto.getHoraEntrada()%></td>
+						<td align="center"><%=ponto.getHoraTotalDia()%></td>
 					</tr>
 
 					<%

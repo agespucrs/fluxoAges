@@ -43,15 +43,21 @@ public class AddPontoCommand implements Command {
 			ponto.setResponsavel(responsavel);
 
 			Date dataEntrada = Util.stringToDateTime(dataEntradaString);
-			Date dataSaida = dataEntradaString.equals("") ? null : Util.stringToDateTime(dataSaidaString);
+			Date dataSaida = dataSaidaString.equals("") ? null : Util.stringToDateTime(dataSaidaString);
 
 			ponto.setDataEntrada(dataEntrada);
 			ponto.setDataSaida(dataSaida);
-						
+
 			StatusPonto statusPonto = pontoBO.validaStatusPonto(responsavel, senhaResponsavel);
 			ponto.setStatus(statusPonto);
-			
-			boolean isValido = pontoBO.validaPonto(ponto);
+
+			boolean isValido;
+			if (dataSaida != null) {
+				isValido = pontoBO.validaPonto(ponto);
+			} else {
+				isValido = true;
+			}
+
 			if (isValido == false) {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CADASTRO_PONTO);
 			} else { // cadastro ponto com sucesso

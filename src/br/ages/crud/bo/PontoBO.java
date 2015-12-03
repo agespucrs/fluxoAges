@@ -58,9 +58,9 @@ public class PontoBO {
 		UsuarioBO usuarioBO = new UsuarioBO();
 		StatusPonto statusPonto;
 		if (usuarioBO.validaUsuarioResponsavel(responsavel.getUsuario(), senhaResponsavel)) {
-			statusPonto = StatusPonto.Valido;
+			statusPonto = StatusPonto.VALIDO;
 		} else {
-			statusPonto = StatusPonto.Invalido;
+			statusPonto = StatusPonto.INVALIDO;
 		}
 
 		return statusPonto;
@@ -85,7 +85,7 @@ public class PontoBO {
 		String totalHorasAluno;
 		int total = 0;
 		for (ResumoPonto time : listaPontos) {
-			String[] splits = (time.getHoraEntrada().toString()).split(":");
+			String[] splits = (time.getHoraTotalDia().toString()).split(":");
 			total += (Integer.parseInt(splits[0]) * 60 + Integer.parseInt(splits[1]));
 		}
 
