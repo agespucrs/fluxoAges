@@ -51,7 +51,7 @@
 					<!-- http://davidstutz.github.io/bootstrap-multiselect/#faq -->					
 					
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaStakeholders" id="listaStakeholders" class="listaStakeholders" required>
+						<select multiple="multiple" size="10" name="listaStakeholders" id="listaStakeholders" class="listaStakeholders" >
 						<%
 							List<Stakeholder> listaStakeholders = (List<Stakeholder>) request.getAttribute("listaStakeholders");
 							List<Stakeholder> listaStakeholdersProjeto = (List<Stakeholder>) projeto.getStakeholders();
@@ -80,7 +80,7 @@
 					<!-- USUARIOS -->
 					<!-- http://www.virtuosoft.eu/code/bootstrap-duallistbox/ -->
 					<div class="col-md-12">
-						<select multiple="multiple" size="10" name="listaUsuarios" id="listaUsuarios" class="listaUsuarios" required>
+						<select multiple="multiple" size="10" name="listaUsuarios" id="listaUsuarios" class="listaUsuarios" >
 						<%
 							
 							List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listaUsuarios");
