@@ -3,8 +3,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="br.ages.crud.model.Projeto"%>
     
-<%Projeto projeto = (Projeto) request.getAttribute("projeto"); %>
-
+<%Projeto projeto = (Projeto)request.getSession().getAttribute("projeto"); %>
 
 <jsp:include page="../template/head.jsp"></jsp:include>
 
@@ -24,19 +23,16 @@
 
 </head>
 <body>
-
-
-	
-	
-	
 	<div class="panel panel-primary file-upload-panel">
 	
 	<div class="panel-heading text-center">Upload de Arquivo</div>
 	
 	<div class="panel-body">
 	<jsp:include page="/template/msg.jsp"></jsp:include>
-		<form method="post" action="upload" enctype="multipart/form-data" >
-			<label class="form-label ages">Projeto:</label>
+		<form method="post" action='upload' enctype="multipart/form-data" >
+			<label class="form-label ages">Projeto: </label>
+
+			<input class="form-control" id="idProjeto" name="idProjeto" value="<%= projeto.getIdProjeto() %>" type="text" maxlength="10" disabled>
 			<input class="form-control" id="codigo" name="codigo" value="<%= projeto.getNomeProjeto() %>" type="text" maxlength="120" disabled>
 			<label class="form-label ages">Arquivo:</label>
 			<input class="form-control" id="file" name="file" value="${param.file}" type="file" maxlength="120">
