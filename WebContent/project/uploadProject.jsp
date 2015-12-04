@@ -32,7 +32,7 @@
 		<form method="post" action='upload' enctype="multipart/form-data" >
 			<label class="form-label ages">Projeto: </label>
 
-			<input class="form-control" id="idProjeto" name="idProjeto" value="<%= projeto.getIdProjeto() %>" type="text" maxlength="10" disabled>
+			<input class="form-control" id="idProjeto" name="idProjeto" value="<%= projeto.getIdProjeto() %>" type="hidden" maxlength="10" disabled>
 			<input class="form-control" id="codigo" name="codigo" value="<%= projeto.getNomeProjeto() %>" type="text" maxlength="120" disabled>
 			<label class="form-label ages">Arquivo:</label>
 			<input class="form-control" id="file" name="file" value="${param.file}" type="file" maxlength="120">

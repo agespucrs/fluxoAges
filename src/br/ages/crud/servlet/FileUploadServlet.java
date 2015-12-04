@@ -29,8 +29,6 @@ public class FileUploadServlet extends HttpServlet {
 		try {
 			Projeto projeto = (Projeto) request.getSession().getAttribute("projeto");
 
-			//String appPath = request.getServletContext().getRealPath("");
-
 			String appPath = projeto.getWorkspace();
 			String savePath = SAVE_DIR + File.separator + appPath ;
 			File fileSaveDir = new File(savePath);
