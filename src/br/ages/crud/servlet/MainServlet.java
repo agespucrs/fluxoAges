@@ -9,14 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
-import br.ages.crud.command.AddUserCommand;
-import br.ages.crud.command.Command;
-import br.ages.crud.command.CreateScreenUserCommand;
-import br.ages.crud.command.ListUserCommand;
-import br.ages.crud.command.LoginCommand;
-import br.ages.crud.command.LogoutCommand;
-import br.ages.crud.command.RemoveUserCommand;
+import br.ages.crud.command.*;
+import br.ages.crud.util.LogParametrosSession;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
@@ -26,12 +22,39 @@ public class MainServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		
 		comandos.put("login", new LoginCommand());
 		comandos.put("logout", new LogoutCommand());
+		
+		//COMANDOS DE USUARIO
+		
 		comandos.put("telaUser", new CreateScreenUserCommand());
-		comandos.put("addUser", new AddUserCommand());
-		comandos.put("removerUsuario", new RemoveUserCommand());
 		comandos.put("listUser", new ListUserCommand());
+		comandos.put("addUser", new AddUserCommand());
+		comandos.put("editUser", new EditUserCommand());
+		comandos.put("removerUsuario", new RemoveUserCommand());
+		
+		//COMANDOS DE PROJETO
+		
+		comandos.put("telaProjeto", new CreateScreenProjectCommand());
+		comandos.put("listaProjetos", new ListaProjetosCommand());
+		comandos.put("adicionaProjeto", new AdicionaProjetoCommand());
+		comandos.put("editaProjeto", new EditaProjetoCommand());
+		comandos.put("removeProjeto", new RemoveProjetoCommand());
+		comandos.put("uploadArquivoProjeto", new UploadProjetoCommand());
+		
+		//COMANDOS DE STAKEHOLDER
+		
+		comandos.put("telaStakeholder", new CreateScreenStakeholderCommand());
+		comandos.put("listaStakeholders", new ListStakeholdersCommand());
+		comandos.put("addStakeholder", new AddStakeholderCommand());
+		comandos.put("editaStakeholder", new EditStakeholderCommand());
+		comandos.put("removeStakeholder", new RemoveStakeholderCommand());
+
+		//COMANDOS ALUNO
+		comandos.put("registrarPonto", new CreateScreenPontoCommand());
+		comandos.put("adicionaPonto", new AddPontoCommand());
+		comandos.put("listaPontoHora", new ListPontoTotalHorasCommand());
 	}
 
 	@Override
@@ -46,6 +69,9 @@ public class MainServlet extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
 		}
+	
+		LogParametrosSession.logParametros(request);
+		
 		request.getRequestDispatcher(proxima).forward(request, reponse);
 		
 	}

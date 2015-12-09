@@ -1,39 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/comum.css" />
-<title>AgES Login</title>
-</head>
-<body>
-	<div class="head">
-		<div class="logo">
-			<a href="index.jsp"> <img alt="Logo AgES" src="img/FACIN-AGES-poli.jpg">
-			</a>
-		</div>
-		<h1>Bem Vindo ao sistema Fluxo AGES / CePES MAterials</h1>
-	</div>
-	<form method="post" class="login_form" action="main?acao=login">
-		<jsp:include page="/template/msg.jsp"></jsp:include>
-		<fieldset class="fieldset_login">
-			<legend>Acesso ao Sistema</legend>
-			<div class="campo">
-				<label for="login">Login</label> <input type="text" id="login" name="login" maxlength="15" value="${param.login}" />
-			</div>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-			<div class="campo">
-				<label for="senha">Senha</label> <input type="password" id="senha" name="senha" maxlength="15" value="${param.senha}" />
-			</div>
+    <head>
+        <meta charset="utf-8">
+        <title>AGES - Agência Experimental de Engenharia de Software</title><!-- Título da página -->
+        <link rel="icon" href="img/favicon.ico">
 
-			<div class="campo">
-				<input type="submit" value="Enter" id="logar" name="logar" />
-			</div>
+		
+		<!-- BOOTSTRAP -->
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+		<script src="./js/bootstrap.min.js"></script>
+		
+		<!-- STYLE -->
+		<link rel="stylesheet" href="./css/style.css">
 
-			<div class="campo">
-				<a href="">Esqueci minha senha</a>
-			</div>
-		</fieldset>
-	</form>
-</body>
+    </head>
+    
+    <body>
+    	<div class="container">
+    		
+    		<br>
+    		<div class="text-center">
+    			<img class="logo" src="img/logo-ages.png" alt="AGES">
+    		</div>
+    		<br>
+   		
+    		<div class="panel panel-primary panel-login">
+    		
+    			<div class="panel-heading text-center">
+    				Sistema de Controle de Fluxo de Projetos
+    			</div>
+		         
+		                
+                <div class="panel-body">
+    
+    				<h1 class="welcome">Bem <span class="ages">v</span>indo!</h1>
+    				<jsp:include page="/template/msg.jsp"></jsp:include>
+                    
+			         <form method="post" action="main?acao=login">
+			         	
+			         	
+			         	<div class="form-group">
+			            	<label class="form-label ages">Usuário:</label>
+			            	<input class="form-control" id="login" name="login" value="${param.login}" type="text" maxlength="120" required>
+		             	</div>
+		             	
+		             	<div class="form-group">
+			            	<label class="form-label ages">Senha:</label>
+			            	<input class="form-control" id="senha" name="senha" value="${param.senha}" type="password" maxlength="15" required>
+		            	</div>
+		            	
+		            	<div class="text-center">
+		            		<a href="#">Esqueci minha senha</a>
+		             	</div>
+		             	
+		             	<hr>
+		             	
+			            <div class="text-center">
+			             	<input class="btn btn-primary login pull-center" type="submit" value="Entrar">
+			         	</div>
+			         </form>
+			         
+		         </div>
+		         
+	         </div>
+        </div>
+    </body>
 </html>

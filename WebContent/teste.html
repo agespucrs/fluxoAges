@@ -1,37 +1,81 @@
 <!DOCTYPE html >
 <html>
-<html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="./css/comum.css" />
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<!-- Include Twitter Bootstrap and jQuery: -->
+
+<!-- JQUERY -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- BOOTSTRAP -->
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+<script src="./js/bootstrap.min.js"></script>
+
+<!-- STYLE -->
+<link rel="stylesheet" href="./css/style.css">
+
+
+<!-- Include the plugin's CSS and JS: -->
+<script type="text/javascript" src="./js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="./css/bootstrap-multiselect.css" type="text/css" />
+
+<script src="./js/jquery.bootstrap-duallistbox.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap-duallistbox.min.css">
+
 </head>
 <body>
+	<!-- Build your select: -->
+	<select id="example-getting-started" multiple="multiple">
+		<option value="cheese">Cheese</option>
+		<option value="tomatoes">Tomatoes</option>
+		<option value="mozarella">Mozzarella</option>
+		<option value="mushrooms">Mushrooms</option>
+		<option value="pepperoni">Pepperoni</option>
+		<option value="onions">Onions</option>
+	</select>
+
+	<div class="col-md-4">
+		<select multiple="multiple" size="10" name="duallistbox_demo2" class="demo2">
+			<option value="option1">Cassio Trindade</option>
+			<option value="option2" selected="">Bento Gonçalves</option>
+			<option value="option3" selected="">Getulio Vargas</option>
+			<option value="option4" selected="">Tancredo Neve</option>
+			<option value="option5">Afonso Pena</option>
+			<option value="option6" selected="">Garrastazul</option>
+			<option value="option7">Jucelino K</option>
+			<option value="option8">Fernando Pessoa</option>
+			<option value="option9">Cleopatra</option>
+			<option value="option0">Maria Tereza de Kalcuta</option>
+			<option value="option0">Indira Gandi</option>
+
+		</select>
+		
+	</div>
 
 
-		<div class="modal hide" id="confirmDelete">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Atenção</h3>
-			</div>
-			<div class="modal-body">
-				<p>Você deseja realmente excluir?</p>
-				<div class="alert alert-error">Atenção: esta operação não pode ser desfeita.</div>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn btn-danger">Sim, desejo excluir.</a> <a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-			</div>
-		</div>
+
+
 </body>
-<script src="https://code.jquery.com/jquery-2.1.4.js" type="text/jscript"></script>
-<script type="text/javascript">
-	$(function() {
-		$("td.deleteLink a").click(function() {
-			$('#confirmDelete').modal('show');
-			$("#confirmDelete .btn-danger").attr("href", $(this).attr("href"));
-			return false;
-		});
-	});
-</script>
 
+<!-- Initialize the plugin: -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#example-getting-started').multiselect();
+	});
+
+</script>
+<script>
+			var demo2 = $('.demo2').bootstrapDualListbox({
+				nonSelectedListLabel : 'Stakeholder',
+				selectedListLabel : 'Stakeholder do Projeto',
+				preserveSelectionOnMove : 'moved',
+				moveOnSelect : false,
+				nonSelectedFilter : '',
+				filterTextClear: 'Mostrar Todos',
+				infoTextEmpty: 'Sem usuarios '
+			});
+		</script>
 </html>

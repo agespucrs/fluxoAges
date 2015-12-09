@@ -71,13 +71,14 @@ legend {
 	color: black;
 }
 
-.main {
-	min-height: 650px;
+main {
+	/*min-height: 650px;*/
+	margin-bottom: 20px;
 	clear: both;
 }
 
 /*Estilos de head e foot */
-.foot {
+footer {
 	padding: 5px;
 	border-top: 1px dotted gray;
 }
@@ -163,6 +164,15 @@ legend {
 
 .alignCenter {
 	text-align: center;
+}
+
+table {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+}
+td {
+	text-align: center !important;
 }
 
 /*Menu de navegação vertical*/

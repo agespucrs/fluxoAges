@@ -2,6 +2,7 @@ package br.ages.crud.validator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import br.ages.crud.exception.ValidationException;
@@ -34,4 +35,8 @@ public class DataValidator implements Validator {
 		return true;
 	}
 	
+	public boolean maisCedoQue(Date a, Date b){ //inventar um nome melhor
+		if(a.before(b))return true;		
+		return false;
+	}
 }

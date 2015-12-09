@@ -1,72 +1,79 @@
 <%@page import="br.ages.crud.model.Usuario"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="./css/comum.css" />
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<script type="text/javascript">
-	function remover(id) {
-		var resposta = confirm("Deseja remover o usuario " + id);
+<jsp:include page="../template/head.jsp"></jsp:include>
 
-		if (resposta == true) {
-			var formCadastro = document.forms[0];
-			formCadastro.action = "main?acao=removerUsuario&id_usuario=" + id;
-			formCadastro.submit();
-		}
-	}
-</script>
-<title>AgES - Pagina Inicial</title>
-</head>
-<body>
-	<%@ include file="/template/head.jsp"%>
-	<div class="main">
-		<form action="" method="post">
+			<!-- MODAL / POPUP -->
+    		<jsp:include page="../template/modal.jsp"></jsp:include>
+    		
+	<div class="panel panel-primary">
+    		
+		<div class="panel-heading text-center">
+			Usuários
+		</div>
+         
+                
+        <div class="panel-body">
+        
 			<jsp:include page="/template/msg.jsp"></jsp:include>
-			<fieldset>
-				<legend>Lists</legend>
-				<h1>List</h1>
-				<table width="100%" border="1" cellspacing="0" cellpadding="4">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Matricula</th>
-							<th>Nome</th>
-							<th>E-Mail</th>
-							<th>Usuário</th>
-							<!-- <th>Senha</th> -->
-							<th>ADM</th>
-							<th colspan="2">Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<%
+			
+           <div class="table-responsive">
+           		
+		        <table class="table table-hover table-striped table-bordered">
+
+		            <thead>
+		                <tr>
+		                    <th style="text-align: center;">ID</th>
+		                    <th style="text-align: center;">Matricula</th>
+							<th style="text-align: center;">Nome</th>
+							<th style="text-align: center;">E-mail</th>
+							<th style="text-align: center;">Usuário</th>
+							<th style="text-align: center;">Perfil de Acesso</th>
+							<th style="text-align: center;">Status do Usuário</th>
+							<th style="text-align: center;">Tipo de Usuário</th>
+							<th colspan="2" style="text-align: center;">Ações</th>
+		                </tr>
+		            </thead>
+
+		            <tbody> 
+		            	<%
 							List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("listaUsuarios");
 							for (Usuario usuario : listaUsuarios) {
 						%>
-						<tr>
-							<td class="alignCenter"><%=usuario.getIdUsuario()%></td>
-							<td class="alignCenter"><%=usuario.getMatricula()%></td>
-							<td class="alignLeft"><%=usuario.getNome()%></td>
-							<td class="alignLeft"><%=usuario.getEmail()%></td>
-							<td class="alignLeft"><%=usuario.getUsuario()%></td>
-							<%-- 	<td class="alignLeft"> 	 <%=usuario.getSenha() %></td> --%>
-							<td class="alignCenter"><%=usuario.getAdministrador()%></td>
-							<td class="alignCenter"><a href="" title="Editar"> <i class="fa fa-pencil fa-2x"></i>
-							</a></td>
-							<td class="alignCenter"><a onclick="remover('<%=usuario.getIdUsuario()%>')" title="Deletear"> <i class="fa fa-trash-o fa-2x"></i>
-							</a></td>
-						</tr>
-						<%
-							}
-						%>
+						          
+		            	<tr>
+			            	<td align="center"><%=usuario.getIdUsuario()%></td>
+			            	<td align="center"><%=usuario.getMatricula()%></td>
+			            	<td align="center"><%=usuario.getNome()%></td>
+			            	<td align="center"><%=usuario.getEmail()%></td>
+			            	<td align="center"><%=usuario.getUsuario()%></td>
+			            	<td align="center"><%=usuario.getPerfilAcesso()%></td> 
+			            	<td align="center"><%=usuario.getStatusUsuario()%></td>
+			            	<td align="center"><%=usuario.getTipoUsuario().getNome()%></td>
+			            	<td align="center">
+							<form action="" method="post">
+		            				<a href="" data-toggle="modal" data-id="<%=usuario.getIdUsuario() %>" data-usuario="<%=usuario.getNome()%>" 
+		            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+		            			</form>
+		            		</td>
+		            		
+		            		<td align="center">
+		            			<form action="" method="post">
+		            				<a href="" data-toggle="modal" data-id="<%=usuario.getIdUsuario() %>" data-usuario="<%=usuario.getNome()%>" 
+		            				data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
+		            			</form>
+		            		</td>
+		            	</tr>
+							
+						<% } %>
 					</tbody>
-				</table>
-			</fieldset>
-		</form>
-	</div>
-	<jsp:include page="/template/foot.jsp"></jsp:include>
-</body>
-</html>
+		            
+		        </table> 
+  
+   			 </div>
+	         
+         </div>
+
+ </div>
+
+
+<jsp:include page="../template/foot.jsp"></jsp:include>

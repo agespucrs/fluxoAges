@@ -29,5 +29,4 @@ public class ListUserCommand implements Command {
 
 		return proxima;
 	}
-
 }

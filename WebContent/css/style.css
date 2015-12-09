@@ -1,0 +1,75 @@
+body{
+	background-color: #EEE;
+}
+
+.logo {
+	width: 30%;
+	min-width: 200px;
+}
+
+.logoNavBar {
+	width: 45px;
+}
+
+.panel-login {
+	max-width: 300px; 
+	float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.panel-addUser{
+	max-width: 500px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.panel-addPonto{
+	max-width: 600px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+.panel-addStakeholder{
+	max-width: 400px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+.login {
+	width: 100%;
+}
+
+.addUser {
+	width: 78%;
+}
+
+.limparUser {
+	width: 20%;
+}
+
+.welcome {
+    text-align: center;
+    color: #446CB3;
+    font-size: 28px; 
+    margin-top: 10px;
+}
+
+.ages{
+	color: #F89406;
+}
+
+.red{
+	color: red;
+	font-weigth: bold
+}
+
+.modal-ages{
+	color: #FFF;
+	background-color: #296395;
+}
+
+.margin-top {
+	margin-top: 20px;
+}

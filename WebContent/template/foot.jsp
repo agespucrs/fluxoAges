@@ -1,3 +1,8 @@
-<div class="foot">
-	<p>Copyright AgES 2015 || Todos direitos reservados</p>
-</div>
+    </div>
+</body>
+
+<footer>
+	<p style="text-align: center;" >&copy; Copyright AGES 2015 - Todos os direitos reservados</p>
+</footer>
+
+</html>

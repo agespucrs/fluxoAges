@@ -1,11 +1,18 @@
 package br.ages.crud.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.InputMismatchException;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class Util {
 
+	public Util() {
+		
+	}
+	
 	public static String concatenaMensagensRequest(HttpServletRequest request, Exception e, String msg) {
 		String msgErro = "";
 		if (request.getAttribute(msg) != null) {
@@ -48,5 +55,41 @@ public class Util {
 	
 	public static String imprimeCPF(String cpf) { 
 		return(cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11)); 
+	}
+	
+
+	
+	public static Date stringToDate(String s) throws ParseException{
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date data;
+		try {
+			data = formatter.parse(s);
+		} catch (ParseException e) {
+			throw new ParseException(MensagemContantes.MSG_ERR_CAMPO_DATA_INVALIDO, e.getErrorOffset());
+		}
+
+			
+		return data;
+	}
+	
+	public static Date stringToDateTime(String s) throws ParseException{
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		Date data;
+		try {
+			data = formatter.parse(s);
+		} catch (ParseException e) {
+			throw new ParseException(MensagemContantes.MSG_ERR_CAMPO_DATA_INVALIDO, e.getErrorOffset());
+		}
+
+			
+		return data;
+	}
+	
+	public static String dateToString(Date d) throws ParseException{
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String data;
+		data = formatter.format(d);
+
+		return data;
 	}
 }

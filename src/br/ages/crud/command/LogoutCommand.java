@@ -17,8 +17,8 @@ public class LogoutCommand implements Command {
 		
 
 		try {
-			request.getSession().setAttribute("usuario", null);
-			request.setAttribute("msgErro", MensagemContantes.MSG_INF_LOGOUT);
+			request.getSession().setAttribute("usuarioSessao", null);
+			request.setAttribute("msgSucesso", MensagemContantes.MSG_INF_LOGOUT);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());
