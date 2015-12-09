@@ -33,7 +33,7 @@
 						<th style="text-align: center;">Data de Início</th>
 						<th style="text-align: center;">Data de Fim</th>
 						<th style="text-align: center;">Data de Fim Previsto</th>
-						<th colspan="2" style="text-align: center;">Ações</th>
+						<th colspan="3" style="text-align: center;">Ações</th>
 					</tr>
 				</thead>
 
@@ -56,8 +56,7 @@
 										for (Usuario usuario : listUsuarios) {
 								%>
 								<div class="row">
-									<div class="col-sm-2 dl-horizontal"><strong><%=usuario.getIdUsuario()%></strong></div>
-									<div class="col-sm-4"><%=usuario.getNome()%></div>
+									<div align="left" class="col-sm-10" >* <%=usuario.getNome()%></div>
 								</div>
 								<%
 									}
@@ -71,11 +70,12 @@
 							<div id="stakeholders<%=projeto.getIdProjeto()%>" class="collapse">
 								<%
 									List<Stakeholder> listStakeholders = projeto.getStakeholders();
-										for (Stakeholder stakeholder : listStakeholders) {
+									
+									for (Stakeholder stakeholder : listStakeholders) {
+											
 								%>
 								<div class="row">
-									<div class="col-sm-2 dl-horizontal"><strong><%=stakeholder.getIdStakeholder()%></strong></div>
-									<div class="col-sm-4"><%=stakeholder.getNomeStakeholder()%></div>
+									<div align="left" class="col-sm-10" >* <%=stakeholder.getNomeStakeholder()%></div>
 								</div>
 								<%
 									}
@@ -90,7 +90,14 @@
 						<form action="" method="post">
 	            				<a href="" data-toggle="modal" data-id="<%=projeto.getIdProjeto() %>" data-projeto="<%=projeto.getNomeProjeto()%>" 
 	            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-	            			</form>
+	            		</form>
+	            		</td>
+	            		
+						<td align="center">
+						<form action="" method="post">
+	            				<a href="" data-toggle="modal" data-id="<%=projeto.getIdProjeto() %>" data-projeto="<%=projeto.getNomeProjeto()%>" 
+	            				data-target="#modalUpload" title="Upload Arquivo Projeto"> <i class="glyphicon glyphicon-upload"></i></a>
+	            		</form>
 	            		</td>
 	            		
 	            		<td align="center">

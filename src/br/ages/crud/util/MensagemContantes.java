@@ -94,5 +94,15 @@ public class MensagemContantes {
 	public static final String MSG_SUC_EDITA_STAKEHOLDER ="Stakeholder ? editado com sucesso";
 
 	public static final String MSG_SUC_REMOVE_STAKEHOLDER = "Stakeholder de id ? removido com sucesso";
+	
+	//msgs do Ponto
+
+	public static final String MSG_ERR_CADASTRO_PONTO= "Erro ao salvar o Ponto do Aluno ?";
+
+	public static final String MSG_ERR_CADASTRO_PONTO_DATA_INVALIDA = "Data de Saida menor que Data de Entrada";
+
+	public static final String MSG_SUC_CADASTRO_PONTO = "Cadastrado com SUCESSO o Ponto do Aluno ?";
+
+	public static final String MSG_ERR_PONTO_JA_EXISTENTE = "Ponto ja existente para o Aluno ? na data";
 
 }
