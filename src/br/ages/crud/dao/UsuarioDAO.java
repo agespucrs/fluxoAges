@@ -86,23 +86,23 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ");
-			sql.append("u.`ID_USUARIO`,");
-			sql.append("u.`USUARIO`,");
-			sql.append("u.`SENHA`,");
-			sql.append("u.`PERFIL_ACESSO`,");
-			sql.append("u.`STATUS_USUARIO`,");
-			sql.append("u.`ID_TIPO_USUARIO`,");
-			sql.append("u.`MATRICULA`,");
-			sql.append("u.`NOME` unome,");
-			sql.append("u.`EMAIL`,");
-			sql.append("t.`ID_TIPO_USUARIO`,");
-			sql.append("t.`NOME` tnome,");
-			sql.append("t.`DESCRICAO`,");
-			sql.append("t.`DATA_INCLUSAO`");
+			sql.append(" SELECT ");
+			sql.append(" u.ID_USUARIO,");
+			sql.append(" u.USUARIO,");
+			sql.append(" u.SENHA,");
+			sql.append(" u.PERFIL_ACESSO,");
+			sql.append(" u.STATUS_USUARIO,");
+			sql.append(" u.ID_TIPO_USUARIO,");
+			sql.append(" u.MATRICULA,");
+			sql.append(" u.NOME unome,");
+			sql.append(" u.EMAIL,");
+			sql.append(" t.ID_TIPO_USUARIO,");
+			sql.append(" t.NOME tnome,");
+			sql.append(" t.DESCRICAO,");
+			sql.append(" t.DATA_INCLUSAO ");
 
-			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
-			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario;");
+			sql.append(" FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
+			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
@@ -222,15 +222,15 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			// sql.append("SELECT * FROM TB_USUARIO WHERE NOME = ?");
 			sql.append("SELECT ");
-			sql.append("u.`ID_USUARIO`,");
-			sql.append("u.`USUARIO`,");
-			sql.append("u.`SENHA`,");
-			sql.append("u.`PERFIL_ACESSO`,");
-			sql.append("u.`STATUS_USUARIO`,");
-			sql.append("u.`ID_TIPO_USUARIO`,");
-			sql.append("u.`MATRICULA`,");
-			sql.append("u.`NOME` unome,");
-			sql.append("u.`EMAIL`,");
+			sql.append("ID_USUARIO`,");
+			sql.append("USUARIO`,");
+			sql.append("SENHA`,");
+			sql.append("PERFIL_ACESSO`,");
+			sql.append("STATUS_USUARIO`,");
+			sql.append("ID_TIPO_USUARIO`,");
+			sql.append("MATRICULA`,");
+			sql.append("NOME` unome,");
+			sql.append("EMAIL`,");
 			sql.append("t.`ID_TIPO_USUARIO`,");
 			sql.append("t.`NOME` tnome,");
 			sql.append("t.`DESCRICAO`,");
@@ -284,15 +284,15 @@ public class UsuarioDAO {
 			// sql.append("SELECT * FROM AGES_E.TB_USUARIO WHERE ID_USUARIO = ?;");
 			//
 			sql.append("SELECT ");
-			sql.append("u.`ID_USUARIO`,");
-			sql.append("u.`USUARIO`,");
-			sql.append("u.`SENHA`,");
-			sql.append("u.`PERFIL_ACESSO`,");
-			sql.append("u.`STATUS_USUARIO`,");
-			sql.append("u.`ID_TIPO_USUARIO`,");
-			sql.append("u.`MATRICULA`,");
-			sql.append("u.`NOME` unome,");
-			sql.append("u.`EMAIL`,");
+			sql.append("ID_USUARIO`,");
+			sql.append("USUARIO`,");
+			sql.append("SENHA`,");
+			sql.append("PERFIL_ACESSO`,");
+			sql.append("STATUS_USUARIO`,");
+			sql.append("ID_TIPO_USUARIO`,");
+			sql.append("MATRICULA`,");
+			sql.append("NOME` unome,");
+			sql.append("EMAIL`,");
 			sql.append("t.`ID_TIPO_USUARIO`,");
 			sql.append("t.`NOME` tnome,");
 			sql.append("t.`DESCRICAO`,");
@@ -500,15 +500,15 @@ public class UsuarioDAO {
 			
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ");
-			sql.append("u.`ID_USUARIO`,");
-			sql.append("u.`USUARIO`,");
-			sql.append("u.`SENHA`,");
-			sql.append("u.`PERFIL_ACESSO`,");
-			sql.append("u.`STATUS_USUARIO`,");
-			sql.append("u.`ID_TIPO_USUARIO`,");
-			sql.append("u.`MATRICULA`,");
-			sql.append("u.`NOME`,");
-			sql.append("u.`EMAIL` ");
+			sql.append("ID_USUARIO`,");
+			sql.append("USUARIO`,");
+			sql.append("SENHA`,");
+			sql.append("PERFIL_ACESSO`,");
+			sql.append("STATUS_USUARIO`,");
+			sql.append("ID_TIPO_USUARIO`,");
+			sql.append("MATRICULA`,");
+			sql.append("NOME`,");
+			sql.append("EMAIL` ");
 
 			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
 			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
@@ -555,15 +555,15 @@ public class UsuarioDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ");
-			sql.append("u.`ID_USUARIO`,");
-			sql.append("u.`USUARIO`,");
-			sql.append("u.`SENHA`,");
-			sql.append("u.`PERFIL_ACESSO`,");
-			sql.append("u.`STATUS_USUARIO`,");
-			sql.append("u.`ID_TIPO_USUARIO`,");
-			sql.append("u.`MATRICULA`,");
-			sql.append("u.`NOME`,");
-			sql.append("u.`EMAIL` ");
+			sql.append("ID_USUARIO`,");
+			sql.append("USUARIO`,");
+			sql.append("SENHA`,");
+			sql.append("PERFIL_ACESSO`,");
+			sql.append("STATUS_USUARIO`,");
+			sql.append("ID_TIPO_USUARIO`,");
+			sql.append("MATRICULA`,");
+			sql.append("NOME`,");
+			sql.append("EMAIL` ");
 
 			sql.append("FROM AGES_E.TB_USUARIO u inner join AGES_E.tb_tipo_usuario t ");
 			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
@@ -591,5 +591,56 @@ public class UsuarioDAO {
 			conexao.close();
 		}
 		return listarUsuarios;
+	}
+
+	public Usuario buscaUsuarioPorSenha(Usuario usuarioDto) throws PersistenciaException {
+		Usuario usuario = new Usuario();
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			// sql.append("SELECT * FROM TB_USUARIO WHERE NOME = ?");
+			sql.append(" SELECT ");
+			sql.append(" ID_USUARIO,");
+			sql.append(" USUARIO,");
+			sql.append(" SENHA,");
+			sql.append(" PERFIL_ACESSO,");
+			sql.append(" STATUS_USUARIO,");
+			sql.append(" ID_TIPO_USUARIO,");
+			sql.append(" MATRICULA,");
+			sql.append(" NOME,");
+			sql.append(" EMAIL");
+			sql.append(" FROM TB_USUARIO ");
+			sql.append(" WHERE USUARIO = ? AND EMAIL = ? ;");
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, usuarioDto.getUsuario());
+			statement.setString(2, usuarioDto.getEmail());
+
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+
+				usuario.setIdUsuario(resultset.getInt("ID_USUARIO"));
+				usuario.setMatricula(resultset.getString("MATRICULA"));
+				usuario.setNome(resultset.getString("NOME"));
+				usuario.setEmail(resultset.getString("EMAIL"));
+				usuario.setUsuario(resultset.getString("USUARIO"));
+				usuario.setSenha(resultset.getString("SENHA"));
+				usuario.setPerfilAcesso(PerfilAcesso.valueOf(resultset.getString("PERFIL_ACESSO")));
+				usuario.setStatusUsuario(StatusUsuario.valueOf(resultset.getString("STATUS_USUARIO")));
+					
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return usuario;
 	}
 }

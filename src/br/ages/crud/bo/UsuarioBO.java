@@ -320,4 +320,17 @@ public class UsuarioBO {
 		return listResponsaveis;
 	}
 
+	public Usuario buscaSenha(Usuario usuarioDto) throws NegocioException{
+
+		Usuario usuario;
+			try {
+				usuario = usuarioDAO.buscaUsuarioPorSenha(usuarioDto);
+				} catch (Exception e) {
+				e.printStackTrace();
+				throw new NegocioException(e);
+			}
+		
+	return usuario;
+	}
+
 }
