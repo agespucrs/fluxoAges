@@ -5,11 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import com.mysql.jdbc.Statement;
 
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Projeto;
@@ -17,8 +18,6 @@ import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusProjeto;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
-
-import com.mysql.jdbc.Statement;
 /**
  * @author Daniele Souza e Victor Diehl
  */
@@ -43,31 +42,31 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append(" SELECT ID_PROJETO, STATUS_PROJETO, NOME_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO");
-			sql.append(" FROM TB_PROJETO ");
-			sql.append(" WHERE  STATUS_PROJETO <> 'EXCLUIDO' ");
+			sql.append(" select id_projeto, status_projeto, nome_projeto, workspace, data_inicio, data_fim, data_fim_previsto");
+			sql.append(" from tb_projeto ");
+			sql.append(" where  status_projeto <> 'excluido' ");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
 				Projeto projeto = new Projeto();
-				projeto.setIdProjeto(resultSet.getInt("ID_PROJETO"));
-				projeto.setNomeProjeto(resultSet.getString("NOME_PROJETO"));
-				projeto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("STATUS_PROJETO")));
-				projeto.setWorkspace(resultSet.getString("WORKSPACE"));
+				projeto.setIdProjeto(resultSet.getInt("id_projeto"));
+				projeto.setNomeProjeto(resultSet.getString("nome_projeto"));
+				projeto.setStatusProjeto(StatusProjeto.valueOf(resultSet.getString("status_projeto")));
+				projeto.setWorkspace(resultSet.getString("workspace"));
 
-				Date dataInicio = resultSet.getDate("DATA_INICIO");
+				Date dataInicio = resultSet.getDate("data_inicio");
 				projeto.setDataInicio(dataInicio);
 
-				Date dataFim = resultSet.getDate("DATA_FIM");
+				Date dataFim = resultSet.getDate("data_fim");
 				projeto.setDataFim(dataFim);
 
-				Date dataFimPrevisto = resultSet.getDate("DATA_FIM_PREVISTO");
+				Date dataFimPrevisto = resultSet.getDate("data_fim_previsto");
 				projeto.setDataFimPrevisto(dataFimPrevisto);
 
-				projeto.setUsuarios(buscarUsuariosProjeto(conexao, resultSet.getInt("ID_PROJETO")));
-				projeto.setStakeholders(buscarStakeholdersProjeto(conexao, resultSet.getInt("ID_PROJETO")));
+				projeto.setUsuarios(buscarUsuariosProjeto(conexao, resultSet.getInt("id_projeto")));
+				projeto.setStakeholders(buscarStakeholdersProjeto(conexao, resultSet.getInt("id_projeto")));
 				
 				listaProjetos.add(projeto);
 			}
@@ -86,7 +85,7 @@ public class ProjetoDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ID_USUARIO ");
-			sql.append(" FROM TB_PROJETO_USUARIO");
+			sql.append(" FROM tb_projeto_usuario");
 			sql.append(" WHERE ID_PROJETO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -121,7 +120,7 @@ public class ProjetoDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ID_STAKEHOLDER ");
-			sql.append(" FROM TB_PROJETO_STAKEHOLDERS");
+			sql.append(" FROM tb_projeto_stakeholders");
 			sql.append(" WHERE ID_PROJETO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -156,7 +155,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_PROJETO (NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO, DATA_INCLUSAO)");
+			sql.append("INSERT INTO tb_projeto (NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO, DATA_INCLUSAO)");
 			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
@@ -202,7 +201,7 @@ public class ProjetoDAO {
 		ArrayList<Usuario> listaUsuarios = new ArrayList<>(projeto.getUsuarios());
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO TB_PROJETO_USUARIO (ID_PROJETO, ID_USUARIO)");
+		sql.append("INSERT INTO tb_projeto_usuario (ID_PROJETO, ID_USUARIO)");
 		sql.append("VALUES (?, ?)");
 
 		PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -225,7 +224,7 @@ public class ProjetoDAO {
 		ArrayList<Stakeholder> listaStakeholders = new ArrayList<>(projeto.getStakeholders());
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO TB_PROJETO_STAKEHOLDERS (ID_PROJETO, ID_STAKEHOLDER)");
+		sql.append("INSERT INTO tb_projeto_stakeholders (ID_PROJETO, ID_STAKEHOLDER)");
 		sql.append("VALUES (?, ?)");
 
 		PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -250,7 +249,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ID_PROJETO, NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO FROM TB_PROJETO WHERE ID_PROJETO = ?");
+			sql.append("SELECT ID_PROJETO, NOME_PROJETO, STATUS_PROJETO, WORKSPACE, DATA_INICIO, DATA_FIM, DATA_FIM_PREVISTO FROM tb_projeto WHERE ID_PROJETO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idProjeto);
@@ -287,7 +286,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE TB_PROJETO SET NOME_PROJETO = ?, STATUS_PROJETO = ?, WORKSPACE = ?, "
+			sql.append("UPDATE tb_projeto SET NOME_PROJETO = ?, STATUS_PROJETO = ?, WORKSPACE = ?, "
 					+ "DATA_INICIO = ?, DATA_FIM = ?, DATA_FIM_PREVISTO = ? WHERE ID_PROJETO = ?;");
 
 			java.sql.Date dataInicio = new java.sql.Date(projeto.getDataInicio().getTime());
@@ -326,7 +325,7 @@ public class ProjetoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE TB_PROJETO SET STATUS_PROJETO = 'EXCLUIDO'  WHERE ID_PROJETO = ?");
+			sql.append("UPDATE tb_projeto SET STATUS_PROJETO = 'EXCLUIDO'  WHERE ID_PROJETO = ?");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, projeto.getIdProjeto());
@@ -351,7 +350,7 @@ public class ProjetoDAO {
 		boolean ok = false;
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM TB_PROJETO_USUARIO WHERE ID_PROJETO = ?");
+		sql.append("DELETE FROM tb_projeto_USUARIO WHERE ID_PROJETO = ?");
 
 		PreparedStatement statement = conexao.prepareStatement(sql.toString());
 		statement.setInt(1, projeto.getIdProjeto());
@@ -364,7 +363,7 @@ public class ProjetoDAO {
 		boolean ok = false;
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM TB_PROJETO_STAKEHOLDERS WHERE ID_PROJETO = ?");
+		sql.append("DELETE FROM tb_projeto_stakeholders WHERE ID_PROJETO = ?");
 
 		PreparedStatement statement = conexao.prepareStatement(sql.toString());
 		statement.setInt(1, projeto.getIdProjeto());

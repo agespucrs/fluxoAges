@@ -26,8 +26,8 @@ public class PontoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO tb_ponto (data_entrada, hora_entrada, data_saida, hora_saida, id_usuario_aluno, id_usuario_responsavel, status_ponto)");
-			sql.append("VALUES (?, ?, ?, ?, ?, ?, ?);");
+			sql.append("insert into tb_ponto (data_entrada, hora_entrada, data_saida, hora_saida, id_usuario_aluno, id_usuario_responsavel, status_ponto)");
+			sql.append("values (?, ?, ?, ?, ?, ?, ?);");
 
 			// Cadastra a pessoa e gera e busca id gerado
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
