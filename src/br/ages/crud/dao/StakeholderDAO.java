@@ -59,7 +59,7 @@ public class StakeholderDAO {
 			sql.append("NOME_STAKEHOLDER,");
 			sql.append("DATA_INCLUSAO ");
 			
-			sql.append("FROM AGES_E.tb_stakeholders");
+			sql.append("FROM tb_stakeholders");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
@@ -125,7 +125,7 @@ public class StakeholderDAO {
 			sql.append(" ID_STAKEHOLDER,");
 			sql.append(" NOME_STAKEHOLDER,");			
 			sql.append(" DATA_INCLUSAO");			
-			sql.append(" FROM AGES_E.tb_stakeholders ");
+			sql.append(" FROM tb_stakeholders ");
 			sql.append(" WHERE ID_STAKEHOLDER = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -158,7 +158,7 @@ public class StakeholderDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select id_stakeholder from ages_e.tb_projeto_stakeholder where id_stakeholder = ?;");
+			sql.append("select id_stakeholder from tb_projeto_stakeholder where id_stakeholder = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idStakeholder);
