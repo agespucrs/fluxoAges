@@ -1,7 +1,5 @@
 package br.ages.crud.util;
 
-import java.io.File;
-
 /**
  * Constantes do sistema
  * @author cassio trindade

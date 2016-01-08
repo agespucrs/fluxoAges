@@ -4,27 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
-
-import br.ages.crud.exception.PersistenciaException;
-import br.ages.crud.model.PerfilAcesso;
-import br.ages.crud.model.Stakeholder;
-import br.ages.crud.model.StatusUsuario;
-import br.ages.crud.model.TipoUsuario;
-import br.ages.crud.model.Usuario;
-import br.ages.crud.util.ConexaoUtil;
-import br.ages.crud.util.MensagemContantes;
-
-import java.util.List;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
+import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.Stakeholder;
+import br.ages.crud.util.ConexaoUtil;
+import br.ages.crud.util.MensagemContantes;
+
 public class StakeholderDAO {
 
-	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	//private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private ArrayList<Stakeholder> listarStakeholders;
 	
@@ -37,16 +29,16 @@ public class StakeholderDAO {
 		try{
 			Connection conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_STAKEHOLDERS");
-			sql.append("WHERE NOME_STAKEHOLDER = ?");
+			sql.append("select * from tb_stakeholders");
+			sql.append("where nome_stakeholder = ?");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, stakeholderDTO.getNomeStakeholder());
 			
 			ResultSet resultset = statement.executeQuery();
 			if(resultset.next()) {
-				stakeholder.setIdStakeholder(resultset.getInt("ID_STAKEHOLDER"));
-				stakeholder.setNomeStakeholder(resultset.getString("NOME_STAKEHOLDER"));
+				stakeholder.setIdStakeholder(resultset.getInt("id_stakeholder"));
+				stakeholder.setNomeStakeholder(resultset.getString("nome_stakeholder"));
 			} else stakeholder = null;
 		} catch(ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
@@ -67,7 +59,7 @@ public class StakeholderDAO {
 			sql.append("NOME_STAKEHOLDER,");
 			sql.append("DATA_INCLUSAO ");
 			
-			sql.append("FROM AGES_E.TB_STAKEHOLDERS");
+			sql.append("FROM tb_stakeholders");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
@@ -96,7 +88,7 @@ public class StakeholderDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TB_STAKEHOLDERS (NOME_STAKEHOLDER,DATA_INCLUSAO)");
+			sql.append("INSERT INTO tb_stakeholders (NOME_STAKEHOLDER,DATA_INCLUSAO)");
 			sql.append("VALUES (?,?)");
 			
 			java.util.Date utilDate = new java.util.Date();
@@ -133,7 +125,7 @@ public class StakeholderDAO {
 			sql.append(" ID_STAKEHOLDER,");
 			sql.append(" NOME_STAKEHOLDER,");			
 			sql.append(" DATA_INCLUSAO");			
-			sql.append(" FROM AGES_E.TB_STAKEHOLDERS ");
+			sql.append(" FROM tb_stakeholders ");
 			sql.append(" WHERE ID_STAKEHOLDER = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -166,7 +158,7 @@ public class StakeholderDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select id_stakeholder from ages_e.tb_projeto_stakeholder where id_stakeholder = ?;");
+			sql.append("select id_stakeholder from tb_projeto_stakeholder where id_stakeholder = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idStakeholder);
@@ -198,9 +190,9 @@ public class StakeholderDAO {
 			conexao = ConexaoUtil.getConexao();
 			
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM TB_STAKEHOLDERS WHERE NOME_STAKEHOLDER = ?");
-			sql.append("ID_STAKEHOLDER,");
-			sql.append("NOME_STAKEHOLDER;");
+			sql.append("select * from tb_stakeholders where nome_stakeholder = ?");
+			sql.append("id_stakeholder,");
+			sql.append("nome_stakeholder;");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 		    statement.setString(1, nomeStakeholder);
 			
@@ -229,7 +221,7 @@ public class StakeholderDAO {
 			StringBuilder sql = new StringBuilder();
 			int id = stakeholder.getIdStakeholder();
 			
-			sql.append("UPDATE TB_STAKEHOLDERS SET NOME_STAKEHOLDER = ?" + " WHERE ID_STAKEHOLDER = " + id + ";");
+			sql.append("update tb_stakeholders set nome_stakeholder = ?" + " where id_stakeholder = " + id + ";");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			
@@ -255,7 +247,7 @@ public class StakeholderDAO {
 
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("DELETE FROM TB_STAKEHOLDERS WHERE ID_STAKEHOLDER= ? ");
+			sql.append("delete from tb_stakeholders where id_stakeholder= ? ");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idStakeholder);
 
