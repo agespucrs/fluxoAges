@@ -160,6 +160,7 @@
 	
 	//Dá espaçamento no grupo usuários
 	$('div[class*="bootstrap-duallistbox-container"]').eq(1).addClass('margin-top');
+	
 	//Dá espaçamento no Workspace
 	$('label:contains("Workspace")').addClass('margin-top');
 	

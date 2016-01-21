@@ -2,15 +2,14 @@
 <%@page import="java.util.List"%>
 <jsp:include page="../template/head.jsp"></jsp:include>
 
-			<!-- MODAL / POPUP -->
-    		<jsp:include page="../template/modal.jsp"></jsp:include>
-    		
+	<!-- MODAL / POPUP -->
+ 	<jsp:include page="../template/modal.jsp"></jsp:include>
+ 		
 	<div class="panel panel-primary">
     		
 		<div class="panel-heading text-center">
 			Usuários
 		</div>
-         
                 
         <div class="panel-body">
         
@@ -74,6 +73,5 @@
          </div>
 
  </div>
-
 
 <jsp:include page="../template/foot.jsp"></jsp:include>

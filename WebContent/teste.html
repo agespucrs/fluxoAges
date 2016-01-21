@@ -1,10 +1,9 @@
 <!DOCTYPE html >
 <html>
-
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="./css/comum.css" />
-<!-- Include Twitter Bootstrap and jQuery: -->
+<meta charset="utf-8">
+<title>AGES - AgÃªncia Experimental de Engenharia de Software</title>
+<link rel="icon" href="img/favicon.ico">
 
 <!-- JQUERY -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -17,65 +16,108 @@
 <!-- STYLE -->
 <link rel="stylesheet" href="./css/style.css">
 
-
-<!-- Include the plugin's CSS and JS: -->
-<script type="text/javascript" src="./js/bootstrap-multiselect.js"></script>
-<link rel="stylesheet" href="./css/bootstrap-multiselect.css" type="text/css" />
-
-<script src="./js/jquery.bootstrap-duallistbox.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/bootstrap-duallistbox.min.css">
-
+<!-- Include the plugin's CSS and JS: Cassio -->
+<!-- bootstrap submenu  -->
+<script src="./js/bootstrap-submenu.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap-submenu.min.css">
+<script>
+	$(document).ready(function() {
+		$('.data-submenu').submenupicker();
+	});
+</script>
 </head>
 <body>
-	<!-- Build your select: -->
-	<select id="example-getting-started" multiple="multiple">
-		<option value="cheese">Cheese</option>
-		<option value="tomatoes">Tomatoes</option>
-		<option value="mozarella">Mozzarella</option>
-		<option value="mushrooms">Mushrooms</option>
-		<option value="pepperoni">Pepperoni</option>
-		<option value="onions">Onions</option>
-	</select>
-
-	<div class="col-md-4">
-		<select multiple="multiple" size="10" name="duallistbox_demo2" class="demo2">
-			<option value="option1">Cassio Trindade</option>
-			<option value="option2" selected="">Bento Gonçalves</option>
-			<option value="option3" selected="">Getulio Vargas</option>
-			<option value="option4" selected="">Tancredo Neve</option>
-			<option value="option5">Afonso Pena</option>
-			<option value="option6" selected="">Garrastazul</option>
-			<option value="option7">Jucelino K</option>
-			<option value="option8">Fernando Pessoa</option>
-			<option value="option9">Cleopatra</option>
-			<option value="option0">Maria Tereza de Kalcuta</option>
-			<option value="option0">Indira Gandi</option>
-
-		</select>
-		
-	</div>
-
-
-
-
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand">Project Name</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li class="dropdown open"><a data-submenu="" data-toggle="dropdown" tabindex="0" aria-expanded="true"> Dropdown <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-submenu open"><a tabindex="0">Action</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="0">Sub action</a></li>
+								<li class="dropdown-submenu"><a tabindex="0">Another sub action</a>
+									<ul class="dropdown-menu">
+										<li><a tabindex="0">Sub action</a></li>
+										<li><a tabindex="0">Another sub action</a></li>
+										<li><a tabindex="0">Something else here</a></li>
+									</ul></li>
+								<li><a tabindex="0">Something else here</a></li>
+								<li class="dropdown-submenu"><a tabindex="0">Another action</a>
+									<ul class="dropdown-menu">
+										<li><a tabindex="0">Sub action</a></li>
+										<li><a tabindex="0">Another sub action</a></li>
+										<li><a tabindex="0">Something else here</a></li>
+									</ul></li>
+							</ul></li>
+						<li class="dropdown-submenu"><a tabindex="0">Another action</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="0">Sub action</a></li>
+								<li><a tabindex="0">Another sub action</a></li>
+								<li><a tabindex="0">Something else here</a></li>
+							</ul></li>
+						<li><a tabindex="0">Something else here</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="0">Separated link</a></li>
+					</ul></li>
+				<li class="dropdown"><a data-submenu="" data-toggle="dropdown" tabindex="0"> Dropdown 2 <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-submenu"><a tabindex="0">Action</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="0">Sub action</a></li>
+								<li class="dropdown-submenu"><a tabindex="0">Another sub action</a>
+									<ul class="dropdown-menu">
+										<li><a tabindex="0">Sub action</a></li>
+										<li><a tabindex="0">Another sub action</a></li>
+										<li><a tabindex="0">Something else here</a></li>
+									</ul></li>
+								<li><a tabindex="0">Something else here</a></li>
+							</ul></li>
+						<li><a tabindex="0">Another action</a></li>
+						<li class="dropdown-submenu"><a tabindex="0">Something else here</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="0">Sub action</a></li>
+								<li><a tabindex="0">Another sub action</a></li>
+								<li><a tabindex="0">Something else here</a></li>
+							</ul></li>
+						<li class="divider"></li>
+						<li><a tabindex="0">Separated link</a></li>
+					</ul></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a data-submenu="" data-toggle="dropdown" tabindex="0"> Dropdown 3 <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-submenu"><a tabindex="0">Action</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="0">Sub action</a></li>
+								<li class="dropdown-submenu"><a tabindex="0">Another sub action</a>
+									<ul class="dropdown-menu">
+										<li><a tabindex="0">Sub action</a></li>
+										<li><a tabindex="0">Another sub action</a></li>
+										<li><a tabindex="0">Something else here</a></li>
+									</ul></li>
+								<li><a tabindex="0">Something else here</a></li>
+							</ul></li>
+						<li><a tabindex="0">Another action</a></li>
+						<li class="dropdown-submenu"><a tabindex="0">Something else here</a>
+							<ul class="dropdown-menu">
+								<li><a tabindex="0">Sub action</a></li>
+								<li><a tabindex="0">Another sub action</a></li>
+								<li><a tabindex="0">Something else here</a></li>
+							</ul></li>
+						<li class="divider"></li>
+						<li><a tabindex="0">Separated link</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</nav>
 </body>
-
-<!-- Initialize the plugin: -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#example-getting-started').multiselect();
-	});
-
-</script>
-<script>
-			var demo2 = $('.demo2').bootstrapDualListbox({
-				nonSelectedListLabel : 'Stakeholder',
-				selectedListLabel : 'Stakeholder do Projeto',
-				preserveSelectionOnMove : 'moved',
-				moveOnSelect : false,
-				nonSelectedFilter : '',
-				filterTextClear: 'Mostrar Todos',
-				infoTextEmpty: 'Sem usuarios '
-			});
-		</script>
 </html>
