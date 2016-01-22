@@ -1,0 +1,145 @@
+.cadastro {
+    width: 550px;
+    margin: 10px auto; /* Centraliza no meio da tela */
+    padding: 10px; /* Espaçamento entre o conteúdo e a borda dele mesmo */
+    border: 1px solid #CCC; /* Borda com 1px de espessura, linha contínua, cor da borda */
+    background: #FFF;
+    overflow: auto; /* Gambiarra */
+}
+
+.logo {
+    height: 120px;
+    margin: 20px auto 20px;
+    display: block;
+}
+
+/* ========================== */
+/* Cabeçalho do cadastro */
+/* ========================== */
+h1 {
+    width: 507px;/*618px*/
+    padding: 10px 16px; /* Espaçamento entre o conteúdo e a borda dele mesmo */
+    margin: 0 0 8px 6px; /* Espaçamento em baixo do elemento */
+    display: inline-block;
+    color: #FFF;
+    font-size: 22px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    background: #446CB3; /* Cor do plano defundo */
+}
+
+.voltar {
+    width: 44px;
+    float: left; /* Faz o elemento flutuar a direita */
+    display: inline-block;
+}
+
+.voltar img {
+    height: 42px;
+}
+
+p {
+    padding: 2px 4px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #EEE;
+    text-align: center;
+    
+}
+
+p span {
+    font-size: 16px;
+    color: #F89406;
+}
+
+/* ========================== */
+/* Formulário */
+/* ========================== */
+label{
+    color: #F89406;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.lb-text {
+    margin-bottom: 4px;
+    display: block;
+}
+
+input[type="text"]{
+    width: 528px;/*678px*/
+    height: 20px;
+    margin-bottom:24px;
+    padding: 5px 10px;
+    border: 1px solid #CCC;
+    font-size: 16px;
+    color: #999;
+}
+
+input[type="password"]{
+	width: 528px;/*678px*/
+    height: 20px;
+    margin-bottom:24px;
+    padding: 5px 10px;
+    border: 1px solid #CCC;
+    font-size: 16px;
+    color: #999;
+}
+
+.selects {
+    /*width: 48%;*/
+    margin-bottom: 20px;
+    display: block;
+}
+
+.selects label {
+    display: inline-block;
+}
+
+.selects select {
+    width: 230px;
+    height: 30px;
+    border: 1px solid #CCC;
+    color: #999;
+    font-size: 16px;
+}
+
+hr {
+    margin: 20px auto 10px;
+    border: 0;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+/* ========================== */
+/* Botões do formulário */
+/* ========================== */
+.reset, .submit {
+    height: 45px; /* Altura dos botões */
+    float: left; /* Faz o elemento flutuar a esquerda */
+    cursor: pointer; /* Faz o mouse apontar */
+    color: #FFF;
+    font-weight: bold; /* Negrito */
+    border: 0; /* Remove a borda */
+}
+
+/* Botão Limpar */
+.reset {
+    width: 82px;
+    font-size: 16px; /* Tamanho da fonte */
+    background: #F89406;
+}
+
+.reset:hover { /* Quando o mouse estiver em cima desse elemento */
+    background: #F5AB35; /* Troca o background */
+}
+
+/* Botão Cadastrar */
+.submit {
+    width: 460px;/*590px*/
+    font-size: 16px; /* Tamanho da fonte */
+    margin-left: 8px; /* Espaçamento a esquerda */
+    background: #446CB3;
+}
+.submit:hover {
+    background: #4183D7;
+}
