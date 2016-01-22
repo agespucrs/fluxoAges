@@ -31,15 +31,12 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 }
-
 .panel-addStakeholder{
 	max-width: 400px;
 	float: none;
 	margin-left: auto;
 	margin-right: auto;
 }
-
-
 .login {
 	width: 100%;
 }

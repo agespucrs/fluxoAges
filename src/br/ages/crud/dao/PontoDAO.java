@@ -86,7 +86,9 @@ public class PontoDAO {
 			
 			PreparedStatement statement;
 			if (idUsuario == 0) {
+			//	sql.append(" and p.id_usuario_aluno = ?; ");
 				statement = conexao.prepareStatement(sql.toString());
+			//	statement.setInt(1, -1);
 			} else {
 				sql.append(" and p.id_usuario_aluno = ?; ");
 				statement = conexao.prepareStatement(sql.toString());

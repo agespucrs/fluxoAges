@@ -2,6 +2,7 @@ package br.ages.crud.servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -11,22 +12,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import br.ages.crud.bo.ProjetoBO;
-import br.ages.crud.exception.NegocioException;
+import org.apache.log4j.Logger;
+
 import br.ages.crud.model.Projeto;
 import br.ages.crud.util.Constantes;
 
 @WebServlet("/upload")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 15, maxFileSize = Constantes.PROJETO_ARQUIVO_MAX_BYTES, maxRequestSize = 1024 * 1024 * 15)
 public class FileUploadServlet extends HttpServlet {
-
+	Logger logger = Logger.getLogger("servlet.FileUploadServlet");
 	private static final long serialVersionUID = 2L;
-	private ProjetoBO projetoBO;
-	private static final String SAVE_DIR = Constantes.PROJETO_UPLOAD_PATH;
+	private static ResourceBundle configPath = ResourceBundle.getBundle(Constantes.AMBIENTE_PROPERTIES);
+
+	private static final String SAVE_DIR =  configPath.getString(Constantes.PROJETO_UPLOAD_PATH);
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
+			logger.debug("Iniciando o Upload");
 			Projeto projeto = (Projeto) request.getSession().getAttribute("projeto");
 
 			String appPath = projeto.getWorkspace();
@@ -44,6 +47,8 @@ public class FileUploadServlet extends HttpServlet {
 
 			// request.setAttribute("acao", "listaProjetos");
 			getServletContext().getRequestDispatcher("/main?acao=listaProjetos").forward(request, response);
+			
+			logger.info("Executado o Upload em: " + savePath + " - " + fileName );
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,4 +65,5 @@ public class FileUploadServlet extends HttpServlet {
 		}
 		return "";
 	}
-}
+	
+	}

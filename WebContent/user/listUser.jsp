@@ -7,17 +7,14 @@
  		
 	<div class="panel panel-primary">
     		
-		<div class="panel-heading text-center">
-			Usuários
-		</div>
+		<div class="panel-heading text-center">Lista de Usuários</div>
                 
         <div class="panel-body">
         
 			<jsp:include page="/template/msg.jsp"></jsp:include>
-			
-           <div class="table-responsive">
-           		
-		        <table class="table table-hover table-striped table-bordered">
+		        <div class="table-responsive">
+		        
+		        <table id="listaAlunos" class="table display">
 
 		            <thead>
 		                <tr>
@@ -29,7 +26,8 @@
 							<th style="text-align: center;">Perfil de Acesso</th>
 							<th style="text-align: center;">Status do Usuário</th>
 							<th style="text-align: center;">Tipo de Usuário</th>
-							<th colspan="2" style="text-align: center;">Ações</th>
+							<th style="text-align: center;"></th>
+							<th style="text-align: center;"></th>
 		                </tr>
 		            </thead>
 
@@ -49,7 +47,7 @@
 			            	<td align="center"><%=usuario.getStatusUsuario()%></td>
 			            	<td align="center"><%=usuario.getTipoUsuario().getNome()%></td>
 			            	<td align="center">
-							<form action="" method="post">
+								<form action="" method="post">
 		            				<a href="" data-toggle="modal" data-id="<%=usuario.getIdUsuario() %>" data-usuario="<%=usuario.getNome()%>" 
 		            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 		            			</form>
@@ -62,16 +60,35 @@
 		            			</form>
 		            		</td>
 		            	</tr>
-							
-						<% } %>
+						<% 
+							} 
+						%>
 					</tbody>
 		            
 		        </table> 
-  
-   			 </div>
-	         
+  			</div>
          </div>
 
  </div>
-
 <jsp:include page="../template/foot.jsp"></jsp:include>
+<script>
+
+$(document).ready(function(){
+	$('#listaAlunos').dataTable({
+	    "language": {
+            "lengthMenu": "Mostrando _MENU_ registros por página",
+            "zeroRecords": "Sem registros - sorry",
+            "info": "Mostrando _PAGE_ de _PAGES_ páginas",
+            "infoEmpty": "Nenhum registros encontrados!",
+            "infoFiltered": "(Filtrado _MAX_ do total deregistros)",
+            "search":"Busca",
+           	"paginate": {
+                "first":      "Primeiro",
+                "last":       "Último",
+                "next":       "Próximo",
+                "previous":   "Anterior"
+	        },
+        }
+	});
+});;
+</script>

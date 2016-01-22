@@ -13,35 +13,36 @@
 
 	<div class="panel-body">
 		<form id="formListAluno" method="post">
-		<div class='' id='nomeAluno'>
+		<div class="form-group row">
+		<div class='col-sm-6' id='nomeAluno'>
 			<label for="sel1" class="form-label ages">Aluno:<span class="red">*</span></label> 
-			<select class="form-control" id="idAluno" name="acao=listaPontoHora&id_usuario" onchange="listar()">
+			<select class="form-control" id="idAluno" name="idAluno" onchange="listar()" > 
 				<option value="0">Selecione um aluno</option>
 				<%
 					String totalHorasAluno = (String) request.getAttribute("totalHorasAluno");
 					List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("usuarios");
 					for (Usuario u : listaUsuarios) {
 				%>
-				<option value="<%=u.getIdUsuario()%>"><%=u.getNome()%></option>
+				<option value="<%=u.getIdUsuario()%>"<%=(u.getNome()).equals(request.getParameter("idAluno")) ? "selected" : "" %>><%=u.getNome()%></option>
 				<%
 					}
 				%>
 			</select>
 		</div>
+		</div>
 		</form>
 		<div class="table-responsive">
-
-			<table class="table table-hover table-striped table-bordered" id="listaAlunos">
+			<table id="listaAlunos" class="table display">
 				<thead>
+					<tr>
+						<th style="text-align: center;">Total Horas</th>
+						<th style="text-align: center;"><%=totalHorasAluno %></th>
+					</tr>
 					<tr>
 						<th style="text-align: center;">ID</th>
 						<th style="text-align: center;">Nome</th>
 						<th style="text-align: center;">Data Entrada</th>
 						<th style="text-align: center;">Horas Dia</th>
-					</tr>
-					<tr>
-						<th style="text-align: center;">Total Horas</th>
-						<th style="text-align: center;"><%=totalHorasAluno %></th>
 					</tr>
 				</thead>
 
@@ -71,15 +72,33 @@
 
 </div>
 
-<script>
-
-		function listar() {
-				var id =  document.getElementById("idAluno").value;
-				 document.forms[0].action= 'main?acao=listaPontoHora&id_usuario=' + id;
-				 document.forms[0].submit();
-				 winconsole.log(id);
-			};
-
-	
-</script>
 <jsp:include page="../template/foot.jsp"></jsp:include>
+<script>
+	function listar() {
+			var id =  document.getElementById("idAluno").value;
+			 document.forms[0].action= 'main?acao=listaPontoHora&id_usuario=' + id;
+			 document.forms[0].submit();
+			 winconsole.log(id);
+		};
+</script>
+<script>
+	
+	$(document).ready(function(){
+	    $('#listaAlunos').dataTable({
+	    	"language": {
+	            "lengthMenu": "Mostrando _MENU_ registros por página",
+	            "zeroRecords": "Sem registros - sorry",
+	            "info": "Mostrando _PAGE_ de _PAGES_ páginas",
+	            "infoEmpty": "Nenhum registros encontrados!",
+	            "infoFiltered": "(Filtrado _MAX_ do total deregistros)",
+	            "search": "Pesquisar",
+	            "paginate": {
+	                "first":      "Primeiro",
+	                "last":       "Último",
+	                "next":       "Próximo",
+	                "previous":   "Anterior"
+	            },
+	        }
+	    });
+	});
+</script>

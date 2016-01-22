@@ -65,10 +65,6 @@ $( document ).ready(function() {
 		      	
 		      	<div class="modal-footer">
 		      		<form action="" method="post" id="formEditar">
-		      			<div class="form-group">
-			            	<label class="form-label ages">E-mail:</label>
-			            	<input class="form-control" id="email" name="email" value="${param.email}" type="text"  required>
-		            	</div>
 		      			<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 		      			<button type="submit" class="btn btn-primary">Editar</button>
 		      		</form>

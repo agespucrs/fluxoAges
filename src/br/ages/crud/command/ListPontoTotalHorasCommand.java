@@ -18,6 +18,7 @@ public class ListPontoTotalHorasCommand implements Command {
 	private UsuarioBO usuarioBO;
 	private List<Usuario> usuarios;
 	private PontoBO pontoBO;
+	private ArrayList<ResumoPonto> listaPontos ;
 	
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
@@ -34,11 +35,19 @@ public class ListPontoTotalHorasCommand implements Command {
 			usuarios = usuarioBO.listarUsuarioAlunos();
 			
 			request.setAttribute("usuarios", usuarios);
+		
+/*			if (idUsuario == 0) {
+		//	ResumoPonto rm = new ResumoPonto(0, "", null, null);
+				listaPontos = new ArrayList<>();
+		//		listaPontos.add(rm);
+				request.setAttribute("listaPontos", listaPontos );
+				request.setAttribute("totalHorasAluno", 0);
+			} else {*/
+				listaPontos = pontoBO.listaPontoAlunos(idUsuario);
+				request.setAttribute("listaPontos", listaPontos );
+				request.setAttribute("totalHorasAluno", pontoBO.calculatotalHorasAluno(listaPontos));
+		
 			
-			
-			ArrayList<ResumoPonto>  listaPontos = pontoBO.listaPontoAlunos(idUsuario);
-			request.setAttribute("listaPontos", listaPontos );
-			request.setAttribute("totalHorasAluno", pontoBO.calculatotalHorasAluno(listaPontos));
 			
 		} catch (NegocioException e) {
 			e.printStackTrace();

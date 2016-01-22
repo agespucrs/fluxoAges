@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import br.ages.crud.util.MensagemContantes;
 
 /**
@@ -21,13 +23,14 @@ import br.ages.crud.util.MensagemContantes;
 @WebFilter("/*")
 public class LoginFilter implements Filter {
 	
+	Logger logger = Logger.getLogger("servlet.FileUploadServlet");
 	private static final String[] URLS_TO_EXCLUDE = {".css", ".js", ".jpg", ".png", ".gif","login.jsp","/FluxoAGES/" };
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		System.out.println("Filtro de Login Finalizado " + new Date());
+		logger.info("Filtro de Login Finalizado " + new Date());
 	}
 
 	/**
@@ -50,7 +53,7 @@ public class LoginFilter implements Filter {
 		if (!isURLToExclusao(uri, httpRequest)) {
 			HttpSession session = httpRequest.getSession();
 			if (session.getAttribute("usuarioSessao") == null) {
-				request.setAttribute("msgErro", MensagemContantes.MSG_INF_DENY);
+				request.setAttribute("msgAviso", MensagemContantes.MSG_INF_DENY);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} else {
 				chain.doFilter(request, response);
@@ -64,7 +67,7 @@ public class LoginFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		System.out.println("Filtro de Login Inicializado " + new Date());
+		logger.info("Filtro de Login Inicializado " + new Date());
 	}
 	
 	private boolean isURLToExclusao(String uri, HttpServletRequest request) {

@@ -17,7 +17,7 @@
 	</div>
 	
 	<div class="form-group" style="width: 100%; display: ${msgAviso != null ? 'block' : 'none'}">
-		<div class="alert alert-danger fade in text-center" role="alert">
+		<div class="alert alert-warning fade in text-center" role="alert">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 	    	<span class="sr-only">Erro:</span>
 	    	${msgAviso != null ? msgAviso : ''}              

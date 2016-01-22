@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import br.ages.crud.command.AddPontoCommand;
 import br.ages.crud.command.AddStakeholderCommand;
 import br.ages.crud.command.AddUserCommand;
@@ -33,11 +35,13 @@ import br.ages.crud.command.RemoveStakeholderCommand;
 import br.ages.crud.command.RemoveUserCommand;
 import br.ages.crud.command.SenhaCommand;
 import br.ages.crud.command.UploadProjetoCommand;
+import br.ages.crud.model.Usuario;
 import br.ages.crud.util.LogParametrosSession;
 
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
 
+	Logger logger = Logger.getLogger("servlet.MainServlet");
 	private static final long serialVersionUID = 1L;
 	private Map<String, Command> comandos = new HashMap<String, Command>();
 
@@ -88,6 +92,8 @@ public class MainServlet extends HttpServlet {
 		try {
 			Command comando = verificarComando(acao);
 			proxima = comando.execute(request);
+			Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
+			logger.debug("User: " +usuario.getUsuario() + " - comando " + comando.toString() + " acao: " +acao );
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());
 		}

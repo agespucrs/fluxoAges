@@ -9,7 +9,7 @@
         <link rel="icon" href="img/favicon.ico">
         
         <!-- JQUERY -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 
 		<!-- BOOTSTRAP -->
 		<link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -30,14 +30,16 @@
 		<script type="text/javascript" src="./js/collapse.js"></script>
 		<script type="text/javascript" src="./js/bootstrap-datetimepicker.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Include the plugin's CSS and JS: Cassio DataTable -->
+		<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
     
     <body>
      <% Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioSessao"); %>
     	<div class="container">
     	
-    		
-    	
-   			<nav class="navbar navbar-default">
+    			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 				
 		    		<div class="navbar-header">

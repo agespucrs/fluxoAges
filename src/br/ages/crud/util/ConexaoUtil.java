@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
  */
 public class ConexaoUtil {
 
-	private static ResourceBundle configDB = ResourceBundle.getBundle(Constantes.CONEXAO_BD_PROPERTIES);
+	private static ResourceBundle configDB = ResourceBundle.getBundle(Constantes.AMBIENTE_PROPERTIES);
 
 	public static Connection getConexao() throws ClassNotFoundException, SQLException {
 		Class.forName(configDB.getString(Constantes.CONEXAO_BD_DRIVE));

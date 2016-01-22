@@ -46,8 +46,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="form-label ages">Perfil de Acesso: <span class="red">*</span></label> 
-					<select class="form-control" id="perfilAcesso" name="perfilAcesso"
+					<label class="form-label ages">Perfil de Acesso: <span class="red">*</span></label> <select class="form-control" id="perfilAcesso" name="perfilAcesso"
 						required>
 						<option value="NAVEGADOR" <%="NAVEGADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : ""%>>Navegador</option>
 						<option value="ADMINISTRADOR" <%="ADMINISTRADOR".equals(request.getParameter("perfilAcesso")) ? "selected" : ""%>>Administrador</option>

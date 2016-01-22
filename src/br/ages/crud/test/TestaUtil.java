@@ -1,11 +1,14 @@
 package br.ages.crud.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
+import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 
 /** 
@@ -26,5 +29,15 @@ public class TestaUtil {
 		assertEquals(true, conexaoOK);
 
 	}
+	public static void main(String[] args) {
+	  Logger logger = Logger.getLogger("servlet.FileUploadServlet");
+	  logger.info("Iniciando procedimentos");
+	   Usuario u = new Usuario();
+	  logger.debug("Criando novo objeto venda");
+	   u.setMatricula("1234");
+	   u.setNome("MINHA VENDA XX");
+	  logger.info("venda salvo no banco com sucesso");
+	  System.out.println(u.toString());
+}
 
 }

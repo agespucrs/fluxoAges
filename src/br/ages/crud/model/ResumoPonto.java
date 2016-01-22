@@ -14,9 +14,19 @@ public class ResumoPonto implements Serializable {
 	public ResumoPonto() {
 	}
 	
+	
 	public int getIdPonto() {
 		return idPonto;
 	}
+
+	public ResumoPonto(int idPonto, String nomeAluno, Date dataEtrada, Date horaTotalDia) {
+		super();
+		this.idPonto = idPonto;
+		this.nomeAluno = nomeAluno;
+		this.dataEtrada = dataEtrada;
+		this.horaTotalDia = horaTotalDia;
+	}
+
 
 	public void setIdPonto(int idPonto) {
 		this.idPonto = idPonto;

@@ -57,7 +57,7 @@ public class MensagemContantes {
 	
 	public static final String MSG_INF_LOGOUT = "Logout do Usuário efetuado com sucesso!";
 	
-	public static final String MSG_INF_DENY = "Acesso negado!";
+	public static final String MSG_INF_DENY = "Acesso negado! Você precisa logar primeiro.";
 	
 
 	//msgs de projeto
