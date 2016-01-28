@@ -32,7 +32,7 @@
 		</div>
 		</form>
 		<div class="table-responsive">
-			<table id="listaAlunos" class="table display">
+			<table id="listaAlunos" class="table table-responsive table-striped table-hover table-condensed">
 				<thead>
 					<tr>
 						<th style="text-align: center;">Total Horas</th>

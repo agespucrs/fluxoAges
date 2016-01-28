@@ -8,18 +8,30 @@
         <title>AGES - Agência Experimental de Engenharia de Software</title>
         <link rel="icon" href="img/favicon.ico">
         
+		<!-- BOOTSTRAP -->
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+	 	<link rel="stylesheet" href="./css/bootstrap-theme.min.css"> 
+
+		<!-- Include the plugin's CSS and JS: Cassio DataTable -->
+	<!-- 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css"> -->
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css">
+
+		<!-- STYLE -->
+		<link rel="stylesheet" href="./css/style.css">
+
         <!-- JQUERY -->
         <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 
 		<!-- BOOTSTRAP -->
-		<link rel="stylesheet" href="./css/bootstrap.min.css">
-		<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
-		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script> 
 
-		<!-- STYLE -->
-		<link rel="stylesheet" href="./css/style.css">
+
+		<!-- Include the plugin's CSS and JS: Cassio DataTable -->
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+ 		<script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+
 		
-		<!-- Include the plugin's CSS and JS: Cassio -->
+		<!-- Include the plugin's CSS and JS: Cassio Dual ListBox -->
 		<script src="./js/jquery.bootstrap-duallistbox.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-duallistbox.min.css">
 		
@@ -31,9 +43,8 @@
 		<script type="text/javascript" src="./js/bootstrap-datetimepicker.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-datetimepicker.min.css">
 		
-		<!-- Include the plugin's CSS and JS: Cassio DataTable -->
-		<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-		<script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+	
+	</head>
     
     <body>
      <% Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioSessao"); %>
