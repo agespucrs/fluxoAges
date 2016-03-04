@@ -6,7 +6,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>FluxoAGES</name>
-	<description>Projeto Fluxo AGES - FACUN - PUCRS</description>
+
+	<description>Peojeto Fluxo AGES - FACUN - PUCRS</description>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -87,8 +89,10 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+
 					<encoding>encoding>${project.build.sourceEncoding}</encoding>
 					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+
 				</configuration>
 			</plugin>
 			<plugin>
