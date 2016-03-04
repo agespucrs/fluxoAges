@@ -6,7 +6,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>FluxoAGES</name>
-	<description>Peojeto Fluxo AGES - FACUN - PUCRS</description>
+	<description>Projeto Fluxo AGES - FACUN - PUCRS</description>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<profiles>
 		<!-- Profile de desenvolvimento (padrao) -->
 		<profile>
@@ -84,6 +87,8 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<encoding>encoding>${project.build.sourceEncoding}</encoding>
+					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -103,7 +108,7 @@
 					<server>TomcatServer</server>
 					<path>/FluxoAGES</path>
 					<username>admin</username>
-                	<password>admin</password>
+					<password>admin</password>
 				</configuration>
 			</plugin>
 		</plugins>
