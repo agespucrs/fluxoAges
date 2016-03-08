@@ -1,7 +1,5 @@
 package br.ages.crud.command;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.UsuarioBO;

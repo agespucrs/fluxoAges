@@ -6,11 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-
-import br.ages.crud.util.Constantes;
 
 public class ArquivoBO {
 	
@@ -52,7 +48,7 @@ public class ArquivoBO {
 		return false;		
 	}
 	
-	///métodos para achar a extensão de um arquivo
+	///mï¿½todos para achar a extensï¿½o de um arquivo
 	private String getFileExtension(File file) {
 	    String name = file.getName();
 	    try {
