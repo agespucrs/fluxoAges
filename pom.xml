@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>FluxoAGES</name>
-	<description>Peojeto Fluxo AGES - FACUN - PUCRS</description>
+	<description>Projeto Fluxo AGES - FACUN - PUCRS</description>
 	<profiles>
 		<!-- Profile de desenvolvimento (padrao) -->
 		<profile>
