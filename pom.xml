@@ -92,7 +92,7 @@
 					<source>1.7</source>
 					<target>1.7</target>
 
-					<encoding>encoding>${project.build.sourceEncoding}</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 
 				</configuration>
