@@ -16,7 +16,7 @@ import br.ages.crud.util.MensagemContantes;
 import br.ages.crud.validator.SenhaValidator;
 
 /**
- * Gerencia os comportamentos de neggocio do Usuario Associa os parametros da
+ * Gerencia os comportamentos de negocio do Usuario Associa os parametros da
  * tela as propriedades da classe
  * 
  * @author Cassio Trindade

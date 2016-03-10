@@ -11,7 +11,7 @@
 
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 	</properties>
 
 	<profiles>
@@ -92,7 +92,7 @@
 					<source>1.7</source>
 					<target>1.7</target>
 
-					<encoding>encoding>${project.build.sourceEncoding}</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 
 				</configuration>
