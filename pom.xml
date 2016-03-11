@@ -22,35 +22,28 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<sgbd.user>
-					root
-				</sgbd.user>
-				<sgbd.password>
-					senha
-				</sgbd.password>
-				<upload.path>
-					c:\\uploadProjetos
-				</upload.path>
-				<log.path>
-					c:\\cawt\\
-				</log.path>
+				<sgbd.user>root</sgbd.user>
+				<sgbd.password>senha</sgbd.password>
+				<upload.path>c:\\uploadProjetos</upload.path>
+				<log.path>c:\\cawt\\</log.path>
 			</properties>
 		</profile>
 		<!-- Profile de homologacao -->
 		<profile>
 			<id>homologacao</id>
 			<properties>
+				<build.number>111</build.number>
 				<sgbd.user>
 					root
 				</sgbd.user>
 				<sgbd.password>
-					senha
+					Ages123$$
 				</sgbd.password>
 				<upload.path>
-					c:\\uploadProjetos
+					/home/ages/uploadProjetos
 				</upload.path>
 				<log.path>
-					c:\\cawt\\
+					/home/ages/
 				</log.path>
 			</properties>
 		</profile>

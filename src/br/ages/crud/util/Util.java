@@ -1,10 +1,14 @@
 package br.ages.crud.util;
 
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
 
+import javax.naming.event.EventContext;
 import javax.servlet.http.HttpServletRequest;
 
 public class Util {
@@ -93,3 +97,13 @@ public class Util {
 		return data;
 	}
 }
+	
+/*	public String getBuild(){
+		EventContext application = FacesContext.getCurrentInstance().getExternalContext();
+		InputStream inputStream = application.getResourceAsStream("/META-INF/MANIFEST.MF");
+		Manifest manifest = new Manifest(inputStream);
+
+		Attributes attributes = manifest.getMainAttributes();
+		String version = attributes.getValue("Implementation-Version");
+	}
+}*/
