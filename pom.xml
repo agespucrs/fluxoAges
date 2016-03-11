@@ -39,6 +39,18 @@
 				<sgbd.password>Ages123$$</sgbd.password>
 				<upload.path>/home/ages/uploadProjetos</upload.path>
 				<log.path>/home/ages/</log.path>
+				<sgbd.user>
+					root
+				</sgbd.user>
+				<sgbd.password>
+					Ages123$$
+				</sgbd.password>
+				<upload.path>
+					/home/ages/uploadProjetos
+				</upload.path>
+				<log.path>
+					/home/ages/
+				</log.path>
 			</properties>
 		</profile>
 		<!-- Profile de producao -->
