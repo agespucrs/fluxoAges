@@ -1,10 +1,12 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.exception.NegocioException;
+import br.ages.crud.exception.PersistenciaException;
 
 /**
  * Interface que implementa o Designer Partner Command (GoF)
@@ -19,7 +21,9 @@ public interface Command {
 	 * @return
 	 * @throws SQLException 
 	 * @throws NegocioException
+	 * @throws PersistenciaException 
+	 * @throws ParseException 
 	 */
 
-	public String execute(HttpServletRequest request) throws SQLException, NegocioException ;
+	public String execute(HttpServletRequest request) throws SQLException, NegocioException, ParseException, PersistenciaException ;
 }

@@ -6,10 +6,7 @@
 	<version>0.0.${build.number}-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>FluxoAGES</name>
-
 	<description>Projeto Fluxo AGES - FACIN - PUCRS</description>
-
-
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 	</properties>
@@ -35,8 +32,8 @@
 			<properties>
 				<build.number>SNAPSHOT</build.number>
 				<sgbd.url>jdbc:mysql://10.32.223.4:3306/ages_e</sgbd.url>
-				<sgbd.user>root</sgbd.user>
-				<sgbd.password>Ages123$$</sgbd.password>
+				<sgbd.user>ages</sgbd.user>
+				<sgbd.password>ages123_e#BD</sgbd.password>
 				<upload.path>/home/ages/uploadProjetos</upload.path>
 				<log.path>/home/ages/</log.path>
 			</properties>
@@ -130,5 +127,15 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>2.0.2-beta</version>
+		</dependency>
 	</dependencies>
+	<organization>
+		<name>AGES - Agencia Experimental de Engenharia de Software</name>
+		<url>www.ages.pucrs.br</url>
+	</organization>
+	<url>www.ages.pucrs.br/fluxoages</url>
 </project>

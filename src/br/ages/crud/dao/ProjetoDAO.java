@@ -147,7 +147,8 @@ public class ProjetoDAO {
 
 	}
 	
-	public void cadastrarProjeto(Projeto projeto) throws PersistenciaException, SQLException, ParseException {
+	public boolean cadastrarProjeto(Projeto projeto) throws PersistenciaException, SQLException, ParseException {
+		boolean ok = false;
 		Connection conexao = null;
 		try {
 			Integer idProjeto = null;
@@ -182,6 +183,7 @@ public class ProjetoDAO {
 			if (resultset.first()) {
 				idProjeto = resultset.getInt(1);
 				projeto.setIdProjeto(idProjeto);
+				ok=true;
 			}
 
 			inserirUsuariosProjeto(conexao, projeto);
@@ -192,6 +194,7 @@ public class ProjetoDAO {
 		} finally {
 			conexao.close();
 		}
+		return ok;
 	}
 
 	private boolean inserirUsuariosProjeto(Connection conexao, Projeto projeto) throws SQLException {
