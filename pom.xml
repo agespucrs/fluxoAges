@@ -52,6 +52,7 @@
 	</profiles>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>${project.basedir}/test</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>src/resources</directory>
