@@ -81,7 +81,7 @@ public class TesteUsuarioDAO {
 		assertEquals(false, removidoOK);
 	}
 
-	/*
+	/* 
 	 * @Test public void testTotalUsuarios() throws Exception {
 	 * int total = dao.listaTotalUsuario(); boolean totalOK; if (total > 0)
 	 * totalOK = true; else totalOK = false; assertEquals(totalOK, true);
