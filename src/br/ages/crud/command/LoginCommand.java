@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.model.Usuario;
+import br.ages.crud.util.Util;
 
 public class LoginCommand implements Command {
 
@@ -11,12 +12,15 @@ public class LoginCommand implements Command {
 
 	private String proxima;
 
+	private Util util;
+
 	@Override
 	public String execute(HttpServletRequest request) {
 		// seta a mesma pagina, para o caso de erro/exceção
 		proxima = "login.jsp";
 		Usuario user = new Usuario();
 		usuarioBO = new UsuarioBO();
+		util = new Util();
 
 		String usuario = request.getParameter("login");
 		String senha = request.getParameter("senha");
@@ -26,8 +30,8 @@ public class LoginCommand implements Command {
 		try {
 			user = usuarioBO.validaUsuario(usuarioDTO); 
 			if (user != null) {
-				
 				request.getSession().setAttribute("usuarioSessao", user);
+				request.getSession().setAttribute("versao", util.getVersion());
 				proxima = "main?acao=listaProjetos";
 			
 			}

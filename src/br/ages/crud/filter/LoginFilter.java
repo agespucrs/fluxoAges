@@ -39,13 +39,6 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = ((HttpServletRequest) request);
 
-		/*
-		 * if (httpRequest.getRequestURI().endsWith("login.jsp")){
-		 * System.out.println("É uma jsp: " + httpRequest.getRequestURI()); }
-		 * else { System.out.println("NÃO é uma JSP: " +
-		 * httpRequest.getRequestURL()); }
-		 */
-
 		String uri = httpRequest.getRequestURI();
 		
 		// trocado pelo método isURLToExclusao(uri) (!uri.endsWith("login.jsp") && !uri.endsWith(".css") 
