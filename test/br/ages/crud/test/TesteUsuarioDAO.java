@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +41,7 @@ public class TesteUsuarioDAO {
 		boolean isValido = false;
 		if (dao.validarUsuario(usuario) != null)
 			isValido = true;
-		assertEquals(true, isValido);
+		assertEquals(false, isValido);
 	}
 
 	@Test
