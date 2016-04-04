@@ -77,7 +77,9 @@
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 						</manifest>
 						<manifestEntries>
+
 							<Implementation-Environment>${env}</Implementation-Environment>
+
 							<Implementation-Build>${build.Number}</Implementation-Build>
 						</manifestEntries>
 					</archive>
