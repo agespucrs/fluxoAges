@@ -41,7 +41,7 @@ public class TesteUsuarioDAO {
 		boolean isValido = false;
 		if (dao.validarUsuario(usuario) != null)
 			isValido = true;
-		assertEquals(false, isValido);
+		assertEquals(true, isValido);
 	}
 
 	@Test
