@@ -72,29 +72,7 @@
 
 					<encoding>${project.build.sourceEncoding}</encoding>
 					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-
-							<Implementation-Environment>${env}</Implementation-Environment>
-
-							<Implementation-Build>${build.Number}</Implementation-Build>
-						</manifestEntries>
-					</archive>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>install</phase>
-						<goals>
-							<goal>install</goal>
-						</goals>
-						<configuration>
-							<classifier>${env}</classifier>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
@@ -103,6 +81,7 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
+
 			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -114,6 +93,15 @@
 					<path>/FluxoAGES</path>
 					<username>admin</username>
 					<password>admin</password>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Environment>${env}</Implementation-Environment>
+							<Implementation-Build>${build.Number}</Implementation-Build>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
