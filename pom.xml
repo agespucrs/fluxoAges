@@ -94,18 +94,6 @@
 					<path>/FluxoAGES</path>
 					<username>admin</username>
 					<password>admin</password>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-						</manifest>
-						<manifestEntries>
-
-							<Implementation-Environment>${env}</Implementation-Environment>
-
-							<Implementation-Build>${build.Number}</Implementation-Build>
-						</manifestEntries>
-					</archive>
-
 				</configuration>
 			</plugin>
 			<plugin>
@@ -132,20 +120,11 @@
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 						</manifest>
 						<manifestEntries>
-							<Implementation-Environment>${env}</Implementation-Environment>
 							<Implementation-Build>${build.Number}</Implementation-Build>
 						</manifestEntries>
 					</archive>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>install</phase>
-						<goals>
-							<goal>run-war</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+		</plugin>
 		</plugins>
 	</build>
 	<dependencies>
