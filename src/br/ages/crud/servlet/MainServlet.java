@@ -1,6 +1,8 @@
 package br.ages.crud.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +37,8 @@ import br.ages.crud.command.RemoveStakeholderCommand;
 import br.ages.crud.command.RemoveUserCommand;
 import br.ages.crud.command.SenhaCommand;
 import br.ages.crud.command.UploadProjetoCommand;
+import br.ages.crud.exception.NegocioException;
+import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.LogParametrosSession;
 
@@ -93,8 +97,9 @@ public class MainServlet extends HttpServlet {
 			Command comando = verificarComando(acao);
 			proxima = comando.execute(request);
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
-			logger.debug("User: " +usuario.getUsuario() + " - comando " + comando.toString() + " acao: " +acao );
-		} catch (Exception e) {
+			if(usuario != null)
+				logger.debug("User: " +usuario.getUsuario() + " - comando " + comando.toString() + " acao: " +acao );
+		} catch (NegocioException | SQLException | ParseException | PersistenciaException e) {
 			request.setAttribute("msgErro", e.getMessage());
 		}
 	

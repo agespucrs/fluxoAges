@@ -3,6 +3,7 @@ package br.ages.crud.command;
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.crud.bo.UsuarioBO;
+import br.ages.crud.exception.NegocioException;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.Util;
 
@@ -35,9 +36,9 @@ public class LoginCommand implements Command {
 				proxima = "main?acao=listaProjetos";
 			
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NegocioException e) {
 			request.setAttribute("msgErro", e.getMessage());
+			return proxima;
 		}
 		
 		return proxima;

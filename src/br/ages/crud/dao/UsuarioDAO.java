@@ -65,7 +65,6 @@ public class UsuarioDAO {
 			} else
 				usuario = null;
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
 			throw new PersistenciaException(e);
 		}
 
