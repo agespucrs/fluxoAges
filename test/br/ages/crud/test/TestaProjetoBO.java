@@ -45,7 +45,7 @@ public class TestaProjetoBO {
 		Assert.assertTrue(projetoOK == true);
 	}
 
-/*	@Test(expected=NegocioException.class)
+	@Test(expected=NegocioException.class)
 	public void testCadastrarProjetoNaoOK() throws PersistenciaException, SQLException, ParseException {
 		try {
 			Projeto projeto = new Projeto(10, "Projeto Não OK", StatusProjeto.ATIVO, Util.stringToDate("01/01/2016"), Util.stringToDate("01/01/2015"));
@@ -54,7 +54,7 @@ public class TestaProjetoBO {
 		} catch (NegocioException e) {
 		//	Assert.assertTrue("Mensagem do erro não esta correta:", e.getMessage().equals("MensagemContantes.MSG_ERR_CADASTRO_PROJETO"));
 		}
-	}*/
+	}
 
 	@Test
 	public void testBuscarProjetoOK() throws PersistenciaException, SQLException, NegocioException, ParseException {
