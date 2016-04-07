@@ -117,6 +117,49 @@ public class PontoDAO {
 
 		return listaPontos;
 	}
+	
+	public ArrayList<ResumoPonto> listaPontoInvalidoAlunos(int idUsuario) throws SQLException {
+		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("select p.id_ponto, u.nome, p.data_entrada, timediff(p.hora_saida,p.hora_entrada) horas ");
+			sql.append("FROM tb_ponto p, tb_usuario u ");
+			sql.append("where p.id_usuario_aluno = u.id_usuario ");
+			sql.append("and p.status_ponto ='"+StatusPonto.INVALIDO+"'");
+			
+			PreparedStatement statement;
+			if (idUsuario == 0) {
+				statement = conexao.prepareStatement(sql.toString());
+			} else {
+				sql.append(" and p.id_usuario_aluno = ?; ");
+				statement = conexao.prepareStatement(sql.toString());
+				statement.setInt(1, idUsuario);
+			}
+			
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				ResumoPonto ponto = new ResumoPonto();
+				ponto.setIdPonto(resultSet.getInt("ID_PONTO"));
+				ponto.setNomeAluno(resultSet.getString("NOME"));
+				ponto.setDataEtrada(resultSet.getDate("DATA_ENTRADA"));
+				ponto.setHoraTotalDia(resultSet.getTime("HORAS"));
+
+				listaPontos.add(ponto);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+
+		} finally {
+			conexao.close();
+		}
+
+		return listaPontos;
+	}
 
 	public static void main(String[] args) throws SQLException {
 		PontoDAO p = new PontoDAO();
