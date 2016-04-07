@@ -27,6 +27,7 @@ import br.ages.crud.command.EditStakeholderCommand;
 import br.ages.crud.command.EditUserCommand;
 import br.ages.crud.command.EditaProjetoCommand;
 import br.ages.crud.command.ListPontoTotalHorasCommand;
+import br.ages.crud.command.ListPontoTotalHorasInvalidoCommand;
 import br.ages.crud.command.ListStakeholdersCommand;
 import br.ages.crud.command.ListUserCommand;
 import br.ages.crud.command.ListaProjetosCommand;
@@ -85,6 +86,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("registrarPonto", new CreateScreenPontoCommand());
 		comandos.put("adicionaPonto", new AddPontoCommand());
 		comandos.put("listaPontoHora", new ListPontoTotalHorasCommand());
+		comandos.put("listaPontoHoraInvalido", new ListPontoTotalHorasInvalidoCommand());
 	}
 
 	@Override
