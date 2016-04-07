@@ -76,7 +76,7 @@
 <script>
 	function listar() {
 			var id =  document.getElementById("idAluno").value;
-			 document.forms[0].action= 'main?acao=listaPontoHora&id_usuario=' + id;
+			 document.forms[0].action= 'main?acao=listaPontoHoraInvalido&id_usuario=' + id;
 			 document.forms[0].submit();
 			 winconsole.log(id);
 		};
