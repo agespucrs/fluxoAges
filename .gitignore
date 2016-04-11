@@ -5,3 +5,4 @@
 .jsdtscope
 /target/
 .settings/
+/pom.xml
