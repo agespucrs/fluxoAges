@@ -38,6 +38,7 @@ import br.ages.crud.command.RemoveStakeholderCommand;
 import br.ages.crud.command.RemoveUserCommand;
 import br.ages.crud.command.SenhaCommand;
 import br.ages.crud.command.UploadProjetoCommand;
+import br.ages.crud.command.ValidaPontoHoraCommand;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Usuario;
@@ -85,6 +86,7 @@ public class MainServlet extends HttpServlet {
 		//COMANDOS ALUNO
 		comandos.put("registrarPonto", new CreateScreenPontoCommand());
 		comandos.put("adicionaPonto", new AddPontoCommand());
+		comandos.put("validaPontoHora", new ValidaPontoHoraCommand());
 		comandos.put("listaPontoHora", new ListPontoTotalHorasCommand());
 		comandos.put("listaPontoHoraInvalido", new ListPontoTotalHorasInvalidoCommand());
 	}

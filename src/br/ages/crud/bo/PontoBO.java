@@ -80,11 +80,11 @@ public class PontoBO {
 		return listaPontos;
 	}
 	
-	public ArrayList<ResumoPonto> listaPontoInvalidoAlunos(int idUsuario) throws NegocioException {
+	public ArrayList<ResumoPonto> listaPontoInvalidoAlunos() throws NegocioException {
 		pontoDAO = new PontoDAO();
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		try {
-			listaPontos = pontoDAO.listaPontoInvalidoAlunos(idUsuario);
+			listaPontos = pontoDAO.listaPontoInvalidoAlunos();
 			
 			
 		} catch (SQLException e) {

@@ -29,27 +29,12 @@ public class ListPontoTotalHorasInvalidoCommand implements Command {
 
 		try {
 		
-			
-			Integer idUsuario = Integer.valueOf(request.getParameter("id_usuario"));
-						
-			usuarios = usuarioBO.listarUsuarioAlunos();
-			
-			request.setAttribute("usuarios", usuarios);
-		
-/*			if (idUsuario == 0) {
-		//	ResumoPonto rm = new ResumoPonto(0, "", null, null);
-				listaPontos = new ArrayList<>();
-		//		listaPontos.add(rm);
+				listaPontos = pontoBO.listaPontoInvalidoAlunos();
 				request.setAttribute("listaPontos", listaPontos );
-				request.setAttribute("totalHorasAluno", 0);
-			} else {*/
-				listaPontos = pontoBO.listaPontoInvalidoAlunos(idUsuario);
-				request.setAttribute("listaPontos", listaPontos );
-				request.setAttribute("totalHorasAluno", pontoBO.calculatotalHorasAluno(listaPontos));
-		
 			
 			
 		} catch (NegocioException e) {
+			proxima = "projeto/listaProjetos";
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());
 		}
