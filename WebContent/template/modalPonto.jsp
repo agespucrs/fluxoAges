@@ -1,14 +1,13 @@
-//PRECISO ARRUMAR
 <script>
 $( document ).ready(function() {
 	$('#modalPonto').on('show.bs.modal', function (event) {
 	  	var botao = $(event.relatedTarget);
+
 		var idPonto = botao.data('idPonto');
 	  	
 	  	$(this).find('.modal-title').text('Validar ponto');
 	  	$(this).find('#modal-descricao').text('Selecione o Responsável e digite sua senha, para validar o Ponto ');
-	  	
-	//  	$('#formValidar').attr('action', "main?acao=validaPontoHora&id_responsavel=" + idResponsavel+"&id_aluno=" + idAluno+"&id_ponto=" + idPonto);
+		var idPonto = botao.data('id');
 	});
 	
 	});
@@ -23,6 +22,13 @@ function enviar() {
 </script>
 
 	<div class="modal fade" id="modalValidar" role="dialog">
+	var idPonto =  document.getElementById("modal-id_ponto").value;
+	$('#formPonto').attr('action',"main?acao=validaPontoHora&id_responsavel=" + idResponsavel+"&senha=" + senha+"&id_ponto=" + idPonto);
+	$('#formPonto').submit();
+};
+</script>
+
+	<div class="modal fade" id="modalPonto" role="dialog">
   		<div class="modal-dialog">
 	  		<div class="modal-content">
 	  		
@@ -37,6 +43,7 @@ function enviar() {
 		      	
 		      	<div class="modal-footer">
 		      		<form action="" method="post" id="formPonto">
+	        		<p id="modal-id_ponto" readonly="readonly"/>
 					<div class="form-group">
 						<label class="form-label ages">Responsável</label> 
 						<input class="form-control" id="responsavel" name="responsavel" value="${param.responsavel}"
@@ -49,7 +56,6 @@ function enviar() {
 						<button type="button" onclick="enviar()" class="btn btn-primary">Validar</button>
 				</form>
 		      	</div>
-		      	
 		    </div>
 	  	</div>
 	</div>

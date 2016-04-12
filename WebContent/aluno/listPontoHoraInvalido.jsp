@@ -39,7 +39,9 @@
 						<td align="center"><%=ponto.getHoraTotalDia()%></td>
 						<td align="center">
 							<form action="" method="post">
-								<a href="" data-toggle="modal" data-idPonto=<%=ponto.getIdPonto()%> 
+
+								<a href="" data-toggle="modal" data-id=<%=ponto.getIdPonto()%> 
+
 								data-target="#modalPonto" title="Clique para validar o ponto"> <i class="glyphicon glyphicon-pencil"></i></a>
 						// ARRUMAR
 							</form>

@@ -118,7 +118,7 @@ public class PontoDAO {
 		return listaPontos;
 	}
 	
-	public ArrayList<ResumoPonto> listaPontoInvalidoAlunos(int idUsuario) throws SQLException {
+	public ArrayList<ResumoPonto> listaPontoInvalidoAlunos() throws SQLException {
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		Connection conexao = null;
 		try {
@@ -131,13 +131,8 @@ public class PontoDAO {
 			sql.append("and p.status_ponto ='"+StatusPonto.INVALIDO+"'");
 			
 			PreparedStatement statement;
-			if (idUsuario == 0) {
-				statement = conexao.prepareStatement(sql.toString());
-			} else {
-				sql.append(" and p.id_usuario_aluno = ?; ");
-				statement = conexao.prepareStatement(sql.toString());
-				statement.setInt(1, idUsuario);
-			}
+			
+			statement = conexao.prepareStatement(sql.toString());
 			
 			ResultSet resultSet = statement.executeQuery();
 

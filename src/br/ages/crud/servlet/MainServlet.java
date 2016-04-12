@@ -87,6 +87,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("registrarPonto", new CreateScreenPontoCommand());
 		comandos.put("adicionaPonto", new AddPontoCommand());
 		comandos.put("validaPontoHora", new ValidaPontoHoraCommand());
+		comandos.put("listaPontoHora", new ListPontoTotalHorasCommand());
 		comandos.put("listaPontoHoraInvalido", new ListPontoTotalHorasInvalidoCommand());
 	}
 
