@@ -18,8 +18,8 @@ public class ListPontoTotalHorasCommand implements Command {
 	private UsuarioBO usuarioBO;
 	private List<Usuario> usuarios;
 	private PontoBO pontoBO;
-	private ArrayList<ResumoPonto> listaPontos ;
-	
+	private ArrayList<ResumoPonto> listaPontos;
+
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		pontoBO = new PontoBO();
@@ -28,27 +28,17 @@ public class ListPontoTotalHorasCommand implements Command {
 		proxima = "aluno/listPontoHora.jsp";
 
 		try {
-		
-			
+
 			Integer idUsuario = Integer.valueOf(request.getParameter("id_usuario"));
-						
+
 			usuarios = usuarioBO.listarUsuarioAlunos();
-			
+
 			request.setAttribute("usuarios", usuarios);
-		
-/*			if (idUsuario == 0) {
-		//	ResumoPonto rm = new ResumoPonto(0, "", null, null);
-				listaPontos = new ArrayList<>();
-		//		listaPontos.add(rm);
-				request.setAttribute("listaPontos", listaPontos );
-				request.setAttribute("totalHorasAluno", 0);
-			} else {*/
-				listaPontos = pontoBO.listaPontoAlunos(idUsuario);
-				request.setAttribute("listaPontos", listaPontos );
-				request.setAttribute("totalHorasAluno", pontoBO.calculatotalHorasAluno(listaPontos));
-		
-			
-			
+
+			listaPontos = pontoBO.listaPontoAlunos(idUsuario);
+			request.setAttribute("listaPontos", listaPontos);
+			request.setAttribute("totalHorasAluno", pontoBO.calculatotalHorasAluno(listaPontos));
+
 		} catch (NegocioException e) {
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());
