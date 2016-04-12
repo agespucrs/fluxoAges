@@ -10,7 +10,7 @@
 -- alter table ages_e.tb_usuario
 -- add constraint U_username unique(usuario);
 
-USE ages_teste;
+USE ages_e;
 
 -- DROP TABLE TB_TIPO_USUARIO;
 -- DROP TABLE TB_PROJETO_USUARIO;
