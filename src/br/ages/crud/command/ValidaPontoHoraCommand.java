@@ -23,7 +23,7 @@ public class ValidaPontoHoraCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) {
 
-		try {
+	/*	try {
 
 			String idPonto;
 			String idResponsavel;
@@ -48,7 +48,7 @@ public class ValidaPontoHoraCommand implements Command {
 
 		} catch (SQLException | NegocioException | ParseException | PersistenciaException e){
 			e.printStackTrace();
-		}
+		}*/
 		return null;
 	}
 
