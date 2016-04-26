@@ -42,8 +42,7 @@
 
 								<a href="" data-toggle="modal" data-id=<%=ponto.getIdPonto()%> 
 
-								data-target="#modalPonto" title="Clique para validar o ponto"> <i class="glyphicon glyphicon-pencil"></i></a>
-						// ARRUMAR
+								data-target="#modalPonto" title="Clique para validar o ponto"> <i class="glyphicon glyphicon-ok"></i></a>
 							</form>
 						</td>
 					</tr>
