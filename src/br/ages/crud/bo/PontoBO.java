@@ -9,6 +9,7 @@ import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Ponto;
 import br.ages.crud.model.ResumoPonto;
+import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusPonto;
 import br.ages.crud.model.Usuario;
 import br.ages.crud.util.MensagemContantes;
@@ -106,5 +107,16 @@ public class PontoBO {
 		totalHorasAluno = (total / 60 + ":" + total % 60);
 		
 		return totalHorasAluno ;
+	}
+	
+	public static Ponto buscaPontoId(int idPonto) throws NegocioException {
+		try{
+			Ponto ponto = pontoDAO.buscaPontoId(idPonto);
+			
+			return ponto;
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
 	}
 }
