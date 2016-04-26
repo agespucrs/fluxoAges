@@ -21,12 +21,7 @@ function enviar() {
 	
 </script>
 
-	<div class="modal fade" id="modalValidar" role="dialog">
-	var idPonto =  document.getElementById("modal-id_ponto").value;
-	$('#formPonto').attr('action',"main?acao=validaPontoHora&id_responsavel=" + idResponsavel+"&senha=" + senha+"&id_ponto=" + idPonto);
-	$('#formPonto').submit();
-};
-</script>
+
 
 	<div class="modal fade" id="modalPonto" role="dialog">
   		<div class="modal-dialog">
@@ -43,7 +38,7 @@ function enviar() {
 		      	
 		      	<div class="modal-footer">
 		      		<form action="" method="post" id="formPonto">
-	        		<p id="modal-id_ponto" readonly="readonly"/>
+	        		<p id="modal-id_ponto" />
 					<div class="form-group">
 						<label class="form-label ages">Responsável</label> 
 						<input class="form-control" id="responsavel" name="responsavel" value="${param.responsavel}"
