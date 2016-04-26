@@ -12,6 +12,7 @@ import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Ponto;
 import br.ages.crud.model.ResumoPonto;
+import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusPonto;
 import br.ages.crud.util.ConexaoUtil;
 import br.ages.crud.util.MensagemContantes;
@@ -159,5 +160,36 @@ public class PontoDAO {
 	public static void main(String[] args) throws SQLException {
 		PontoDAO p = new PontoDAO();
 		System.out.println(p.listaPontoAlunos(1));
+	}
+	
+public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLException {
+		
+		Ponto ponto= new Ponto();
+
+		try(Connection conexao = ConexaoUtil.getConexao()){
+
+			StringBuilder sql = new StringBuilder();
+			/*sql.append("SELECT ");
+			sql.append(" ID_STAKEHOLDER,");
+			sql.append(" NOME_STAKEHOLDER,");			
+			sql.append(" DATA_INCLUSAO");			
+			sql.append(" FROM tb_stakeholders ");
+			sql.append(" WHERE ID_STAKEHOLDER = ?;");*/
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, idPonto);
+			ResultSet resultset = statement.executeQuery();
+
+			while (resultset.next()) {
+				/*ponto.setIdStakeholder(resultset.getInt("ID_STAKEHOLDER"));
+				ponto.setNomeStakeholder(resultset.getString("NOME_STAKEHOLDER"));*/		
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		}
+
+		return ponto;
+
 	}
 }
