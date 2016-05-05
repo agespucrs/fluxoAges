@@ -109,7 +109,7 @@ public class PontoBO {
 		return totalHorasAluno ;
 	}
 	
-	public static Ponto buscaPontoId(int idPonto) throws NegocioException {
+	public Ponto buscaPontoId(int idPonto) throws NegocioException {
 		try{
 			Ponto ponto = pontoDAO.buscaPontoId(idPonto);
 			
