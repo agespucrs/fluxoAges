@@ -14,9 +14,9 @@ import br.ages.crud.model.Ponto;
 import br.ages.crud.model.ResumoPonto;
 import br.ages.crud.model.Stakeholder;
 import br.ages.crud.model.StatusPonto;
+import br.ages.crud.model.Usuario;
 import br.ages.crud.util.ConexaoUtil;
 import br.ages.crud.util.MensagemContantes;
-
 public class PontoDAO {
 
 	public Integer cadastrarPonto(Ponto ponto) throws NegocioException, SQLException, PersistenciaException {
@@ -165,24 +165,35 @@ public class PontoDAO {
 public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLException {
 		
 		Ponto ponto= new Ponto();
-
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		
 		try(Connection conexao = ConexaoUtil.getConexao()){
 
 			StringBuilder sql = new StringBuilder();
-			/*sql.append("SELECT ");
-			sql.append(" ID_STAKEHOLDER,");
-			sql.append(" NOME_STAKEHOLDER,");			
-			sql.append(" DATA_INCLUSAO");			
-			sql.append(" FROM tb_stakeholders ");
-			sql.append(" WHERE ID_STAKEHOLDER = ?;");*/
-
+			sql.append("SELECT ");
+			sql.append("ID_PONTO, ");
+			sql.append("DATA_ENTRADA, ");			
+			sql.append("DATA_SAIDA, ");			
+			sql.append("ID_USUARIO_ALUNO, ");
+			sql.append("ID_USUARIO_RESPONSAVEL, ");
+			sql.append("STATUS_PONTO, ");
+			sql.append("FROM TB_PONTO ");
+			sql.append("WHERE ID_PONTO ='?'");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idPonto);
 			ResultSet resultset = statement.executeQuery();
 
 			while (resultset.next()) {
-				/*ponto.setIdStakeholder(resultset.getInt("ID_STAKEHOLDER"));
-				ponto.setNomeStakeholder(resultset.getString("NOME_STAKEHOLDER"));*/		
+				ponto.setIdPonto(resultset.getInt("ID_PONTO"));
+				ponto.setDataEntrada(resultset.getDate("DATA_ENTRADA"));
+				ponto.setDataSaida(resultset.getDate("DATA_SAIDA"));
+				
+				Usuario usuarioAluno = usuarioDAO.buscaUsuarioId(resultset.getInt("ID_USUARIO_ALUNO"));
+				ponto.setAluno(usuarioAluno);
+				
+				String status = resultset.getString("STATUS_PONTO");
+				StatusPonto statusPonto = StatusPonto.valueOf(status);
+				ponto.setStatus(statusPonto);
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
