@@ -203,4 +203,55 @@ public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLExceptio
 		return ponto;
 
 	}
+
+	public boolean editaPonto(Ponto ponto) throws NegocioException, SQLException, PersistenciaException {
+		boolean ok = false;
+		Connection conexao = null;
+		try {
+			int idPonto = ponto.getIdPonto();
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE TB_PONTO set (data_entrada, hora_entrada, data_saida, hora_saida, id_usuario_aluno, id_usuario_responsavel, status_ponto)");
+			sql.append("values (?, ?, ?, ?, ?, ?, ?) where id_ponto '?'");
+	
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+
+			java.sql.Date dataEntrada = new java.sql.Date(ponto.getDataEntrada().getTime());
+			statement.setDate(1, dataEntrada);
+	
+			java.sql.Time horaEntrada = new java.sql.Time(ponto.getDataEntrada().getTime());
+			statement.setTime(2, horaEntrada);
+	
+			java.sql.Date dataSaida = ponto.getDataSaida() == null ? null: new java.sql.Date(ponto.getDataSaida().getTime());
+			statement.setDate(3, dataSaida);
+	
+			java.sql.Time horaSaida = ponto.getDataSaida() == null ? null : new java.sql.Time(ponto.getDataSaida().getTime());
+			statement.setTime(4, horaSaida);
+	
+			statement.setInt(5, ponto.getAluno().getIdUsuario());
+			statement.setInt(6, ponto.getResponsavel().getIdUsuario());
+			statement.setString(7, String.valueOf(ponto.getStatus()));
+			statement.setInt(8, idPonto);
+			ok = statement.execute();
+	
+			ResultSet resultset = statement.getGeneratedKeys();
+			if (resultset.first()) {
+				idPonto = resultset.getInt(1);
+	
+			}
+	
+			System.out.println(ponto);
+	
+			return ok;
+	
+		} catch (ClassNotFoundException | SQLException e) {
+	
+			e.printStackTrace();
+			throw new PersistenciaException(e);
+	
+		} finally {
+			conexao.close();
+		}
+		
+	}
 }
