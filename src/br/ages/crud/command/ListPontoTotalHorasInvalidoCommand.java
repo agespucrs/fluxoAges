@@ -19,6 +19,7 @@ public class ListPontoTotalHorasInvalidoCommand implements Command {
 	private List<Usuario> usuarios;
 	private PontoBO pontoBO;
 	private ArrayList<ResumoPonto> listaPontos ;
+	private List<Usuario> listaResponsaveis;
 	
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
@@ -32,6 +33,8 @@ public class ListPontoTotalHorasInvalidoCommand implements Command {
 				listaPontos = pontoBO.listaPontoInvalidoAlunos();
 				request.setAttribute("listaPontos", listaPontos );
 			
+				listaResponsaveis = usuarioBO.listaUsuariosReponsaveis();
+				request.setAttribute("listaResponsaveis", listaResponsaveis);
 			
 		} catch (NegocioException e) {
 			proxima = "projeto/listaProjetos";
