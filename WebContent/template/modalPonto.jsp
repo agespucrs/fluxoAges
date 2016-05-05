@@ -1,3 +1,29 @@
+<script>
+$( document ).ready(function() {
+	$('#modalPonto').on('show.bs.modal', function (event) {
+	  	var botao = $(event.relatedTarget);
+
+		var idPonto = botao.data('id');
+	  	
+	  	$(this).find('.modal-title').text('Validar ponto');
+	  	$(this).find('#modal-descricao').text('Selecione o Responsável e digite sua senha, para validar o Ponto ');
+	  	/*gambiarra 8)*/
+	  	$(this).find('#modal-idponto').text(idPonto);
+	});
+	
+	});
+	
+	
+	function enviar() {
+		var idResponsavel =  document.getElementById("idresponsavel").value;
+		var senha =  document.getElementById("senha").value;
+		var idPonto = document.getElementById("modal-idponto").value;
+		$('#formPonto').attr('action',"main?acao=validaPontoHora&id_responsavel=" + idResponsavel+"&senha=" + senha+"&id_ponto=" + idPonto);
+		$('#formPonto').submit();
+	};
+	
+	
+</script>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Usuario"%>
@@ -13,12 +39,12 @@
 	      		
 		      	<div class="modal-body">
 	        		<p id="modal-descricao"></p>
-		      	</div>
+	        	</div>
 		      	
 		      	<div class="modal-footer">
 		      		<form action="" method="post" id="formPonto">
-	        		<p id="modal-id_ponto" />
 					<div class="form-group">
+	        		<p id="modal-idponto"></p>
 						<label class="form-label ages">Responsável</label> 
 						<select class="form-control" id="idresponsavel" name="idresponsavel" >
 							 	<%
@@ -41,25 +67,3 @@
 	  	</div>
 	</div>
 	
-<script>
-$( document ).ready(function() {
-	$('#modalPonto').on('show.bs.modal', function (event) {
-	  	var botao = $(event.relatedTarget);
-
-		var idPonto = botao.data('idPonto');
-	  	
-	  	$(this).find('.modal-title').text('Validar ponto');
-	  	$(this).find('#modal-descricao').text('Selecione o Responsável e digite sua senha, para validar o Ponto ');
-		var idPonto = botao.data('id');
-	});
-	
-	});
-	
-function enviar() {
-	var idResponsavel =  document.getElementById("responsavel").value;
-	var senha =  document.getElementById("senha").value;
-	$('#formPonto').attr('action',"main?acao=validaPontoHora&id_responsavel=" + idResponsavel+"&senha=" + senha+"&id_ponto=" + idPonto);
-	$('#formPonto').submit();
-};
-	
-</script>
