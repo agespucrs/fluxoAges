@@ -119,4 +119,14 @@ public class PontoBO {
 			throw new NegocioException(e);
 		}
 	}
+
+	public void editaPonto(Ponto ponto) throws NegocioException{
+		try{
+			pontoDAO.editaPonto(ponto);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}		
+	}
 }
