@@ -110,6 +110,7 @@ public class PontoBO {
 	}
 	
 	public Ponto buscaPontoId(int idPonto) throws NegocioException {
+		pontoDAO = new PontoDAO();
 		try{
 			Ponto ponto = pontoDAO.buscaPontoId(idPonto);
 			
@@ -121,6 +122,7 @@ public class PontoBO {
 	}
 
 	public void editaPonto(Ponto ponto) throws NegocioException{
+		pontoDAO = new PontoDAO();
 		try{
 			pontoDAO.editaPonto(ponto);
 		} 

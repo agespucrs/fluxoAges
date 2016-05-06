@@ -165,6 +165,7 @@ public class PontoDAO {
 public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLException {
 		
 		Ponto ponto= new Ponto();
+	
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		
 		try(Connection conexao = ConexaoUtil.getConexao()){
@@ -176,9 +177,9 @@ public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLExceptio
 			sql.append("DATA_SAIDA, ");			
 			sql.append("ID_USUARIO_ALUNO, ");
 			sql.append("ID_USUARIO_RESPONSAVEL, ");
-			sql.append("STATUS_PONTO, ");
+			sql.append("STATUS_PONTO ");
 			sql.append("FROM TB_PONTO ");
-			sql.append("WHERE ID_PONTO ='?'");
+			sql.append("WHERE ID_PONTO = ?");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idPonto);
 			ResultSet resultset = statement.executeQuery();
@@ -211,8 +212,15 @@ public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLExceptio
 			int idPonto = ponto.getIdPonto();
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE TB_PONTO set (data_entrada, hora_entrada, data_saida, hora_saida, id_usuario_aluno, id_usuario_responsavel, status_ponto)");
-			sql.append("values (?, ?, ?, ?, ?, ?, ?) where id_ponto '?'");
+			sql.append("UPDATE TB_PONTO SET ");
+			sql.append("DATA_ENTRADA = ?, ");
+			sql.append("HORA_ENTRADA = ?, ");
+			sql.append("DATA_SAIDA = ?, ");
+			sql.append("HORA_ENTRADA = ?, ");
+			sql.append("ID_USUARIO_ALUNO = ?, ");
+			sql.append("ID_USUARIO_RESPONSAVEL = ?, ");
+			sql.append("STATUS_PONTO = ? ");
+			sql.append("WHERE ID_PONTO = ?;");
 	
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 
@@ -232,7 +240,7 @@ public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLExceptio
 			statement.setInt(6, ponto.getResponsavel().getIdUsuario());
 			statement.setString(7, String.valueOf(ponto.getStatus()));
 			statement.setInt(8, idPonto);
-			ok = statement.execute();
+			statement.executeUpdate();
 	
 			ResultSet resultset = statement.getGeneratedKeys();
 			if (resultset.first()) {
@@ -241,7 +249,7 @@ public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLExceptio
 			}
 	
 			System.out.println(ponto);
-	
+			ok = true;
 			return ok;
 	
 		} catch (ClassNotFoundException | SQLException e) {
