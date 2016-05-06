@@ -22,7 +22,7 @@ public class ValidaPontoHoraCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		proxima = "aluno/listPontoHoraInvalido.jsp";
+		proxima = "main?acao=listaPontoHoraInvalido";
 	try {
 
 			String idPonto;

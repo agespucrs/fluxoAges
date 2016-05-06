@@ -43,7 +43,7 @@ $( document ).ready(function() {
 		      	<div class="modal-footer">
 		      		<form action="" method="post" id="formPonto">
 					<div class="form-group">
-	        		<input type="text" readonly="readonly" id="idPonto" value="${param.idPonto}"></input>
+	        		<input type="text" readonly="readonly" hidden id="idPonto" value="${param.idPonto}"></input>
 						<label class="form-label ages">Responsável</label> 
 						<select class="form-control" id="idresponsavel" name="idresponsavel" >
 							 	<%
