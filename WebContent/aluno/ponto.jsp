@@ -55,7 +55,7 @@
 					</div>
 					<div class="form-group">
 						<div class='' id='nomeResponsavel'>
-							<label for="sel2" class="form-label ages">Responsável:<span class="red">*</span></label> 
+							<label for="sel2" class="form-label ages">Responsável:</label> 
 							<select class="form-control" id="idResponsavel" name="idResponsavel" >
 						        <option value="0">Selecione...</option>
 						         
@@ -72,7 +72,7 @@
 					</div>
 					<div class="form-group">
 						<div class='' id='senhaResponsavel'>
-							<label class="form-label ages">Senha:<span class="red">*</span></label> 
+							<label class="form-label ages">Senha:</label> 
 							<input type='password' class="form-control" id="senhaResponsavel" name="senhaResponsavel" /> 
 						</div>
 					</div>
