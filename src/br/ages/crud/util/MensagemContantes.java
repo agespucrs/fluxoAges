@@ -104,5 +104,9 @@ public class MensagemContantes {
 	public static final String MSG_SUC_CADASTRO_PONTO = "Cadastrado com SUCESSO o Ponto do Aluno ?";
 
 	public static final String MSG_ERR_PONTO_JA_EXISTENTE = "Ponto ja existente para o Aluno ? na data";
+	
+	public static final String MSG_SUC_VALIDA_HORA_INVALIDA_PONTO = "Ponto validado com sucesso";
+	
+	public static final String MSG_ERR_VALIDA_HORA_INVALIDA_PONTO = "Senha do Responsável inválida";
 
 }
