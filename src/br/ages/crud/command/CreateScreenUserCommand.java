@@ -36,6 +36,10 @@ public class CreateScreenUserCommand implements Command {
 			
 			String isEdit = request.getParameter("isEdit");
 			
+			usuarioBO = new UsuarioBO();
+			List<TipoUsuario> tipoUsuarios = new ArrayList<TipoUsuario>();
+			tipoUsuarios = usuarioBO.listaTipoUsuarios();
+			request.setAttribute("tipoUsuarios", tipoUsuarios);
 			
 			if (isEdit != null && !"".equals(isEdit)) {
 				
@@ -49,12 +53,6 @@ public class CreateScreenUserCommand implements Command {
 				proxima = "user/editUser.jsp";
 				
 			} else { // Adiciona um novo usuário
-				usuarioBO = new UsuarioBO();
-				List<TipoUsuario> tipoUsuarios = new ArrayList<TipoUsuario>();
-
-				tipoUsuarios = usuarioBO.listaTipoUsuarios();
-				request.setAttribute("tipoUsuarios", tipoUsuarios);
-				
 				proxima = "user/addUser.jsp";		
 			}
 
