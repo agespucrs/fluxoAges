@@ -12,34 +12,32 @@ import br.ages.crud.exception.NegocioException;
 import br.ages.crud.model.ResumoPonto;
 import br.ages.crud.model.Usuario;
 
-public class ListPontoTotalHorasCommand implements Command {
+public class ListPontoTotalHorasInvalidoCommand implements Command {
 
 	private String proxima;
 	private UsuarioBO usuarioBO;
 	private List<Usuario> usuarios;
 	private PontoBO pontoBO;
-	private ArrayList<ResumoPonto> listaPontos;
-
+	private ArrayList<ResumoPonto> listaPontos ;
+	private List<Usuario> listaResponsaveis;
+	
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException {
 		pontoBO = new PontoBO();
 		usuarioBO = new UsuarioBO();
 		usuarios = new ArrayList<>();
-		proxima = "aluno/listPontoHora.jsp";
+		proxima = "aluno/listPontoHoraInvalido.jsp";
 
 		try {
-
-			Integer idUsuario = Integer.valueOf(request.getParameter("id_usuario"));
-
-			usuarios = usuarioBO.listarUsuarioAlunos();
-
-			request.setAttribute("usuarios", usuarios);
-
-			listaPontos = pontoBO.listaPontoAlunos(idUsuario);
-			request.setAttribute("listaPontos", listaPontos);
-			request.setAttribute("totalHorasAluno", pontoBO.calculatotalHorasAluno(listaPontos));
-
+		
+				listaPontos = pontoBO.listaPontoInvalidoAlunos();
+				request.setAttribute("listaPontos", listaPontos );
+			
+				listaResponsaveis = usuarioBO.listaUsuariosReponsaveis();
+				request.setAttribute("listaResponsaveis", listaResponsaveis);
+			
 		} catch (NegocioException e) {
+			proxima = "projeto/listaProjetos";
 			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());
 		}
