@@ -130,14 +130,8 @@
        	     	<artifactId>liquibase-maven-plugin</artifactId>
             	<version>3.3.0</version>
         		<configuration>
-            		<changeLogFile>src/br/ages/crud/changelog/db.changelog-master.xml</changeLogFile>
-                	<driver>com.mysql.jdbc.Driver</driver>
-                	<url>jdbc:mysql://10.32.223.4:3306/ages_e</url>
-                	<username>ages</username>
-                	<password>ages123_e#BD</password>
-                	<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                	<migrationSqlOutputFile>00001_FluxoAGES_SCRIPT.sql</migrationSqlOutputFile>
-                	<dropFirst>false</dropFirst>
+					<propertyFileWillOverride>true</propertyFileWillOverride>
+					<propertyFile>src/br/ages/crud/changelog/liquibase.properties</propertyFile>
             	</configuration>
         	</plugin>
 		</plugins>
