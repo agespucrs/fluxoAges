@@ -2,6 +2,7 @@ package br.ages.crud.test;
 
 import static org.junit.Assert.fail;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +14,10 @@ import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.dao.UsuarioDAO;
 import br.ages.crud.exception.NegocioException;
 import br.ages.crud.exception.PersistenciaException;
+import br.ages.crud.model.PerfilAcesso;
+import br.ages.crud.model.StatusUsuario;
+import br.ages.crud.model.TipoUsuario;
 import br.ages.crud.model.Usuario;
-import org.junit.Assert;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestaUsuarioBO {
@@ -38,8 +41,13 @@ public class TestaUsuarioBO {
 	}
 
 	@Test
-	public void testValidaUsuarioResponsavel() {
-		fail("Not yet implemented");
+	public void testValidaUsuarioResponsavel() throws PersistenciaException {
+		TipoUsuario tipoUsuario = new TipoUsuario();
+		
+		Usuario usuario = new Usuario("admin", "admin", "0000000", "Cássio Trindade", "cassiot@gmmail.com", StatusUsuario.ATIVO, tipoUsuario, PerfilAcesso.ADMINISTRADOR);
+		Mockito.when(usuarioMockDAO.validarUsuario(usuario)).thenReturn(usuario);
+		Assert.assertEquals(true,usuarioBO.validaUsuarioResponsavel("admin", "admin"));
+
 	}
 
 	@Test
