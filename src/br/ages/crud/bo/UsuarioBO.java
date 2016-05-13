@@ -23,7 +23,8 @@ import br.ages.crud.validator.SenhaValidator;
  * 
  */
 public class UsuarioBO {
-	UsuarioDAO usuarioDAO = null;
+	
+	private UsuarioDAO usuarioDAO = null;
 
 	public UsuarioBO() {
 		usuarioDAO = new UsuarioDAO();
@@ -52,7 +53,7 @@ public class UsuarioBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public Usuario validaUsuario(Usuario usuario) throws NegocioException {
+	public Usuario validaLogin(Usuario usuario) throws NegocioException {
 
 		Usuario user = null;
 		try {
@@ -78,7 +79,7 @@ public class UsuarioBO {
 	 * @return
 	 * @throws NegocioException
 	 */
-	public boolean validaUsuarioA(Usuario usuario) throws NegocioException {
+	public boolean validaUsuario(Usuario usuario) throws NegocioException {
 		boolean isValido = true;
 		StringBuilder msg = new StringBuilder();
 		msg.append(MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS.concat("<br/>"));
@@ -105,7 +106,7 @@ public class UsuarioBO {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_NOME_OBRIGATORIO + "<br/>");
 			}
-			// Usuï¿½rio
+			// Usuário
 			if (usuario.getUsuario() == null || "".equals(usuario.getUsuario())) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Usuario ").concat("<br/>"));
@@ -117,7 +118,7 @@ public class UsuarioBO {
 
 			String nome = Normalizer.normalize(usuario.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 
-			if (!nome.matches("(([A-Z][a-z]*)\\s{0,1})+")) {
+			if (!nome.matches("([a-zA-Z]*)(.*)")) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_NOME_INVALIDO.replace("?", "Nome ").concat("<br/>"));
 			}
@@ -332,4 +333,8 @@ public class UsuarioBO {
 	return usuario;
 	}
 
+
+	public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
+	}
 }

@@ -29,7 +29,7 @@ public class LoginCommand implements Command {
 		Usuario usuarioDTO = new Usuario(usuario, senha);
 
 		try {
-			user = usuarioBO.validaUsuario(usuarioDTO); 
+			user = usuarioBO.validaLogin(usuarioDTO); 
 			if (user != null) {
 				request.getSession().setAttribute("usuarioSessao", user);
 				request.getSession().setAttribute("versao", util.getVersion());

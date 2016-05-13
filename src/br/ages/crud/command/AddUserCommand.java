@@ -19,7 +19,7 @@ public class AddUserCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) {
 		usuarioBO = new UsuarioBO();
-		proxima = "user/addUser.jsp";
+		proxima = "main?acao=telaUser";
 
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
@@ -43,7 +43,7 @@ public class AddUserCommand implements Command {
 			tUser = usuarioBO.consultaTipoUsuario(tipoUsuario);
 			user.setTipoUsuario(tUser);
 			
-			boolean isValido = usuarioBO.validaUsuarioA(user);
+			boolean isValido = usuarioBO.validaUsuario(user);
 			if (isValido == false) {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_USUARIO_DADOS_INVALIDOS);
 			} else { // cadastro de pessoa com sucesso
