@@ -65,7 +65,7 @@ public class EditUserCommand implements Command{
 			
 			request.setAttribute("usuario", usuario);
 			
-			boolean isValido = usuarioBO.validaUsuarioA(usuario);
+			boolean isValido = usuarioBO.validaUsuario(usuario);
 					
 			if(isValido){
 				usuarioBO.editaUsuario(usuario);
