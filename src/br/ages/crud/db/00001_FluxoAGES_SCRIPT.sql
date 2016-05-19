@@ -107,9 +107,9 @@ CREATE TABLE tb_projeto_stakeholders (
 CREATE TABLE tb_ponto (
   id_ponto INT NOT NULL AUTO_INCREMENT COMMENT '',
   data_entrada DATETIME NULL COMMENT '',
-  hora_entrada DATETIME NULL COMMENT '',
+  hora_entrada TIME NULL COMMENT '',
   data_saida DATETIME NULL COMMENT '',
-  hora_saida DATETIME NULL COMMENT '',
+  hora_saida TIME NULL COMMENT '',
   id_usuario_aluno INT NULL COMMENT '',
   id_usuario_responsavel INT NULL COMMENT '',
   status_ponto VARCHAR(30) NULL COMMENT '',
