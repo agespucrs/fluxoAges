@@ -14,16 +14,10 @@
 
 			<div class="table-responsive">
 				<form method="post" action="main?acao=adicionaPonto" >
-				<%
-				
-				Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
-				
-				%>
 					<div class="form-group">
 						<div class='' id='nomeAluno'>
 							<label  for="sel1" class="form-label ages">Aluno:<span class="red">*</span></label> 
 							<select class="form-control" id="idAluno" name="idAluno" >
-						        <option value="<%=usuario.getIdUsuario()%>"><%=usuario.getNome()%></option>
 							 	<%
 									List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("usuarios");
 									for (Usuario u : listaUsuarios) {
