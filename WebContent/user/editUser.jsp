@@ -1,6 +1,7 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ages.crud.model.Usuario"%>
+<%@page import="br.ages.crud.model.TipoUsuario"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
@@ -66,9 +67,15 @@
 		            <div class="form-group">
 			           	<label class="form-label ages">Tipo de Usuário: <span class="red">*</span></label>
 			           	<select class="form-control" id="tipoUsuario" name="tipoUsuario" required>
-                            <option value="2" <%= usuario.getTipoUsuario().getIdTipoUsuario() == 2 ? "selected" : "" %>>Aluno</option>
-			           		<option value="1" <%= usuario.getTipoUsuario().getIdTipoUsuario() == 1 ? "selected" : "" %>>Arquiteto</option>
-		           		</select>
+						<%
+							List<TipoUsuario> listaTipoUsuarios = (List<TipoUsuario>) request.getAttribute("tipoUsuarios");
+							for (TipoUsuario tipoUsuario : listaTipoUsuarios) {
+						%>
+						<option value="<%=tipoUsuario.getIdTipoUsuario()%>"<%=tipoUsuario.getIdTipoUsuario() == usuario.getTipoUsuario().getIdTipoUsuario() ? "selected" : "" %>><%=tipoUsuario.getNome()%></option>
+						<%
+							}
+						%>           	
+			           	</select>
 		            </div>
                     
                     <hr>
