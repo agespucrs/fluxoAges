@@ -26,7 +26,8 @@
 					<th style="text-align: center;">Perfil</th>
 					<th style="text-align: center;">Status</th>
 					<th style="text-align: center;">Tipo</th>
-					<th colspan="2" style="text-align: center;">Ações</th>
+					<th style="text-align: center;"></th>
+					<th style="text-align: center;"></th>
                 </tr>
             </thead>
 
