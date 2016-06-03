@@ -97,6 +97,7 @@
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=registrarPonto">Registrar Ponto</a></li>
+				            	<li><a href="main?acao=listaAluno">Lista Alunos</a></li>
 				            	<li><a href="main?acao=listaPontoHora&id_usuario=0">Lista Horas Ponto</a></li>
 				            	<li><a href="main?acao=ListaPontoHoraInvalido&id_usuario=0">Lista Horas Ponto Inválidos</a>
 				          	</ul>

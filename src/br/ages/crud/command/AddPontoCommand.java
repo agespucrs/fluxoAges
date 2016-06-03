@@ -24,16 +24,22 @@ public class AddPontoCommand implements Command {
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 
 		pontoBO = new PontoBO();
-		proxima = "main?acao=registrarPonto";
+		proxima = "main?acao=listaAluno";
 
+		
 		String idAluno = request.getParameter("idAluno");
 		String idResponsavel = request.getParameter("idResponsavel");
 		String dataEntradaString = request.getParameter("dtEntrada");
 		String dataSaidaString = request.getParameter("dtSaida");
 		String senhaResponsavel = request.getParameter("senhaResponsavel");
-		try {
-			Ponto ponto = new Ponto();
+		String isEdit = request.getParameter("isEdit");
 
+		try {
+
+			Ponto ponto = new Ponto();
+			
+		
+			
 			usuarioBO = new UsuarioBO();
 			Usuario aluno = usuarioBO.buscaUsuarioId(Integer.parseInt(idAluno));
 			ponto.setAluno(aluno);
@@ -60,11 +66,14 @@ public class AddPontoCommand implements Command {
 
 			if (isValido == false) {
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CADASTRO_PONTO);
-			} else { // cadastro ponto com sucesso
+			} else if (isEdit != null && !"".equals(isEdit)) { // cadastro ponto com
+				int idPonto = Integer.valueOf(request.getParameter("idPonto"));
+				ponto.setIdPonto(idPonto);
+				pontoBO.editaPonto(ponto);
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_EDITA_PONTO.replace("?", ponto.getAluno().getNome()));
+			} else {
 				pontoBO.cadastrarPonto(ponto);
-				proxima = "main?acao=registrarPonto";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PONTO.replace("?", ponto.getAluno().getNome()));
-
 			}
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());

@@ -91,7 +91,7 @@ public class Util {
 	}
 
 	public static Date stringToDateTime(String s) throws ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date data;
 		try {
 			data = formatter.parse(s);
@@ -107,6 +107,13 @@ public class Util {
 		String data;
 		data = formatter.format(d);
 
+		return data;
+	}
+	public static String dateTimeToString(Date d) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		String data;
+		data = formatter.format(d);
+		
 		return data;
 	}
 
