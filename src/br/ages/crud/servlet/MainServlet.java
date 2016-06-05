@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import br.ages.crud.command.AddPontoCommand;
+import br.ages.crud.command.AddSkillCommand;
 import br.ages.crud.command.AddStakeholderCommand;
 import br.ages.crud.command.AddUserCommand;
 import br.ages.crud.command.AdicionaProjetoCommand;
 import br.ages.crud.command.Command;
 import br.ages.crud.command.CreateScreenPontoCommand;
 import br.ages.crud.command.CreateScreenProjectCommand;
+import br.ages.crud.command.CreateScreenSkillCommand;
 import br.ages.crud.command.CreateScreenStakeholderCommand;
 import br.ages.crud.command.CreateScreenUserCommand;
 import br.ages.crud.command.EditStakeholderCommand;
@@ -91,6 +93,8 @@ public class MainServlet extends HttpServlet {
 		comandos.put("validaPontoHora", new ValidaPontoHoraCommand());
 		comandos.put("listaPontoHora", new ListPontoTotalHorasCommand());
 		comandos.put("listaPontoHoraInvalido", new ListPontoTotalHorasInvalidoCommand());
+		comandos.put("adicionaSkill", new AddSkillCommand());
+		comandos.put("skills", new CreateScreenSkillCommand());
 	}
 
 	@Override

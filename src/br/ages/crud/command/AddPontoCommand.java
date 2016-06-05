@@ -1,6 +1,7 @@
 package br.ages.crud.command;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import br.ages.crud.bo.PontoBO;
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.exception.NegocioException;
+import br.ages.crud.exception.PersistenciaException;
 import br.ages.crud.model.Ponto;
 import br.ages.crud.model.StatusPonto;
 import br.ages.crud.model.Usuario;
@@ -16,17 +18,20 @@ import br.ages.crud.util.Util;
 
 public class AddPontoCommand implements Command {
 
+
 	private String proxima;
 	private UsuarioBO usuarioBO;
 	private PontoBO pontoBO;
 
+	@SuppressWarnings("unused")
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 
+		String pagina = request.getServletPath() +"?"+request.getQueryString();
+		
 		pontoBO = new PontoBO();
 		proxima = "main?acao=listaAluno";
 
-		
 		String idAluno = request.getParameter("idAluno");
 		String idResponsavel = request.getParameter("idResponsavel");
 		String dataEntradaString = request.getParameter("dtEntrada");
@@ -37,9 +42,7 @@ public class AddPontoCommand implements Command {
 		try {
 
 			Ponto ponto = new Ponto();
-			
-		
-			
+
 			usuarioBO = new UsuarioBO();
 			Usuario aluno = usuarioBO.buscaUsuarioId(Integer.parseInt(idAluno));
 			ponto.setAluno(aluno);
@@ -64,18 +67,22 @@ public class AddPontoCommand implements Command {
 				isValido = true;
 			}
 
-			if (isValido == false) {
-				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CADASTRO_PONTO);
-			} else if (isEdit != null && !"".equals(isEdit)) { // cadastro ponto com
-				int idPonto = Integer.valueOf(request.getParameter("idPonto"));
-				ponto.setIdPonto(idPonto);
-				pontoBO.editaPonto(ponto);
-				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_EDITA_PONTO.replace("?", ponto.getAluno().getNome()));
+			if (isValido != false) {
+				if (isEdit != null && !"".equals(isEdit)) { // edita ponto
+					int idPonto = Integer.valueOf(request.getParameter("idPonto"));
+					ponto.setIdPonto(idPonto);
+					pontoBO.editaPonto(ponto);
+					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_EDITA_PONTO.replace("?", ponto.getAluno().getNome()));
+				} else { // cadastro ponto
+					pontoBO.cadastrarPonto(ponto);
+					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PONTO.replace("?", ponto.getAluno().getNome()));
+				}
 			} else {
-				pontoBO.cadastrarPonto(ponto);
-				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_PONTO.replace("?", ponto.getAluno().getNome()));
+					//request.setAttribute("msgErro", MensagemContantes.MSG_ERR_CADASTRO_PONTO.replace("?", ponto.getAluno().getNome()));
+				throw new NegocioException(MensagemContantes.MSG_ERR_CADASTRO_PONTO.replace("?", ponto.getAluno().getNome()));
+			
 			}
-		} catch (Exception e) {
+		} catch (NegocioException | PersistenciaException | ParseException e) {
 			request.setAttribute("msgErro", e.getMessage());
 			e.printStackTrace();
 		}

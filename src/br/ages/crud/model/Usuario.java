@@ -132,4 +132,11 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		return this.getNome().compareToIgnoreCase(usuario.getNome());
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", usuario=" + usuario + ", senha=" + senha + ", tipoUsuario=" + tipoUsuario + ", perfilAcesso=" + perfilAcesso + ", statusUsuario=" + statusUsuario
+				+ ", matricula=" + matricula + ", nome=" + nome + ", email=" + email + ", dataInclusao=" + dataInclusao + "]";
+	}
+
+	
 }

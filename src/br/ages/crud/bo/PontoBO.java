@@ -18,23 +18,17 @@ import br.ages.crud.util.MensagemContantes;
 public class PontoBO {
 
 	public PontoBO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	private PontoDAO pontoDAO;
 
 	public Boolean validaPonto(Ponto ponto) throws NegocioException, SQLException {
 
-		try {
-			if (ponto.getDataEntrada().getTime() > ponto.getDataSaida().getTime()) {
-				throw new NegocioException(MensagemContantes.MSG_ERR_CADASTRO_PONTO_DATA_INVALIDA);
-			} else {
-				return true;
-			}
-		} catch (NegocioException e) {
-			e.printStackTrace();
+		if (ponto.getDataEntrada().getTime() > ponto.getDataSaida().getTime()) {
+			throw new NegocioException(MensagemContantes.MSG_ERR_CADASTRO_PONTO_DATA_INVALIDA);
 		}
-		return false;
+		return true;
+
 	}
 
 	/**
@@ -73,22 +67,20 @@ public class PontoBO {
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		try {
 			listaPontos = pontoDAO.listaPontoAlunos(idUsuario);
-			
-			
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 		return listaPontos;
 	}
-	
+
 	public ArrayList<ResumoPonto> listaPontoInvalidoAlunos() throws NegocioException {
 		pontoDAO = new PontoDAO();
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		try {
 			listaPontos = pontoDAO.listaPontoInvalidoAlunos();
-			
-			
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -97,7 +89,7 @@ public class PontoBO {
 	}
 
 	public String calculatotalHorasAluno(ArrayList<ResumoPonto> listaPontos) throws NumberFormatException, NegocioException {
-		
+
 		String totalHorasAluno;
 		int total = 0;
 		for (ResumoPonto time : listaPontos) {
@@ -106,31 +98,30 @@ public class PontoBO {
 		}
 
 		totalHorasAluno = (total / 60 + ":" + total % 60);
-		
-		return totalHorasAluno ;
+
+		return totalHorasAluno;
 	}
-	
+
 	public Ponto buscaPontoId(int idPonto) throws NegocioException {
 		pontoDAO = new PontoDAO();
-		try{
+		try {
 			Ponto ponto = pontoDAO.buscaPontoId(idPonto);
-			
+
 			return ponto;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
 	}
 
-	public void editaPonto(Ponto ponto) throws NegocioException{
+	public void editaPonto(Ponto ponto) throws NegocioException {
 		pontoDAO = new PontoDAO();
-		try{
+		try {
 			pontoDAO.editaPonto(ponto);
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
-		}		
+		}
 	}
 
 	public List<Ponto> listarAlunos() {

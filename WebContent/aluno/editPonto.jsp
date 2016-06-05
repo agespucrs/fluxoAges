@@ -45,7 +45,7 @@
 						<div class='' id='nomeResponsavel'>
 							<label for="sel2" class="form-label ages">Responsável:</label> 
 							<select class="form-control" id="idResponsavel" name="idResponsavel" >
-						        <option value="<%=ponto.getResponsavel().getNome()%>">Selecione...</option>
+						        <option value="<%=ponto.getResponsavel().getIdUsuario()%>"><%=ponto.getResponsavel().getNome()%></option>
 						         
 							 	<%
 									List<Usuario> listaResponsaveis = (List<Usuario>) request.getAttribute("responsaveis");
