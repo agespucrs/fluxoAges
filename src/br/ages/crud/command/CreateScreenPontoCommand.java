@@ -35,11 +35,12 @@ public class CreateScreenPontoCommand implements Command {
 		proxima = "main?acao=listaAluno";
 		
 		try {
+			if (!usuario.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR))
+				throw new NegocioException(MensagemContantes.MSG_INF_DENY);
+
 			responsaveis = usuarioBO.listaUsuariosReponsaveis();
 			request.setAttribute("responsaveis", responsaveis);
 			
-			if (!usuario.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR))
-				throw new NegocioException(MensagemContantes.MSG_INF_DENY);
 
 			if (isEdit != null && !"".equals(isEdit)) {
 				int id = Integer.parseInt(request.getParameter("id_ponto"));
