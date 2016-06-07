@@ -516,7 +516,7 @@ public class UsuarioDAO {
 
 			sql.append("from ages_e.tb_usuario u inner join ages_e.tb_tipo_usuario t ");
 			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
-			sql.append(" where t.nome in ('professor', 'secretaria');");
+			sql.append(" where t.flag_responsavel = 1;");
 			
 			//XXX Alterar a tabela TB_TIPO_USUARIO para ter um flag marcando se o tipo é responsável
 			

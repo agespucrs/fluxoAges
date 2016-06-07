@@ -52,10 +52,10 @@
 						  	 %>
 							<div class="row ages">
 							  	 <div class="col-sm-3">
-							  	 	<label class="form-label ages" data-toggle="tooltip" title="Hooray!"><%=h.getNome()%></label> 
+							  	 	<label class="form-label ages" data-toggle="tooltip" title="<%=h.getDescricao()%>"><%=h.getNome()%></label> 
 							  	 </div>
 							  	 <div class="col-sm-3">
-					  	 			<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="S/A" required="required"> S/A
+					  	 			<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="999" required="required"> S/A
 									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="1" required="required"> 1
 									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="2" required="required"> 2
 									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="3" required="required"> 3
@@ -78,10 +78,10 @@
 						  	 %>
 							<div class="row ages">
 							  	 <div class="col-sm-3">
-							  	 	<label class="form-label ages"><%=s.getNome()%></label> 
+							  	 	<label class="form-label ages" data-toggle="tooltip" title="<%=s.getDescricao()%>"><%=s.getNome()%></label> 
 							  	 </div>
 							  	 <div class="col-sm-3">
-					  	 			<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="S/A" required="required"> S/A
+					  	 			<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="999" required="required"> S/A
 									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="1" required="required"> 1
 									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="2" required="required"> 2
 									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="3" required="required"> 3

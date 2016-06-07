@@ -59,6 +59,8 @@ public class MensagemContantes {
 	
 	public static final String MSG_INF_DENY = "Acesso negado! Você precisa logar primeiro.";
 	
+	public static final String MSG_INF_SEM_PERISSAO = "Acesso negado! Você NÃO tem permissão apra acessar essa funcionalidade.";
+	
 
 	//msgs de projeto
 
