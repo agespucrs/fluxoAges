@@ -64,7 +64,9 @@ public class AddSkillCommand implements Command {
 				
 				skillAluno.setIdDefinicao(s.getIdSkillsDefinicao());
 				String idSkillDefinicao = Integer.toString(s.getIdSkillsDefinicao());
+
 				String v  = (String) (request.getParameter(idSkillDefinicao));
+
 				Integer valor = Integer.valueOf(v);
 
 				skillAluno.setValor(valor);

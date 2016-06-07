@@ -52,6 +52,7 @@
 						  	 %>
 							<div class="row ages">
 							  	 <div class="col-sm-3">
+<<<<<<< HEAD
 							  	 	<label class="form-label ages" data-toggle="tooltip" title="<%=h.getDescricao()%>"><%=h.getNome()%></label> 
 							  	 </div>
 							  	 <div class="col-sm-3">
@@ -82,6 +83,38 @@
 							  	 </div>
 							  	 <div class="col-sm-3">
 					  	 			<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="999" required="required"> S/A
+=======
+							  	 	<label class="form-label ages" data-toggle="tooltip" title="Hooray!"><%=h.getNome()%></label> 
+							  	 </div>
+							  	 <div class="col-sm-3">
+					  	 			<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="S/A" required="required"> S/A
+									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="1" required="required"> 1
+									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="2" required="required"> 2
+									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="3" required="required"> 3
+									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="4"required="required"> 4 <br/>
+							  	 </div>
+							  	 <div class="col-sm-6">
+							  	 	<input type='text' class="form-control" id="obsHard" name="obs<%=h.getIdSkillsDefinicao()%>" /> 
+							  	 </div>
+							</div>
+							<%
+								}
+							%>
+							<span class="red pull-right">S/A: Sem condições de avaliar </span>
+							</div>
+							<div class="well  well-sm">
+							<label  class="form-label ages titulo-skill">SoftsSkills</label>
+					 		<%
+								List<SkillsDefinicao> skillsSofts = (List<SkillsDefinicao>) request.getAttribute("skillsSofts");
+								for (SkillsDefinicao s : skillsSofts) {
+						  	 %>
+							<div class="row ages">
+							  	 <div class="col-sm-3">
+							  	 	<label class="form-label ages"><%=s.getNome()%></label> 
+							  	 </div>
+							  	 <div class="col-sm-3">
+					  	 			<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="S/A" required="required"> S/A
+>>>>>>> branch 'dev' of https://github.com/agespucrs/fluxoAges.git
 									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="1" required="required"> 1
 									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="2" required="required"> 2
 									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="3" required="required"> 3
