@@ -35,7 +35,7 @@ public class CreateScreenSkillCommand implements Command {
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
 		proxima = "main?acao=listaAluno";
 		try {
-			if( !usuario.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR) ) throw new NegocioException(MensagemContantes.MSG_INF_DENY);
+			if( !usuario.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR) ) throw new NegocioException(MensagemContantes.MSG_INF_SEM_PERISSAO);
 			responsaveis = usuarioBO.listaUsuariosReponsaveis();
 			request.setAttribute("responsaveis", responsaveis);
 			usuarios = usuarioBO.listarUsuarioAlunos();
