@@ -52,6 +52,7 @@
 						  	 %>
 							<div class="row ages">
 							  	 <div class="col-sm-3">
+<<<<<<< HEAD
 							  	 	<label class="form-label ages" data-toggle="tooltip" title="<%=h.getDescricao()%>"><%=h.getNome()%></label> 
 							  	 </div>
 							  	 <div class="col-sm-3">
