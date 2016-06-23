@@ -99,9 +99,13 @@ public class UsuarioDAO {
 			sql.append("t.`NOME` tnome,");
 			sql.append("t.`DESCRICAO`,");
 			sql.append("t.`DATA_INCLUSAO`");
-
+			
 			sql.append("from ages_e.tb_usuario u inner join ages_e.tb_tipo_usuario t ");
 			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario;");
+			
+			//funciona no workbench mas aqui não
+			sql.append("where STATUS_USUARIO='ATIVO'");
+			
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
@@ -192,7 +196,8 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			// sql.append("SELECT ID_TIPO_USUARIO FROM TB_USUARIO WHERE ID_USUARIO = ?
 			// ")
-			sql.append("delete from tb_usuario where id_usuario= ? ");
+			sql.append("update tb_usuario set STATUS_USUARIO='INATIVO'  where id_usuario= ? ");
+			
 			// sql.append("DELETE FROM TB_TIPO_USUARIO WHERE
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idUsuario);

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 import br.ages.crud.bo.SkillAlunoBO;
+//import br.ages.crud.bo.SkillAlunoBO;
 import br.ages.crud.bo.SkillsDefinicaoBO;
 import br.ages.crud.bo.UsuarioBO;
 import br.ages.crud.exception.NegocioException;
@@ -42,7 +43,7 @@ public class AddSkillCommand implements Command {
 		aluno = new Usuario();
 		avaliadorBO = new UsuarioBO();
 		avaliador = new Usuario();
-		skillAlunoBO = new SkillAlunoBO();
+		//skillAlunoBO = new SkillAlunoBO();
 		
 		ArrayList<SkillsDefinicao> definicoes	 = new ArrayList<>(); 
 		definicoes=(ArrayList<SkillsDefinicao>) skillsDefinicaoBO.listaskills();		
@@ -76,6 +77,7 @@ public class AddSkillCommand implements Command {
 				Date dtAvaliacao= Util.stringToDateTime(dataAvalicao);
 				skillAluno.setDtValor(dtAvaliacao);
 				
+
 				if(skillAlunoBO.confereAvaliador(avaliador, senhaResponsavel)){
 					skillAlunoBO.cadastraAvaliacao(skillAluno);
 					String obs = request.getParameter("obs4");
@@ -86,7 +88,16 @@ public class AddSkillCommand implements Command {
 					throw new NegocioException(" Senha de Avaliador Invalida");
 				}
 				logger.debug("Criado Avaliação: " + skillAluno);
-				
+
+				//if(skillAlunoBO.confereAvaliador(avaliador, senhaResponsavel)){
+				//	skillAlunoBO.cadastraAvaiacao(skillAluno);
+				//	request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_AVALIACAO.replace("?", aluno.getNome()));
+				//} else{
+				//	proxima = "main?acao=skills"; //"aluno/skills.jsp";
+				//	throw new NegocioException(" Senha de Avaliador Invalida");
+				//}
+				//logger.debug("Criado Avaliação: " + skillAluno);
+
 				//skills.put(s.getNome(), skillAluno);
 			}
 /*
