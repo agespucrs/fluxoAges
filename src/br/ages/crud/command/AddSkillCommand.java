@@ -77,8 +77,10 @@ public class AddSkillCommand implements Command {
 				skillAluno.setDtValor(dtAvaliacao);
 				
 				if(skillAlunoBO.confereAvaliador(avaliador, senhaResponsavel)){
-					skillAlunoBO.cadastraAvaiacao(skillAluno);
-					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_AVALIACAO.replace("?", aluno.getNome()));
+					skillAlunoBO.cadastraAvaliacao(skillAluno);
+					String obs = request.getParameter("obs4");
+					request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_AVALIACAO.replace("?", aluno.getNome())
+							);
 				} else{
 					proxima = "main?acao=skills"; //"aluno/skills.jsp";
 					throw new NegocioException(" Senha de Avaliador Invalida");

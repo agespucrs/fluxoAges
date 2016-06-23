@@ -513,8 +513,7 @@ public class UsuarioDAO {
 			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
 			sql.append(" where t.flag_responsavel = 1;");
 			
-			//XXX Alterar a tabela TB_TIPO_USUARIO para ter um flag marcando se o tipo é responsável
-			
+					
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();
 			while (resultset.next()) {

@@ -20,15 +20,15 @@
 						<div class="col-sm-6">
 						<div class='' id='nomeAluno'>
 							<label  for="sel1" class="form-label ages">Aluno:<span class="red">*</span></label> 
-							<select class="form-control" id="idAluno" name="idAluno"  required="required"  "${param.idAluno}">
+							<select class="form-control" id="idAluno" name="idAluno"  required="required" >
 							 	<option value="">Selecione um aluno</option>
 							 	<%
 									List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("usuarios");
 									for (Usuario u : listaUsuarios) {
 							  	 %>
-								<option value="<%=u.getIdUsuario()%>"><%=u.getNome()%></option>
-								<%
-									}
+								<option value="<%=u.getIdUsuario()%>" <%=Integer.toString(u.getIdUsuario()).equals(request.getParameter("idAluno")) ? "selected" : ""%> ><%=u.getNome()%></option>
+								<% 									
+									} 
 								%>
 					        </select>
 						</div>
@@ -36,7 +36,7 @@
 						<div class="col-sm-6">
 					    	<label class="form-label ages">Data Avaliação:<span class="red">*</span></label> 
 							<div class='input-group date' id='dataAvalicao'>
-								<input type='text' class="form-control" id='dtAvaliacao' name="dtAvaliacao" required="required"/>
+								<input type='text' class="form-control" id='dtAvaliacao' name="dtAvaliacao" value="${param.dtAvaliacao}" required="required" />
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -55,14 +55,14 @@
 							  	 	<label class="form-label ages" data-toggle="tooltip" title="<%=h.getDescricao()%>"><%=h.getNome()%></label> 
 							  	 </div>
 							  	 <div class="col-sm-3">
-					  	 			<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="999" required="required"> S/A
-									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="1" required="required"> 1
-									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="2" required="required"> 2
-									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="3" required="required"> 3
-									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="4"required="required"> 4 <br/>
+					  	 			<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="999" required="required" <%="999".equals(request.getParameter(Integer.toString(h.getIdSkillsDefinicao()))) ? "checked" : ""%>> S/A
+									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="1"   required="required"   <%="1".equals(request.getParameter(Integer.toString(h.getIdSkillsDefinicao()))) ? "checked" : ""%>> 1
+									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="2"   required="required"   <%="2".equals(request.getParameter(Integer.toString(h.getIdSkillsDefinicao()))) ? "checked" : ""%>> 2
+									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="3"   required="required"   <%="3".equals(request.getParameter(Integer.toString(h.getIdSkillsDefinicao()))) ? "checked" : ""%>> 3
+									<input type="radio"  class="" id="<%=h.getIdSkillsDefinicao()%>"  name="<%=h.getIdSkillsDefinicao()%>" value="4"   required="required"   <%="4".equals(request.getParameter(Integer.toString(h.getIdSkillsDefinicao()))) ? "checked" : ""%>> 4 <br/>
 							  	 </div>
 							  	 <div class="col-sm-6">
-							  	 	<input type='text' class="form-control" id="obsHard" name="obs<%=h.getIdSkillsDefinicao()%>" /> 
+							  	 	<input type='text' class="form-control" id="obs<%=h.getIdSkillsDefinicao()%>" name="obs<%=h.getIdSkillsDefinicao()%>" value="<%= request.getParameter("obs"+h.getIdSkillsDefinicao())==null ? "" :request.getParameter("obs"+h.getIdSkillsDefinicao())%>" /> 
 							  	 </div>
 							</div>
 							<%
@@ -81,14 +81,14 @@
 							  	 	<label class="form-label ages" data-toggle="tooltip" title="<%=s.getDescricao()%>"><%=s.getNome()%></label> 
 							  	 </div>
 							  	 <div class="col-sm-3">
-					  	 			<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="999" required="required"> S/A
-									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="1" required="required"> 1
-									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="2" required="required"> 2
-									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="3" required="required"> 3
-									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="4" required="required"> 4 <br/>
+					  	 			<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="999" required="required" <%="999".equals(request.getParameter(Integer.toString(s.getIdSkillsDefinicao()))) ? "checked" : ""%> > S/A
+									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="1"   required="required"   <%="1".equals(request.getParameter(Integer.toString(s.getIdSkillsDefinicao()))) ? "checked" : ""%> > 1
+									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="2"   required="required"   <%="2".equals(request.getParameter(Integer.toString(s.getIdSkillsDefinicao()))) ? "checked" : ""%> > 2
+									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="3"   required="required"   <%="3".equals(request.getParameter(Integer.toString(s.getIdSkillsDefinicao()))) ? "checked" : ""%> > 3
+									<input type="radio"  class="" id="<%=s.getIdSkillsDefinicao()%>"  name="<%=s.getIdSkillsDefinicao()%>" value="4"   required="required"   <%="4".equals(request.getParameter(Integer.toString(s.getIdSkillsDefinicao()))) ? "checked" : ""%>  > 4 <br/>
 							  	 </div>
 							  	 <div class="col-sm-6">
-							  	 	<input type='text' class="form-control" id="obsSoft" name="obs<%=s.getIdSkillsDefinicao()%>" /> 
+							  	 	<input type='text' class="form-control" id="obs<%=s.getIdSkillsDefinicao()%>" name="obs<%=s.getIdSkillsDefinicao()%>" value="<%= request.getParameter("obs"+s.getIdSkillsDefinicao())==null ? "" :request.getParameter("obs"+s.getIdSkillsDefinicao())%>" /> 
 							  	 </div>
 							</div>
 							<%
@@ -108,7 +108,7 @@
 											List<Usuario> listaResponsaveis = (List<Usuario>) request.getAttribute("responsaveis");
 											for (Usuario u : listaResponsaveis) {
 									  	 %>
-										<option value="<%=u.getIdUsuario()%>"><%=u.getNome()%></option>
+										<option value="<%=u.getIdUsuario()%>" <%=Integer.toString(u.getIdUsuario()).equals(request.getParameter("idResponsavel")) ? "selected" : ""%>><%=u.getNome()%></option>
 										<%
 											}
 										%>
