@@ -110,11 +110,14 @@ public class Util {
 		return data;
 	}
 	public static String dateTimeToString(Date d) throws ParseException {
+		if(d != null) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		String data;
 		data = formatter.format(d);
 		
 		return data;
+		}
+		return "";
 	}
 
 	public  String getVersion() {
