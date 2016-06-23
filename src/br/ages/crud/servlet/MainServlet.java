@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import br.ages.crud.command.AddPontoCommand;
+import br.ages.crud.command.AddSkillCommand;
 import br.ages.crud.command.AddStakeholderCommand;
 import br.ages.crud.command.AddUserCommand;
 import br.ages.crud.command.AdicionaProjetoCommand;
 import br.ages.crud.command.Command;
 import br.ages.crud.command.CreateScreenPontoCommand;
 import br.ages.crud.command.CreateScreenProjectCommand;
+import br.ages.crud.command.CreateScreenSkillCommand;
 import br.ages.crud.command.CreateScreenStakeholderCommand;
 import br.ages.crud.command.CreateScreenUserCommand;
 import br.ages.crud.command.EditStakeholderCommand;
@@ -30,6 +32,7 @@ import br.ages.crud.command.ListPontoTotalHorasCommand;
 import br.ages.crud.command.ListPontoTotalHorasInvalidoCommand;
 import br.ages.crud.command.ListStakeholdersCommand;
 import br.ages.crud.command.ListUserCommand;
+import br.ages.crud.command.ListaAlunoCommand;
 import br.ages.crud.command.ListaProjetosCommand;
 import br.ages.crud.command.LoginCommand;
 import br.ages.crud.command.LogoutCommand;
@@ -86,9 +89,12 @@ public class MainServlet extends HttpServlet {
 		//COMANDOS ALUNO
 		comandos.put("registrarPonto", new CreateScreenPontoCommand());
 		comandos.put("adicionaPonto", new AddPontoCommand());
+		comandos.put("listaAluno", new ListaAlunoCommand());
 		comandos.put("validaPontoHora", new ValidaPontoHoraCommand());
 		comandos.put("listaPontoHora", new ListPontoTotalHorasCommand());
 		comandos.put("listaPontoHoraInvalido", new ListPontoTotalHorasInvalidoCommand());
+		comandos.put("adicionaSkill", new AddSkillCommand());
+		comandos.put("skills", new CreateScreenSkillCommand());
 	}
 
 	@Override

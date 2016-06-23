@@ -31,6 +31,12 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 }
+.panel-addSkills{
+	max-width: 800px;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
 .panel-addStakeholder{
 	max-width: 400px;
 	float: none;
@@ -72,4 +78,10 @@ body{
 
 .margin-top {
 	margin-top: 20px;
+}
+
+.titulo-skill{
+	font-size: 18px;
+	padding: 0px;
+	margin: 0 0 4px 240px;
 }

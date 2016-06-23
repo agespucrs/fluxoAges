@@ -110,6 +110,7 @@ CREATE TABLE tb_ponto (
   hora_entrada DATETIME NULL COMMENT '',
   data_saida DATETIME NULL COMMENT '',
   hora_saida DATETIME NULL COMMENT '',
+  data_saida DATETIME NULL COMMENT '',
   id_usuario_aluno INT NULL COMMENT '',
   id_usuario_responsavel INT NULL COMMENT '',
   status_ponto VARCHAR(30) NULL COMMENT '',
