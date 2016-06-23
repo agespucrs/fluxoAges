@@ -1,6 +1,6 @@
 --liquibase formatted sql
 --changeset cassio:1
---comment Script para cria��o das primeiras tabelas do projeto.
+--comment Script para criação das primeiras tabelas do projeto.
 /***
 * Scripts para criacao e insersao de dados
 * Base Dados Fluxo AGES
@@ -110,7 +110,6 @@ CREATE TABLE tb_ponto (
   hora_entrada DATETIME NULL COMMENT '',
   data_saida DATETIME NULL COMMENT '',
   hora_saida DATETIME NULL COMMENT '',
-  data_saida DATETIME NULL COMMENT '',
   id_usuario_aluno INT NULL COMMENT '',
   id_usuario_responsavel INT NULL COMMENT '',
   status_ponto VARCHAR(30) NULL COMMENT '',
@@ -128,29 +127,29 @@ CREATE TABLE TB_UF (
 
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AC', 'Acre');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AL', 'Alagoas');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AP', 'Amapï¿½');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AP', 'AmapÃ¯Â¿Â½');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('AM', 'Amazonas');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('BA', 'Bahia');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('CE', 'Cearï¿½');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('CE', 'CearÃ¯Â¿Â½');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('DF', 'Distrito Federal');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('ES', 'Espï¿½rito Santo');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('GO', 'Goiï¿½s');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MA', 'Maranhï¿½o');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('ES', 'EspÃ¯Â¿Â½rito Santo');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('GO', 'GoiÃ¯Â¿Â½s');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MA', 'MaranhÃ¯Â¿Â½o');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MT', 'Mato Grosso');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MS', 'Mato Grosso do Sul');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('MG', 'Minas Gerais');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PA', 'Parï¿½');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PB', 'Paraï¿½ba');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PR', 'Paranï¿½');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PA', 'ParÃ¯Â¿Â½');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PB', 'ParaÃ¯Â¿Â½ba');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PR', 'ParanÃ¯Â¿Â½');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PE', 'Pernambuco');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PI', 'Piauï¿½');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('PI', 'PiauÃ¯Â¿Â½');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RJ', 'Rio de Janeiro');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RN', 'Rio Grande do Norte');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RS', 'Rio Grande do Sul');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RO', 'Rondï¿½nia');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RO', 'RondÃ¯Â¿Â½nia');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('RR', 'Roraima');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SC', 'Santa Catarina');
-INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SP', 'Sï¿½o Paulo');
+INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SP', 'SÃ¯Â¿Â½o Paulo');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('SE', 'Sergipe');
 INSERT INTO TB_UF (`sigla`, `descricao`) VALUES ('TO', 'Tocantins');
 
@@ -169,10 +168,10 @@ CREATE TABLE TB_CIDADE (
 INSERT INTO TB_CIDADE (`descricao`, `cod_estado`) 
 	VALUES ('Porto Alegre', 21),
 		   ('Alegrete', 21),
-		   ('Bagï¿½', 21),
+		   ('BagÃ¯Â¿Â½', 21),
 		   ('Canoas', 21);
 		   
--- Tabela de para endereï¿½o de Pessoas			   
+-- Tabela de para endereÃ¯Â¿Â½o de Pessoas			   
 CREATE TABLE IF NOT EXISTS `ages_e`.`TB_ENDERECO` (
   `id_endereco` INT(11) NOT NULL AUTO_INCREMENT,
   `logradouro` VARCHAR(45) NOT NULL,
