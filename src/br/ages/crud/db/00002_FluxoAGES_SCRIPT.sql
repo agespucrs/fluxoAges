@@ -9,6 +9,11 @@
 * 06/2016
 * 
 ***/
+-- alter table tb_ponto pra acertaras datas
+ALTER TABLE `ages_e`.`tb_ponto` 
+CHANGE COLUMN `hora_entrada` `hora_entrada` DATETIME NULL DEFAULT NULL COMMENT '' ,
+CHANGE COLUMN `hora_saida` `hora_saida` DATETIME NULL DEFAULT NULL COMMENT '' ;
+
 
 -- alter table tb_tipo_usuario
 ALTER TABLE `ages_e`.`tb_tipo_usuario` 
