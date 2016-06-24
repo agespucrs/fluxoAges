@@ -38,7 +38,7 @@
 						<tr class="coluna-sh">
 							<td align="center"><%=ponto.getAluno().getNome()%></td>
 							<td align="center"><%=Util.dateTimeToString(ponto.getDataEntrada())%></td>
-							<td align="center"><%=Util.dateTimeToString(ponto.getDataSaida())%></td>
+							<td align="center"><%=Util.dateTimeToString(ponto.getDataSaida()) == null ?  "--" :  Util.dateTimeToString(ponto.getDataSaida())%></td>
 							<td align="center"><%=ponto.getResponsavel().getNome()%></td>
 							<td align="center"><%=ponto.getStatus().name()%></td>
 							<td align="center">

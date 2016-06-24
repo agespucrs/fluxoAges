@@ -48,18 +48,13 @@ CREATE TABLE `tb_skills_definicao` (
 -- adicionando FKs para tabela Usuário
 ALTER TABLE `tb_ponto` 
 ADD INDEX `fk_aluno_idx` (`id_usuario_aluno` ASC)  COMMENT '',
-ADD INDEX `fk_responsavel_idx` (`id_usuario_responsavel` ASC)  COMMENT '';
 ALTER TABLE `ages_e`.`tb_ponto` 
 ADD CONSTRAINT `fk_aluno`
   FOREIGN KEY (`id_usuario_aluno`)
   REFERENCES `ages_e`.`tb_usuario` (`ID_USUARIO`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_responsavel`
-  FOREIGN KEY (`id_usuario_responsavel`)
-  REFERENCES `ages_e`.`tb_usuario` (`ID_USUARIO`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
+
 
 
 
