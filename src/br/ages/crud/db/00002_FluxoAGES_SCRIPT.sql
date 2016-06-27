@@ -47,7 +47,7 @@ CREATE TABLE TB_SKILLS (
 
 -- adicionando FKs para tabela Usuário
 ALTER TABLE `tb_ponto` 
-ADD INDEX `fk_aluno_idx` (`id_usuario_aluno` ASC)  COMMENT '',
+ADD INDEX `fk_aluno_idx` (`id_usuario_aluno` ASC)  COMMENT '';
 ALTER TABLE `ages_e`.`tb_ponto` 
 ADD CONSTRAINT `fk_aluno`
   FOREIGN KEY (`id_usuario_aluno`)
