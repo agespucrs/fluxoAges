@@ -53,8 +53,4 @@ ADD CONSTRAINT `fk_aluno`
   FOREIGN KEY (`id_usuario_aluno`)
   REFERENCES `ages_e`.`tb_usuario` (`ID_USUARIO`)
   ON DELETE NO ACTION
-  ON UPDATE NO ACTION,
-
-
-
-
+  ON UPDATE NO ACTION;
