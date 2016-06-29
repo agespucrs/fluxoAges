@@ -101,7 +101,7 @@ public class UsuarioDAO {
 			sql.append("t.`DATA_INCLUSAO`");
 			
 			sql.append("from ages_e.tb_usuario u inner join ages_e.tb_tipo_usuario t ");
-			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario;");
+			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario ");
 			
 			//funciona no workbench mas aqui não
 			sql.append("where STATUS_USUARIO='ATIVO'");
