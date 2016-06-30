@@ -28,8 +28,8 @@ public class PontoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("insert into tb_ponto (data_entrada, hora_entrada, data_saida, hora_saida, id_usuario_aluno, id_usuario_responsavel, status_ponto)");
-			sql.append("values (?, ?, ?, ?, ?, ?, ?);");
+			sql.append("insert into tb_ponto (data_entrada, data_saida, id_usuario_aluno, id_usuario_responsavel, status_ponto)");
+			sql.append("values (?, ?, ?, ?, ?);");
 
 			// Cadastra a pessoa e gera e busca id gerado
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
@@ -38,18 +38,12 @@ public class PontoDAO {
 			java.sql.Timestamp dataEntrada = new java.sql.Timestamp(ponto.getDataEntrada().getTime());
 			statement.setTimestamp(1, dataEntrada);
 
-			java.sql.Time horaEntrada = new java.sql.Time(ponto.getDataEntrada().getTime());
-			statement.setTime(2, horaEntrada);
-
 			java.sql.Timestamp dataSaida = ponto.getDataSaida() == null ? null : new java.sql.Timestamp(ponto.getDataSaida().getTime());
-			statement.setTimestamp(3, dataSaida);
-
-			java.sql.Time horaSaida = ponto.getDataSaida() == null ? null : new java.sql.Time(ponto.getDataSaida().getTime());
-			statement.setTime(4, horaSaida);
-
-			statement.setInt(5, ponto.getAluno().getIdUsuario());
-			statement.setInt(6, ponto.getResponsavel().getIdUsuario());
-			statement.setString(7, String.valueOf(ponto.getStatus()));
+			statement.setTimestamp(2, dataSaida);
+			
+			statement.setInt(3, ponto.getAluno().getIdUsuario());
+			statement.setInt(4, ponto.getResponsavel().getIdUsuario());
+			statement.setString(5, String.valueOf(ponto.getStatus()));
 
 			statement.executeUpdate();
 
@@ -81,7 +75,7 @@ public class PontoDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select p.id_ponto, u.nome, p.data_entrada, timediff(p.hora_saida,p.hora_entrada) horas ");
+			sql.append("select p.id_ponto, u.nome, p.data_entrada, timestampdiff(minute,p.data_entrada,p.data_saida)  horas ");
 			sql.append("FROM tb_ponto p, tb_usuario u ");
 			sql.append("where p.id_usuario_aluno = u.id_usuario ");
 			sql.append("and p.status_ponto ='" + StatusPonto.VALIDO + "'");
@@ -104,7 +98,7 @@ public class PontoDAO {
 				ponto.setIdPonto(resultSet.getInt("ID_PONTO"));
 				ponto.setNomeAluno(resultSet.getString("NOME"));
 				ponto.setDataEtrada(resultSet.getDate("DATA_ENTRADA"));
-				ponto.setHoraTotalDia(resultSet.getTime("HORAS"));
+				ponto.setHoraTotalDia(resultSet.getInt("HORAS"));
 				// " + horaTotal);
 
 				listaPontos.add(ponto);
@@ -143,7 +137,7 @@ public class PontoDAO {
 				ponto.setIdPonto(resultSet.getInt("ID_PONTO"));
 				ponto.setNomeAluno(resultSet.getString("NOME"));
 				ponto.setDataEtrada(resultSet.getDate("DATA_ENTRADA"));
-				ponto.setHoraTotalDia(resultSet.getTime("HORAS"));
+				ponto.setHoraTotalDia(resultSet.getInt("HORAS"));
 
 				listaPontos.add(ponto);
 			}

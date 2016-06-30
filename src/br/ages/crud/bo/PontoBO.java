@@ -93,8 +93,7 @@ public class PontoBO {
 		String totalHorasAluno;
 		int total = 0;
 		for (ResumoPonto time : listaPontos) {
-			String[] splits = (time.getHoraTotalDia().toString()).split(":");
-			total += (Integer.parseInt(splits[0]) * 60 + Integer.parseInt(splits[1]));
+				total += time.getHoraTotalDia();
 		}
 
 		totalHorasAluno = (total / 60 + ":" + total % 60);

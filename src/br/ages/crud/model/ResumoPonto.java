@@ -9,7 +9,7 @@ public class ResumoPonto implements Serializable {
 	private int idPonto;
 	private String nomeAluno;
 	private Date dataEtrada;
-	private Date horaTotalDia;
+	private int horaTotalDia;
 
 	public ResumoPonto() {
 	}
@@ -19,7 +19,7 @@ public class ResumoPonto implements Serializable {
 		return idPonto;
 	}
 
-	public ResumoPonto(int idPonto, String nomeAluno, Date dataEtrada, Date horaTotalDia) {
+	public ResumoPonto(int idPonto, String nomeAluno, Date dataEtrada, int horaTotalDia) {
 		super();
 		this.idPonto = idPonto;
 		this.nomeAluno = nomeAluno;
@@ -48,11 +48,11 @@ public class ResumoPonto implements Serializable {
 		this.dataEtrada = dataEtrada;
 	}
 
-	public Date getHoraTotalDia() {
+	public int getHoraTotalDia() {
 		return horaTotalDia;
 	}
 
-	public void setHoraTotalDia(Date horaEntrada) {
+	public void setHoraTotalDia(int horaEntrada) {
 		this.horaTotalDia = horaEntrada;
 	}
 
