@@ -6,3 +6,4 @@
 /target/
 .settings/
 /pom.xml
+/.tern-project
