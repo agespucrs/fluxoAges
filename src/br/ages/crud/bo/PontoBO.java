@@ -66,7 +66,7 @@ public class PontoBO {
 		pontoDAO = new PontoDAO();
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		try {
-			listaPontos = pontoDAO.listaPontoAlunos(idUsuario);
+			listaPontos = pontoDAO.listaPontoAlunos(idUsuario, StatusPonto.VALIDO);
 
 		} catch (SQLException e) {
 

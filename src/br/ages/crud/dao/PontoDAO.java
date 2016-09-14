@@ -68,7 +68,7 @@ public class PontoDAO {
 
 	}
 
-	public ArrayList<ResumoPonto> listaPontoAlunos(int idUsuario) throws SQLException {
+	public ArrayList<ResumoPonto> listaPontoAlunos(int idUsuario, StatusPonto statusPonto) throws SQLException {
 		ArrayList<ResumoPonto> listaPontos = new ArrayList<>();
 		Connection conexao = null;
 		try {
@@ -78,9 +78,12 @@ public class PontoDAO {
 			sql.append("select p.id_ponto, u.nome, p.data_entrada, timestampdiff(minute,p.data_entrada,p.data_saida)  horas ");
 			sql.append("FROM tb_ponto p, tb_usuario u ");
 			sql.append("where p.id_usuario_aluno = u.id_usuario ");
-			sql.append("and p.status_ponto ='" + StatusPonto.VALIDO + "'");
-
+			
+			if(statusPonto!=null)
+				sql.append("and p.status_ponto ='" + statusPonto + "'");
+			
 			PreparedStatement statement;
+			
 			if (idUsuario == 0) {
 				// sql.append(" and p.id_usuario_aluno = ?; ");
 				statement = conexao.prepareStatement(sql.toString());
@@ -154,7 +157,7 @@ public class PontoDAO {
 
 	public static void main(String[] args) throws SQLException {
 		PontoDAO p = new PontoDAO();
-		System.out.println(p.listaPontoAlunos(1));
+		System.out.println(p.listaPontoAlunos(0,null));
 	}
 
 	public Ponto buscaPontoId(int idPonto) throws PersistenciaException, SQLException {
